@@ -9,4 +9,5 @@ MapObject::MapObject (sf::RenderWindow *hutrieApplication, Unit *unit, std::stri
  sprite.setPosition( positionX, positionY );
  sprite.setOrigin(originX,originY);
  sprite.setScale(scaleX,scaleY);
+ active = true;
 }

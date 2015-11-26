@@ -12,7 +12,7 @@ Building::Building(sf::RenderWindow *hutrieApplication, Unit *unit0, Unit *unit1
     {
         case 0: texture.loadFromFile("sprites/buildings/sawmill.png"); break;
         case 1: texture.loadFromFile("sprites/buildings/barracks.png"); break;
-        case 2: texture.loadFromFile("sprites/buildings/stone.png"); break;
+        case 2: texture.loadFromFile("sprites/buildings/stone.png"); sprite.setScale(0.45,0.45); sprite.setOrigin(-10,-30); break;
         case 3: texture.loadFromFile("sprites/buildings/residence.png"); break;
     }
 

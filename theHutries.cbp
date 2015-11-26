@@ -56,6 +56,8 @@
 		</Linker>
 		<Unit filename="building.cpp" />
 		<Unit filename="building.h" />
+		<Unit filename="gui.cpp" />
+		<Unit filename="gui.h" />
 		<Unit filename="hutrie.cpp" />
 		<Unit filename="hutrie.h" />
 		<Unit filename="main.cpp" />

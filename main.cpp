@@ -8,6 +8,7 @@
 #include "building.h"
 #include "mapobject.h"
 #include "unit.h"
+#include "gui.h"
 
 class TitleText
 {
@@ -22,9 +23,9 @@ TitleText::TitleText()
 {
     font.loadFromFile("prince_valiant.ttf");
     text.setFont(font);
-    text.setCharacterSize(60);
+    text.setCharacterSize(45);      //60
     text.setStyle(sf::Text::Bold);
-    text.setPosition(50,50);
+    text.setPosition(1024 + 20,40);
     text.setColor(sf::Color::Black);
 }
 
@@ -35,10 +36,10 @@ void TitleText::display()
 
       text.setString("The");
       sf::sleep(sf::seconds(2));
-      text.setPosition(text.getPosition().x + 116, text.getPosition().y);
+      text.setPosition(text.getPosition().x + 88 , text.getPosition().y);  //116
       text.setString("Hutries");
       sf::sleep(sf::seconds(2));
-      text.setPosition(text.getPosition().x - 116, text.getPosition().y);
+      text.setPosition(text.getPosition().x - 88, text.getPosition().y);   //116
       text.setString("The Hutries");
       sf::sleep(sf::seconds(2));
     }
@@ -50,18 +51,24 @@ int main()
     std::vector <Building*> buildings;
     int choice = 0, i = 0, j=0;
     const int applicationWidth = 1024;
-    const int applicationLength = 640;
-    sf::RenderWindow hutrieApplication( sf::VideoMode( applicationWidth,applicationLength, 32 ), "The Hutries");//, sf::Style::Fullscreen );
+    const int applicationHeight = 640;
+    GUI gui(applicationWidth,applicationHeight);
+    sf::RenderWindow hutrieApplication( sf::VideoMode( applicationWidth + gui.getWidth(),applicationHeight, 32 ), "The Hutries");//,sf::Style::Fullscreen );
+    //sf::RenderWindow hutrieApplication( sf::VideoMode::getDesktopMode(), "The Hutries",sf::Style::Fullscreen );
     hutrieApplication.setFramerateLimit(60);
+    hutrieApplication.setMouseCursorVisible(false);
+    sf::View fixed = hutrieApplication.getView();
+    //fixed.zoom(2);
+
 
     int horizontalUnitsCounter = applicationWidth/64;  //jak wszystko w klasach zamien liczbe na rozmiar kwadracika
-    int verticalUnitsCounter = applicationLength/64;  //jak wszystko w klasach zamien liczbe na rozmiar kwadracika
+    int verticalUnitsCounter = applicationHeight/64;  //jak wszystko w klasach zamien liczbe na rozmiar kwadracika
     std::vector <Unit*> units;
     sf::Vector2f position(0, 0);
     int counter = 0;
-    for (int j = 0; j < 12; j++)
+    for (int j = 0; j < verticalUnitsCounter; j++)
     {
-        for (int i = 0; i < 16 ; i++)
+        for (int i = 0; i < horizontalUnitsCounter ; i++)
         {
         units.push_back(new Unit (position));
         position.x += 64;
@@ -76,10 +83,14 @@ int main()
     hut.sprite.setOrigin( 65, 75 );
     hut.sprite.setPosition( 420, 120 );
 
-    sf::Sprite background;
+    sf::RectangleShape background (sf::Vector2f(1024,640));
     sf::Texture backgroundTexture;
     backgroundTexture.loadFromFile( "background.jpg" );
-    background.setTexture( backgroundTexture );
+    background.setTexture( &backgroundTexture );
+
+    sf::Texture cursorTexture;
+    cursorTexture.loadFromFile("sprites/cursor.png");
+    sf::Sprite cursor(cursorTexture);
 
     TitleText titleText;
     sf::Thread thread(&TitleText::display, &titleText);
@@ -138,6 +149,16 @@ int main()
 
             if( zdarzenie.type == sf::Event::KeyPressed && zdarzenie.key.code == sf::Keyboard::Escape )
                  hutrieApplication.close();
+            /*if( zdarzenie.type == sf::Event::KeyPressed && zdarzenie.key.code == sf::Keyboard::Space )
+            {
+                std::vector <Unit*>::iterator it;
+                for(it = units.begin(); it != units.end(); ++it)
+                {
+                    if( (*it)->isEmpty()) std::cout<< "empty" << std::endl;
+                    else std::cout<< "full" << std::endl;
+                }
+            }*/
+
             /*
            if( zdarzenie.type == sf::Event::MouseButtonPressed && zdarzenie.mouseButton.button == sf::Mouse::Left )
             {
@@ -145,6 +166,15 @@ int main()
             */
         }
 
+        cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))); //ustawia obrazek kursora
+
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+            {
+              sf::Vector2f distance = gui.guiFrame.getPosition() - static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication));
+              std::cout << distance.x << "," << distance.y << std::endl;
+              fixed.setCenter(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
+              //gui.guiFrame.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))+distance);
+            }
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)&& clock.getElapsedTime().asSeconds()>0.5)
         {
             std::vector <Unit*>::iterator it;
@@ -180,8 +210,8 @@ int main()
                     case 2:                                                                                                                                      //BUILDING zajmuje 4 pola na mapie!
                     {
                         int buildingField [] = {unitIndex,unitIndex + 1, unitIndex + horizontalUnitsCounter, unitIndex + horizontalUnitsCounter + 1 };           // wpisuje do tablicy indexy Unitow na ktorych bedzie wybudowany Building
-                        if (units.at(buildingField[1])->isEmpty() && units.at(buildingField[2])->isEmpty() && units.at(buildingField[3])->isEmpty())
-                        {
+                        if ( units.at(buildingField[1])->isEmpty() && units.at(buildingField[2])->isEmpty() && units.at(buildingField[3])->isEmpty())
+                        { //buildingField[1] <= horizontalUnitsCounter &&
                             buildings.push_back(new Building(&hutrieApplication,units.at(buildingField[0]),units.at(buildingField[1]),units.at(buildingField[2] ),units.at(buildingField[3]))); //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
                             buildings.at(j)->placeOnMap();
                             j++;
@@ -196,6 +226,8 @@ int main()
 // RYSOWANIE
 
         hutrieApplication.clear( sf::Color::Black );        //czyszczenie ekranu dla pierwszego wyswietlenia
+        hutrieApplication.setView(fixed);
+        hutrieApplication.draw(gui.guiFrame);
         hutrieApplication.draw( background );
         std::vector <Unit*>::iterator it3;                  //rysowanie zielonych kratek pól
         for(it3 = units.begin(); it3 != units.end(); ++it3)
@@ -214,6 +246,7 @@ int main()
         {
             hutrieApplication.draw((*it)->sprite);
         }
+        hutrieApplication.draw(cursor);
         hutrieApplication.display();
     }
     return 0;

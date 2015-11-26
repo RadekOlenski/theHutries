@@ -531,7 +531,7 @@
 	"mapobject.h"
 	"unit.h"
 
-1448529922 d:\onedrive\cpp projects\the hutries\thehutries\mapobject.h
+1448539168 d:\onedrive\cpp projects\the hutries\thehutries\mapobject.h
 	<SFML/Graphics.hpp>
 	<string>
 	"unit.h"
@@ -539,13 +539,13 @@
 1448495715 d:\onedrive\cpp projects\the hutries\thehutries\unit.h
 	<SFML/Graphics.hpp>
 
-1448529775 source:d:\onedrive\cpp projects\the hutries\thehutries\mapobject.cpp
+1448539186 source:d:\onedrive\cpp projects\the hutries\thehutries\mapobject.cpp
 	"mapobject.h"
 
-1448495571 source:d:\onedrive\cpp projects\the hutries\thehutries\unit.cpp
+1448552214 source:d:\onedrive\cpp projects\the hutries\thehutries\unit.cpp
 	"unit.h"
 
-1448535284 source:d:\onedrive\cpp projects\the hutries\thehutries\main.cpp
+1448551886 source:d:\onedrive\cpp projects\the hutries\thehutries\main.cpp
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<iostream>
@@ -555,6 +555,7 @@
 	"building.h"
 	"mapobject.h"
 	"unit.h"
+	"gui.h"
 
 1448530161 d:\onedrive\cpp projects\the hutries\thehutries\building.h
 	<SFML/Graphics.hpp>
@@ -562,7 +563,13 @@
 	"mapobject.h"
 	"unit.h"
 
-1448535381 source:d:\onedrive\cpp projects\the hutries\thehutries\building.cpp
+1448552521 source:d:\onedrive\cpp projects\the hutries\thehutries\building.cpp
 	"building.h"
 	<cstdlib>
+
+1448552935 source:d:\onedrive\cpp projects\the hutries\thehutries\gui.cpp
+	"gui.h"
+
+1448547117 d:\onedrive\cpp projects\the hutries\thehutries\gui.h
+	<SFML/Graphics.hpp>
 
