@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1448495398 source:d:\onedrive\cpp projects\the hutries\testowy\main.cpp
+1448530718 source:d:\onedrive\cpp projects\the hutries\testowy\main.cpp
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<iostream>
@@ -490,7 +490,7 @@
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1448495827 source:d:\onedrive\cpp projects\the hutries\testowy\hutrie.cpp
+1448530865 source:d:\onedrive\cpp projects\the hutries\testowy\hutrie.cpp
 	"hutrie.h"
 	<string>
 
@@ -499,24 +499,70 @@
 	"mapobject.h"
 	"unit.h"
 
-1448495123 d:\onedrive\cpp projects\the hutries\testowy\mapobject.h
+1448529922 d:\onedrive\cpp projects\the hutries\testowy\mapobject.h
 	<SFML/Graphics.hpp>
 	<string>
 	"unit.h"
 
-1448495418 source:d:\onedrive\cpp projects\the hutries\testowy\mapobject.cpp
+1448529775 source:d:\onedrive\cpp projects\the hutries\testowy\mapobject.cpp
 	"mapobject.h"
 
-1448495374 source:d:\onedrive\cpp projects\the hutries\testowy\building.cpp
+1448531448 source:d:\onedrive\cpp projects\the hutries\testowy\building.cpp
 	"building.h"
 
-1448495138 d:\onedrive\cpp projects\the hutries\testowy\building.h
+1448530161 d:\onedrive\cpp projects\the hutries\testowy\building.h
 	<SFML/Graphics.hpp>
+	<vector>
 	"mapobject.h"
+	"unit.h"
 
 1448495715 d:\onedrive\cpp projects\the hutries\testowy\unit.h
 	<SFML/Graphics.hpp>
 
 1448495571 source:d:\onedrive\cpp projects\the hutries\testowy\unit.cpp
 	"unit.h"
+
+1448530865 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrie.cpp
+	"hutrie.h"
+	<string>
+
+1448495155 d:\onedrive\cpp projects\the hutries\thehutries\hutrie.h
+	<SFML/Graphics.hpp>
+	"mapobject.h"
+	"unit.h"
+
+1448529922 d:\onedrive\cpp projects\the hutries\thehutries\mapobject.h
+	<SFML/Graphics.hpp>
+	<string>
+	"unit.h"
+
+1448495715 d:\onedrive\cpp projects\the hutries\thehutries\unit.h
+	<SFML/Graphics.hpp>
+
+1448529775 source:d:\onedrive\cpp projects\the hutries\thehutries\mapobject.cpp
+	"mapobject.h"
+
+1448495571 source:d:\onedrive\cpp projects\the hutries\thehutries\unit.cpp
+	"unit.h"
+
+1448535284 source:d:\onedrive\cpp projects\the hutries\thehutries\main.cpp
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<iostream>
+	<vector>
+	<ctime>
+	"hutrie.h"
+	"building.h"
+	"mapobject.h"
+	"unit.h"
+
+1448530161 d:\onedrive\cpp projects\the hutries\thehutries\building.h
+	<SFML/Graphics.hpp>
+	<vector>
+	"mapobject.h"
+	"unit.h"
+
+1448535381 source:d:\onedrive\cpp projects\the hutries\thehutries\building.cpp
+	"building.h"
+	<cstdlib>
 

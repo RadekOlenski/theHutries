@@ -13,7 +13,7 @@ class MapObject
         sf::Sprite sprite;
         sf::Texture texture;
 
-        MapObject(sf::RenderWindow *hutrieApplication, Unit *unit, std::string pathName, float positionX = 0, float positionY = 0, float originX = 0, float originY = 0, float scaleX = 1, float scaleY = 1);
+        MapObject (sf::RenderWindow *hutrieApplication, Unit *unit, std::string pathName, float scaleX = 1, float scaleY = 1, float positionX = 0, float positionY = 0, float originX = 0, float originY = 0);
     protected:
         Unit *unit;
 };

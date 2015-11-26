@@ -1,6 +1,6 @@
 #include "mapobject.h"
 
-MapObject::MapObject (sf::RenderWindow *hutrieApplication, Unit *unit, std::string pathName, float positionX, float positionY, float originX, float originY, float scaleX, float scaleY)
+MapObject::MapObject (sf::RenderWindow *hutrieApplication, Unit *unit, std::string pathName, float scaleX, float scaleY, float positionX, float positionY, float originX, float originY)
 {
  this->hutrieApplication = hutrieApplication;
  this->unit = unit;

@@ -2,6 +2,7 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 #include "hutrie.h"
 #include "building.h"
@@ -44,13 +45,17 @@ void TitleText::display()
 }
 int main()
 {
+    srand(time(0));
     std::vector <Hutrie*> hutries;
     std::vector <Building*> buildings;
     int choice = 0, i = 0, j=0;
-    sf::RenderWindow hutrieApplication( sf::VideoMode( 1024,640, 32 ), "The Hutries");//, sf::Style::Fullscreen );
+    const int applicationWidth = 1024;
+    const int applicationLength = 640;
+    sf::RenderWindow hutrieApplication( sf::VideoMode( applicationWidth,applicationLength, 32 ), "The Hutries");//, sf::Style::Fullscreen );
     hutrieApplication.setFramerateLimit(60);
 
-
+    int horizontalUnitsCounter = applicationWidth/64;  //jak wszystko w klasach zamien liczbe na rozmiar kwadracika
+    int verticalUnitsCounter = applicationLength/64;  //jak wszystko w klasach zamien liczbe na rozmiar kwadracika
     std::vector <Unit*> units;
     sf::Vector2f position(0, 0);
     int counter = 0;
@@ -172,11 +177,15 @@ int main()
                         hutries.at(i-1)->hutrieThread.launch();
                             break;
                     }
-                    case 2:
+                    case 2:                                                                                                                                      //BUILDING zajmuje 4 pola na mapie!
                     {
-                        buildings.push_back(new Building(&hutrieApplication,units.at(unitIndex)));
-                        buildings.at(j)->placeOnMap();
-                        j++;
+                        int buildingField [] = {unitIndex,unitIndex + 1, unitIndex + horizontalUnitsCounter, unitIndex + horizontalUnitsCounter + 1 };           // wpisuje do tablicy indexy Unitow na ktorych bedzie wybudowany Building
+                        if (units.at(buildingField[1])->isEmpty() && units.at(buildingField[2])->isEmpty() && units.at(buildingField[3])->isEmpty())
+                        {
+                            buildings.push_back(new Building(&hutrieApplication,units.at(buildingField[0]),units.at(buildingField[1]),units.at(buildingField[2] ),units.at(buildingField[3]))); //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
+                            buildings.at(j)->placeOnMap();
+                            j++;
+                        }
                         break;
                     }
                 };

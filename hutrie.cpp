@@ -1,12 +1,13 @@
 #include "hutrie.h"
 #include <string>
 
-Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, Unit *unit) : MapObject(hutrieApplication, unit, "sprites/carrier/right.png", 320, 320,0,0,0.64,0.64), hutrieThread(&Hutrie::moveHutrie, this) //origin 45,40
+Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, Unit *unit) : MapObject(hutrieApplication, unit, "sprites/carrier/right.png",0.64,0.64,320,320), hutrieThread(&Hutrie::moveHutrie, this) //origin 45,40
 {
 }
 
 void Hutrie::moveHutrie()
 {
+    unit->setEmpty(false);
     //float mouseY = sf::Mouse::getPosition(*hutrieApplication).y;
     //float mouseX = sf::Mouse::getPosition(*hutrieApplication).x;
 
@@ -45,6 +46,5 @@ void Hutrie::moveHutrie()
      sf::sleep(sf::milliseconds(5));
      //std::cout << "Jestem na pozycji: " << sprite.getPosition().x <<", " << sprite.getPosition().y << std::endl;
     };
-    unit->setEmpty(false);
 }
 
