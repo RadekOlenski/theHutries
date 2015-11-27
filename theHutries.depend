@@ -522,7 +522,7 @@
 1448495571 source:d:\onedrive\cpp projects\the hutries\testowy\unit.cpp
 	"unit.h"
 
-1448530865 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrie.cpp
+1448634129 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrie.cpp
 	"hutrie.h"
 	<string>
 
@@ -531,13 +531,15 @@
 	"mapobject.h"
 	"unit.h"
 
-1448539168 d:\onedrive\cpp projects\the hutries\thehutries\mapobject.h
+1448633375 d:\onedrive\cpp projects\the hutries\thehutries\mapobject.h
+	"unit.h"
+	"guitext.h"
 	<SFML/Graphics.hpp>
 	<string>
-	"unit.h"
 
-1448495715 d:\onedrive\cpp projects\the hutries\thehutries\unit.h
+1448622841 d:\onedrive\cpp projects\the hutries\thehutries\unit.h
 	<SFML/Graphics.hpp>
+	"mapobject.h"
 
 1448539186 source:d:\onedrive\cpp projects\the hutries\thehutries\mapobject.cpp
 	"mapobject.h"
@@ -545,7 +547,7 @@
 1448552214 source:d:\onedrive\cpp projects\the hutries\thehutries\unit.cpp
 	"unit.h"
 
-1448551886 source:d:\onedrive\cpp projects\the hutries\thehutries\main.cpp
+1448633573 source:d:\onedrive\cpp projects\the hutries\thehutries\main.cpp
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	<iostream>
@@ -556,20 +558,27 @@
 	"mapobject.h"
 	"unit.h"
 	"gui.h"
+	"guitext.h"
 
-1448530161 d:\onedrive\cpp projects\the hutries\thehutries\building.h
+1448622949 d:\onedrive\cpp projects\the hutries\thehutries\building.h
 	<SFML/Graphics.hpp>
 	<vector>
 	"mapobject.h"
 	"unit.h"
 
-1448552521 source:d:\onedrive\cpp projects\the hutries\thehutries\building.cpp
+1448633458 source:d:\onedrive\cpp projects\the hutries\thehutries\building.cpp
 	"building.h"
 	<cstdlib>
 
-1448552935 source:d:\onedrive\cpp projects\the hutries\thehutries\gui.cpp
+1448572875 source:d:\onedrive\cpp projects\the hutries\thehutries\gui.cpp
 	"gui.h"
 
 1448547117 d:\onedrive\cpp projects\the hutries\thehutries\gui.h
 	<SFML/Graphics.hpp>
+
+1448573541 d:\onedrive\cpp projects\the hutries\thehutries\guitext.h
+	<SFML/Graphics.hpp>
+
+1448573540 source:d:\onedrive\cpp projects\the hutries\thehutries\guitext.cpp
+	"guitext.h"
 

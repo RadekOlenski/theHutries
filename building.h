@@ -7,6 +7,7 @@
 #include "mapobject.h"
 #include "unit.h"
 
+
 class Building : public MapObject
 {
     public:

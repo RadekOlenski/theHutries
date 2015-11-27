@@ -3,11 +3,13 @@
 
 Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, Unit *unit) : MapObject(hutrieApplication, unit, "sprites/carrier/right.png",0.64,0.64,320,320), hutrieThread(&Hutrie::moveHutrie, this) //origin 45,40
 {
+    introduceYourSelf = "I'm Hutrie";
 }
 
 void Hutrie::moveHutrie()
 {
     unit->setEmpty(false);
+    unit->setMapObject(this);
     //float mouseY = sf::Mouse::getPosition(*hutrieApplication).y;
     //float mouseX = sf::Mouse::getPosition(*hutrieApplication).x;
 

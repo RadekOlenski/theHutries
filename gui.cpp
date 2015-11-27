@@ -10,6 +10,6 @@ GUI::GUI(int mapWidth,int mapHeight, int width) :  guiFrame(sf::Vector2f(width,m
     //guiFrame.setFillColor(sf::Color::White);
     //guiFrame.setOutlineThickness(1);
     //guiFrame.setOutlineColor(sf::Color::Blue);
-    texture.loadFromFile("pergamino.jpg");
+    texture.loadFromFile("sprites/background/pergamino.jpg");
     guiFrame.setTexture(&texture);
 }

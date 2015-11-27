@@ -3,6 +3,7 @@
 
 Building::Building(sf::RenderWindow *hutrieApplication, Unit *unit0, Unit *unit1, Unit *unit2, Unit *unit3) : MapObject(hutrieApplication, unit0, "sprites/buildings/sawmill.png",0.5,0.5)
 {
+    introduceYourSelf = "Hi! I'm Building";
     buildingField.resize(4);
     buildingField.at(0) = unit0;
     buildingField.at(1) = unit1;
@@ -15,6 +16,7 @@ Building::Building(sf::RenderWindow *hutrieApplication, Unit *unit0, Unit *unit1
         case 2: texture.loadFromFile("sprites/buildings/stone.png"); sprite.setScale(0.45,0.45); sprite.setOrigin(-10,-30); break;
         case 3: texture.loadFromFile("sprites/buildings/residence.png"); break;
     }
+    description.text.setString("It's me! Building!");
 
 }
 
@@ -27,5 +29,6 @@ void Building::placeOnMap()
     for(it = buildingField.begin(); it != buildingField.end(); ++it)
     {
         (*it)->setEmpty(false);
+        (*it)->setMapObject(this);
     }
 }

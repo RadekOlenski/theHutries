@@ -58,6 +58,8 @@
 		<Unit filename="building.h" />
 		<Unit filename="gui.cpp" />
 		<Unit filename="gui.h" />
+		<Unit filename="guitext.cpp" />
+		<Unit filename="guitext.h" />
 		<Unit filename="hutrie.cpp" />
 		<Unit filename="hutrie.h" />
 		<Unit filename="main.cpp" />
