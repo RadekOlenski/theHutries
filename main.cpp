@@ -12,7 +12,6 @@
 #include "guitext.h"
 
 
-
 int main()
 {
     srand(time(0));
@@ -23,6 +22,7 @@ int main()
     std::vector <Building*> buildings;
     int choice = 0;
     sf::Clock clock;
+    Unit* lastClickedUnit = NULL;
     const int applicationWidth = 1024;
     const int applicationHeight = 640;
 
@@ -92,6 +92,9 @@ int main()
         {
             if( event.type == sf::Event::Closed )
                  hutrieApplication.close();
+
+//////////////////////SWITCHING BETWEEN BUILDING AND HUTRIE MODE/////////////////////////////////////////////////////////////////////
+
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F1)
             {
              choice = 1;
@@ -100,11 +103,14 @@ int main()
             {
              choice = 2;
             }
+
+/////////////////////////////OTHER KEYBOARD FEATURES/////////////////////////////////////////////////////////////////////////////////////////
+
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
                  hutrieApplication.close();
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space )
             {
-                std::vector <Unit*>::iterator it;
+                std::vector <Unit*>::iterator it;                       //sprawdzenie czy informacje miedzy MapObject i Unit s¹ dobrze przekazywane
                 for(it = units.begin(); it != units.end(); ++it)
                 {
                     if( (*it)->isEmpty()) std::cout<< "empty" << std::endl;
@@ -113,7 +119,9 @@ int main()
             }
         }
 
-        cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))); //ustawia obrazek kursora
+        cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))); //ustawia sprite kursora na pozycji myszki
+
+//////////////////////////////////REAL-TIME MOUSE ACCESS/////////////////////////////////////////////////////////////////////////////////////////
 
         if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
             {
@@ -124,6 +132,19 @@ int main()
             }
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)&& clock.getElapsedTime().asSeconds()>0.5)
         {
+            if (sf::Mouse::getPosition(hutrieApplication).x < applicationWidth)         //jesli klikniecie w obrebie mapy
+            {
+
+//////////////////////////////////////////STOP EMPHASIZING LAST CLICKED UNIT///////////////////////////////////////////////////////////
+
+             if (lastClickedUnit != NULL )
+               {
+                   lastClickedUnit->getMapObject()->emphasizeUnits(false);
+                   lastClickedUnit->getMapObject()->setEmphasize(false);
+               }
+
+///////////////////////////////////////////////////CHOOSING RIGHT UNIT///////////////////////////////////////////////////////////
+
             std::vector <Unit*>::iterator it;
             int unitIndex = 0;
             for(it = units.begin(); it != units.end(); ++it)
@@ -141,13 +162,17 @@ int main()
             }
            //std::cout << "Kwadrat: " << std::distance(units.begin(),it) << std::endl;
 
+//////////////////////////////////////////////////////////LEFT MOUSE MAP ACTIONS/////////////////////////////////////////////////////////////////////////
+
            if ( units.at( unitIndex )->isEmpty() )   //jesli unit jest wolny, bez zadnego mapobjectu
            {
-               switch(choice) //klikniecei klawisz F1 lub F2
+               switch(choice) //klikniecie klawisz F1 lub F2
                 {
                     case 1:     //poruszanie Hutrim
                     {
-                        hutries.push_back(new Hutrie(&hutrieApplication, units.at(unitIndex)));
+                        std::vector <Unit*> usedUnits;
+                        usedUnits.push_back(units.at(unitIndex));
+                        hutries.push_back(new Hutrie(&hutrieApplication, usedUnits ));
                         hutries.at(hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
                         break;
                     }
@@ -156,13 +181,29 @@ int main()
                         int buildingField [] = {unitIndex,unitIndex + 1, unitIndex + horizontalUnitsCounter, unitIndex + horizontalUnitsCounter + 1 };           // wpisuje do tablicy indexy Unitow na ktorych bedzie wybudowany Building
                         if ( (buildingField[0] % horizontalUnitsCounter) != horizontalUnitsCounter - 1 && units.at(buildingField[1])->isEmpty() && units.at(buildingField[2])->isEmpty() && units.at(buildingField[3])->isEmpty())
                         {
-                            buildings.push_back(new Building(&hutrieApplication,units.at(buildingField[0]),units.at(buildingField[1]),units.at(buildingField[2] ),units.at(buildingField[3]))); //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
+                            std::vector <Unit*> usedUnits;
+                            usedUnits.push_back(units.at(buildingField[0]));
+                            usedUnits.push_back(units.at(buildingField[1]));
+                            usedUnits.push_back(units.at(buildingField[2]));
+                            usedUnits.push_back(units.at(buildingField[3]));
+                            buildings.push_back(new Building(&hutrieApplication, usedUnits)); //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
                             buildings.at(buildings.size()-1)->placeOnMap();
                         }
                         break;
                     }
                 };
            }
+           else
+
+////////////////////////////EMPHASIZE UNIT WITH MAPOBJECT///////////////////////////////////////////////////////////////////////////////////
+           {
+               units.at(unitIndex)->getMapObject()->emphasizeUnits();
+               //units.at(unitIndex)->getMapObject()->showStatus();
+               units.at(unitIndex)->getMapObject()->setEmphasize(true);
+               lastClickedUnit = units.at(unitIndex);
+           }
+////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
+          }
            clock.restart();
         }
 
@@ -183,23 +224,12 @@ int main()
 
         for(it = units.begin(); it != units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie - druga petla zeby ruszajacy sie Hutrie byli rysowani nad zielona kratka a nie pod
         {
-            if ( !((*it)->isEmpty()) )
+            if ( !((*it)->isEmpty()) && (*it)->getMapObject()->isActive() )
             {
                 hutrieApplication.draw((*it)->getMapObject()->sprite);
+                if ((*it)->getMapObject()->isEmphasize()) hutrieApplication.draw((*it)->getMapObject()->description.text);
             }
         }
-        /* std::vector <Building*>::iterator it2;              //rysowanie aktywnych budynkow
-        for(it2 = buildings.begin(); it2 != buildings.end(); ++it2)
-        {
-            hutrieApplication.draw((*it2)->sprite);
-        }
-        hutrieApplication.draw(  hut.sprite );              //rysowanie hutriego na strzalki
-        std::vector <Hutrie*>::iterator it3;                 //rysowanie aktywnych Hutrich
-        for(it3 = hutries.begin(); it3 != hutries.end(); ++it3)
-        {
-            hutrieApplication.draw((*it3)->sprite);
-        }
-        */
 
 ///////////////////////////ADD CURSOR SPRITE AND DISPLAY//////////////////////////////////////////////////////
 

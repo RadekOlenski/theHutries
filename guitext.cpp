@@ -10,6 +10,15 @@ GUIText::GUIText()
     text.setColor(sf::Color::Black);
 }
 
+GUIText::GUIText(int positionX, int positionY, int characterSize)
+{
+    font.loadFromFile("fonts/prince_valiant.ttf");
+    text.setFont(font);
+    text.setCharacterSize(characterSize);
+    text.setPosition(positionX,positionY);
+    text.setColor(sf::Color::Black);
+}
+
 void GUIText::display()
 {
     while(1)

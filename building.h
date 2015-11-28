@@ -11,10 +11,8 @@
 class Building : public MapObject
 {
     public:
-        Building(sf::RenderWindow *hutrieApplication, Unit *unit0, Unit *unit1, Unit *unit2, Unit *unit3);
+        Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame);
         void placeOnMap();
-    private:
-        std::vector <Unit*> buildingField;
 };
 
 #endif // BUILDING_H
