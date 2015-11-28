@@ -1,11 +1,15 @@
 #include "hutrie.h"
 #include <string>
 
+///////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////////////////////////////
+
 Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame) : MapObject(hutrieApplication, unitsFromGame, "sprites/carrier/right.png",0.64,0.64,320,320), hutrieThread(&Hutrie::moveHutrie, this) //origin 45,40
 {
     introduceYourSelf = "I'm Hutrie";
     description.text.setString("It's me! Hutrie!");
 }
+
+///////////////////////////MOVING TO SPECIFIC MOUSE DIRECTION/////////////////////////////////////////////////////////////////////////////////////
 
 void Hutrie::moveHutrie()
 {

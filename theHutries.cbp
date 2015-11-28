@@ -56,6 +56,8 @@
 		</Linker>
 		<Unit filename="building.cpp" />
 		<Unit filename="building.h" />
+		<Unit filename="game.cpp" />
+		<Unit filename="game.h" />
 		<Unit filename="gui.cpp" />
 		<Unit filename="gui.h" />
 		<Unit filename="guitext.cpp" />
@@ -67,6 +69,8 @@
 		<Unit filename="mapobject.h" />
 		<Unit filename="unit.cpp" />
 		<Unit filename="unit.h" />
+		<Unit filename="world.cpp" />
+		<Unit filename="world.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

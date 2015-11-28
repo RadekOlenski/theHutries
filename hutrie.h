@@ -11,11 +11,10 @@ class Hutrie : public MapObject
 {
 
     public:
+
         sf::Thread hutrieThread;
         Hutrie(sf::RenderWindow *hutrieApplication,std::vector <Unit*> unitsFromGame);
         void moveHutrie();
-
-
 };
 
 #endif // HUTRIE_H

@@ -522,11 +522,11 @@
 1448495571 source:d:\onedrive\cpp projects\the hutries\testowy\unit.cpp
 	"unit.h"
 
-1448714949 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrie.cpp
+1448715910 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrie.cpp
 	"hutrie.h"
 	<string>
 
-1448710783 d:\onedrive\cpp projects\the hutries\thehutries\hutrie.h
+1448720743 d:\onedrive\cpp projects\the hutries\thehutries\hutrie.h
 	<SFML/Graphics.hpp>
 	<vector>
 	"mapobject.h"
@@ -549,18 +549,9 @@
 1448552214 source:d:\onedrive\cpp projects\the hutries\thehutries\unit.cpp
 	"unit.h"
 
-1448714536 source:d:\onedrive\cpp projects\the hutries\thehutries\main.cpp
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	<iostream>
-	<vector>
+1448724847 source:d:\onedrive\cpp projects\the hutries\thehutries\main.cpp
 	<ctime>
-	"hutrie.h"
-	"building.h"
-	"mapobject.h"
-	"unit.h"
-	"gui.h"
-	"guitext.h"
+	"game.h"
 
 1448713481 d:\onedrive\cpp projects\the hutries\thehutries\building.h
 	<SFML/Graphics.hpp>
@@ -583,4 +574,24 @@
 
 1448714910 source:d:\onedrive\cpp projects\the hutries\thehutries\guitext.cpp
 	"guitext.h"
+
+1448722254 source:d:\onedrive\cpp projects\the hutries\thehutries\game.cpp
+	"game.h"
+	<iostream>
+
+1448725089 d:\onedrive\cpp projects\the hutries\thehutries\game.h
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"world.h"
+	"guitext.h"
+	"gui.h"
+
+1448725722 d:\onedrive\cpp projects\the hutries\thehutries\world.h
+	<vector>
+	"unit.h"
+	"hutrie.h"
+	"building.h"
+
+1448720743 source:d:\onedrive\cpp projects\the hutries\thehutries\world.cpp
+	"world.h"
 
