@@ -22,7 +22,13 @@ class GUI
         GUIButton stone;
         GUIButton gold;
         GUIButton food;
+        GUIButton sawmill;
+        GUIButton barracks;
+        GUIButton residence;
+        GUIButton stonecutter;
+
         void displayGUI();
+        void displayGUIBuildings();
 
     private:
         int width;

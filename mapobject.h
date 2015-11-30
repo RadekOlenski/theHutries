@@ -3,6 +3,7 @@
 
 #include "unit.h"
 #include "guitext.h"
+#include "guibutton.h"
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -16,7 +17,9 @@ class MapObject
         sf::RenderWindow *hutrieApplication;
         sf::Sprite sprite;
         sf::Texture texture;
+        GUIText title;
         GUIText description;
+        GUIButton descriptionFrame;
         //std::string introduceYourSelf;
         void emphasizeUnits(bool fillColor = true);
         virtual void showStatus();

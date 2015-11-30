@@ -6,6 +6,11 @@ Environment::Environment(sf::RenderWindow *hutrieApplication, std::vector <Unit*
     sprite.setPosition (objectUnits.at(0)->field.getPosition());
     occupyUnits();
     //introduceYourSelf = "Hi! I'm Environment";
-    description.text.setString("It's me! Environment!");
+    title.text.setString("Environment:");
 
 }
+
+void Environment::showStatus()
+    {
+        description.text.setString ("Trees left:" );
+    }

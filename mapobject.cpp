@@ -1,6 +1,8 @@
 #include "mapobject.h"
 
-MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, std::string soundPathName, float scaleX, float scaleY, float positionX, float positionY, float originX, float originY) : description(1024+20,200,30)
+MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, std::string soundPathName, float scaleX, float scaleY, float positionX, float positionY, float originX, float originY) : title(1024+20,100,30),
+                                                                                                                                                                                                                                             description(1024+20,270,20),
+                                                                                                                                                                                                                                             descriptionFrame(1024+20,140,hutrieApplication,pathName, 128, 128)
 {
     this->hutrieApplication = hutrieApplication;
 
@@ -10,11 +12,12 @@ MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> u
     sprite.setOrigin(originX,originY);
     sprite.setScale(scaleX,scaleY);
 
-//    buffer.loadFromFile(soundPathName);
-//    sound.setBuffer(buffer);
-      sound.openFromFile(soundPathName);
-      sound.setVolume(10);
+//    descriptionFrame.button.setPosition(1024+20, 200);
+//    descriptionFrame.button.setSize(sf::Vector2f(128, 128));
+//    descriptionFrame.button.setTexture(&texture);
 
+    sound.openFromFile(soundPathName);
+    sound.setVolume(10);
 
     active = true;                                                             //WHILE TRUE OBJECT WIL BE DRAWN ON SCREEN
     emphasize = false;                                                         //WHILE FALSE NO GREEN BACKROUND UNDER OBJECT + NO INFO ON GUI
@@ -56,7 +59,7 @@ void MapObject::emphasizeUnits(bool fillColor)
 
 void MapObject::showStatus()
 {
-    hutrieApplication->draw(description.text);
+    //hutrieApplication->draw(description.text);
 }
 
 void MapObject::soundPlay(bool play)

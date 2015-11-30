@@ -15,6 +15,7 @@ class Hutrie : public MapObject
         sf::Thread hutrieThread;
         Hutrie(sf::RenderWindow *hutrieApplication,std::vector <Unit*> unitsFromGame);
         void moveHutrie();
+        void showStatus();
 };
 
 #endif // HUTRIE_H

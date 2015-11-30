@@ -26,6 +26,7 @@ class Game
 
         World world;
         int chosenMode;
+        int buildingType;
         sf::Clock clock;
         sf::Thread titleThread;
 

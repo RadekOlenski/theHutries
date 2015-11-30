@@ -6,7 +6,8 @@
 Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame) : MapObject(hutrieApplication, unitsFromGame, "sprites/carrier/right.png", "audio/sir.wav", 0.64,0.64,384,384), hutrieThread(&Hutrie::moveHutrie, this) //origin 45,40
 {
     //introduceYourSelf = "I'm Hutrie";
-    description.text.setString("It's me! Hutrie!");
+    title.text.setString("Hutrie:");
+    title.text.setStyle(sf::Text::Bold);
     sound.setVolume(100);
 }
 
@@ -52,4 +53,11 @@ void Hutrie::moveHutrie()
      //std::cout << "Jestem na pozycji: " << sprite.getPosition().x <<", " << sprite.getPosition().y << std::endl;
     };
 }
+
+void Hutrie::showStatus()
+{
+    description.text.setStyle(sf::Text::Bold);
+    description.text.setString ("Strength:\nAgility:\nEndurance:" );
+}
+
 

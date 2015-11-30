@@ -11,7 +11,7 @@ World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int appl
     horizontalUnitsCounter = applicationWidth  / unitRectangleSize;
     verticalUnitsCounter   = applicationHeight / unitRectangleSize;
 
-    /////////////////////////// CREATING GRID  OF UNITS//////////////////////////////////////////////////////
+    /////////////////////////// CREATING GRID OF UNITS//////////////////////////////////////////////////////
 
     sf::Vector2f position(0, 0);
     for (int j = 0; j < verticalUnitsCounter; j++)
@@ -25,10 +25,19 @@ World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int appl
         position.x = 0;
     }
 
-    /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
-//
+////////////////////////////// ADDING TOWNHALL ///////////////////////////////////////////////////////////////////////////
+
+    int unitIndex = 70;
     std::vector <Unit*> usedUnits;
-    int unitIndex = 0;
+    prepareUnits(unitIndex,3,3,&usedUnits);
+    buildings.push_back(new Building(hutrieApplication, usedUnits, 0 , "sprites/buildings/castle.png", "audio/castle.flac"));
+    buildings.at(buildings.size()-1)->setSoundVolume(100);
+    buildings.at(buildings.size()-1)->sprite.setScale(0.45,0.5);
+    buildings.at(buildings.size()-1)->sprite.setOrigin(30,128);
+    buildings.at(buildings.size()-1)->title.text.setString("Hutries Hall:");
+    buildings.at(buildings.size()-1)->placeOnMap();
+
+    /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
     do
     {
        usedUnits.clear();
@@ -37,17 +46,6 @@ World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int appl
     }
     while(!(isFieldEmpty(usedUnits)));
     environment.push_back(new Environment(hutrieApplication, usedUnits));
-
-    ////////////////////////////// ADDING TOWNHALL ///////////////////////////////////////////////////////////////////////////
-
-    unitIndex = 70;
-    usedUnits.clear();
-    prepareUnits(unitIndex,3,3,&usedUnits);
-    buildings.push_back(new Building(hutrieApplication, usedUnits, "sprites/buildings/castle.png", "audio/castle.flac"));
-    buildings.at(buildings.size()-1)->setSoundVolume(100);
-    buildings.at(buildings.size()-1)->sprite.setScale(0.45,0.5);
-    buildings.at(buildings.size()-1)->sprite.setOrigin(30,128);
-    buildings.at(buildings.size()-1)->placeOnMap();
 
 }
 

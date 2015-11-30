@@ -142,13 +142,13 @@ void Game::actions()
                     }
                     case 2:   //postawienie budynku                                                                                                                                   //BUILDING zajmuje 4 pola na mapie!
                     {
-                        if ( (unitIndex % world.getHorizontalUnitsCounter()) != world.getHorizontalUnitsCounter() - 1)
+                        if ( (unitIndex % world.getHorizontalUnitsCounter()) != world.getHorizontalUnitsCounter() - 1 && unitIndex < world.getHorizontalUnitsCounter() * (world.getVerticalUnitsCounter()-1))
                         {
                             std::vector <Unit*> usedUnits;
                             world.prepareUnits(unitIndex,2,2,&usedUnits);
                             if(world.isFieldEmpty(usedUnits))
                             {
-                               world.buildings.push_back(new Building(&hutrieApplication, usedUnits)); //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
+                               world.buildings.push_back(new Building(&hutrieApplication, usedUnits, buildingType)); //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
                                world.buildings.at(world.buildings.size()-1)->placeOnMap();
                             }
                         }
@@ -161,15 +161,19 @@ void Game::actions()
 ////////////////////////////EMPHASIZE UNIT WITH MAPOBJECT///////////////////////////////////////////////////////////////////////////////////
            {
                world.units.at(unitIndex)->getMapObject()->emphasizeUnits();
-               //world.units.at(unitIndex)->getMapObject()->showStatus();
+               world.units.at(unitIndex)->getMapObject()->showStatus();
                world.units.at(unitIndex)->getMapObject()->setEmphasize(true);
                world.units.at(unitIndex)->getMapObject()->soundPlay();
                world.lastClickedUnit = world.units.at(unitIndex);
            }
 ////////////////////////////BUTTONS ACTIONS///////////////////////////////////////////////////////////////////////////////////
           }
-          else if(gui.buildButton.checkBounds()) chosenMode = 2;
+          else if(gui.buildButton.checkBounds())  chosenMode = 2;
           else if(gui.hutrieButton.checkBounds()) chosenMode = 1;
+          else if(gui.sawmill.checkBounds())      buildingType = 1;
+          else if(gui.barracks.checkBounds())     buildingType = 2;
+          else if(gui.stonecutter.checkBounds())  buildingType = 3;
+          else if(gui.residence.checkBounds())    buildingType = 4;
 
 ////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
 
@@ -184,6 +188,7 @@ void Game::displayAll()
         hutrieApplication.clear( sf::Color::Black );        //czyszczenie ekranu dla pierwszego wyswietlenia
         hutrieApplication.setView(fixed);
         gui.displayGUI();
+        if (chosenMode == 2) gui.displayGUIBuildings();
         hutrieApplication.draw( background );
         hutrieApplication.draw(titleText.text);             //migoczacy tekst tytulowy
         std::vector <Unit*>::iterator it;                  //rysowanie zielonych kratek pOl
@@ -199,7 +204,12 @@ void Game::displayAll()
             if ( !((*it)->isEmpty()) && (*it)->getMapObject()->isActive() )
             {
                 hutrieApplication.draw((*it)->getMapObject()->sprite);
-                if ((*it)->getMapObject()->isEmphasize()) hutrieApplication.draw((*it)->getMapObject()->description.text);
+                if ((*it)->getMapObject()->isEmphasize())
+                {
+                   hutrieApplication.draw((*it)->getMapObject()->title.text);
+                   hutrieApplication.draw((*it)->getMapObject()->description.text);
+                   hutrieApplication.draw((*it)->getMapObject()->descriptionFrame.button);
+                }
             }
         }
 
