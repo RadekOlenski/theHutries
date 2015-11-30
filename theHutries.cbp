@@ -60,6 +60,8 @@
 		<Unit filename="game.h" />
 		<Unit filename="gui.cpp" />
 		<Unit filename="gui.h" />
+		<Unit filename="guibutton.cpp" />
+		<Unit filename="guibutton.h" />
 		<Unit filename="guitext.cpp" />
 		<Unit filename="guitext.h" />
 		<Unit filename="hutrie.cpp" />

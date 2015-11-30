@@ -5,6 +5,7 @@
 #include "guitext.h"
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <string>
 #include <vector>
 
@@ -19,15 +20,19 @@ class MapObject
         std::string introduceYourSelf;
         void emphasizeUnits(bool fillColor = true);
         virtual void showStatus();
+        void soundPlay();
 
         bool isActive() {return active;}
         void setActive(bool active) {this->active = active;}
         bool isEmphasize() {return emphasize;}
         void setEmphasize(bool emphasize) {this->emphasize = emphasize;}
-        MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, float scaleX = 1, float scaleY = 1, float positionX = 0, float positionY = 0, float originX = 0, float originY = 0);
+        MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, std::string soundPathName, float scaleX = 1, float scaleY = 1, float positionX = 0, float positionY = 0, float originX = 0, float originY = 0);
+
 
     protected:
         std::vector <Unit*> objectUnits;
+        sf::SoundBuffer buffer;
+        sf::Sound sound;
         bool active;
         bool emphasize;
         virtual void occupyUnits();

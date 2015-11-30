@@ -1,7 +1,7 @@
 #include "game.h"
 #include <iostream>
 
-Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0), gui(applicationWidth,applicationHeight), world(applicationWidth,applicationHeight) , titleThread(&GUIText::display, &titleText)
+Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0), hutrieApplication( sf::VideoMode( applicationWidth + 256 ,applicationHeight + 30, 32 ), "The Hutries", sf::Style::Fullscreen ), gui(applicationWidth,applicationHeight, &hutrieApplication), world(applicationWidth,applicationHeight) , titleThread(&GUIText::display, &titleText)
 {
     ///////////////////////SIZE OF MAP SCREEN////////////////////////////////////////////////////////////////////
 
@@ -10,7 +10,7 @@ Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0), gui(app
 
     /////////////////////////// CREATING GAME WINDOW AND GUI //////////////////////////////////////////////////////
 
-    hutrieApplication.create( sf::VideoMode( applicationWidth + 256 ,applicationHeight, 32 ), "The Hutries", sf::Style::Fullscreen );
+    //hutrieApplication.create( sf::VideoMode( applicationWidth + 256 ,applicationHeight, 32 ), "The Hutries", sf::Style::Fullscreen );
     //sf::RenderWindow hutrieApplication( sf::VideoMode::getDesktopMode(), "The Hutries",sf::Style::Fullscreen );
     hutrieApplication.setFramerateLimit(60);
 
@@ -161,10 +161,16 @@ void Game::actions()
                world.units.at(unitIndex)->getMapObject()->emphasizeUnits();
                //world.units.at(unitIndex)->getMapObject()->showStatus();
                world.units.at(unitIndex)->getMapObject()->setEmphasize(true);
+               world.units.at(unitIndex)->getMapObject()->soundPlay();
                world.lastClickedUnit = world.units.at(unitIndex);
            }
-////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
+////////////////////////////BUTTONS ACTIONS///////////////////////////////////////////////////////////////////////////////////
           }
+          else if(gui.buildButton.checkBounds()) chosenMode = 2;
+          else if(gui.hutrieButton.checkBounds()) chosenMode = 1;
+
+////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
+
            clock.restart();
         }
 }
@@ -175,7 +181,7 @@ void Game::displayAll()
 
         hutrieApplication.clear( sf::Color::Black );        //czyszczenie ekranu dla pierwszego wyswietlenia
         hutrieApplication.setView(fixed);
-        hutrieApplication.draw(gui.guiFrame);
+        gui.displayGUI();
         hutrieApplication.draw( background );
         hutrieApplication.draw(titleText.text);             //migoczacy tekst tytulowy
         std::vector <Unit*>::iterator it;                  //rysowanie zielonych kratek pOl
