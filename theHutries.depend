@@ -522,7 +522,7 @@
 1448495571 source:d:\onedrive\cpp projects\the hutries\testowy\unit.cpp
 	"unit.h"
 
-1448846039 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrie.cpp
+1448892427 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrie.cpp
 	"hutrie.h"
 	<string>
 
@@ -532,7 +532,7 @@
 	"mapobject.h"
 	"unit.h"
 
-1448843592 d:\onedrive\cpp projects\the hutries\thehutries\mapobject.h
+1448893151 d:\onedrive\cpp projects\the hutries\thehutries\mapobject.h
 	"unit.h"
 	"guitext.h"
 	<SFML/Graphics.hpp>
@@ -544,7 +544,7 @@
 	<SFML/Graphics.hpp>
 	"mapobject.h"
 
-1448845241 source:d:\onedrive\cpp projects\the hutries\thehutries\mapobject.cpp
+1448884627 source:d:\onedrive\cpp projects\the hutries\thehutries\mapobject.cpp
 	"mapobject.h"
 
 1448727272 source:d:\onedrive\cpp projects\the hutries\thehutries\unit.cpp
@@ -554,13 +554,14 @@
 	<ctime>
 	"game.h"
 
-1448713481 d:\onedrive\cpp projects\the hutries\thehutries\building.h
+1448888865 d:\onedrive\cpp projects\the hutries\thehutries\building.h
 	<SFML/Graphics.hpp>
 	<vector>
+	<string>
 	"mapobject.h"
 	"unit.h"
 
-1448845852 source:d:\onedrive\cpp projects\the hutries\thehutries\building.cpp
+1448888865 source:d:\onedrive\cpp projects\the hutries\thehutries\building.cpp
 	"building.h"
 	<cstdlib>
 
@@ -579,7 +580,7 @@
 	"guitext.h"
 	<cstdlib>
 
-1448843055 source:d:\onedrive\cpp projects\the hutries\thehutries\game.cpp
+1448887934 source:d:\onedrive\cpp projects\the hutries\thehutries\game.cpp
 	"game.h"
 	<iostream>
 
@@ -590,14 +591,17 @@
 	"guitext.h"
 	"gui.h"
 
-1448725722 d:\onedrive\cpp projects\the hutries\thehutries\world.h
+1448894289 d:\onedrive\cpp projects\the hutries\thehutries\world.h
 	<vector>
 	"unit.h"
 	"hutrie.h"
 	"building.h"
+	"environment.h"
 
-1448720743 source:d:\onedrive\cpp projects\the hutries\thehutries\world.cpp
+1448894890 source:d:\onedrive\cpp projects\the hutries\thehutries\world.cpp
 	"world.h"
+	<cstdlib>
+	<iostream>
 
 1448845506 d:\onedrive\cpp projects\the hutries\thehutries\guibutton.h
 	<SFML/Graphics.hpp>
@@ -605,4 +609,11 @@
 
 1448841209 source:d:\onedrive\cpp projects\the hutries\thehutries\guibutton.cpp
 	"guibutton.h"
+
+1448881917 d:\onedrive\cpp projects\the hutries\thehutries\environment.h
+	"mapobject.h"
+	<SFML/Graphics.hpp>
+
+1448888074 source:d:\onedrive\cpp projects\the hutries\thehutries\environment.cpp
+	"environment.h"
 

@@ -10,9 +10,10 @@ MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> u
     sprite.setOrigin(originX,originY);
     sprite.setScale(scaleX,scaleY);
 
-    buffer.loadFromFile(soundPathName);
-    sound.setBuffer(buffer);
-    sound.setVolume(30);
+//    buffer.loadFromFile(soundPathName);
+//    sound.setBuffer(buffer);
+      sound.openFromFile(soundPathName);
+      sound.setVolume(10);
 
 
     active = true;                                                             //WHILE TRUE OBJECT WIL BE DRAWN ON SCREEN
@@ -58,7 +59,8 @@ void MapObject::showStatus()
     hutrieApplication->draw(description.text);
 }
 
-void MapObject::soundPlay()
+void MapObject::soundPlay(bool play)
 {
-    sound.play();
+    if (play) sound.play();
+    else sound.stop();
 }

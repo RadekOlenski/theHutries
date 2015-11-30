@@ -1,7 +1,11 @@
 #include "world.h"
+#include <cstdlib>
+#include <iostream>
 
-World::World(int applicationWidth, int applicationHeight, int unitRectangleSize) : lastClickedUnit(NULL)
+World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize) : lastClickedUnit(NULL)
 {
+    this->hutrieApplication = hutrieApplication;
+
     /////////////////////////// HOW MANY RECTANGLES IN X AND Y DIRECTION//////////////////////////////////////////////////////
 
     horizontalUnitsCounter = applicationWidth  / unitRectangleSize;
@@ -20,4 +24,56 @@ World::World(int applicationWidth, int applicationHeight, int unitRectangleSize)
         position.y += unitRectangleSize;
         position.x = 0;
     }
+
+    /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
+//
+    std::vector <Unit*> usedUnits;
+    int unitIndex = 0;
+    do
+    {
+       usedUnits.clear();
+       unitIndex = (rand() % (horizontalUnitsCounter - 3)) + ((rand() % (verticalUnitsCounter)) * horizontalUnitsCounter);
+       prepareUnits(unitIndex,2,3,&usedUnits);
+    }
+    while(!(isFieldEmpty(usedUnits)));
+    environment.push_back(new Environment(hutrieApplication, usedUnits));
+
+    ////////////////////////////// ADDING TOWNHALL ///////////////////////////////////////////////////////////////////////////
+
+    unitIndex = 70;
+    usedUnits.clear();
+    prepareUnits(unitIndex,3,3,&usedUnits);
+    buildings.push_back(new Building(hutrieApplication, usedUnits, "sprites/buildings/castle.png", "audio/castle.flac"));
+    buildings.at(buildings.size()-1)->setSoundVolume(100);
+    buildings.at(buildings.size()-1)->sprite.setScale(0.45,0.5);
+    buildings.at(buildings.size()-1)->sprite.setOrigin(30,128);
+    buildings.at(buildings.size()-1)->placeOnMap();
+
+}
+
+void World::prepareUnits(int unitIndex, int height, int width, std::vector <Unit*> *usedUnits )
+{
+    std::vector <int> field;
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            field.push_back(unitIndex + j + (i*horizontalUnitsCounter));
+        }
+    }
+    std::vector <int>::iterator it;
+    for(it = field.begin(); it != field.end(); ++it)
+    {
+        usedUnits->push_back(units.at(*it));
+    }
+}
+
+bool World::isFieldEmpty(std::vector <Unit*> &usedUnits)
+{
+    std::vector <Unit*>::iterator it;
+    for(it = usedUnits.begin(); it != usedUnits.end(); ++it)
+    {
+        if(!((*it)->isEmpty())) return false;
+    }
+    return true;
 }

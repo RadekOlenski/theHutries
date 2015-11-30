@@ -1,7 +1,7 @@
 #include "game.h"
 #include <iostream>
 
-Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0), hutrieApplication( sf::VideoMode( applicationWidth + 256 ,applicationHeight + 30, 32 ), "The Hutries", sf::Style::Fullscreen ), gui(applicationWidth,applicationHeight, &hutrieApplication), world(applicationWidth,applicationHeight) , titleThread(&GUIText::display, &titleText)
+Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0), hutrieApplication( sf::VideoMode( applicationWidth + 256 ,applicationHeight + 30, 32 ), "The Hutries", sf::Style::Fullscreen ), gui(applicationWidth,applicationHeight, &hutrieApplication), world(&hutrieApplication, applicationWidth,applicationHeight) , titleThread(&GUIText::display, &titleText)
 {
     ///////////////////////SIZE OF MAP SCREEN////////////////////////////////////////////////////////////////////
 
@@ -38,6 +38,7 @@ Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0), hutrieA
 void Game::play()
 {
     music.play();
+    music.setVolume(40);
     titleThread.launch();
     while( hutrieApplication.isOpen() )
     {
@@ -69,15 +70,15 @@ void Game::actions()
 
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
                  hutrieApplication.close();
-            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space )
-            {
-                std::vector <Unit*>::iterator it;                       //sprawdzenie czy informacje miedzy MapObject i Unit s¹ dobrze przekazywane
-                for(it = world.units.begin(); it != world.units.end(); ++it)
-                {
-                    if( (*it)->isEmpty()) std::cout<< "empty" << std::endl;
-                    else std::cout<< (*it)->getMapObject()->introduceYourSelf << std::endl;
-                }
-            }
+//            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space )
+//            {
+//                std::vector <Unit*>::iterator it;                       //sprawdzenie czy informacje miedzy MapObject i Unit s¹ dobrze przekazywane
+//                for(it = world.units.begin(); it != world.units.end(); ++it)
+//                {
+//                    if( (*it)->isEmpty()) std::cout<< "empty" << std::endl;
+//                    else std::cout<< (*it)->getMapObject()->introduceYourSelf << std::endl;
+//                }
+//            }
         }
 
         cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))); //ustawia sprite kursora na pozycji myszki
@@ -102,6 +103,8 @@ void Game::actions()
                {
                    world.lastClickedUnit->getMapObject()->emphasizeUnits(false);
                    world.lastClickedUnit->getMapObject()->setEmphasize(false);
+                   world.lastClickedUnit->getMapObject()->soundPlay(false);
+
                }
 
 ///////////////////////////////////////////////////CHOOSING RIGHT UNIT///////////////////////////////////////////////////////////
@@ -139,16 +142,15 @@ void Game::actions()
                     }
                     case 2:   //postawienie budynku                                                                                                                                   //BUILDING zajmuje 4 pola na mapie!
                     {
-                        int buildingField [] = {unitIndex,unitIndex + 1, unitIndex + world.getHorizontalUnitsCounter(), unitIndex + world.getHorizontalUnitsCounter() + 1 };           // wpisuje do tablicy indexy Unitow na ktorych bedzie wybudowany Building
-                        if ( (buildingField[0] % world.getHorizontalUnitsCounter()) != world.getHorizontalUnitsCounter() - 1 && world.units.at(buildingField[1])->isEmpty() && world.units.at(buildingField[2])->isEmpty() && world.units.at(buildingField[3])->isEmpty())
+                        if ( (unitIndex % world.getHorizontalUnitsCounter()) != world.getHorizontalUnitsCounter() - 1)
                         {
                             std::vector <Unit*> usedUnits;
-                            usedUnits.push_back(world.units.at(buildingField[0]));
-                            usedUnits.push_back(world.units.at(buildingField[1]));
-                            usedUnits.push_back(world.units.at(buildingField[2]));
-                            usedUnits.push_back(world.units.at(buildingField[3]));
-                            world.buildings.push_back(new Building(&hutrieApplication, usedUnits)); //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
-                            world.buildings.at(world.buildings.size()-1)->placeOnMap();
+                            world.prepareUnits(unitIndex,2,2,&usedUnits);
+                            if(world.isFieldEmpty(usedUnits))
+                            {
+                               world.buildings.push_back(new Building(&hutrieApplication, usedUnits)); //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
+                               world.buildings.at(world.buildings.size()-1)->placeOnMap();
+                            }
                         }
                         break;
                     }

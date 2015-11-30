@@ -3,9 +3,9 @@
 
 ///////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////////////////////////////
 
-Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame) : MapObject(hutrieApplication, unitsFromGame, "sprites/carrier/right.png", "audio/sir.wav", 0.64,0.64,320,320), hutrieThread(&Hutrie::moveHutrie, this) //origin 45,40
+Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame) : MapObject(hutrieApplication, unitsFromGame, "sprites/carrier/right.png", "audio/sir.wav", 0.64,0.64,384,384), hutrieThread(&Hutrie::moveHutrie, this) //origin 45,40
 {
-    introduceYourSelf = "I'm Hutrie";
+    //introduceYourSelf = "I'm Hutrie";
     description.text.setString("It's me! Hutrie!");
     sound.setVolume(100);
 }
