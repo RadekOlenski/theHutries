@@ -1,6 +1,8 @@
-#include "world.h"
 #include <cstdlib>
 #include <iostream>
+
+#include "world.h"
+#include "hutrieshall.h"
 
 World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize) : lastClickedUnit(NULL)
 {
@@ -25,16 +27,12 @@ World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int appl
         position.x = 0;
     }
 
-////////////////////////////// ADDING TOWNHALL ///////////////////////////////////////////////////////////////////////////
+    ////////////////////////////// ADDING TOWNHALL ///////////////////////////////////////////////////////////////////////////
 
     int unitIndex = 70;
     std::vector <Unit*> usedUnits;
     prepareUnits(unitIndex,3,3,&usedUnits);
-    buildings.push_back(new Building(hutrieApplication, usedUnits, 0 , "sprites/buildings/castle.png", "audio/castle.flac"));
-    buildings.at(buildings.size()-1)->setSoundVolume(100);
-    buildings.at(buildings.size()-1)->sprite.setScale(0.45,0.5);
-    buildings.at(buildings.size()-1)->sprite.setOrigin(30,128);
-    buildings.at(buildings.size()-1)->title.text.setString("Hutries Hall:");
+    buildings.push_back(new HutriesHall(hutrieApplication, usedUnits,"sprites/buildings/castle.png", 0));
     buildings.at(buildings.size()-1)->placeOnMap();
 
     /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
@@ -45,7 +43,7 @@ World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int appl
        prepareUnits(unitIndex,2,3,&usedUnits);
     }
     while(!(isFieldEmpty(usedUnits)));
-    environment.push_back(new Environment(hutrieApplication, usedUnits));
+    environment.push_back(new Environment(hutrieApplication, usedUnits, "sprites/environment/trees.png"));
 
 }
 

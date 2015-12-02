@@ -10,8 +10,10 @@ class Unit
 {
     public:
         sf::RectangleShape field;
+
         void setMapObject (MapObject *mapObject) {this->mapObject = mapObject;}
         MapObject* getMapObject() {return this->mapObject;}
+
         bool isEmpty() {return emptiness;}
         void setEmpty(bool emptiness) {this->emptiness = emptiness;}
 

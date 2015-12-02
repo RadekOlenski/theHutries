@@ -14,24 +14,35 @@ class Unit;
 class MapObject
 {
     public:
+
         sf::RenderWindow *hutrieApplication;
         sf::Sprite sprite;
         sf::Texture texture;
+
+        //////////////////// GUI INFO //////////////////////////////////////////
+
+        virtual void showStatus() = 0;
         GUIText title;
         GUIText description;
         GUIButton descriptionFrame;
-        //std::string introduceYourSelf;
-        void emphasizeUnits(bool fillColor = true);
-        virtual void showStatus();
-        void soundPlay(bool play = true);
 
-        void setSoundVolume (int volume) {sound.setVolume(volume);}
-        bool isActive() {return active;}
-        void setActive(bool active) {this->active = active;}
+        ////////////////////// FLAGS //////////////////////////////////////////
+
+        void emphasizeUnits(bool fillColor = true);
         bool isEmphasize() {return emphasize;}
         void setEmphasize(bool emphasize) {this->emphasize = emphasize;}
-        MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, std::string soundPathName, float scaleX = 1, float scaleY = 1, float positionX = 0, float positionY = 0, float originX = 0, float originY = 0);
-        //MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName,  float scaleX = 1, float scaleY = 1, float positionX = 0, float positionY = 0, float originX = 0, float originY = 0);
+        bool isActive() {return active;}
+        void setActive(bool active) {this->active = active;}
+
+        ////////////////////// SOUND /////////////////////////////////////////
+
+        void setSoundVolume (int volume) {sound.setVolume(volume);}
+        void soundPlay(bool play = true);
+
+        /////////////////////// CONSTRUCTOR /////////////////////////////////
+
+        MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame,std::string pathName);
+
 
     protected:
         std::vector <Unit*> objectUnits;
@@ -39,6 +50,6 @@ class MapObject
         bool active;
         bool emphasize;
         virtual void occupyUnits();
-};
+  };
 
 #endif // MAPOBJECT_H

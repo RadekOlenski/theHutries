@@ -1,7 +1,21 @@
-#include "game.h"
 #include <iostream>
 
-Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0), hutrieApplication( sf::VideoMode( applicationWidth + 256 ,applicationHeight + 30, 32 ), "The Hutries", sf::Style::Fullscreen ), gui(applicationWidth,applicationHeight, &hutrieApplication), world(&hutrieApplication, applicationWidth,applicationHeight) , titleThread(&GUIText::display, &titleText)
+#include "game.h"
+#include "hutrie.h"
+#include "building.h"
+#include "unit.h"
+#include "sawmill.h"
+#include "stonecutter.h"
+#include "residence.h"
+#include "barracks.h"
+
+Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0),
+                                                          tempChosenMode(0),
+                                                          hutrieApplication( sf::VideoMode( applicationWidth + 256 ,applicationHeight + 30, 32 ), "The Hutries", sf::Style::Fullscreen ),
+                                                          gui(applicationWidth,applicationHeight, &hutrieApplication),
+                                                          world(&hutrieApplication, applicationWidth,applicationHeight) ,
+                                                          titleText (1024 +20, 40, 45),
+                                                          titleThread(&GUIText::display, &titleText)
 {
     ///////////////////////SIZE OF MAP SCREEN////////////////////////////////////////////////////////////////////
 
@@ -10,7 +24,6 @@ Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0), hutrieA
 
     /////////////////////////// CREATING GAME WINDOW AND GUI //////////////////////////////////////////////////////
 
-    //hutrieApplication.create( sf::VideoMode( applicationWidth + 256 ,applicationHeight, 32 ), "The Hutries", sf::Style::Fullscreen );
     //sf::RenderWindow hutrieApplication( sf::VideoMode::getDesktopMode(), "The Hutries",sf::Style::Fullscreen );
     hutrieApplication.setFramerateLimit(60);
 
@@ -55,37 +68,58 @@ void Game::actions()
             if( event.type == sf::Event::Closed )
                  hutrieApplication.close();
 
-//////////////////////SWITCHING BETWEEN BUILDING AND HUTRIE MODE/////////////////////////////////////////////////////////////////////
+//////////////////////SWITCHING BETWEEN MODES/////////////////////////////////////////////////////////////////////
 
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F1)
             {
-             chosenMode = 1;
+             chosenMode = 1;                //BUILD MODE
             }
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F2 )
             {
-             chosenMode = 2;
+             chosenMode = 2;                //HUTRIE MODE
             }
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F3 )
             {
-             chosenMode = 3;
+             chosenMode = 3;                //INFO MODE
+            }
+////////////////////// SWITCHING BETWEEN TYPES OF BUILDINGS/////////////////////////////////////////////////////////////////////
+
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num1 )
+            {
+             buildingType = 1;                //SAWMILL
+            }
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num2 )
+            {
+             buildingType = 2;                //STONECUTTER
+            }
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num3 )
+            {
+             buildingType = 3;                //BARRACKS
+            }
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num4 )
+            {
+             buildingType = 4;                //RESIDENCE
             }
 
 /////////////////////////////OTHER KEYBOARD FEATURES/////////////////////////////////////////////////////////////////////////////////////////
 
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape )
                  hutrieApplication.close();
-//            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space )
-//            {
-//                std::vector <Unit*>::iterator it;                       //sprawdzenie czy informacje miedzy MapObject i Unit s¹ dobrze przekazywane
-//                for(it = world.units.begin(); it != world.units.end(); ++it)
-//                {
-//                    if( (*it)->isEmpty()) std::cout<< "empty" << std::endl;
-//                    else std::cout<< (*it)->getMapObject()->introduceYourSelf << std::endl;
-//                }
-//            }
+
         }
 
         cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))); //ustawia sprite kursora na pozycji myszki
+
+        if (chosenMode != tempChosenMode)
+        {
+        if (chosenMode == 2) buttonFlag = true;
+        else buttonFlag = false;
+        gui.sawmill.setActive(buttonFlag);
+        gui.stonecutter.setActive(buttonFlag);
+        gui.barracks.setActive(buttonFlag);
+        gui.residence.setActive(buttonFlag);
+        tempChosenMode = chosenMode;
+        }
 
 //////////////////////////////////REAL-TIME MOUSE ACCESS/////////////////////////////////////////////////////////////////////////////////////////
 
@@ -108,7 +142,6 @@ void Game::actions()
                    world.lastClickedUnit->getMapObject()->emphasizeUnits(false);
                    world.lastClickedUnit->getMapObject()->setEmphasize(false);
                    world.lastClickedUnit->getMapObject()->soundPlay(false);
-
                }
 
 ///////////////////////////////////////////////////CHOOSING RIGHT UNIT///////////////////////////////////////////////////////////
@@ -122,25 +155,22 @@ void Game::actions()
                      (*it)->field.getPosition().y                             <= sf::Mouse::getPosition(hutrieApplication).y &&
                     ((*it)->field.getPosition().y + (*it)->field.getSize().y) >= sf::Mouse::getPosition(hutrieApplication).y)
                 {
-                    //std::cout << "Kwadrat: " << std::distance(units.begin(),it) << std::endl;
                     unitIndex = std::distance(world.units.begin(),it);
-                    //sf::Mouse::setPosition( static_cast <sf::Vector2i> ((*it)->field.getPosition()), hutrieApplication );
                     break;
                 }
             }
-           //std::cout << "Kwadrat: " << std::distance(world.units.begin(),it) << std::endl;
 
 //////////////////////////////////////////////////////////LEFT MOUSE MAP ACTIONS/////////////////////////////////////////////////////////////////////////
 
            if ( world.units.at( unitIndex )->isEmpty() )   //jesli unit jest wolny, bez zadnego mapobjectu
            {
-               switch(chosenMode) //klikniecie klawisz F1 lub F2
+               switch(chosenMode) //BUTTONS F1,F2,F3 OR GUIBUTTONS
                 {
                     case 1:     //poruszanie Hutrim
                     {
                         std::vector <Unit*> usedUnits;
                         usedUnits.push_back(world.units.at(unitIndex));
-                        world.hutries.push_back(new Hutrie(&hutrieApplication, usedUnits ));
+                        world.hutries.push_back(new Hutrie(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
                         world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
                         break;
                     }
@@ -152,7 +182,13 @@ void Game::actions()
                             world.prepareUnits(unitIndex,2,2,&usedUnits);
                             if(world.isFieldEmpty(usedUnits))
                             {
-                               world.buildings.push_back(new Building(&hutrieApplication, usedUnits, buildingType)); //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
+                               switch(buildingType)                                                                      //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
+                               {
+                                   case 1: world.buildings.push_back(new Sawmill(&hutrieApplication, usedUnits,"sprites/buildings/sawmill.png" ,buildingType)); break;
+                                   case 2: world.buildings.push_back(new StoneCutter(&hutrieApplication, usedUnits,"sprites/buildings/stone.png", buildingType)); break;
+                                   case 3: world.buildings.push_back(new Barracks(&hutrieApplication, usedUnits,"sprites/buildings/barracks.png", buildingType)); break;
+                                   case 4: world.buildings.push_back(new Residence(&hutrieApplication, usedUnits,"sprites/buildings/residence.png", buildingType)); break;
+                               }
                                world.buildings.at(world.buildings.size()-1)->placeOnMap();
                             }
                         }
@@ -175,10 +211,10 @@ void Game::actions()
           }
           else if(gui.buildButton.checkBounds())  chosenMode = 2;
           else if(gui.hutrieButton.checkBounds()) chosenMode = 1;
-          else if(gui.sawmill.checkBounds())      buildingType = 1;
-          else if(gui.barracks.checkBounds())     buildingType = 2;
-          else if(gui.stonecutter.checkBounds())  buildingType = 3;
-          else if(gui.residence.checkBounds())    buildingType = 4;
+          else if(gui.sawmill.checkBounds()     && gui.sawmill.isActive())      buildingType = 1;
+          else if(gui.stonecutter.checkBounds() && gui.stonecutter.isActive())  buildingType = 2;
+          else if(gui.barracks.checkBounds()    && gui.barracks.isActive())     buildingType = 3;
+          else if(gui.residence.checkBounds()   && gui.residence.isActive())    buildingType = 4;
 
 ////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
 
@@ -196,7 +232,7 @@ void Game::displayAll()
         if (chosenMode == 2) gui.displayGUIBuildings();
         hutrieApplication.draw( background );
         hutrieApplication.draw(titleText.text);             //migoczacy tekst tytulowy
-        std::vector <Unit*>::iterator it;                  //rysowanie zielonych kratek pOl
+        std::vector <Unit*>::iterator it;                  //rysowanie zielonych kratek pol
         for(it = world.units.begin(); it != world.units.end(); ++it)
         {
             hutrieApplication.draw((*it)->field);

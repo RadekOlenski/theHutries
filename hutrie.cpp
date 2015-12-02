@@ -1,15 +1,22 @@
-#include "hutrie.h"
 #include <string>
 #include <cstdlib>
 #include <sstream>
 
+#include "hutrie.h"
+
+
 ///////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////////////////////////////
 
-Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame) : MapObject(hutrieApplication, unitsFromGame, "sprites/carrier/right.png", "audio/sir.wav", 0.64,0.64,384,384), hutrieThread(&Hutrie::moveHutrie, this) //origin 45,40
+Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName) : MapObject(hutrieApplication, unitsFromGame, pathName), hutrieThread(&Hutrie::moveHutrie, this)
 {
-    //introduceYourSelf = "I'm Hutrie";
     title.text.setString("Hutrie:");
+
+    sprite.setPosition( 384, 384 );
+    sprite.setScale(0.64,0.64);
+
+    sound.openFromFile("audio/sir.wav");
     sound.setVolume(100);
+
     strength = (rand() % 10) + 1;
     agility = (rand() % 10) + 1;
     endurance = (rand() % 10) + 1;
@@ -26,35 +33,34 @@ void Hutrie::moveHutrie()
 
     while( sprite.getPosition().y < targetY )
     {
-     sprite.move(0,1);
-     texture.loadFromFile( "sprites/carrier/down.png" );
-     sprite.setTexture( texture );
-     sf::sleep(sf::milliseconds(5));
-     //std::cout << "Jestem na pozycji: " << sprite.getPosition().x <<", " << sprite.getPosition().y << std::endl;
+        sprite.move(0,1);
+        texture.loadFromFile( "sprites/carrier/down.png" );
+        sprite.setTexture( texture );
+        sf::sleep(sf::milliseconds(5));
     };
+
     while( sprite.getPosition().x < targetX)
     {
-     texture.loadFromFile( "sprites/carrier/right.png" );
-     sprite.setTexture( texture );
-     sprite.move(1,0);
-     sf::sleep(sf::milliseconds(5));
-     //std::cout << "Jestem na pozycji: " << sprite.getPosition().x <<", " << sprite.getPosition().y << std::endl;
+        texture.loadFromFile( "sprites/carrier/right.png" );
+        sprite.setTexture( texture );
+        sprite.move(1,0);
+        sf::sleep(sf::milliseconds(5));
     };
+
     while( sprite.getPosition().y > targetY)
     {
-     texture.loadFromFile( "sprites/carrier/up.png" );
-     sprite.setTexture( texture );
-     sprite.move(0,-1);
-     sf::sleep(sf::milliseconds(5));
-     //std::cout << "Jestem na pozycji: " << sprite.getPosition().x <<", " << sprite.getPosition().y << std::endl;
+        texture.loadFromFile( "sprites/carrier/up.png" );
+        sprite.setTexture( texture );
+        sprite.move(0,-1);
+        sf::sleep(sf::milliseconds(5));
     };
+
     while( sprite.getPosition().x > targetX)
     {
-     texture.loadFromFile( "sprites/carrier/left.png" );
-     sprite.setTexture( texture );
-     sprite.move(-1,0);
-     sf::sleep(sf::milliseconds(5));
-     //std::cout << "Jestem na pozycji: " << sprite.getPosition().x <<", " << sprite.getPosition().y << std::endl;
+        texture.loadFromFile( "sprites/carrier/left.png" );
+        sprite.setTexture( texture );
+        sprite.move(-1,0);
+        sf::sleep(sf::milliseconds(5));
     };
 }
 

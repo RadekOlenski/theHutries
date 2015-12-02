@@ -1,19 +1,25 @@
 #include "environment.h"
 #include <sstream>
+#include <cstdlib>
 
-Environment::Environment(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame) :  MapObject(hutrieApplication, unitsFromGame, "sprites/environment/trees.png" ,"audio/trees.wav",0.9,1,0,0,20,60)
+Environment::Environment(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName) :  MapObject(hutrieApplication, unitsFromGame, pathName)
 {
+    title.text.setString("Forest:");
+
+    sprite.setOrigin(20,60);
+    sprite.setScale(0.9,1);
+
     sound.setVolume(30);
+    sound.openFromFile("audio/trees.wav");
+
     sprite.setPosition (objectUnits.at(0)->field.getPosition());
     occupyUnits();
-    //introduceYourSelf = "Hi! I'm Environment";
-    title.text.setString("Environment:");
 
 }
 
 void Environment::showStatus()
-    {
-        std::ostringstream desc;
-        desc << "Trees left: "<< (rand()%40)+1;
-        description.text.setString (desc.str() );
-    }
+{
+    std::ostringstream desc;
+    desc << "Trees left: "<< (rand()%40)+1;
+    description.text.setString (desc.str() );
+}

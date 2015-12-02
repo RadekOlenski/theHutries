@@ -12,11 +12,10 @@
 class Building : public MapObject
 {
     public:
-        Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, int buildingType = 1);
-        Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, int buildingType, std::string pathName, std::string soundPathName);
+        Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType = 1);
         void placeOnMap();
         void setType(int type) {buildingType = type;}
-        void showStatus();
+        virtual void showStatus();
     private:
         int buildingType;
 };

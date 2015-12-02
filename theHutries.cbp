@@ -54,12 +54,16 @@
 			<Add option="-static-libgcc" />
 			<Add directory="D:/Program Files/SFML-2.3.2/lib" />
 		</Linker>
+		<Unit filename="barracks.cpp" />
+		<Unit filename="barracks.h" />
 		<Unit filename="building.cpp" />
 		<Unit filename="building.h" />
 		<Unit filename="environment.cpp" />
 		<Unit filename="environment.h" />
 		<Unit filename="game.cpp" />
 		<Unit filename="game.h" />
+		<Unit filename="goodsbuilding.cpp" />
+		<Unit filename="goodsbuilding.h" />
 		<Unit filename="gui.cpp" />
 		<Unit filename="gui.h" />
 		<Unit filename="guibutton.cpp" />
@@ -68,9 +72,17 @@
 		<Unit filename="guitext.h" />
 		<Unit filename="hutrie.cpp" />
 		<Unit filename="hutrie.h" />
+		<Unit filename="hutrieshall.cpp" />
+		<Unit filename="hutrieshall.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="mapobject.cpp" />
 		<Unit filename="mapobject.h" />
+		<Unit filename="residence.cpp" />
+		<Unit filename="residence.h" />
+		<Unit filename="sawmill.cpp" />
+		<Unit filename="sawmill.h" />
+		<Unit filename="stonecutter.cpp" />
+		<Unit filename="stonecutter.h" />
 		<Unit filename="unit.cpp" />
 		<Unit filename="unit.h" />
 		<Unit filename="world.cpp" />

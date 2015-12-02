@@ -26,7 +26,9 @@ class Game
 
         World world;
         int chosenMode;
+        int tempChosenMode;
         int buildingType;
+        bool buttonFlag;
         sf::Clock clock;
         sf::Thread titleThread;
 
