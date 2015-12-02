@@ -65,6 +65,10 @@ void Game::actions()
             {
              chosenMode = 2;
             }
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F3 )
+            {
+             chosenMode = 3;
+            }
 
 /////////////////////////////OTHER KEYBOARD FEATURES/////////////////////////////////////////////////////////////////////////////////////////
 
@@ -160,6 +164,7 @@ void Game::actions()
 
 ////////////////////////////EMPHASIZE UNIT WITH MAPOBJECT///////////////////////////////////////////////////////////////////////////////////
            {
+               chosenMode = 3;
                world.units.at(unitIndex)->getMapObject()->emphasizeUnits();
                world.units.at(unitIndex)->getMapObject()->showStatus();
                world.units.at(unitIndex)->getMapObject()->setEmphasize(true);
@@ -204,7 +209,7 @@ void Game::displayAll()
             if ( !((*it)->isEmpty()) && (*it)->getMapObject()->isActive() )
             {
                 hutrieApplication.draw((*it)->getMapObject()->sprite);
-                if ((*it)->getMapObject()->isEmphasize())
+                if ((*it)->getMapObject()->isEmphasize() && chosenMode == 3)
                 {
                    hutrieApplication.draw((*it)->getMapObject()->title.text);
                    hutrieApplication.draw((*it)->getMapObject()->description.text);

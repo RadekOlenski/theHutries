@@ -1,4 +1,5 @@
 #include "environment.h"
+#include <sstream>
 
 Environment::Environment(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame) :  MapObject(hutrieApplication, unitsFromGame, "sprites/environment/trees.png" ,"audio/trees.wav",0.9,1,0,0,20,60)
 {
@@ -12,5 +13,7 @@ Environment::Environment(sf::RenderWindow *hutrieApplication, std::vector <Unit*
 
 void Environment::showStatus()
     {
-        description.text.setString ("Trees left:" );
+        std::ostringstream desc;
+        desc << "Trees left: "<< (rand()%40)+1;
+        description.text.setString (desc.str() );
     }

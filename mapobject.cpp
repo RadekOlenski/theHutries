@@ -1,8 +1,8 @@
 #include "mapobject.h"
 
-MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, std::string soundPathName, float scaleX, float scaleY, float positionX, float positionY, float originX, float originY) : title(1024+20,100,30),
-                                                                                                                                                                                                                                             description(1024+20,270,20),
-                                                                                                                                                                                                                                             descriptionFrame(1024+20,140,hutrieApplication,pathName, 128, 128)
+MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, std::string soundPathName, float scaleX, float scaleY, float positionX, float positionY, float originX, float originY) : title(1024+40,170,30),
+                                                                                                                                                                                                                                             descriptionFrame(1024+40,230,hutrieApplication,pathName, 128, 128),
+                                                                                                                                                                                                                                             description(1024+40,380,20)
 {
     this->hutrieApplication = hutrieApplication;
 

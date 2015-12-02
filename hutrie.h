@@ -16,6 +16,10 @@ class Hutrie : public MapObject
         Hutrie(sf::RenderWindow *hutrieApplication,std::vector <Unit*> unitsFromGame);
         void moveHutrie();
         void showStatus();
+    private:
+        int strength;
+        int agility;
+        int endurance;
 };
 
 #endif // HUTRIE_H

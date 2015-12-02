@@ -1,5 +1,6 @@
 #include "building.h"
 #include <cstdlib>
+#include <sstream>
 
 Building::Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, int buildingType) : MapObject(hutrieApplication, unitsFromGame, "sprites/buildings/sawmill.png" ,"audio/saw.wav", 0.5,0.5)
 {
@@ -34,5 +35,8 @@ void Building::placeOnMap()
 
 void Building::showStatus()
 {
-    description.text.setString ("Workers:\nCapacity:\nStorage:\n" );
+    std::ostringstream desc;
+    desc << "Capacity: " << (rand()%5)+1 << " workers\nWorkers: " << (rand()%5)+1 << "\nProducts in store: " << (rand()%5)+1;
+    description.text.setString (desc.str() );
+
 }

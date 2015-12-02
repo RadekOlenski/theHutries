@@ -1,5 +1,7 @@
 #include "hutrie.h"
 #include <string>
+#include <cstdlib>
+#include <sstream>
 
 ///////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////////////////////////////
 
@@ -7,8 +9,10 @@ Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
 {
     //introduceYourSelf = "I'm Hutrie";
     title.text.setString("Hutrie:");
-    title.text.setStyle(sf::Text::Bold);
     sound.setVolume(100);
+    strength = (rand() % 10) + 1;
+    agility = (rand() % 10) + 1;
+    endurance = (rand() % 10) + 1;
 }
 
 ///////////////////////////MOVING TO SPECIFIC MOUSE DIRECTION/////////////////////////////////////////////////////////////////////////////////////
@@ -56,8 +60,9 @@ void Hutrie::moveHutrie()
 
 void Hutrie::showStatus()
 {
-    description.text.setStyle(sf::Text::Bold);
-    description.text.setString ("Strength:\nAgility:\nEndurance:" );
+    std::ostringstream desc;
+    desc << "Strength: " << strength << "\nAgility: " << agility << "\nEndurance: " << endurance;
+    description.text.setString (desc.str() );
 }
 
 
