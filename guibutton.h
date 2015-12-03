@@ -7,8 +7,8 @@
 class GUIButton
 {
     public:
-        GUIButton();
         GUIButton(int positionX, int positionY,sf::RenderWindow *hutrieApplication, std::string pathName, int sizeX = 50, int sizeY = 50, bool rect = false, int rectX = 0, int rectY = 0, int rectSizeX = 1000, int rectSizeY = 50 );
+        GUIButton(int positionX, int positionY, sf::RenderWindow *hutrieApplication, int sizeX, int sizeY);
         sf::RectangleShape button;
         bool checkBounds();
         bool isActive() {return active;};

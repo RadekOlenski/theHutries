@@ -20,7 +20,7 @@ World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int appl
     {
         for (int i = 0; i < horizontalUnitsCounter ; i++)
         {
-            units.push_back(new Unit (position));
+            units.push_back(new Unit (position,i+(j*horizontalUnitsCounter)));
             position.x += unitRectangleSize;
         }
         position.y += unitRectangleSize;

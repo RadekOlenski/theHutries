@@ -6,8 +6,10 @@
 #include <string>
 
 #include "mapobject.h"
-#include "unit.h"
+//#include "unit.h"
 
+//class MapObject;
+class Unit;
 class Hutrie : public MapObject
 {
 
@@ -15,15 +17,20 @@ class Hutrie : public MapObject
 
         sf::Thread hutrieThread;
 
-        Hutrie(sf::RenderWindow *hutrieApplication,std::vector <Unit*> unitsFromGame, std::string pathName);
+        Hutrie(sf::RenderWindow *hutrieApplication,std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding = true);
         void moveHutrie();
         void showStatus();
+
+        bool isActive() {return active;}
+        void setActive(bool active) {this->active = active;}
 
     private:
 
         int strength;
         int agility;
         int endurance;
+        bool onBuilding;
+        bool active;
 };
 
 #endif // HUTRIE_H

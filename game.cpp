@@ -1,9 +1,10 @@
 #include <iostream>
 
 #include "game.h"
+#include "unit.h"
+#include "mapobject.h"
 #include "hutrie.h"
 #include "building.h"
-#include "unit.h"
 #include "sawmill.h"
 #include "stonecutter.h"
 #include "residence.h"
@@ -11,7 +12,7 @@
 
 Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0),
                                                           tempChosenMode(0),
-                                                          hutrieApplication( sf::VideoMode( applicationWidth + 256 ,applicationHeight + 30, 32 ), "The Hutries", sf::Style::Fullscreen ),
+                                                          hutrieApplication( sf::VideoMode( applicationWidth + 256 ,applicationHeight + 30, 32 ), "The Hutries"),// sf::Style::Fullscreen ),
                                                           gui(applicationWidth,applicationHeight, &hutrieApplication),
                                                           world(&hutrieApplication, applicationWidth,applicationHeight) ,
                                                           titleText (1024 +20, 40, 45),
@@ -72,15 +73,19 @@ void Game::actions()
 
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F1)
             {
-             chosenMode = 1;                //BUILD MODE
+             chosenMode = 1;                 //HUTRIE BUILDING MODE
             }
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F2 )
             {
-             chosenMode = 2;                //HUTRIE MODE
+             chosenMode = 2;               //BUILD MODE
             }
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F3 )
             {
              chosenMode = 3;                //INFO MODE
+            }
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4 )
+            {
+             chosenMode = 4;                //HUTRIE MODE
             }
 ////////////////////// SWITCHING BETWEEN TYPES OF BUILDINGS/////////////////////////////////////////////////////////////////////
 
@@ -110,15 +115,40 @@ void Game::actions()
 
         cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))); //ustawia sprite kursora na pozycji myszki
 
+//////////////////// DEACTIVATING BUTTONS WHILE NOT DRAWN ///////////////////////////////////////////////////////////////////////////////
+
         if (chosenMode != tempChosenMode)
         {
-        if (chosenMode == 2) buttonFlag = true;
-        else buttonFlag = false;
-        gui.sawmill.setActive(buttonFlag);
-        gui.stonecutter.setActive(buttonFlag);
-        gui.barracks.setActive(buttonFlag);
-        gui.residence.setActive(buttonFlag);
-        tempChosenMode = chosenMode;
+            if (chosenMode == 2) buttonFlag = true;
+            else buttonFlag = false;
+            gui.sawmill.setActive(buttonFlag);
+            gui.stonecutter.setActive(buttonFlag);
+            gui.barracks.setActive(buttonFlag);
+            gui.residence.setActive(buttonFlag);
+            tempChosenMode = chosenMode;
+        }
+
+//////////////////////////////////// CHECK BUILDING-HUTRIES ACTIONS ///////////////////////////////////////////////////////////////
+
+        std::vector <Building*>::iterator it;
+        for(it = world.buildings.begin(); it != world.buildings.end(); ++it)
+        {
+          if ( (*it)->getNeedWorker() )
+          {
+              if((*it)->getHutriesCounter() < (*it)->getCapacity() )                    //jesli aktualna ilosc przebywajacych w budynku mniejsza od pojemnosci
+                {
+                    int unitIndex = (*it)->getUnitIndex(2);
+                    std::vector <Unit*> usedUnits;
+                    usedUnits.push_back(world.units.at(unitIndex));
+                    world.hutries.push_back(new Hutrie(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
+                    world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                    world.units.at(unitIndex)->addHutrie(world.hutries.at(world.hutries.size()-1));
+                    (*it)->setHutriesCounter( (*it)->getHutriesCounter() + 1 );
+
+                }
+              else std::cout << "I'm full!" << std::endl;
+              (*it)->setNeedWorker(false);
+          }
         }
 
 //////////////////////////////////REAL-TIME MOUSE ACCESS/////////////////////////////////////////////////////////////////////////////////////////
@@ -162,18 +192,20 @@ void Game::actions()
 
 //////////////////////////////////////////////////////////LEFT MOUSE MAP ACTIONS/////////////////////////////////////////////////////////////////////////
 
+           if (chosenMode == 1 && !(world.units.at( unitIndex )->isEmpty()))    //poruszanie Hutrim do budynku
+            {
+                std::vector <Unit*> usedUnits;
+                usedUnits.push_back(world.units.at(unitIndex));
+                world.hutries.push_back(new Hutrie(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
+                world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                world.units.at(unitIndex)->addHutrie(world.hutries.at(world.hutries.size()-1));
+            }
+
            if ( world.units.at( unitIndex )->isEmpty() )   //jesli unit jest wolny, bez zadnego mapobjectu
            {
                switch(chosenMode) //BUTTONS F1,F2,F3 OR GUIBUTTONS
                 {
-                    case 1:     //poruszanie Hutrim
-                    {
-                        std::vector <Unit*> usedUnits;
-                        usedUnits.push_back(world.units.at(unitIndex));
-                        world.hutries.push_back(new Hutrie(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
-                        world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
-                        break;
-                    }
+
                     case 2:   //postawienie budynku                                                                                                                                   //BUILDING zajmuje 4 pola na mapie!
                     {
                         if ( (unitIndex % world.getHorizontalUnitsCounter()) != world.getHorizontalUnitsCounter() - 1 && unitIndex < world.getHorizontalUnitsCounter() * (world.getVerticalUnitsCounter()-1))
@@ -194,6 +226,14 @@ void Game::actions()
                         }
                         break;
                     }
+                    case 4:     //poruszanie Hutrim
+                    {
+                        std::vector <Unit*> usedUnits;
+                        usedUnits.push_back(world.units.at(unitIndex));
+                        world.hutries.push_back(new Hutrie(&hutrieApplication, usedUnits,"sprites/carrier/right.png",false ));
+                        world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                        break;
+                    }
                 };
            }
            else
@@ -205,16 +245,19 @@ void Game::actions()
                world.units.at(unitIndex)->getMapObject()->showStatus();
                world.units.at(unitIndex)->getMapObject()->setEmphasize(true);
                world.units.at(unitIndex)->getMapObject()->soundPlay();
+//               world.units.at(unitIndex)->getMapObject()->buttonAction();
                world.lastClickedUnit = world.units.at(unitIndex);
            }
+            //world.units.at(unitIndex)->getMapObject()->buttonAction();
 ////////////////////////////BUTTONS ACTIONS///////////////////////////////////////////////////////////////////////////////////
           }
-          else if(gui.buildButton.checkBounds())  chosenMode = 2;
-          else if(gui.hutrieButton.checkBounds()) chosenMode = 1;
+          else if(gui.buildButton.checkBounds())   chosenMode = 2;
+          else if(gui.hutrieButton.checkBounds())  chosenMode = 1;
           else if(gui.sawmill.checkBounds()     && gui.sawmill.isActive())      buildingType = 1;
           else if(gui.stonecutter.checkBounds() && gui.stonecutter.isActive())  buildingType = 2;
           else if(gui.barracks.checkBounds()    && gui.barracks.isActive())     buildingType = 3;
           else if(gui.residence.checkBounds()   && gui.residence.isActive())    buildingType = 4;
+          else if(world.lastClickedUnit) world.lastClickedUnit->getMapObject()->buttonAction();
 
 ////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
 
@@ -242,15 +285,25 @@ void Game::displayAll()
 
         for(it = world.units.begin(); it != world.units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie - druga petla zeby ruszajacy sie Hutrie byli rysowani nad zielona kratka a nie pod
         {
-            if ( !((*it)->isEmpty()) && (*it)->getMapObject()->isActive() )
+            if ( !((*it)->isEmpty()))
             {
-                hutrieApplication.draw((*it)->getMapObject()->sprite);
-                if ((*it)->getMapObject()->isEmphasize() && chosenMode == 3)
+                hutrieApplication.draw((*it)->getMapObject()->sprite);          //rysuje obiekty (budynki, przyroda) widoczne na mapie
+                if ( (*it)->hutriesNumber() > 0 )
+                {
+                   for ( int i =0; i < (*it)->hutriesNumber(); i++)             //jesli w wektorze jest jakis hutri
+                   {
+                       hutrieApplication.draw((*it)->getHutrie(i)->sprite);     //rysuj hutrich z vectora dwellers
+                   }
+                }
+
+                if ((*it)->getMapObject()->isEmphasize() && chosenMode == 3)            //jesli tryb info rysuj w prawym gui
                 {
                    hutrieApplication.draw((*it)->getMapObject()->title.text);
                    hutrieApplication.draw((*it)->getMapObject()->description.text);
                    hutrieApplication.draw((*it)->getMapObject()->descriptionFrame.button);
+                   (*it)->getMapObject()->showButtons();
                 }
+                else (*it)->getMapObject()->deactivateButtons();
             }
         }
 

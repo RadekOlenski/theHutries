@@ -1,7 +1,7 @@
 #ifndef MAPOBJECT_H
 #define MAPOBJECT_H
 
-#include "unit.h"
+//#include "unit.h"
 #include "guitext.h"
 #include "guibutton.h"
 
@@ -22,6 +22,9 @@ class MapObject
         //////////////////// GUI INFO //////////////////////////////////////////
 
         virtual void showStatus() = 0;
+        virtual void showButtons();
+        virtual void deactivateButtons();
+        virtual void buttonAction();
         GUIText title;
         GUIText description;
         GUIButton descriptionFrame;
@@ -31,8 +34,9 @@ class MapObject
         void emphasizeUnits(bool fillColor = true);
         bool isEmphasize() {return emphasize;}
         void setEmphasize(bool emphasize) {this->emphasize = emphasize;}
-        bool isActive() {return active;}
-        void setActive(bool active) {this->active = active;}
+//        bool isActive() {return active;}
+//        void setActive(bool active) {this->active = active;}
+        int getUnitIndex (int index = 0);
 
         ////////////////////// SOUND /////////////////////////////////////////
 
@@ -47,7 +51,7 @@ class MapObject
     protected:
         std::vector <Unit*> objectUnits;
         sf::Music sound;
-        bool active;
+//        bool active;
         bool emphasize;
         virtual void occupyUnits();
   };

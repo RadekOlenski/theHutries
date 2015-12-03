@@ -16,6 +16,20 @@ class Building : public MapObject
         void placeOnMap();
         void setType(int type) {buildingType = type;}
         virtual void showStatus();
+        bool getNeedWorker() {return needWorker;}
+        void setNeedWorker (bool need) { needWorker = need;}
+        bool getNeedCarrier() {return needCarrier;}
+        int getCapacity() {return capacity;}
+        int getHutriesCounter() {return hutriesCounter;}
+        void setHutriesCounter(int counter) {hutriesCounter = counter;}
+
+    protected:
+        int buildTime;
+        int capacity;
+        int hutriesCounter;
+        int checkHutries();
+        bool needWorker;
+        bool needCarrier;
     private:
         int buildingType;
 };

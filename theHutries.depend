@@ -522,21 +522,21 @@
 1448495571 source:d:\onedrive\cpp projects\the hutries\testowy\unit.cpp
 	"unit.h"
 
-1449066205 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrie.cpp
+1449183490 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrie.cpp
 	<string>
 	<cstdlib>
 	<sstream>
 	"hutrie.h"
+	"mapobject.h"
+	"unit.h"
 
-1449066205 d:\onedrive\cpp projects\the hutries\thehutries\hutrie.h
+1449161378 d:\onedrive\cpp projects\the hutries\thehutries\hutrie.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"mapobject.h"
-	"unit.h"
 
-1449066189 d:\onedrive\cpp projects\the hutries\thehutries\mapobject.h
-	"unit.h"
+1449184402 d:\onedrive\cpp projects\the hutries\thehutries\mapobject.h
 	"guitext.h"
 	"guibutton.h"
 	<SFML/Graphics.hpp>
@@ -544,52 +544,56 @@
 	<string>
 	<vector>
 
-1449066814 d:\onedrive\cpp projects\the hutries\thehutries\unit.h
+1449184402 d:\onedrive\cpp projects\the hutries\thehutries\unit.h
 	<SFML/Graphics.hpp>
+	<vector>
 	"mapobject.h"
+	"hutrie.h"
 
-1449066814 source:d:\onedrive\cpp projects\the hutries\thehutries\mapobject.cpp
+1449184453 source:d:\onedrive\cpp projects\the hutries\thehutries\mapobject.cpp
 	"mapobject.h"
+	"unit.h"
 
-1448727272 source:d:\onedrive\cpp projects\the hutries\thehutries\unit.cpp
+1449184401 source:d:\onedrive\cpp projects\the hutries\thehutries\unit.cpp
 	"unit.h"
 
 1448914794 source:d:\onedrive\cpp projects\the hutries\thehutries\main.cpp
 	<ctime>
 	"game.h"
 
-1449063452 d:\onedrive\cpp projects\the hutries\thehutries\building.h
+1449185806 d:\onedrive\cpp projects\the hutries\thehutries\building.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"mapobject.h"
 	"unit.h"
 
-1449063449 source:d:\onedrive\cpp projects\the hutries\thehutries\building.cpp
+1449183493 source:d:\onedrive\cpp projects\the hutries\thehutries\building.cpp
 	"building.h"
 	<cstdlib>
 	<sstream>
 
-1449066205 source:d:\onedrive\cpp projects\the hutries\thehutries\gui.cpp
+1449182360 source:d:\onedrive\cpp projects\the hutries\thehutries\gui.cpp
 	"gui.h"
 
-1449064863 d:\onedrive\cpp projects\the hutries\thehutries\gui.h
+1449098904 d:\onedrive\cpp projects\the hutries\thehutries\gui.h
 	<SFML/Graphics.hpp>
 	"guibutton.h"
 	"guitext.h"
 
-1449066205 d:\onedrive\cpp projects\the hutries\thehutries\guitext.h
+1449098967 d:\onedrive\cpp projects\the hutries\thehutries\guitext.h
 	<SFML/Graphics.hpp>
 
-1449068871 source:d:\onedrive\cpp projects\the hutries\thehutries\guitext.cpp
+1449068953 source:d:\onedrive\cpp projects\the hutries\thehutries\guitext.cpp
 	"guitext.h"
 
-1449068908 source:d:\onedrive\cpp projects\the hutries\thehutries\game.cpp
+1449185299 source:d:\onedrive\cpp projects\the hutries\thehutries\game.cpp
 	<iostream>
 	"game.h"
+	"unit.h"
+	"mapobject.h"
 	"hutrie.h"
 	"building.h"
-	"unit.h"
 	"sawmill.h"
 	"stonecutter.h"
 	"residence.h"
@@ -610,17 +614,17 @@
 	"building.h"
 	"environment.h"
 
-1449066814 source:d:\onedrive\cpp projects\the hutries\thehutries\world.cpp
+1449184398 source:d:\onedrive\cpp projects\the hutries\thehutries\world.cpp
 	<cstdlib>
 	<iostream>
 	"world.h"
 	"hutrieshall.h"
 
-1449067309 d:\onedrive\cpp projects\the hutries\thehutries\guibutton.h
+1449179270 d:\onedrive\cpp projects\the hutries\thehutries\guibutton.h
 	<SFML/Graphics.hpp>
 	<string>
 
-1449067301 source:d:\onedrive\cpp projects\the hutries\thehutries\guibutton.cpp
+1449180249 source:d:\onedrive\cpp projects\the hutries\thehutries\guibutton.cpp
 	"guibutton.h"
 
 1449063124 d:\onedrive\cpp projects\the hutries\thehutries\environment.h
@@ -629,8 +633,9 @@
 	<string>
 	"mapobject.h"
 
-1449064507 source:d:\onedrive\cpp projects\the hutries\thehutries\environment.cpp
+1449160786 source:d:\onedrive\cpp projects\the hutries\thehutries\environment.cpp
 	"environment.h"
+	"unit.h"
 	<sstream>
 	<cstdlib>
 
@@ -651,11 +656,12 @@
 	<string>
 	"goodsbuilding.h"
 
-1449064540 d:\onedrive\cpp projects\the hutries\thehutries\goodsbuilding.h
+1449181011 d:\onedrive\cpp projects\the hutries\thehutries\goodsbuilding.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"building.h"
+	"guibutton.h"
 
 1449063124 d:\onedrive\cpp projects\the hutries\thehutries\stonecutter.h
 	<SFML/Graphics.hpp>
@@ -669,10 +675,11 @@
 	<string>
 	"building.h"
 
-1449064507 source:d:\onedrive\cpp projects\the hutries\thehutries\goodsbuilding.cpp
+1449183494 source:d:\onedrive\cpp projects\the hutries\thehutries\goodsbuilding.cpp
 	"goodsbuilding.h"
 	<sstream>
 	<cstdlib>
+	<iostream>
 
 1449066205 source:d:\onedrive\cpp projects\the hutries\thehutries\hutrieshall.cpp
 	"hutrieshall.h"

@@ -2,8 +2,10 @@
 #define UNIT_H
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 #include "mapobject.h"
+#include "hutrie.h"
 
 class MapObject;
 class Unit
@@ -17,10 +19,18 @@ class Unit
         bool isEmpty() {return emptiness;}
         void setEmpty(bool emptiness) {this->emptiness = emptiness;}
 
-        Unit(sf::Vector2f position);
+        Unit(sf::Vector2f position, int index);
+
+        void addHutrie (Hutrie* hutrie);
+        int hutriesNumber();
+        Hutrie* getHutrie (int index);
+        int getIndex() {return index;}
+
     private:
         bool emptiness;
         MapObject *mapObject;
+        std::vector <Hutrie*> dwellers;
+        int index;
 
 };
 

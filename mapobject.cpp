@@ -1,4 +1,5 @@
 #include "mapobject.h"
+#include "unit.h"
 
 MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName) : title ( 1024+40, 170, 30 ),
                                                                                                                       descriptionFrame ( 1024+40, 230, hutrieApplication, pathName, 128, 128),
@@ -11,7 +12,7 @@ MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> u
     sprite.setScale(0.5,0.5);
     sound.setVolume(10);
 
-    active = true;                                                             //WHILE TRUE OBJECT WIL BE DRAWN ON SCREEN
+//    active = true;                                                             //WHILE TRUE OBJECT WIL BE DRAWN ON SCREEN
     emphasize = false;                                                         //WHILE FALSE NO GREEN BACKROUND UNDER OBJECT + NO INFO ON GUI
 
     //////////////CONNECTING MAPOBJECT WITH UNITS UNDER OBJECT//////////////////////////////////////////////////////////
@@ -53,3 +54,15 @@ void MapObject::soundPlay(bool play)
     if (play) sound.play();
     else sound.stop();
 }
+
+int MapObject::getUnitIndex (int index)
+{
+    objectUnits.at(index)->getIndex();
+}
+
+void MapObject::showButtons(){}
+
+void MapObject::deactivateButtons(){}
+
+void MapObject::buttonAction(){}
+

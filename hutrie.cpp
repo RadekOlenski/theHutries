@@ -3,13 +3,16 @@
 #include <sstream>
 
 #include "hutrie.h"
+#include "mapobject.h"
+#include "unit.h"
 
 
 ///////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////////////////////////////
 
-Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName) : MapObject(hutrieApplication, unitsFromGame, pathName), hutrieThread(&Hutrie::moveHutrie, this)
+Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding) : MapObject(hutrieApplication, unitsFromGame, pathName), hutrieThread(&Hutrie::moveHutrie, this)
 {
     title.text.setString("Hutrie:");
+    this->onBuilding = onBuilding;
 
     sprite.setPosition( 384, 384 );
     sprite.setScale(0.64,0.64);
@@ -20,13 +23,15 @@ Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
     strength = (rand() % 10) + 1;
     agility = (rand() % 10) + 1;
     endurance = (rand() % 10) + 1;
+
+    active = true;                                                             //WHILE TRUE OBJECT WIL BE DRAWN ON SCREEN
 }
 
 ///////////////////////////MOVING TO SPECIFIC MOUSE DIRECTION/////////////////////////////////////////////////////////////////////////////////////
 
 void Hutrie::moveHutrie()
 {
-    occupyUnits();
+     if (!onBuilding) occupyUnits();
 
     float targetY = objectUnits.at(0)->field.getPosition().y;
     float targetX = objectUnits.at(0)->field.getPosition().x;
@@ -62,6 +67,7 @@ void Hutrie::moveHutrie()
         sprite.move(-1,0);
         sf::sleep(sf::milliseconds(5));
     };
+    if (onBuilding) texture.loadFromFile("sprites/carrier/empty.png");
 }
 
 void Hutrie::showStatus()

@@ -25,9 +25,13 @@ class GUI
         /////////////////////////////// BUILDINGS SECTION //////////////////////////////////////////
 
         GUIButton sawmill;
+        GUIText  tSawmill;
         GUIButton barracks;
+        GUIText  tBarracks;
         GUIButton residence;
+        GUIText  tResidence;
         GUIButton stonecutter;
+        GUIText  tStonecutter;
 
         //////////////////////////////// DRAWING FUNCTIONS /////////////////////////////////////////
 
