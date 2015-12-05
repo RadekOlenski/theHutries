@@ -33,10 +33,22 @@ class GUI
         GUIButton stonecutter;
         GUIText  tStonecutter;
 
+        /////////////////////////////// HUTRIES SECTION //////////////////////////////////////////
+
+        GUIButton allHutries;
+        GUIButton allCarriers;
+        GUIButton allWorkers;
+        GUIButton allSoldiers;
+        GUIText tHutries;
+        GUIText tCarriers;
+        GUIText tWorkers;
+        GUIText tSoldiers;
+
         //////////////////////////////// DRAWING FUNCTIONS /////////////////////////////////////////
 
         void displayGUI();
         void displayGUIBuildings();
+        void displayGUIHutries(int hutrieSize);
 
     private:
 

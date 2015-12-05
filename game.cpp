@@ -4,6 +4,9 @@
 #include "unit.h"
 #include "mapobject.h"
 #include "hutrie.h"
+#include "carrier.h"
+#include "worker.h"
+#include "soldier.h"
 #include "building.h"
 #include "sawmill.h"
 #include "stonecutter.h"
@@ -47,6 +50,14 @@ Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0),
     if (!music.openFromFile("audio/celtic.wav")) std::cout << "Loading music failed" << std::endl;
     music.setLoop(true);
 
+    sound.setBuffer(buffer);
+
+}
+
+void Game::error()
+{
+    buffer.loadFromFile("audio/error.wav");
+    sound.play();
 }
 
 void Game::play()
@@ -140,15 +151,28 @@ void Game::actions()
                     int unitIndex = (*it)->getUnitIndex(2);
                     std::vector <Unit*> usedUnits;
                     usedUnits.push_back(world.units.at(unitIndex));
-                    world.hutries.push_back(new Hutrie(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
+                    world.hutries.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
                     world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
                     world.units.at(unitIndex)->addHutrie(world.hutries.at(world.hutries.size()-1));
                     (*it)->setHutriesCounter( (*it)->getHutriesCounter() + 1 );
+                    (*it)->showStatus();                                                                //zeby po kliknieciu od razu zaktualizowala sie liczba workerow w GUI
 
                 }
-              else std::cout << "I'm full!" << std::endl;
+              else error();
               (*it)->setNeedWorker(false);
           }
+          if ( (*it)->getNeedCarrier() )
+          {
+          int unitIndex = (*it)->getUnitIndex(2);
+          std::vector <Unit*> usedUnits;
+          usedUnits.push_back(world.units.at(unitIndex));
+          world.hutries.push_back(new Carrier(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
+          world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+          world.units.at(unitIndex)->addHutrie(world.hutries.at(world.hutries.size()-1));
+          (*it)->showStatus();
+          (*it)->setNeedCarrier(false);
+          }
+
         }
 
 //////////////////////////////////REAL-TIME MOUSE ACCESS/////////////////////////////////////////////////////////////////////////////////////////
@@ -196,12 +220,12 @@ void Game::actions()
             {
                 std::vector <Unit*> usedUnits;
                 usedUnits.push_back(world.units.at(unitIndex));
-                world.hutries.push_back(new Hutrie(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
-                world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                world.hutries.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
+                world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                         //tworzy watek w ktorym porusza sie Hutrie
                 world.units.at(unitIndex)->addHutrie(world.hutries.at(world.hutries.size()-1));
             }
 
-           if ( world.units.at( unitIndex )->isEmpty() )   //jesli unit jest wolny, bez zadnego mapobjectu
+           if ( world.units.at( unitIndex )->isEmpty() )                                                 //jesli unit jest wolny, bez zadnego mapobjectu
            {
                switch(chosenMode) //BUTTONS F1,F2,F3 OR GUIBUTTONS
                 {
@@ -222,15 +246,19 @@ void Game::actions()
                                    case 4: world.buildings.push_back(new Residence(&hutrieApplication, usedUnits,"sprites/buildings/residence.png", buildingType)); break;
                                }
                                world.buildings.at(world.buildings.size()-1)->placeOnMap();
+                               buffer.loadFromFile("audio/ting.flac");
+                               sound.play();
                             }
+                            else error();
                         }
+                        else error();
                         break;
                     }
                     case 4:     //poruszanie Hutrim
                     {
                         std::vector <Unit*> usedUnits;
                         usedUnits.push_back(world.units.at(unitIndex));
-                        world.hutries.push_back(new Hutrie(&hutrieApplication, usedUnits,"sprites/carrier/right.png",false ));
+                        world.hutries.push_back(new Soldier(&hutrieApplication, usedUnits,"sprites/warrior/right.png" ));
                         world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
                         break;
                     }
@@ -245,10 +273,8 @@ void Game::actions()
                world.units.at(unitIndex)->getMapObject()->showStatus();
                world.units.at(unitIndex)->getMapObject()->setEmphasize(true);
                world.units.at(unitIndex)->getMapObject()->soundPlay();
-//               world.units.at(unitIndex)->getMapObject()->buttonAction();
                world.lastClickedUnit = world.units.at(unitIndex);
            }
-            //world.units.at(unitIndex)->getMapObject()->buttonAction();
 ////////////////////////////BUTTONS ACTIONS///////////////////////////////////////////////////////////////////////////////////
           }
           else if(gui.buildButton.checkBounds())   chosenMode = 2;
@@ -273,6 +299,7 @@ void Game::displayAll()
         hutrieApplication.setView(fixed);
         gui.displayGUI();
         if (chosenMode == 2) gui.displayGUIBuildings();
+        if (chosenMode == 1) gui.displayGUIHutries(world.hutries.size());
         hutrieApplication.draw( background );
         hutrieApplication.draw(titleText.text);             //migoczacy tekst tytulowy
         std::vector <Unit*>::iterator it;                  //rysowanie zielonych kratek pol

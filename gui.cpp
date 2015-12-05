@@ -1,4 +1,5 @@
 #include "gui.h"
+#include <sstream>
 
 GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int width) :  guiFrame    ( sf::Vector2f(width,mapHeight)),
                                                                                        barText     ( 10, mapHeight + 5, 20, "The Hutries", sf::Color::White),
@@ -13,11 +14,18 @@ GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int wid
                                                                                        tSawmill    ( mapWidth + 40 , 255      , 20, "Sawmill"),
                                                                                        stonecutter ( mapWidth + 150, 170      , hutrieApplication, "sprites/buildings/stone.png"     , 90, 90),
                                                                                        tStonecutter( mapWidth + 155, 255      , 20, "Stonecutter"),
-//                                                                                       callWorker  ( mapWidth + 40 , 400      , hutrieApplication, "sprites/buildings/stone.png"     , 90, 45),
                                                                                        barracks    ( mapWidth + 30 , 300      , hutrieApplication, "sprites/buildings/barracks.png"  , 90, 90),
                                                                                        tBarracks   ( mapWidth + 40 , 385      , 20, "Barracks"),
                                                                                        residence   ( mapWidth + 150, 300      , hutrieApplication, "sprites/buildings/residence.png" , 90, 90),
-                                                                                       tResidence  ( mapWidth + 160, 385      , 20, "Residence")
+                                                                                       tResidence  ( mapWidth + 160, 385      , 20, "Residence"),
+                                                                                       allHutries  ( mapWidth + 30 , 170      , hutrieApplication, "sprites/carrier/right.png"   , 96, 96),
+                                                                                       tHutries    ( mapWidth + 150 , 200      , 30, "26"),
+                                                                                       allCarriers ( mapWidth + 30 , 270      , hutrieApplication, "sprites/carrier/right.png"   , 96, 96),
+                                                                                       tCarriers   ( mapWidth + 150 , 300      , 30, "12"),
+                                                                                       allWorkers  ( mapWidth + 30 , 370      , hutrieApplication, "sprites/worker/right.png"   , 96, 96),
+                                                                                       tWorkers    ( mapWidth + 150 , 400      , 30, "5"),
+                                                                                       allSoldiers ( mapWidth + 30 , 470      , hutrieApplication, "sprites/warrior/right.png"   , 96, 96),
+                                                                                       tSoldiers   ( mapWidth + 150 , 500      , 30, "2")
 
 {
     this->width = width;
@@ -58,3 +66,20 @@ void GUI::displayGUIBuildings()
     hutrieApplication->draw(residence.button);
     hutrieApplication->draw(tResidence.text);
 }
+
+void GUI::displayGUIHutries(int hutrieSize)
+{
+    std::ostringstream desc;
+    desc << hutrieSize;
+    tHutries.text.setString (desc.str() );
+    hutrieApplication->draw(allHutries.button);
+    hutrieApplication->draw(allCarriers.button);
+    hutrieApplication->draw(allWorkers.button);
+    hutrieApplication->draw(allSoldiers.button);
+    hutrieApplication->draw(tHutries.text);
+    hutrieApplication->draw(tWorkers.text);
+    hutrieApplication->draw(tCarriers.text);
+    hutrieApplication->draw(tSoldiers.text);
+
+}
+

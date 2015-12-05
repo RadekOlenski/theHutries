@@ -26,7 +26,7 @@ void Building::showStatus()
 
 int Building::checkHutries()
 {
-    hutriesCounter = 0;
+    int hutriesCounter = 0;
     std::vector <Unit*>::iterator it;
     for(it = objectUnits.begin(); it != objectUnits.end(); ++it)
     {

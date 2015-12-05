@@ -4,8 +4,8 @@
 #include <iostream>
 
 GoodsBuilding::GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType) : Building(hutrieApplication,unitsFromGame, pathName, buildingType),
-                                                                                                                                               callWorker ( 1024 + 40 , 500, hutrieApplication, 90, 45)
-                                                                                                                                               goodsReady ( 1024 + 40 , 600, hutrieApplication, 90, 45)
+                                                                                                                                               callWorker ( 1024 + 40 , 500, hutrieApplication, 90, 45),
+                                                                                                                                               goodsReady ( 1024 + 40 , 560, hutrieApplication, 90, 45)
 {
     capacity = 3;
 }
@@ -13,7 +13,7 @@ GoodsBuilding::GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector <U
 void GoodsBuilding::showStatus()
 {
     std::ostringstream desc;
-    desc << "Capacity: " << capacity << " workers\nWorkers: " << checkHutries() << "\nProducts in store: " << (rand()%5)+1;
+    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " << checkHutries() - hutriesCounter << "\nProducts in store: " << (rand()%5)+1;
     description.text.setString (desc.str() );
 }
 
@@ -43,7 +43,5 @@ void GoodsBuilding::buttonAction()
         std::cout << "I need carrier!!!!";
         needCarrier = true;
     }
-
-
 }
 

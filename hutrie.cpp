@@ -17,6 +17,8 @@ Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
     sprite.setPosition( 384, 384 );
     sprite.setScale(0.64,0.64);
 
+    transTexture.loadFromFile("sprites/carrier/empty.png");
+
     sound.openFromFile("audio/sir.wav");
     sound.setVolume(100);
 
@@ -39,14 +41,12 @@ void Hutrie::moveHutrie()
     while( sprite.getPosition().y < targetY )
     {
         sprite.move(0,1);
-        texture.loadFromFile( "sprites/carrier/down.png" );
-        sprite.setTexture( texture );
+        sprite.setTexture( downTexture );
         sf::sleep(sf::milliseconds(5));
     };
 
     while( sprite.getPosition().x < targetX)
     {
-        texture.loadFromFile( "sprites/carrier/right.png" );
         sprite.setTexture( texture );
         sprite.move(1,0);
         sf::sleep(sf::milliseconds(5));
@@ -54,20 +54,18 @@ void Hutrie::moveHutrie()
 
     while( sprite.getPosition().y > targetY)
     {
-        texture.loadFromFile( "sprites/carrier/up.png" );
-        sprite.setTexture( texture );
+        sprite.setTexture( upTexture );
         sprite.move(0,-1);
         sf::sleep(sf::milliseconds(5));
     };
 
     while( sprite.getPosition().x > targetX)
     {
-        texture.loadFromFile( "sprites/carrier/left.png" );
-        sprite.setTexture( texture );
+        sprite.setTexture( leftTexture );
         sprite.move(-1,0);
         sf::sleep(sf::milliseconds(5));
     };
-    if (onBuilding) texture.loadFromFile("sprites/carrier/empty.png");
+    if (onBuilding) sprite.setTexture( transTexture );
 }
 
 void Hutrie::showStatus()

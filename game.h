@@ -41,6 +41,10 @@ class Game
         sf::Sprite cursor;
         sf::Texture cursorTexture;
 
+        sf::Sound sound;
+        sf::SoundBuffer buffer;
+        void error();
+
         /////////////FUNCTIONS////////////////////////
 
         void actions();

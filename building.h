@@ -19,6 +19,7 @@ class Building : public MapObject
         bool getNeedWorker() {return needWorker;}
         void setNeedWorker (bool need) { needWorker = need;}
         bool getNeedCarrier() {return needCarrier;}
+        void setNeedCarrier (bool need) { needCarrier = need;}
         int getCapacity() {return capacity;}
         int getHutriesCounter() {return hutriesCounter;}
         void setHutriesCounter(int counter) {hutriesCounter = counter;}

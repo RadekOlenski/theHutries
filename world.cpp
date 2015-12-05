@@ -36,14 +36,14 @@ World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int appl
     buildings.at(buildings.size()-1)->placeOnMap();
 
     /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
-    do
-    {
-       usedUnits.clear();
-       unitIndex = (rand() % (horizontalUnitsCounter - 3)) + ((rand() % (verticalUnitsCounter)) * horizontalUnitsCounter);
-       prepareUnits(unitIndex,2,3,&usedUnits);
-    }
-    while(!(isFieldEmpty(usedUnits)));
-    environment.push_back(new Environment(hutrieApplication, usedUnits, "sprites/environment/trees.png"));
+//    do
+//    {
+//       usedUnits.clear();
+//       unitIndex = (rand() % (horizontalUnitsCounter - 3)) + ((rand() % (verticalUnitsCounter)) * horizontalUnitsCounter);
+//       prepareUnits(unitIndex,2,3,&usedUnits);
+//    }
+//    while(!(isFieldEmpty(usedUnits)));
+//    environment.push_back(new Environment(hutrieApplication, usedUnits, "sprites/environment/trees.png"));
 
 }
 

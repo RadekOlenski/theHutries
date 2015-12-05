@@ -24,6 +24,13 @@ class Hutrie : public MapObject
         bool isActive() {return active;}
         void setActive(bool active) {this->active = active;}
 
+    protected:
+
+        sf::Texture upTexture;
+        sf::Texture downTexture;
+        sf::Texture leftTexture;
+        sf::Texture transTexture;
+
     private:
 
         int strength;
@@ -31,6 +38,7 @@ class Hutrie : public MapObject
         int endurance;
         bool onBuilding;
         bool active;
+
 };
 
 #endif // HUTRIE_H
