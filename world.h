@@ -6,6 +6,9 @@
 
 #include "unit.h"
 #include "hutrie.h"
+#include "carrier.h"
+#include "worker.h"
+#include "soldier.h"
 #include "building.h"
 #include "environment.h"
 
@@ -15,6 +18,9 @@ class World
         World(sf::RenderWindow *hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize = 64);
         std::vector <Unit*> units;
         std::vector <Hutrie*> hutries;
+        std::vector <Carrier*> carriers;
+        std::vector <Soldier*> soldiers;
+        std::vector <Worker*> workers;
         std::vector <Building*> buildings;
         std::vector <Environment*> environment;
         Unit* lastClickedUnit;

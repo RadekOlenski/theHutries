@@ -29,14 +29,19 @@ Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
     active = true;                                                             //WHILE TRUE OBJECT WIL BE DRAWN ON SCREEN
 }
 
+//void Hutrie::moveHutrie()
+//{
+//
+//}
+
 ///////////////////////////MOVING TO SPECIFIC MOUSE DIRECTION/////////////////////////////////////////////////////////////////////////////////////
 
-void Hutrie::moveHutrie()
+void Hutrie::toDirection(float targetX, float targetY)
 {
-     if (!onBuilding) occupyUnits();
-
-    float targetY = objectUnits.at(0)->field.getPosition().y;
-    float targetX = objectUnits.at(0)->field.getPosition().x;
+//     if (!onBuilding) occupyUnits();
+//
+//    float targetY = objectUnits.at(0)->field.getPosition().y;
+//    float targetX = objectUnits.at(0)->field.getPosition().x;
 
     while( sprite.getPosition().y < targetY )
     {
@@ -65,7 +70,7 @@ void Hutrie::moveHutrie()
         sprite.move(-1,0);
         sf::sleep(sf::milliseconds(5));
     };
-    if (onBuilding) sprite.setTexture( transTexture );
+//    if (onBuilding) sprite.setTexture( transTexture );
 }
 
 void Hutrie::showStatus()

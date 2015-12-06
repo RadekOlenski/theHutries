@@ -18,7 +18,7 @@ GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int wid
                                                                                        tBarracks   ( mapWidth + 40 , 385      , 20, "Barracks"),
                                                                                        residence   ( mapWidth + 150, 300      , hutrieApplication, "sprites/buildings/residence.png" , 90, 90),
                                                                                        tResidence  ( mapWidth + 160, 385      , 20, "Residence"),
-                                                                                       allHutries  ( mapWidth + 30 , 170      , hutrieApplication, "sprites/carrier/right.png"   , 96, 96),
+                                                                                       allHutries  ( mapWidth + 30 , 170      , hutrieApplication, "sprites/all.png"   , 96, 96),
                                                                                        tHutries    ( mapWidth + 150 , 200      , 30, "26"),
                                                                                        allCarriers ( mapWidth + 30 , 270      , hutrieApplication, "sprites/carrier/right.png"   , 96, 96),
                                                                                        tCarriers   ( mapWidth + 150 , 300      , 30, "12"),
@@ -67,11 +67,22 @@ void GUI::displayGUIBuildings()
     hutrieApplication->draw(tResidence.text);
 }
 
-void GUI::displayGUIHutries(int hutrieSize)
+void GUI::displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int soldierSize)
 {
     std::ostringstream desc;
     desc << hutrieSize;
     tHutries.text.setString (desc.str() );
+    std::ostringstream desc1;
+    desc1 << carrierSize;
+    tCarriers.text.setString (desc1.str() );
+    std::ostringstream desc2;
+    desc2 << workerSize;
+    tWorkers.text.setString (desc2.str() );
+    std::ostringstream desc3;
+    desc3 << soldierSize;
+    tSoldiers.text.setString (desc3.str() );
+
+
     hutrieApplication->draw(allHutries.button);
     hutrieApplication->draw(allCarriers.button);
     hutrieApplication->draw(allWorkers.button);

@@ -22,8 +22,9 @@ class Unit
         Unit(sf::Vector2f position, int index);
 
         void addHutrie (Hutrie* hutrie);
+        Hutrie* getHutrie();
         int hutriesNumber();
-        Hutrie* getHutrie (int index);
+        Hutrie* getHutrieIndex (int index);
         int getIndex() {return index;}
 
     private:

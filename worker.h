@@ -8,10 +8,12 @@
 #include "hutrie.h"
 
 
+
 class Worker : public Hutrie
 {
     public:
         Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding = true);
+        void moveHutrie();
     protected:
     private:
 };

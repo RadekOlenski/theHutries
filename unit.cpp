@@ -16,12 +16,19 @@ void Unit::addHutrie(Hutrie* hutrie)
     dwellers.push_back(hutrie);
 }
 
+Hutrie* Unit::getHutrie()
+{
+    Hutrie* tempHutrie = dwellers.back();
+    dwellers.pop_back();
+    return tempHutrie;
+}
+
 int Unit::hutriesNumber()
 {
     return dwellers.size();
 }
 
-Hutrie* Unit::getHutrie(int index)
+Hutrie* Unit::getHutrieIndex(int index)
 {
     return dwellers.at(index);
 }

@@ -12,7 +12,7 @@ class Carrier : public Hutrie
 {
     public:
         Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding = true);
-    protected:
+        void moveHutrie();
     private:
 };
 

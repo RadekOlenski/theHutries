@@ -8,6 +8,7 @@ GoodsBuilding::GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector <U
                                                                                                                                                goodsReady ( 1024 + 40 , 560, hutrieApplication, 90, 45)
 {
     capacity = 3;
+    hutriesCounter = 0;
 }
 
 void GoodsBuilding::showStatus()

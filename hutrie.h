@@ -18,7 +18,7 @@ class Hutrie : public MapObject
         sf::Thread hutrieThread;
 
         Hutrie(sf::RenderWindow *hutrieApplication,std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding = true);
-        void moveHutrie();
+        virtual void moveHutrie() = 0;
         void showStatus();
 
         bool isActive() {return active;}
@@ -30,6 +30,7 @@ class Hutrie : public MapObject
         sf::Texture downTexture;
         sf::Texture leftTexture;
         sf::Texture transTexture;
+        void toDirection(float targetX, float targetY);
 
     private:
 

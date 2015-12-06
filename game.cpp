@@ -60,6 +60,12 @@ void Game::error()
     sound.play();
 }
 
+void Game::ting()
+{
+    buffer.loadFromFile("audio/click.wav");
+    sound.play();
+}
+
 void Game::play()
 {
     music.play();
@@ -151,9 +157,10 @@ void Game::actions()
                     int unitIndex = (*it)->getUnitIndex(2);
                     std::vector <Unit*> usedUnits;
                     usedUnits.push_back(world.units.at(unitIndex));
-                    world.hutries.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
-                    world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
-                    world.units.at(unitIndex)->addHutrie(world.hutries.at(world.hutries.size()-1));
+                    world.workers.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
+                    world.hutries.push_back(world.workers.back());
+                    world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                    world.units.at(unitIndex)->addHutrie(world.hutries.back());
                     (*it)->setHutriesCounter( (*it)->getHutriesCounter() + 1 );
                     (*it)->showStatus();                                                                //zeby po kliknieciu od razu zaktualizowala sie liczba workerow w GUI
 
@@ -166,9 +173,10 @@ void Game::actions()
           int unitIndex = (*it)->getUnitIndex(2);
           std::vector <Unit*> usedUnits;
           usedUnits.push_back(world.units.at(unitIndex));
-          world.hutries.push_back(new Carrier(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
-          world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
-          world.units.at(unitIndex)->addHutrie(world.hutries.at(world.hutries.size()-1));
+          world.carriers.push_back(new Carrier(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
+          world.hutries.push_back(world.carriers.back());
+          world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+          world.units.at(unitIndex)->addHutrie(world.hutries.back());
           (*it)->showStatus();
           (*it)->setNeedCarrier(false);
           }
@@ -201,7 +209,7 @@ void Game::actions()
 ///////////////////////////////////////////////////CHOOSING RIGHT UNIT///////////////////////////////////////////////////////////
 
             std::vector <Unit*>::iterator it;
-            int unitIndex = 0;
+            int unitIndex = 70;
             for(it = world.units.begin(); it != world.units.end(); ++it)
             {
                 if(  (*it)->field.getPosition().x                             <= sf::Mouse::getPosition(hutrieApplication).x &&
@@ -221,8 +229,8 @@ void Game::actions()
                 std::vector <Unit*> usedUnits;
                 usedUnits.push_back(world.units.at(unitIndex));
                 world.hutries.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
-                world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                         //tworzy watek w ktorym porusza sie Hutrie
-                world.units.at(unitIndex)->addHutrie(world.hutries.at(world.hutries.size()-1));
+                world.hutries.back()->hutrieThread.launch();                         //tworzy watek w ktorym porusza sie Hutrie
+                world.units.at(unitIndex)->addHutrie(world.hutries.back());
             }
 
            if ( world.units.at( unitIndex )->isEmpty() )                                                 //jesli unit jest wolny, bez zadnego mapobjectu
@@ -245,7 +253,7 @@ void Game::actions()
                                    case 3: world.buildings.push_back(new Barracks(&hutrieApplication, usedUnits,"sprites/buildings/barracks.png", buildingType)); break;
                                    case 4: world.buildings.push_back(new Residence(&hutrieApplication, usedUnits,"sprites/buildings/residence.png", buildingType)); break;
                                }
-                               world.buildings.at(world.buildings.size()-1)->placeOnMap();
+                               world.buildings.back()->placeOnMap();
                                buffer.loadFromFile("audio/ting.flac");
                                sound.play();
                             }
@@ -258,8 +266,9 @@ void Game::actions()
                     {
                         std::vector <Unit*> usedUnits;
                         usedUnits.push_back(world.units.at(unitIndex));
-                        world.hutries.push_back(new Soldier(&hutrieApplication, usedUnits,"sprites/warrior/right.png" ));
-                        world.hutries.at(world.hutries.size()-1)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                        world.soldiers.push_back(new Soldier(&hutrieApplication, usedUnits,"sprites/warrior/right.png" ));
+                        world.hutries.push_back(world.soldiers.back());
+                        world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
                         break;
                     }
                 };
@@ -277,13 +286,13 @@ void Game::actions()
            }
 ////////////////////////////BUTTONS ACTIONS///////////////////////////////////////////////////////////////////////////////////
           }
-          else if(gui.buildButton.checkBounds())   chosenMode = 2;
-          else if(gui.hutrieButton.checkBounds())  chosenMode = 1;
-          else if(gui.sawmill.checkBounds()     && gui.sawmill.isActive())      buildingType = 1;
-          else if(gui.stonecutter.checkBounds() && gui.stonecutter.isActive())  buildingType = 2;
-          else if(gui.barracks.checkBounds()    && gui.barracks.isActive())     buildingType = 3;
-          else if(gui.residence.checkBounds()   && gui.residence.isActive())    buildingType = 4;
-          else if(world.lastClickedUnit) world.lastClickedUnit->getMapObject()->buttonAction();
+          else if(gui.buildButton.checkBounds())  { chosenMode = 2; ting(); }
+          else if(gui.hutrieButton.checkBounds()) { chosenMode = 1; ting(); }
+          else if(gui.sawmill.checkBounds()     && gui.sawmill.isActive())      { buildingType = 1; ting(); }
+          else if(gui.stonecutter.checkBounds() && gui.stonecutter.isActive())  { buildingType = 2; ting(); }
+          else if(gui.barracks.checkBounds()    && gui.barracks.isActive())     { buildingType = 3; ting(); }
+          else if(gui.residence.checkBounds()   && gui.residence.isActive())    { buildingType = 4; ting(); }
+          else if(world.lastClickedUnit) { world.lastClickedUnit->getMapObject()->buttonAction();}
 
 ////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
 
@@ -299,7 +308,7 @@ void Game::displayAll()
         hutrieApplication.setView(fixed);
         gui.displayGUI();
         if (chosenMode == 2) gui.displayGUIBuildings();
-        if (chosenMode == 1) gui.displayGUIHutries(world.hutries.size());
+        if (chosenMode == 1) gui.displayGUIHutries(world.hutries.size(), world.carriers.size(), world.workers.size(), world.soldiers.size());
         hutrieApplication.draw( background );
         hutrieApplication.draw(titleText.text);             //migoczacy tekst tytulowy
         std::vector <Unit*>::iterator it;                  //rysowanie zielonych kratek pol
@@ -319,7 +328,7 @@ void Game::displayAll()
                 {
                    for ( int i =0; i < (*it)->hutriesNumber(); i++)             //jesli w wektorze jest jakis hutri
                    {
-                       hutrieApplication.draw((*it)->getHutrie(i)->sprite);     //rysuj hutrich z vectora dwellers
+                       hutrieApplication.draw((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
                    }
                 }
 

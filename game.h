@@ -44,6 +44,7 @@ class Game
         sf::Sound sound;
         sf::SoundBuffer buffer;
         void error();
+        void ting();
 
         /////////////FUNCTIONS////////////////////////
 

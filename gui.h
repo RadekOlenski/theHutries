@@ -48,7 +48,7 @@ class GUI
 
         void displayGUI();
         void displayGUIBuildings();
-        void displayGUIHutries(int hutrieSize);
+        void displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int soldierSize);
 
     private:
 

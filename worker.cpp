@@ -1,4 +1,6 @@
+#include "unit.h"
 #include "worker.h"
+
 
 Worker::Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding) : Hutrie(hutrieApplication,unitsFromGame,pathName)
 {
@@ -7,4 +9,10 @@ Worker::Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
     upTexture.loadFromFile("sprites/worker/up.png");
     downTexture.loadFromFile("sprites/worker/down.png");
     leftTexture.loadFromFile("sprites/worker/left.png");
+}
+
+void Worker::moveHutrie()
+{
+    toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
+    sprite.setTexture( transTexture );
 }
