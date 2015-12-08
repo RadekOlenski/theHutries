@@ -14,18 +14,20 @@ GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int wid
                                                                                        tSawmill    ( mapWidth + 40 , 255      , 20, "Sawmill"),
                                                                                        stonecutter ( mapWidth + 150, 170      , hutrieApplication, "sprites/buildings/stone.png"     , 90, 90),
                                                                                        tStonecutter( mapWidth + 155, 255      , 20, "Stonecutter"),
+                                                                                       goldmine    ( mapWidth + 30,  420      , hutrieApplication, "sprites/buildings/goldmine.png"     , 90, 90),
+                                                                                       tGoldmine   ( mapWidth + 40,  505      , 20, "Goldmine"),
                                                                                        barracks    ( mapWidth + 30 , 300      , hutrieApplication, "sprites/buildings/barracks.png"  , 90, 90),
                                                                                        tBarracks   ( mapWidth + 40 , 385      , 20, "Barracks"),
                                                                                        residence   ( mapWidth + 150, 300      , hutrieApplication, "sprites/buildings/residence.png" , 90, 90),
                                                                                        tResidence  ( mapWidth + 160, 385      , 20, "Residence"),
                                                                                        allHutries  ( mapWidth + 30 , 170      , hutrieApplication, "sprites/all.png"   , 96, 96),
-                                                                                       tHutries    ( mapWidth + 150 , 200      , 30, "26"),
+                                                                                       tHutries    ( mapWidth + 150, 200      , 30, "26"),
                                                                                        allCarriers ( mapWidth + 30 , 270      , hutrieApplication, "sprites/carrier/right.png"   , 96, 96),
-                                                                                       tCarriers   ( mapWidth + 150 , 300      , 30, "12"),
+                                                                                       tCarriers   ( mapWidth + 150, 300      , 30, "12"),
                                                                                        allWorkers  ( mapWidth + 30 , 370      , hutrieApplication, "sprites/worker/right.png"   , 96, 96),
-                                                                                       tWorkers    ( mapWidth + 150 , 400      , 30, "5"),
+                                                                                       tWorkers    ( mapWidth + 150, 400      , 30, "5"),
                                                                                        allSoldiers ( mapWidth + 30 , 470      , hutrieApplication, "sprites/warrior/right.png"   , 96, 96),
-                                                                                       tSoldiers   ( mapWidth + 150 , 500      , 30, "2")
+                                                                                       tSoldiers   ( mapWidth + 150, 500      , 30, "2")
 
 {
     this->width = width;
@@ -65,6 +67,9 @@ void GUI::displayGUIBuildings()
     hutrieApplication->draw(tStonecutter.text);
     hutrieApplication->draw(residence.button);
     hutrieApplication->draw(tResidence.text);
+    hutrieApplication->draw(goldmine.button);
+    hutrieApplication->draw(tGoldmine.text);
+
 }
 
 void GUI::displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int soldierSize)

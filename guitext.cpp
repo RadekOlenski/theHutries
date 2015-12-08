@@ -5,7 +5,7 @@ GUIText::GUIText(int positionX, int positionY, int characterSize,  std::string d
     font.loadFromFile("fonts/prince_valiant.ttf");
     text.setFont(font);
     text.setString(displayedText);
-    text.setCharacterSize(characterSize);
+    text.setCharacterSize((unsigned int) characterSize);
     text.setPosition(positionX,positionY);
     text.setColor(color);
 }

@@ -30,7 +30,7 @@ int Unit::hutriesNumber()
 
 Hutrie* Unit::getHutrieIndex(int index)
 {
-    return dwellers.at(index);
+    return dwellers.at((unsigned int) index);
 }
 
 

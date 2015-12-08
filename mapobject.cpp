@@ -57,7 +57,7 @@ void MapObject::soundPlay(bool play)
 
 int MapObject::getUnitIndex (int index)
 {
-    objectUnits.at(index)->getIndex();
+    objectUnits.at((unsigned int) index)->getIndex();
 }
 
 void MapObject::showButtons(){}

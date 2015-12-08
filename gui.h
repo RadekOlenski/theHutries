@@ -32,6 +32,8 @@ class GUI
         GUIText  tResidence;
         GUIButton stonecutter;
         GUIText  tStonecutter;
+        GUIButton goldmine;
+        GUIText tGoldmine;
 
         /////////////////////////////// HUTRIES SECTION //////////////////////////////////////////
 

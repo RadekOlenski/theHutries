@@ -22,12 +22,10 @@ GUIButton::GUIButton(int positionX, int positionY, sf::RenderWindow *hutrieAppli
 
 bool GUIButton::checkBounds()
 {
-    if(  active &&
-         button.getPosition().x                       <= sf::Mouse::getPosition(*hutrieApplication).x &&
-         button.getPosition().x + button.getSize().x  >= sf::Mouse::getPosition(*hutrieApplication).x &&
-         button.getPosition().y                       <= sf::Mouse::getPosition(*hutrieApplication).y &&
-         button.getPosition().y + button.getSize().y  >= sf::Mouse::getPosition(*hutrieApplication).y)
-         return true;
-    else return false;
+    return active &&
+    button.getPosition().x                       <= sf::Mouse::getPosition(*hutrieApplication).x &&
+    button.getPosition().x + button.getSize().x  >= sf::Mouse::getPosition(*hutrieApplication).x &&
+    button.getPosition().y                       <= sf::Mouse::getPosition(*hutrieApplication).y &&
+    button.getPosition().y + button.getSize().y  >= sf::Mouse::getPosition(*hutrieApplication).y;
 }
 

@@ -60,7 +60,7 @@ void World::prepareUnits(int unitIndex, int height, int width, std::vector <Unit
     std::vector <int>::iterator it;
     for(it = field.begin(); it != field.end(); ++it)
     {
-        usedUnits->push_back(units.at(*it));
+        usedUnits->push_back(units.at((unsigned int) *it));
     }
 }
 
