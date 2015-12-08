@@ -6,4 +6,5 @@ StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*
     sprite.setScale(0.45,0.45);
     sprite.setOrigin(-10,-30);
     sound.openFromFile("audio/rock.wav");
+    goodReady.text.setString("Stone ready");
 }

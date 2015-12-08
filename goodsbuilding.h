@@ -7,6 +7,7 @@
 
 #include "building.h"
 #include "guibutton.h"
+#include "guitext.h"
 
 class GoodsBuilding : public Building
 {
@@ -19,7 +20,9 @@ class GoodsBuilding : public Building
     protected:
         //virtual void getGoods();
         GUIButton callWorker;
+        GUIText assignWorker;
         GUIButton goodsReady;
+        GUIText goodReady;
 
 };
 

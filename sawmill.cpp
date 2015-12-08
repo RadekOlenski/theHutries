@@ -5,4 +5,5 @@ Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsF
     title.text.setString("Sawmill:");
     sound.openFromFile("audio/saw.wav");
     sound.setVolume(100);
+    goodReady.text.setString("Wood ready");
 }

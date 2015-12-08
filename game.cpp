@@ -34,6 +34,7 @@ Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0),
     /////////////////////////// CREATING BACKGROUND //////////////////////////////////////////////////////
 
     background.setSize (sf::Vector2f(1024,640));
+//    backgroundTexture.loadFromFile( "sprites/background/background.jpg" );
     backgroundTexture.loadFromFile( "sprites/background/background.jpg" );
     background.setTexture( &backgroundTexture );
 
@@ -63,6 +64,7 @@ void Game::error()
 void Game::ting()
 {
     buffer.loadFromFile("audio/click.wav");
+    sound.setVolume(70);
     sound.play();
 }
 
@@ -91,36 +93,44 @@ void Game::actions()
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F1)
             {
              chosenMode = 1;                 //HUTRIE BUILDING MODE
+             ting();
             }
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F2 )
             {
              chosenMode = 2;               //BUILD MODE
+             ting();
             }
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F3 )
             {
              chosenMode = 3;                //INFO MODE
+             ting();
             }
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4 )
             {
              chosenMode = 4;                //HUTRIE MODE
+             ting();
             }
 ////////////////////// SWITCHING BETWEEN TYPES OF BUILDINGS/////////////////////////////////////////////////////////////////////
 
-            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num1 )
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num1 && chosenMode == 2 )
             {
              buildingType = 1;                //SAWMILL
+             ting();
             }
-            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num2 )
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num2 && chosenMode == 2 )
             {
              buildingType = 2;                //STONECUTTER
+             ting();
             }
-            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num3 )
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num3 && chosenMode == 2 )
             {
              buildingType = 3;                //BARRACKS
+             ting();
             }
-            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num4 )
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num4 && chosenMode == 2 )
             {
              buildingType = 4;                //RESIDENCE
+             ting();
             }
 
 /////////////////////////////OTHER KEYBOARD FEATURES/////////////////////////////////////////////////////////////////////////////////////////
@@ -170,14 +180,14 @@ void Game::actions()
           }
           if ( (*it)->getNeedCarrier() )
           {
-          int unitIndex = (*it)->getUnitIndex(2);
+          int unitIndex = (*it)->getUnitIndex(2);                                                     // ktore z pol budynku ma byc zajete przez carriera
           std::vector <Unit*> usedUnits;
           usedUnits.push_back(world.units.at(unitIndex));
           world.carriers.push_back(new Carrier(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
           world.hutries.push_back(world.carriers.back());
           world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
           world.units.at(unitIndex)->addHutrie(world.hutries.back());
-          (*it)->showStatus();
+          //(*it)->showStatus();
           (*it)->setNeedCarrier(false);
           }
 
@@ -347,4 +357,9 @@ void Game::displayAll()
 
         hutrieApplication.draw(cursor);
         hutrieApplication.display();
+    }
+
+    void Game::deliverGoods (Hutrie * hutrie)
+    {
+
     }

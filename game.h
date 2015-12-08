@@ -31,6 +31,7 @@ class Game
         bool buttonFlag;
         sf::Clock clock;
         sf::Thread titleThread;
+        void deliverGoods (Hutrie * hutrie);
 
         //////////GRAPHICS AND AUDIO//////////////////
         sf::Music music;
