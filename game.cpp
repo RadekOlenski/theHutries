@@ -12,6 +12,7 @@
 #include "stonecutter.h"
 #include "residence.h"
 #include "barracks.h"
+#include "goldmine.h"
 
 Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0),
                                                           tempChosenMode(0),
@@ -262,6 +263,7 @@ void Game::actions()
                                    case 2: world.buildings.push_back(new StoneCutter(&hutrieApplication, usedUnits,"sprites/buildings/stone.png", buildingType)); break;
                                    case 3: world.buildings.push_back(new Barracks(&hutrieApplication, usedUnits,"sprites/buildings/barracks.png", buildingType)); break;
                                    case 4: world.buildings.push_back(new Residence(&hutrieApplication, usedUnits,"sprites/buildings/residence.png", buildingType)); break;
+                                   case 5: world.buildings.push_back(new Goldmine(&hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png", buildingType)); break;
                                    default:break;
                                }
                                world.buildings.back()->placeOnMap();
@@ -304,6 +306,7 @@ void Game::actions()
           else if(gui.stonecutter.checkBounds() && gui.stonecutter.isActive())  { buildingType = 2; ting(); }
           else if(gui.barracks.checkBounds()    && gui.barracks.isActive())     { buildingType = 3; ting(); }
           else if(gui.residence.checkBounds()   && gui.residence.isActive())    { buildingType = 4; ting(); }
+          else if(gui.goldmine.checkBounds() && gui.goldmine.isActive()) {buildingType = 5; ting();}
           else if(world.lastClickedUnit) { world.lastClickedUnit->getMapObject()->buttonAction();}
 
 ////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////

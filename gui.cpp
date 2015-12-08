@@ -14,7 +14,7 @@ GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int wid
                                                                                        tSawmill    ( mapWidth + 40 , 255      , 20, "Sawmill"),
                                                                                        stonecutter ( mapWidth + 150, 170      , hutrieApplication, "sprites/buildings/stone.png"     , 90, 90),
                                                                                        tStonecutter( mapWidth + 155, 255      , 20, "Stonecutter"),
-                                                                                       goldmine    ( mapWidth + 30,  420      , hutrieApplication, "sprites/buildings/goldmine.png"     , 90, 90),
+                                                                                       goldmine    ( mapWidth + 30,  420      , hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png"     , 90, 90),
                                                                                        tGoldmine   ( mapWidth + 40,  505      , 20, "Goldmine"),
                                                                                        barracks    ( mapWidth + 30 , 300      , hutrieApplication, "sprites/buildings/barracks.png"  , 90, 90),
                                                                                        tBarracks   ( mapWidth + 40 , 385      , 20, "Barracks"),

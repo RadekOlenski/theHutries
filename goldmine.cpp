@@ -9,7 +9,7 @@ Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
                                                                                   pathName, buildingType)
 {
     title.text.setString("Goldmine:");
-    sound.openFromFile("audio/saw.wav");
+    sound.openFromFile("audio/saw.wav"); //TODO znaleźć dźwięk kopalni
     sound.setVolume(100);
     goodReady.text.setString("Gold ready");
 }
