@@ -7,6 +7,7 @@
 World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize) : lastClickedUnit(NULL)
 {
     this->hutrieApplication = hutrieApplication;
+    availableSlots = 10;                            //wartosc startowa bez zadnej rezydencji
 
     /////////////////////////// HOW MANY RECTANGLES IN X AND Y DIRECTION//////////////////////////////////////////////////////
 
@@ -27,23 +28,49 @@ World::World(sf::RenderWindow *hutrieApplication, int applicationWidth, int appl
         position.x = 0;
     }
 
+                    //       for (int i = 0; i < verticalUnitsCounter; i++)             spis indexow w siatce
+                    //       {
+                    //           for (int j=0; j < horizontalUnitsCounter; j++)
+                    //           {
+                    //               std::cout << j + (i*horizontalUnitsCounter) << " ";
+                    //           }
+                    //        std::cout << std::endl;
+                    //       }
+
     ////////////////////////////// ADDING TOWNHALL ///////////////////////////////////////////////////////////////////////////
 
     int unitIndex = 70;
     std::vector <Unit*> usedUnits;
     prepareUnits(unitIndex,3,3,&usedUnits);
-    buildings.push_back(new HutriesHall(hutrieApplication, usedUnits,"sprites/buildings/castle.png", 0));
-    buildings.at(buildings.size()-1)->placeOnMap();
-
+    buildings.push_back(new HutriesHall(hutrieApplication, usedUnits, "sprites/buildings/castle.png"));
+    buildings.back()->placeOnMap();
     /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
-//    do
-//    {
-//       usedUnits.clear();
-//       unitIndex = (rand() % (horizontalUnitsCounter - 3)) + ((rand() % (verticalUnitsCounter)) * horizontalUnitsCounter);
-//       prepareUnits(unitIndex,2,3,&usedUnits);
-//    }
-//    while(!(isFieldEmpty(usedUnits)));
-//    environment.push_back(new Environment(hutrieApplication, usedUnits, "sprites/environment/trees.png"));
+
+    int trees = 0;
+    try
+    {
+        for (int i=0; i <4; i++)
+        {
+        int d = 0;
+        do
+        {
+            usedUnits.clear();
+            unitIndex = (rand() % (horizontalUnitsCounter - 3)) + ((rand() % (verticalUnitsCounter-1)) * horizontalUnitsCounter);
+            prepareUnits(unitIndex,2,3,&usedUnits);
+            if (d > 1000) throw -1;
+            else d++;
+        }
+        while(!(isFieldEmpty(usedUnits)));
+        environment.push_back(new Environment(hutrieApplication, usedUnits, "sprites/environment/trees.png"));
+        trees = i;
+        std::cout << "Las nr " << i << ", prob postawienia: " << d << std::endl;
+        }
+    }
+    catch (int d)
+    {
+        std::cout << "Exception: " << d << ": Not enough space for object" << std::endl;
+    }
+    std::cout << "Ilosc drzew: " << trees << std::endl;
 
 }
 
