@@ -7,6 +7,7 @@
 #include "world.h"
 #include "guitext.h"
 #include "gui.h"
+#include "hutrieshall.h"
 
 class Game
 {
@@ -29,9 +30,11 @@ class Game
         int tempChosenMode;
         int buildingType;
         bool buttonFlag;
+        sf::Clock deadline;
         sf::Clock clock;
         sf::Thread titleThread;
         void deliverGoods (Hutrie * hutrie);
+        HutriesHall *pHall;
 
         //////////GRAPHICS AND AUDIO//////////////////
         sf::Music music;

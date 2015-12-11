@@ -13,6 +13,7 @@
 #include "residence.h"
 #include "barracks.h"
 #include "goldmine.h"
+#include "hutrieshall.h"
 
 Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0),
                                                           tempChosenMode(0),
@@ -53,6 +54,8 @@ Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0),
     music.setLoop(true);
 
     sound.setBuffer(buffer);
+
+    pHall = dynamic_cast <HutriesHall *>(world.buildings.at(0));        //rzutowanie hutries hall z vectora building na pelnoprawny object HutriesHall
 
 }
 
@@ -133,6 +136,10 @@ void Game::actions()
              buildingType = 4;                //RESIDENCE
              ting();
             }
+            if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+            {
+                    std::cout<<world.availableSlots << std::endl;
+            }
 
 /////////////////////////////OTHER KEYBOARD FEATURES/////////////////////////////////////////////////////////////////////////////////////////
 
@@ -157,6 +164,28 @@ void Game::actions()
         }
 
 //////////////////////////////////// CHECK BUILDING-HUTRIES ACTIONS ///////////////////////////////////////////////////////////////
+
+        if (pHall->getMakeCarrier())
+        {
+            if (world.availableSlots > 0)
+            {
+                std::cout << "Utworze dla ciebie Carriera!" << std::endl;
+                world.availableSlots --;
+            }
+            else error();
+            pHall->setMakeCarrier(false);
+        }
+
+        if (pHall->getMakeWorker())
+        {
+            if (world.availableSlots > 0)
+            {
+                std::cout << "Utworze dla ciebie Workera!" << std::endl;
+                world.availableSlots --;
+            }
+            else error();
+            pHall->setMakeWorker(false);
+        }
 
         std::vector <Building*>::iterator it;
         for(it = world.buildings.begin(); it != world.buildings.end(); ++it)
@@ -187,8 +216,7 @@ void Game::actions()
           world.carriers.push_back(new Carrier(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
           world.hutries.push_back(world.carriers.back());
           world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
-          world.units.at((unsigned int) unitIndex)->addHutrie(world.hutries.back());
-          //(*it)->showStatus();
+          world.units.at(unitIndex)->addHutrie(world.hutries.back());
           (*it)->setNeedCarrier(false);
           }
 
@@ -262,7 +290,12 @@ void Game::actions()
                                    case 1: world.buildings.push_back(new Sawmill(&hutrieApplication, usedUnits,"sprites/buildings/sawmill.png" ,buildingType)); break;
                                    case 2: world.buildings.push_back(new StoneCutter(&hutrieApplication, usedUnits,"sprites/buildings/stone.png", buildingType)); break;
                                    case 3: world.buildings.push_back(new Barracks(&hutrieApplication, usedUnits,"sprites/buildings/barracks.png", buildingType)); break;
-                                   case 4: world.buildings.push_back(new Residence(&hutrieApplication, usedUnits,"sprites/buildings/residence.png", buildingType)); break;
+                                   case 4:
+                                       {
+                                           world.availableSlots += 10;
+                                           world.buildings.push_back(new Residence(&hutrieApplication, usedUnits,"sprites/buildings/residence.png", buildingType, &(world.availableSlots)));
+                                           break;
+                                       }
                                    case 5: world.buildings.push_back(new Goldmine(&hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png", buildingType)); break;
                                    default:break;
                                }
@@ -362,6 +395,7 @@ void Game::displayAll()
 
         hutrieApplication.draw(cursor);
         hutrieApplication.display();
+//        std::cout << int (clock.getElapsedTime().asSeconds())<< std::endl;
     }
 
     void Game::deliverGoods (Hutrie * hutrie)
