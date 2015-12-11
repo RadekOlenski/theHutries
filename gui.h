@@ -34,6 +34,8 @@ class GUI
         GUIText  tStonecutter;
         GUIButton goldmine;
         GUIText tGoldmine;
+        GUIButton farm;
+        GUIText tFarm;
 
         /////////////////////////////// HUTRIES SECTION //////////////////////////////////////////
 

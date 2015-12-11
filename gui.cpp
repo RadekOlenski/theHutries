@@ -14,8 +14,10 @@ GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int wid
                                                                                        tSawmill    ( mapWidth + 40 , 255      , 20, "Sawmill"),
                                                                                        stonecutter ( mapWidth + 150, 170      , hutrieApplication, "sprites/buildings/stone.png"     , 90, 90),
                                                                                        tStonecutter( mapWidth + 155, 255      , 20, "Stonecutter"),
-                                                                                       goldmine    ( mapWidth + 30,  420      , hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png"     , 90, 90),
+                                                                                       goldmine    ( mapWidth + 30,  420      , hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png", 90, 90),
                                                                                        tGoldmine   ( mapWidth + 40,  505      , 20, "Goldmine"),
+                                                                                       farm        ( mapWidth + 150, 420      , hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png", 90, 90),
+                                                                                       tFarm       ( mapWidth + 155, 505      , 20, "Farm"),
                                                                                        barracks    ( mapWidth + 30 , 300      , hutrieApplication, "sprites/buildings/barracks.png"  , 90, 90),
                                                                                        tBarracks   ( mapWidth + 40 , 385      , 20, "Barracks"),
                                                                                        residence   ( mapWidth + 150, 300      , hutrieApplication, "sprites/buildings/residence.png" , 90, 90),
@@ -69,6 +71,8 @@ void GUI::displayGUIBuildings()
     hutrieApplication->draw(tResidence.text);
     hutrieApplication->draw(goldmine.button);
     hutrieApplication->draw(tGoldmine.text);
+    hutrieApplication->draw(farm.button);
+    hutrieApplication->draw(tFarm.text);
 
 }
 

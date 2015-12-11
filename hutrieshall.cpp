@@ -2,8 +2,14 @@
 
 #include <cstdlib>
 #include <sstream>
+#include <iostream>
 
-HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType) : Building(hutrieApplication,unitsFromGame, pathName, buildingType)
+HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType) : Building(hutrieApplication,unitsFromGame, pathName, buildingType),
+                                                                                                                                           createCarrier ( 1024 + 40 , 500, hutrieApplication, 150, 45),
+                                                                                                                                           createWorker  ( 1024 + 40 , 560, hutrieApplication, 150, 45),
+                                                                                                                                           tCarrier      (1024 + 60, 510, 20, "Create Carrier"),
+                                                                                                                                           tWorker       (1024 + 70, 570, 20, "Create Worker")
+
 {
     title.text.setString("Hutries Hall:");
 
@@ -12,6 +18,9 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector <Unit*
 
     sound.openFromFile("audio/castle.flac");
     setSoundVolume(100);
+
+    makeWorker = false;
+    makeCarrier = false;
 }
 
 void HutriesHall::showStatus()
@@ -19,4 +28,35 @@ void HutriesHall::showStatus()
      std::ostringstream desc;
     desc << "Available carriers: " << rand()%20 << "\nAvailable workers: " << rand()%20 << "\nAvailable warriors: " << rand()%20 << "\nAvailable archers: " << rand()%20;
     description.text.setString (desc.str());
+}
+
+void HutriesHall::showButtons()
+{
+    createWorker.setActive(true);
+    createCarrier.setActive(true);
+    hutrieApplication->draw(createWorker.button);
+    hutrieApplication->draw(createCarrier.button);
+    hutrieApplication->draw(tWorker.text);
+    hutrieApplication->draw(tCarrier.text);
+
+}
+
+void HutriesHall::deactivateButtons()
+{
+    createCarrier.setActive(false);
+    createWorker.setActive(false);
+}
+
+void HutriesHall::buttonAction()
+{
+    if (createWorker.checkBounds() && createWorker.isActive())
+    {
+        std::cout << "Create Worker!!!!" << std::endl;
+        makeWorker = true;
+    }
+    if (createCarrier.checkBounds() && createCarrier.isActive())
+    {
+        std::cout << "Create Carrier!!!!" << std::endl;
+        makeCarrier = true;
+    }
 }

@@ -23,6 +23,7 @@ class World
         std::vector <Worker*> workers;
         std::vector <Building*> buildings;
         std::vector <Environment*> environment;
+        int availableSlots;
         Unit* lastClickedUnit;
         int getHorizontalUnitsCounter() {return horizontalUnitsCounter; }
         int getVerticalUnitsCounter()   {return verticalUnitsCounter; }
