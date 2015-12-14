@@ -155,7 +155,8 @@ void Game::actions()
 
         if (chosenMode != tempChosenMode)
         {
-            buttonFlag = 2 == chosenMode;
+            if (chosenMode == 2) buttonFlag = true;
+            else buttonFlag = false;
             gui.sawmill.setActive(buttonFlag);
             gui.stonecutter.setActive(buttonFlag);
             gui.goldmine.setActive(buttonFlag);
@@ -173,6 +174,12 @@ void Game::actions()
             {
                 std::cout << "Utworze dla ciebie Carriera!" << std::endl;
                 world.availableSlots --;
+                int unitIndex = pHall->getUnitIndex(6);                                                     // ktore z pol budynku ma byc zajete przez carriera
+                std::vector <Unit*> usedUnits;
+                usedUnits.push_back(world.units.at(unitIndex));
+                world.carriers.push_back(new Carrier(&hutrieApplication, usedUnits,"sprites/carrier/up.png"));//"sprites/carrier/empty.png" ));
+                world.hutries.push_back(world.carriers.back());
+                world.units.at(unitIndex)->addHutrie(world.hutries.back());
             }
             else error();
             pHall->setMakeCarrier(false);
@@ -184,6 +191,12 @@ void Game::actions()
             {
                 std::cout << "Utworze dla ciebie Workera!" << std::endl;
                 world.availableSlots --;
+                int unitIndex = pHall->getUnitIndex(6);                                                     // ktore z pol budynku ma byc zajete przez carriera
+                std::vector <Unit*> usedUnits;
+                usedUnits.push_back(world.units.at(unitIndex));
+                world.workers.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/up.png"));//"sprites/carrier/empty.png" ));
+                world.hutries.push_back(world.workers.back());
+                world.units.at(unitIndex)->addHutrie(world.hutries.back());
             }
             else error();
             pHall->setMakeWorker(false);
@@ -197,28 +210,59 @@ void Game::actions()
               if((*it)->getHutriesCounter() < (*it)->getCapacity() )                    //jesli aktualna ilosc przebywajacych w budynku mniejsza od pojemnosci
                 {
                     int unitIndex = (*it)->getUnitIndex(2);
-                    std::vector <Unit*> usedUnits;
-                    usedUnits.push_back(world.units.at((unsigned int) unitIndex));
-                    world.workers.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
-                    world.hutries.push_back(world.workers.back());
-                    world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
-                    world.units.at((unsigned int) unitIndex)->addHutrie(world.hutries.back());
-                    (*it)->setHutriesCounter( (*it)->getHutriesCounter() + 1 );
-                    (*it)->showStatus();                                                                //zeby po kliknieciu od razu zaktualizowala sie liczba workerow w GUI
+//                    std::vector <Unit*> usedUnits;
+//                    usedUnits.push_back(world.units.at((unsigned int) unitIndex));
+//                    world.workers.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
+//                    world.hutries.push_back(world.workers.back());
+                    //world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                    //world.units.at((unsigned int) unitIndex)->addHutrie(world.hutries.back());
+                    //(*it)->setHutriesCounter( (*it)->getHutriesCounter() + 1 );
+                    //(*it)->showStatus();                                                                //zeby po kliknieciu od razu zaktualizowala sie liczba workerow w GUI
+                    std::vector <Worker*>::iterator itc;
+                    for(itc = world.workers.begin(); itc != world.workers.end(); ++itc)
+                    {
+                        if(!((*itc)->isBusy()))
+                        {
 
+                            std::cout << "Nie jestem zajety! Ruszam do pracy!" << std::endl;
+                            int workerIndex = std::distance(world.workers.begin(),itc);
+                            world.workers.at(workerIndex)->reconnectUnits((*it)->getObjectUnits());
+                            world.workers.at(workerIndex)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                            world.units.at(unitIndex)->addHutrie(world.workers.at(workerIndex));
+                             (*it)->setHutriesCounter( (*it)->getHutriesCounter() + 1 );
+                            (*it)->showStatus();
+                            (*itc)->setBusy(true);
+                            break;
+                        }
+                    }
+                    if (itc == world.workers.end()) error();
                 }
               else error();
               (*it)->setNeedWorker(false);
           }
           if ( (*it)->getNeedCarrier() )
           {
-          int unitIndex = (*it)->getUnitIndex(2);                                                     // ktore z pol budynku ma byc zajete przez carriera
-          std::vector <Unit*> usedUnits;
-          usedUnits.push_back(world.units.at((unsigned int) unitIndex));
-          world.carriers.push_back(new Carrier(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
-          world.hutries.push_back(world.carriers.back());
-          world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
-          world.units.at(unitIndex)->addHutrie(world.hutries.back());
+                int unitIndex = (*it)->getUnitIndex(2);                                                     // ktore z pol budynku ma byc zajete przez carriera
+//              std::vector <Unit*> usedUnits;
+//              usedUnits.push_back(world.units.at(unitIndex));
+//              world.carriers.push_back(new Carrier(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
+//              world.hutries.push_back(world.carriers.back());
+                std::vector <Carrier*>::iterator itc;
+                for(itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
+                {
+                    if(!((*itc)->isBusy()))
+                    {
+                        std::cout << "Nie jestem zajety! Ruszam po zasoby!" << std::endl;
+                        int carrierIndex = std::distance(world.carriers.begin(),itc);
+                        world.carriers.at(carrierIndex)->reconnectUnits((*it)->getObjectUnits());
+                        world.carriers.at(carrierIndex)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                        world.units.at(unitIndex)->addHutrie(world.carriers.at(carrierIndex));
+                        (*it)->showStatus();
+                        break;
+                    }
+                }
+                if (itc == world.carriers.end()) error();
+
           (*it)->setNeedCarrier(false);
           }
 
@@ -265,14 +309,14 @@ void Game::actions()
 
 //////////////////////////////////////////////////////////LEFT MOUSE MAP ACTIONS/////////////////////////////////////////////////////////////////////////
 
-           if (chosenMode == 1 && !(world.units.at( unitIndex )->isEmpty()))    //poruszanie Hutrim do budynku
-            {
-                std::vector <Unit*> usedUnits;
-                usedUnits.push_back(world.units.at(unitIndex));
-                world.hutries.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
-                world.hutries.back()->hutrieThread.launch();                         //tworzy watek w ktorym porusza sie Hutrie
-                world.units.at(unitIndex)->addHutrie(world.hutries.back());
-            }
+//           if (chosenMode == 1 && !(world.units.at( unitIndex )->isEmpty()))    //poruszanie Hutrim do budynku
+////            {
+////                std::vector <Unit*> usedUnits;
+////                usedUnits.push_back(world.units.at(unitIndex));
+////                world.hutries.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
+////                world.hutries.back()->hutrieThread.launch();                         //tworzy watek w ktorym porusza sie Hutrie
+////                world.units.at(unitIndex)->addHutrie(world.hutries.back());
+//            }
 
            if ( world.units.at( unitIndex )->isEmpty() )                                                 //jesli unit jest wolny, bez zadnego mapobjectu
            {

@@ -11,9 +11,11 @@ Carrier::Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsF
 
 void Carrier::moveHutrie()
 {
+    busy = true;
     toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
     //sprite.setTexture( transTexture );
     sf::sleep(sf::seconds(3));
     toDirection(390,370);
-    sprite.setTexture( transTexture );
+    //sprite.setTexture( transTexture );
+    busy = false;
 }

@@ -54,6 +54,8 @@
 			<Add option="-static-libgcc" />
 			<Add directory="D:/Program Files/SFML-2.3.2/lib" />
 		</Linker>
+		<Unit filename="Farm.cpp" />
+		<Unit filename="Farm.h" />
 		<Unit filename="barracks.cpp" />
 		<Unit filename="barracks.h" />
 		<Unit filename="building.cpp" />
@@ -64,6 +66,8 @@
 		<Unit filename="environment.h" />
 		<Unit filename="game.cpp" />
 		<Unit filename="game.h" />
+		<Unit filename="goldmine.cpp" />
+		<Unit filename="goldmine.h" />
 		<Unit filename="goodsbuilding.cpp" />
 		<Unit filename="goodsbuilding.h" />
 		<Unit filename="gui.cpp" />

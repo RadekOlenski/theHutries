@@ -37,6 +37,8 @@ class MapObject
 //        bool isActive() {return active;}
 //        void setActive(bool active) {this->active = active;}
         int getUnitIndex (int index = 0);
+        void reconnectUnits (std::vector <Unit*> unitsFromGame);
+        std::vector <Unit*> getObjectUnits() {return objectUnits;};
 
         ////////////////////// SOUND /////////////////////////////////////////
 

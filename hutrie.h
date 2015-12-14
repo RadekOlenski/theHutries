@@ -23,6 +23,8 @@ class Hutrie : public MapObject
 
         bool isActive() {return active;}
         void setActive(bool active) {this->active = active;}
+        bool isBusy() {return busy;}
+        void setBusy(bool busy) {this->busy = busy;}
 
     protected:
 
@@ -31,6 +33,7 @@ class Hutrie : public MapObject
         sf::Texture leftTexture;
         sf::Texture transTexture;
         void toDirection(float targetX, float targetY);
+        bool busy;
 
     private:
 
@@ -39,6 +42,7 @@ class Hutrie : public MapObject
         int endurance;
         bool onBuilding;
         bool active;
+
 
 };
 

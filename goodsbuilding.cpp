@@ -16,7 +16,7 @@ GoodsBuilding::GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector <U
 void GoodsBuilding::showStatus()
 {
     std::ostringstream desc;
-    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " << checkHutries() - hutriesCounter << "\nProducts in store: " << (rand()%5)+1;
+    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " << checkHutries() - hutriesCounter <<"\nProducts in store: " << (rand()%5)+1;
     description.text.setString (desc.str() );
 }
 

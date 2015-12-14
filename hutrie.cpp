@@ -27,6 +27,7 @@ Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
     endurance = (rand() % 10) + 1;
 
     active = true;                                                             //WHILE TRUE OBJECT WIL BE DRAWN ON SCREEN
+    busy = false;
 }
 
 //void Hutrie::moveHutrie()

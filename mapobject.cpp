@@ -23,6 +23,17 @@ MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> u
         objectUnits.push_back(*it);
     }
 }
+
+void MapObject::reconnectUnits (std::vector <Unit*> unitsFromGame)
+{
+    objectUnits.clear();
+    std::vector <Unit*>::iterator it;
+    for(it = unitsFromGame.begin(); it != unitsFromGame.end(); ++it)
+    {
+        objectUnits.push_back(*it);
+    }
+
+}
 ////////////////SET UNIT CONNECTED WITH MAPOBJECT AS NOT EMPTY/////////////////////////////////////////////////////////////
 
 void MapObject::occupyUnits()
