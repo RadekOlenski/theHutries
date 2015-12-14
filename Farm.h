@@ -5,6 +5,7 @@
 #ifndef THEHUTRIES_FARM_H
 #define THEHUTRIES_FARM_H
 
+#include "SFML/graphics.hpp"
 #include "goodsbuilding.h"
 
 class Farm : public GoodsBuilding

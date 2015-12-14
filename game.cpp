@@ -299,7 +299,7 @@ void Game::actions()
                                            break;
                                        }
                                    case 5: world.buildings.push_back(new Goldmine(&hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png", buildingType)); break;
-                                   case 6: world.buildings.push_back(new Farm(&hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png", buildingType));                                   default:break;
+                                   case 6: world.buildings.push_back(new Farm(&hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png", buildingType)); break;                                   default:break;
                                }
                                world.buildings.back()->placeOnMap();
                                buffer.loadFromFile("audio/ting.flac");
