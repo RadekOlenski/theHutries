@@ -12,5 +12,6 @@ Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
     sound.openFromFile("audio/saw.wav"); //TODO znaleźć dźwięk kopalni
     sound.setVolume(100);
     goodReady.text.setString("Gold ready");
+
 }
 
