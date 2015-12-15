@@ -1,5 +1,6 @@
-//
-// Created by radek on 15.12.2015.
-//
-
 #include "goods.h"
+
+Goods::Goods() : wood(0), food(0), gold (0), stone (0)
+{
+
+}

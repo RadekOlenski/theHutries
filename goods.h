@@ -1,15 +1,16 @@
-//
-// Created by radek on 15.12.2015.
-//
-
-#ifndef THEHUTRIES_GOODS_H
-#define THEHUTRIES_GOODS_H
+#ifndef GOODS_H
+#define GOODS_H
 
 
 class Goods
 {
-
+    public:
+        Goods();
+    private:
+        unsigned int wood;
+        unsigned int food;
+        unsigned int gold;
+        unsigned int stone;
 };
 
-
-#endif //THEHUTRIES_GOODS_H
+#endif // GOODS_H
