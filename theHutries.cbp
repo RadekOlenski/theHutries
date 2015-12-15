@@ -68,6 +68,8 @@
 		<Unit filename="game.h" />
 		<Unit filename="goldmine.cpp" />
 		<Unit filename="goldmine.h" />
+		<Unit filename="goods.cpp" />
+		<Unit filename="goods.h" />
 		<Unit filename="goodsbuilding.cpp" />
 		<Unit filename="goodsbuilding.h" />
 		<Unit filename="gui.cpp" />

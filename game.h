@@ -33,7 +33,6 @@ class Game
         sf::Clock deadline;
         sf::Clock clock;
         sf::Thread titleThread;
-        void deliverGoods (Hutrie * hutrie);
         HutriesHall *pHall;
 
         //////////GRAPHICS AND AUDIO//////////////////

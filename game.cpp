@@ -165,6 +165,18 @@ void Game::actions()
             gui.farm.setActive(buttonFlag);
             tempChosenMode = chosenMode;
         }
+//////////////////////////////////// CHECK BUILDING-HUTRIES ACTIONS ///////////////////////////////////////////////////////////////
+
+        std::vector <Carrier*>::iterator itc;
+        for(itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
+        {
+            if ((*itc)->haveArrived())
+            {
+                std::cout << "Czas wracac do domu" << std::endl;
+                (*itc)->carrierThread.launch();
+            }
+        }
+
 
 //////////////////////////////////// CHECK BUILDING-HUTRIES ACTIONS ///////////////////////////////////////////////////////////////
 
@@ -210,14 +222,6 @@ void Game::actions()
               if((*it)->getHutriesCounter() < (*it)->getCapacity() )                    //jesli aktualna ilosc przebywajacych w budynku mniejsza od pojemnosci
                 {
                     int unitIndex = (*it)->getUnitIndex(2);
-//                    std::vector <Unit*> usedUnits;
-//                    usedUnits.push_back(world.units.at((unsigned int) unitIndex));
-//                    world.workers.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
-//                    world.hutries.push_back(world.workers.back());
-                    //world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
-                    //world.units.at((unsigned int) unitIndex)->addHutrie(world.hutries.back());
-                    //(*it)->setHutriesCounter( (*it)->getHutriesCounter() + 1 );
-                    //(*it)->showStatus();                                                                //zeby po kliknieciu od razu zaktualizowala sie liczba workerow w GUI
                     std::vector <Worker*>::iterator itc;
                     for(itc = world.workers.begin(); itc != world.workers.end(); ++itc)
                     {
@@ -243,10 +247,6 @@ void Game::actions()
           if ( (*it)->getNeedCarrier() )
           {
                 int unitIndex = (*it)->getUnitIndex(2);                                                     // ktore z pol budynku ma byc zajete przez carriera
-//              std::vector <Unit*> usedUnits;
-//              usedUnits.push_back(world.units.at(unitIndex));
-//              world.carriers.push_back(new Carrier(&hutrieApplication, usedUnits,"sprites/carrier/right.png" ));
-//              world.hutries.push_back(world.carriers.back());
                 std::vector <Carrier*>::iterator itc;
                 for(itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
                 {
@@ -443,9 +443,4 @@ void Game::displayAll()
         hutrieApplication.draw(cursor);
         hutrieApplication.display();
 //        std::cout << int (clock.getElapsedTime().asSeconds())<< std::endl;
-    }
-
-    void Game::deliverGoods (Hutrie * hutrie)
-    {
-
     }

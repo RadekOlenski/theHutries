@@ -11,6 +11,7 @@
 #include "soldier.h"
 #include "building.h"
 #include "environment.h"
+#include "goods.h"
 
 class World
 {
@@ -23,6 +24,7 @@ class World
         std::vector <Worker*> workers;
         std::vector <Building*> buildings;
         std::vector <Environment*> environment;
+        Goods availableGoods;
         int availableSlots;
         Unit* lastClickedUnit;
         int getHorizontalUnitsCounter() {return horizontalUnitsCounter; }

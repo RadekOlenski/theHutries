@@ -8,6 +8,7 @@
 #include "building.h"
 #include "guibutton.h"
 #include "guitext.h"
+#include "goods.h"
 
 class GoodsBuilding : public Building
 {
@@ -23,6 +24,8 @@ class GoodsBuilding : public Building
         GUIText assignWorker;
         GUIButton goodsReady;
         GUIText goodReady;
+        Goods myProducts;
+
 
 };
 
