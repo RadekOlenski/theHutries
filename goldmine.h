@@ -6,7 +6,6 @@
 #define THEHUTRIES_GOLDMINE_H
 
 #include <SFML/Graphics.hpp>
-
 #include "goodsbuilding.h"
 
 

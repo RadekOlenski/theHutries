@@ -1,13 +1,25 @@
 #include "goodsbuilding.h"
+#include "wood.h"
+#include "food.h"
+#include "gold.h"
+#include "stone.h"
 #include <sstream>
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
-GoodsBuilding::GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType) : Building(hutrieApplication,unitsFromGame, pathName, buildingType),
-                                                                                                                                               callWorker ( 1024 + 40 , 500, hutrieApplication, 150, 45),
-                                                                                                                                               goodsReady ( 1024 + 40 , 560, hutrieApplication, 150, 45),
-                                                                                                                                               assignWorker(1024 + 60, 510, 20, "Assign worker"),
-                                                                                                                                               goodReady(1024 + 70, 570, 20, "Good ready")
+using namespace std;
+
+GoodsBuilding::GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame,
+                             std::string pathName, int buildingType) : Building(hutrieApplication, unitsFromGame,
+                                                                                pathName, buildingType),
+                                                                       callWorker(1024 + 40, 500, hutrieApplication,
+                                                                                  150, 45),
+                                                                       goodsReady(1024 + 40, 560, hutrieApplication,
+                                                                                  150, 45),
+                                                                       assignWorker(1024 + 60, 510, 20,
+                                                                                    "Assign worker"),
+                                                                       goodReady(1024 + 70, 570, 20, "Good ready")
 {
     capacity = 3;
     hutriesCounter = 0;
@@ -16,8 +28,9 @@ GoodsBuilding::GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector <U
 void GoodsBuilding::showStatus()
 {
     std::ostringstream desc;
-    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " << checkHutries() - hutriesCounter <<"\nProducts in store: " << (rand()%5)+1;
-    description.text.setString (desc.str() );
+    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<
+    checkHutries() - hutriesCounter << "\nProducts in store: " << (rand() % 5) + 1;
+    description.text.setString(desc.str());
 }
 
 void GoodsBuilding::showButtons()
@@ -51,3 +64,16 @@ void GoodsBuilding::buttonAction()
     }
 }
 
+void GoodsBuilding::getGoods(string goodType)
+{
+    if (goodType == "wood")
+        goodStore.push_back(new Wood());
+    if (goodType == "food")
+        goodStore.push_back(new Food());
+    if (goodType == "gold")
+        goodStore.push_back(new Gold());
+    if (goodType == "stone")
+        goodStore.push_back(new Stone());
+
+
+}

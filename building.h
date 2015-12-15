@@ -26,6 +26,7 @@ class Building : public MapObject
 
     protected:
         int buildTime;
+        int buildCost;
         int capacity;
         int hutriesCounter;
         int checkHutries();
