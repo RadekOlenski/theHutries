@@ -757,7 +757,7 @@
 	<string>
 	"building.h"
 
-1450103227 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\building.h
+1450222742 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\building.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
@@ -796,15 +796,16 @@
 	<cstdlib>
 	<sstream>
 
-1450219534 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\carrier.cpp
+1450220092 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\carrier.cpp
 	"unit.h"
 	"carrier.h"
 
-1450220095 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\carrier.h
+1450222490 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\carrier.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"hutrie.h"
+	"goods.h"
 
 1450103227 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\environment.cpp
 	"environment.h"
@@ -818,7 +819,7 @@
 	<string>
 	"mapobject.h"
 
-1450219371 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\game.cpp
+1450223096 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\game.cpp
 	<iostream>
 	"game.h"
 	"unit.h"
@@ -844,7 +845,7 @@
 	"gui.h"
 	"hutrieshall.h"
 
-1450103228 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\world.h
+1450223035 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\world.h
 	<SFML/Graphics.hpp>
 	<vector>
 	"unit.h"
@@ -854,6 +855,7 @@
 	"soldier.h"
 	"building.h"
 	"environment.h"
+	"goods.h"
 
 1450103228 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\worker.h
 	<SFML/Graphics.hpp>
@@ -867,7 +869,7 @@
 	<string>
 	"hutrie.h"
 
-1450103227 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\gui.h
+1450262022 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\gui.h
 	<SFML/Graphics.hpp>
 	"guibutton.h"
 	"guitext.h"
@@ -880,21 +882,22 @@
 	"guibutton.h"
 	"guitext.h"
 
-1450103227 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\sawmill.h
+1450260603 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\sawmill.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"goodsbuilding.h"
 
-1450103227 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goodsbuilding.h
+1450260603 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goodsbuilding.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"building.h"
 	"guibutton.h"
 	"guitext.h"
+	"goods.h"
 
-1450103228 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\stonecutter.h
+1450260603 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\stonecutter.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
@@ -906,21 +909,21 @@
 	<string>
 	"building.h"
 
-1450103227 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goldmine.h
+1450260603 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goldmine.h
 	<SFML/Graphics.hpp>
 	"goodsbuilding.h"
 
-1450103221 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\farm.h
+1450260600 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\farm.h
 	"SFML/graphics.hpp"
 	"goodsbuilding.h"
 
-1450108671 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goodsbuilding.cpp
+1450260669 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goodsbuilding.cpp
 	"goodsbuilding.h"
-	<sstream>
 	<cstdlib>
 	<iostream>
+	<string>
 
-1450103227 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\gui.cpp
+1450262121 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\gui.cpp
 	"gui.h"
 	<sstream>
 
@@ -957,15 +960,17 @@
 	<sstream>
 	<cstdlib>
 
-1450103227 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\sawmill.cpp
+1450261560 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\sawmill.cpp
 	"sawmill.h"
+	<sstream>
 
 1450103228 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\soldier.cpp
 	"unit.h"
 	"soldier.h"
 
-1450103228 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\stonecutter.cpp
+1450261563 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\stonecutter.cpp
 	"stonecutter.h"
+	<sstream>
 
 1450103228 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\unit.cpp
 	"unit.h"
@@ -980,9 +985,16 @@
 	"world.h"
 	"hutrieshall.h"
 
-1450103221 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\farm.cpp
+1450261494 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\farm.cpp
 	"farm.h"
+	<sstream>
 
-1450103227 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goldmine.cpp
+1450261563 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goldmine.cpp
 	"goldmine.h"
+	<sstream>
+
+1450261389 d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goods.h
+
+1450261290 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goods.cpp
+	"goods.h"
 

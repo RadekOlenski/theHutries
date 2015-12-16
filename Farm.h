@@ -14,6 +14,8 @@ class Farm : public GoodsBuilding
     public:
         Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, const std::string &pathName,
                  int buildingType);
+    void createProduct();
+    void showStatus();
 };
 
 #endif //THEHUTRIES_FARM_H

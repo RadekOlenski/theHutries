@@ -1,4 +1,5 @@
 #include "stonecutter.h"
+#include <sstream>
 
 StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType) : GoodsBuilding(hutrieApplication,unitsFromGame, pathName, buildingType)
 {
@@ -7,4 +8,17 @@ StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*
     sprite.setOrigin(-10,-30);
     sound.openFromFile("audio/rock.wav");
     goodReady.text.setString("Stone ready");
+}
+
+void StoneCutter::showStatus()
+{
+    std::ostringstream desc;
+    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<
+    checkHutries() - hutriesCounter << "\nProducts in store: " << myProducts.getStone();
+    description.text.setString(desc.str());
+}
+
+void StoneCutter::createProduct()
+{
+    myProducts.addProduct(2,1);
 }

@@ -11,6 +11,8 @@ class StoneCutter : public GoodsBuilding
 {
     public:
         StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType);
+        void createProduct();
+        void showStatus();
     private:
 };
 

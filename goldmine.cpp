@@ -1,8 +1,5 @@
-//
-// Created by Master on 08.12.2015.
-//
-
 #include "goldmine.h"
+#include <sstream>
 
 Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame,
                    const std::string &pathName, int buildingType) : GoodsBuilding(hutrieApplication, unitsFromGame,
@@ -15,3 +12,15 @@ Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
 
 }
 
+void Goldmine::showStatus()
+{
+    std::ostringstream desc;
+    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<
+    checkHutries() - hutriesCounter << "\nProducts in store: " << myProducts.getGold();
+    description.text.setString(desc.str());
+}
+
+void Goldmine::createProduct()
+{
+    myProducts.addProduct(4,1);
+}

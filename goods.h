@@ -6,11 +6,17 @@ class Goods
 {
     public:
         Goods();
+        int getWood() {return wood;};
+        int getGold() {return gold;};
+        int getFood() {return food;};
+        int getStone() {return stone;};
+        void addProduct(int choice, int howMany);
     private:
         unsigned int wood;
+        unsigned int stone;
         unsigned int food;
         unsigned int gold;
-        unsigned int stone;
+
 };
 
 #endif // GOODS_H

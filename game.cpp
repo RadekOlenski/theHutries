@@ -193,7 +193,11 @@ void Game::actions()
                 world.hutries.push_back(world.carriers.back());
                 world.units.at(unitIndex)->addHutrie(world.hutries.back());
             }
-            else error();
+            else
+            {
+                error();
+                gui.errorInfo.text.setString("Error: No more slots! Build residence!");
+            }
             pHall->setMakeCarrier(false);
         }
 
@@ -210,7 +214,11 @@ void Game::actions()
                 world.hutries.push_back(world.workers.back());
                 world.units.at(unitIndex)->addHutrie(world.hutries.back());
             }
-            else error();
+            else
+            {
+                error();
+                gui.errorInfo.text.setString("Error: No more slots! Build residence!");
+            }
             pHall->setMakeWorker(false);
         }
 
@@ -239,9 +247,12 @@ void Game::actions()
                             break;
                         }
                     }
-                    if (itc == world.workers.end()) error();
+                    if (itc == world.workers.end())
+                    {
+                        error();
+                        gui.errorInfo.text.setString("Error: No available workers! Everyone is busy! Create worker in HutriesHall or build residence");
+                    }
                 }
-              else error();
               (*it)->setNeedWorker(false);
           }
           if ( (*it)->getNeedCarrier() )
@@ -261,7 +272,11 @@ void Game::actions()
                         break;
                     }
                 }
-                if (itc == world.carriers.end()) error();
+                if (itc == world.carriers.end())
+                {
+                    error();
+                    gui.errorInfo.text.setString("Error: No available carriers! Everyone is busy! Create carrier in HutriesHall or build residence");
+                }
 
           (*it)->setNeedCarrier(false);
           }
@@ -349,9 +364,17 @@ void Game::actions()
                                buffer.loadFromFile("audio/ting.flac");
                                sound.play();
                             }
-                            else error();
+                            else
+                            {
+                                error();
+                                gui.errorInfo.text.setString("Error: Unit not empty. Choose another one");
+                            }
                         }
-                        else error();
+                        else
+                        {
+                            error();
+                            gui.errorInfo.text.setString("Error: Building out of map. Choose another place");
+                        }
                         break;
                     }
                     case 4:     //poruszanie Hutrim

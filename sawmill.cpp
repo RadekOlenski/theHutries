@@ -1,4 +1,5 @@
 #include "sawmill.h"
+#include <sstream>
 
 Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName,
                  int buildingType) : GoodsBuilding(hutrieApplication, unitsFromGame, pathName, buildingType)
@@ -10,8 +11,15 @@ Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsF
     goodType = "wood";
 }
 
-
-void Sawmill::getGoods()
+void Sawmill::createProduct()
 {
-    GoodsBuilding::getGoods(goodType);
+    myProducts.addProduct(1,1);
+}
+
+void Sawmill::showStatus()
+{
+    std::ostringstream desc;
+    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<
+    checkHutries() - hutriesCounter << "\nProducts in store: " << myProducts.getWood();
+    description.text.setString(desc.str());
 }

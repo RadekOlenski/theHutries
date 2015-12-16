@@ -1,9 +1,4 @@
 #include "goodsbuilding.h"
-#include "wood.h"
-#include "food.h"
-#include "gold.h"
-#include "stone.h"
-#include <sstream>
 #include <cstdlib>
 #include <iostream>
 #include <string>
@@ -23,14 +18,6 @@ GoodsBuilding::GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector<Un
 {
     capacity = 3;
     hutriesCounter = 0;
-}
-
-void GoodsBuilding::showStatus()
-{
-    std::ostringstream desc;
-    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<
-    checkHutries() - hutriesCounter << "\nProducts in store: " << (rand() % 5) + 1;
-    description.text.setString(desc.str());
 }
 
 void GoodsBuilding::showButtons()
@@ -64,16 +51,16 @@ void GoodsBuilding::buttonAction()
     }
 }
 
-void GoodsBuilding::getGoods(string goodType)
-{
-    if (goodType == "wood")
-        goodStore.push_back(new Wood());
-    if (goodType == "food")
-        goodStore.push_back(new Food());
-    if (goodType == "gold")
-        goodStore.push_back(new Gold());
-    if (goodType == "stone")
-        goodStore.push_back(new Stone());
-
-
-}
+//void GoodsBuilding::getGoods(string goodType)
+//{
+//    if (goodType == "wood")
+//        goodStore.push_back(new Wood());
+//    if (goodType == "food")
+//        goodStore.push_back(new Food());
+//    if (goodType == "gold")
+//        goodStore.push_back(new Gold());
+//    if (goodType == "stone")
+//        goodStore.push_back(new Stone());
+//
+//
+//}

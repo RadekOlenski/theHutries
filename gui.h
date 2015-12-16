@@ -20,7 +20,7 @@ class GUI
 
         GUIButton buildButton;
         GUIButton hutrieButton;
-
+        GUIText errorInfo;
 
         /////////////////////////////// BUILDINGS SECTION //////////////////////////////////////////
 
