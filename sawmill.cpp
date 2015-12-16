@@ -13,7 +13,7 @@ Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsF
 
 void Sawmill::createProduct()
 {
-    myProducts.addProduct(1,1);
+    myProducts.setProduct(1,1);
 }
 
 void Sawmill::showStatus()

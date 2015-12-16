@@ -17,6 +17,7 @@ class Carrier : public Hutrie
         bool haveArrived () {return arrived;};
         void setArrived (bool arrived) {this->arrived = arrived;};
         void comeBack();
+        Goods getMyLuggage() {return myLuggage;};
         sf::Thread carrierThread;
     private:
         bool arrived;

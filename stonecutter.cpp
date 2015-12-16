@@ -20,5 +20,5 @@ void StoneCutter::showStatus()
 
 void StoneCutter::createProduct()
 {
-    myProducts.addProduct(2,1);
+    myProducts.setProduct(2,1);
 }

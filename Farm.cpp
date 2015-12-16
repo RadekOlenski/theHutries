@@ -22,5 +22,5 @@ void Farm::showStatus()
 
 void Farm::createProduct()
 {
-    myProducts.addProduct(3,1);
+    myProducts.setProduct(3,1);
 }

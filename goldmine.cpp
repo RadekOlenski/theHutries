@@ -22,5 +22,5 @@ void Goldmine::showStatus()
 
 void Goldmine::createProduct()
 {
-    myProducts.addProduct(4,1);
+    myProducts.setProduct(4,1);
 }

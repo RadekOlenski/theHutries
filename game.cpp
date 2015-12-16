@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 
 #include "game.h"
 #include "unit.h"
@@ -139,7 +140,12 @@ void Game::actions()
             }
             if( event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
             {
-                    std::cout<<world.availableSlots << std::endl;
+                    //std::cout<<world.availableSlots << std::endl;
+                    std::vector <Carrier*>::iterator itc;
+                    for(itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
+                    {
+                        std::cout << "Wood: " << (*itc)->getMyLuggage().getWood() << ", Stone: " <<  (*itc)->getMyLuggage().getStone() << ", Food: " << (*itc)->getMyLuggage().getFood() << ", Gold: " << (*itc)->getMyLuggage().getGold() << std::endl;
+                    }
             }
 
 /////////////////////////////OTHER KEYBOARD FEATURES/////////////////////////////////////////////////////////////////////////////////////////
@@ -172,8 +178,38 @@ void Game::actions()
         {
             if ((*itc)->haveArrived())
             {
-                std::cout << "Czas wracac do domu" << std::endl;
-                (*itc)->carrierThread.launch();
+                if ((*itc)->getMyLuggage().isEmpty())
+                {
+                    std::cout << "Czas wracac do domu" << std::endl;
+                    (*itc)->carrierThread.launch();
+                }
+                else
+                {
+                    world.availableGoods = world.availableGoods + (*itc)->getMyLuggage();
+                    (*itc)->getMyLuggage().setProduct(5);
+
+                    //// na razie do sprawdzenia ////
+                    std::ostringstream desc;
+                    desc << world.availableGoods.getWood();
+                    gui.twood.text.setString(desc.str());
+
+                    std::ostringstream desc1;
+                    desc1 << world.availableGoods.getStone();
+                    gui.tstone.text.setString(desc1.str());
+
+                    std::ostringstream desc2;
+                    desc2 << world.availableGoods.getFood();
+                    gui.tfood.text.setString(desc2.str());
+
+                    std::ostringstream desc3;
+                    desc3 << world.availableGoods.getGold();
+                    gui.tgold.text.setString(desc3.str());
+
+                    ////////////////////////////////////////
+
+                    (*itc)->setArrived(false);
+                }
+
             }
         }
 
@@ -252,6 +288,11 @@ void Game::actions()
                         error();
                         gui.errorInfo.text.setString("Error: No available workers! Everyone is busy! Create worker in HutriesHall or build residence");
                     }
+                }
+                else
+                {
+                    error();
+                    gui.errorInfo.text.setString("Error: Too much workers in building!");
                 }
               (*it)->setNeedWorker(false);
           }
