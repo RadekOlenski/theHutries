@@ -19,9 +19,9 @@ class Carrier : public Hutrie
         void comeBack();
         Goods getMyLuggage() {return myLuggage;};
         sf::Thread carrierThread;
+        Goods myLuggage;
     private:
         bool arrived;
-        Goods myLuggage;
 
 };
 

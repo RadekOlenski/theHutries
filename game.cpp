@@ -144,7 +144,7 @@ void Game::actions()
                     std::vector <Carrier*>::iterator itc;
                     for(itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
                     {
-                        std::cout << "Wood: " << (*itc)->getMyLuggage().getWood() << ", Stone: " <<  (*itc)->getMyLuggage().getStone() << ", Food: " << (*itc)->getMyLuggage().getFood() << ", Gold: " << (*itc)->getMyLuggage().getGold() << std::endl;
+                        std::cout << "Wood: " << (*itc)->myLuggage.getWood() << ", Stone: " <<  (*itc)->myLuggage.getStone() << ", Food: " << (*itc)->myLuggage.getFood() << ", Gold: " << (*itc)->myLuggage.getGold() << std::endl;
                     }
             }
 
@@ -178,15 +178,15 @@ void Game::actions()
         {
             if ((*itc)->haveArrived())
             {
-                if ((*itc)->getMyLuggage().isEmpty())
+                if ((*itc)->myLuggage.isEmpty())
                 {
                     std::cout << "Czas wracac do domu" << std::endl;
                     (*itc)->carrierThread.launch();
                 }
                 else
                 {
-                    world.availableGoods = world.availableGoods + (*itc)->getMyLuggage();
-                    (*itc)->getMyLuggage().setProduct(5);
+                    world.availableGoods = world.availableGoods + (*itc)->myLuggage;
+                    (*itc)->myLuggage.setProduct(5);
 
                     //// na razie do sprawdzenia ////
                     std::ostringstream desc;
@@ -265,7 +265,7 @@ void Game::actions()
           {
               if((*it)->getHutriesCounter() < (*it)->getCapacity() )                    //jesli aktualna ilosc przebywajacych w budynku mniejsza od pojemnosci
                 {
-                    int unitIndex = (*it)->getUnitIndex(2);
+
                     std::vector <Worker*>::iterator itc;
                     for(itc = world.workers.begin(); itc != world.workers.end(); ++itc)
                     {
@@ -276,6 +276,7 @@ void Game::actions()
                             int workerIndex = std::distance(world.workers.begin(),itc);
                             world.workers.at(workerIndex)->reconnectUnits((*it)->getObjectUnits());
                             world.workers.at(workerIndex)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+                            int unitIndex = (*it)->getUnitIndex(2);
                             world.units.at(unitIndex)->addHutrie(world.workers.at(workerIndex));
                              (*it)->setHutriesCounter( (*it)->getHutriesCounter() + 1 );
                             (*it)->showStatus();
@@ -298,7 +299,6 @@ void Game::actions()
           }
           if ( (*it)->getNeedCarrier() )
           {
-                int unitIndex = (*it)->getUnitIndex(2);                                                     // ktore z pol budynku ma byc zajete przez carriera
                 std::vector <Carrier*>::iterator itc;
                 for(itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
                 {
@@ -307,6 +307,7 @@ void Game::actions()
                         std::cout << "Nie jestem zajety! Ruszam po zasoby!" << std::endl;
                         int carrierIndex = std::distance(world.carriers.begin(),itc);
                         world.carriers.at(carrierIndex)->reconnectUnits((*it)->getObjectUnits());
+                        int unitIndex = (*it)->getUnitIndex(0);                                                     // ktore z pol budynku ma byc zajete przez carriera
                         world.carriers.at(carrierIndex)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
                         world.units.at(unitIndex)->addHutrie(world.carriers.at(carrierIndex));
                         (*it)->showStatus();
