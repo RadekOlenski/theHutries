@@ -21,6 +21,10 @@ class GUI
         GUIButton buildButton;
         GUIButton hutrieButton;
         GUIText errorInfo;
+        GUIText tgold;
+        GUIText twood;
+        GUIText tstone;
+        GUIText tfood;
 
         /////////////////////////////// BUILDINGS SECTION //////////////////////////////////////////
 

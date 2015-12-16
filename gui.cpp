@@ -2,8 +2,8 @@
 #include <sstream>
 
 GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int width) :  guiFrame    ( sf::Vector2f(width,mapHeight)),
-                                                                                       barText     ( 10, mapHeight + 5, 20, "The Hutries", sf::Color::White),
-                                                                                       errorInfo   ( 970, mapHeight + 5, 20, "Error:", sf::Color::White),
+                                                                                       barText     ( 10, mapHeight + 2, 20, "The Hutries", sf::Color::White),
+                                                                                       errorInfo   ( 970, mapHeight + 2, 20, "Error:", sf::Color::White),
                                                                                        buildButton ( mapWidth + 60 , 100      , hutrieApplication, "sprites/buttons/hammer.png"),
                                                                                        hutrieButton( mapWidth + 140, 100      , hutrieApplication, "sprites/buttons/hutrie.png"),
                                                                                        guiBar      ( 0             , mapHeight, hutrieApplication, "sprites/buttons/leather2.png"    , mapWidth + width, 30),
@@ -11,6 +11,10 @@ GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int wid
                                                                                        wood        ( 208 + 192     , mapHeight, hutrieApplication, "sprites/goods/wood.png"          , 30, 30),
                                                                                        stone       ( 208 + 384     , mapHeight, hutrieApplication, "sprites/goods/stone.png"         , 30, 30),
                                                                                        food        ( 208 + 576     , mapHeight, hutrieApplication, "sprites/goods/food.png"          , 30, 30),
+                                                                                       tgold       ( 280, mapHeight + 2, 20, "0", sf::Color::White),
+                                                                                       twood       ( 280 + 192, mapHeight + 2, 20, "0", sf::Color::White),
+                                                                                       tfood       ( 280 + 384, mapHeight + 2, 20, "0", sf::Color::White),
+                                                                                       tstone      ( 280 + 576, mapHeight + 2, 20, "0", sf::Color::White),
                                                                                        sawmill     ( mapWidth + 30 , 170      , hutrieApplication, "sprites/buildings/sawmill.png"   , 90, 90),
                                                                                        tSawmill    ( mapWidth + 40 , 255      , 20, "Sawmill"),
                                                                                        stonecutter ( mapWidth + 150, 170      , hutrieApplication, "sprites/buildings/stone.png"     , 90, 90),
@@ -57,6 +61,10 @@ void GUI::displayGUI()
     hutrieApplication->draw(stone.button);
     hutrieApplication->draw(food.button);
     hutrieApplication->draw(barText.text);
+    hutrieApplication->draw(tgold.text);
+    hutrieApplication->draw(twood.text);
+    hutrieApplication->draw(tfood.text);
+    hutrieApplication->draw(tstone.text);
     hutrieApplication->draw(errorInfo.text);
 
 }
