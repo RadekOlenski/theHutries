@@ -999,25 +999,25 @@
 1450287613 source:d:\onedrive\cpp projects\the hutries\tortoise\thehutries\goods.cpp
 	"goods.h"
 
-1450306017 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\barracks.cpp
+1450359400 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\barracks.cpp
 	"barracks.h"
 	<sstream>
 	<cstdlib>
 
-1450306017 c:\users\marcin\documents\marcin\projects\cpp\thehutries\barracks.h
+1450359617 c:\users\marcin\documents\marcin\projects\cpp\thehutries\barracks.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"building.h"
 
-1450306017 c:\users\marcin\documents\marcin\projects\cpp\thehutries\building.h
+1450361307 c:\users\marcin\documents\marcin\projects\cpp\thehutries\building.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"mapobject.h"
 	"unit.h"
 
-1450308668 c:\users\marcin\documents\marcin\projects\cpp\thehutries\mapobject.h
+1450359400 c:\users\marcin\documents\marcin\projects\cpp\thehutries\mapobject.h
 	"guitext.h"
 	"guibutton.h"
 	<SFML/Graphics.hpp>
@@ -1038,13 +1038,13 @@
 	"mapobject.h"
 	"hutrie.h"
 
-1450306017 c:\users\marcin\documents\marcin\projects\cpp\thehutries\hutrie.h
+1450359617 c:\users\marcin\documents\marcin\projects\cpp\thehutries\hutrie.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"mapobject.h"
 
-1450306017 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\building.cpp
+1450361307 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\building.cpp
 	"building.h"
 	<cstdlib>
 	<sstream>
@@ -1062,19 +1062,19 @@
 
 1450306017 c:\users\marcin\documents\marcin\projects\cpp\thehutries\goods.h
 
-1450306017 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\environment.cpp
+1450359400 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\environment.cpp
 	"environment.h"
 	"unit.h"
 	<sstream>
 	<cstdlib>
 
-1450306017 c:\users\marcin\documents\marcin\projects\cpp\thehutries\environment.h
+1450359617 c:\users\marcin\documents\marcin\projects\cpp\thehutries\environment.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"mapobject.h"
 
-1450308840 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\game.cpp
+1450363846 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\game.cpp
 	<iostream>
 	<sstream>
 	"game.h"
@@ -1093,7 +1093,7 @@
 	"hutrieshall.h"
 	"farm.h"
 
-1450306017 c:\users\marcin\documents\marcin\projects\cpp\thehutries\game.h
+1450363846 c:\users\marcin\documents\marcin\projects\cpp\thehutries\game.h
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 	"world.h"
@@ -1125,12 +1125,12 @@
 	<string>
 	"hutrie.h"
 
-1450306017 c:\users\marcin\documents\marcin\projects\cpp\thehutries\gui.h
+1450362952 c:\users\marcin\documents\marcin\projects\cpp\thehutries\gui.h
 	<SFML/Graphics.hpp>
 	"guibutton.h"
 	"guitext.h"
 
-1450306018 c:\users\marcin\documents\marcin\projects\cpp\thehutries\hutrieshall.h
+1450359617 c:\users\marcin\documents\marcin\projects\cpp\thehutries\hutrieshall.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
@@ -1138,13 +1138,13 @@
 	"guibutton.h"
 	"guitext.h"
 
-1450306018 c:\users\marcin\documents\marcin\projects\cpp\thehutries\sawmill.h
+1450359617 c:\users\marcin\documents\marcin\projects\cpp\thehutries\sawmill.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"goodsbuilding.h"
 
-1450306017 c:\users\marcin\documents\marcin\projects\cpp\thehutries\goodsbuilding.h
+1450357003 c:\users\marcin\documents\marcin\projects\cpp\thehutries\goodsbuilding.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
@@ -1153,33 +1153,33 @@
 	"guitext.h"
 	"goods.h"
 
-1450306018 c:\users\marcin\documents\marcin\projects\cpp\thehutries\stonecutter.h
+1450359617 c:\users\marcin\documents\marcin\projects\cpp\thehutries\stonecutter.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"goodsbuilding.h"
 
-1450306018 c:\users\marcin\documents\marcin\projects\cpp\thehutries\residence.h
+1450359617 c:\users\marcin\documents\marcin\projects\cpp\thehutries\residence.h
 	<SFML/Graphics.hpp>
 	<vector>
 	<string>
 	"building.h"
 
-1450306017 c:\users\marcin\documents\marcin\projects\cpp\thehutries\goldmine.h
+1450359617 c:\users\marcin\documents\marcin\projects\cpp\thehutries\goldmine.h
 	<SFML/Graphics.hpp>
 	"goodsbuilding.h"
 
-1450306015 c:\users\marcin\documents\marcin\projects\cpp\thehutries\farm.h
+1450359617 c:\users\marcin\documents\marcin\projects\cpp\thehutries\farm.h
 	"SFML/graphics.hpp"
 	"goodsbuilding.h"
 
-1450306017 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\goodsbuilding.cpp
+1450357003 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\goodsbuilding.cpp
 	"goodsbuilding.h"
 	<cstdlib>
 	<iostream>
 	<string>
 
-1450306017 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\gui.cpp
+1450363044 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\gui.cpp
 	"gui.h"
 	<sstream>
 
@@ -1189,7 +1189,7 @@
 1450306017 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\guitext.cpp
 	"guitext.h"
 
-1450306017 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\hutrie.cpp
+1450359400 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\hutrie.cpp
 	<string>
 	<cstdlib>
 	<sstream>
@@ -1197,13 +1197,13 @@
 	"mapobject.h"
 	"unit.h"
 
-1450306018 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\hutrieshall.cpp
+1450359400 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\hutrieshall.cpp
 	"hutrieshall.h"
 	<cstdlib>
 	<sstream>
 	<iostream>
 
-1450306018 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\main.cpp
+1450363863 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\main.cpp
 	<ctime>
 	"game.h"
 
@@ -1211,12 +1211,12 @@
 	"mapobject.h"
 	"unit.h"
 
-1450306018 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\residence.cpp
+1450359400 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\residence.cpp
 	"residence.h"
 	<sstream>
 	<cstdlib>
 
-1450306018 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\sawmill.cpp
+1450359400 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\sawmill.cpp
 	"sawmill.h"
 	<sstream>
 
@@ -1224,11 +1224,11 @@
 	"unit.h"
 	"soldier.h"
 
-1450306018 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\stonecutter.cpp
+1450359400 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\stonecutter.cpp
 	"stonecutter.h"
 	<sstream>
 
-1450306018 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\unit.cpp
+1450357003 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\unit.cpp
 	"unit.h"
 
 1450306018 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\worker.cpp
@@ -1722,11 +1722,11 @@
 	<SFML/Audio/Export.hpp>
 	<string>
 
-1450306015 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\farm.cpp
+1450359400 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\farm.cpp
 	"farm.h"
 	<sstream>
 
-1450306017 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\goldmine.cpp
+1450359400 source:c:\users\marcin\documents\marcin\projects\cpp\thehutries\goldmine.cpp
 	"goldmine.h"
 	<sstream>
 

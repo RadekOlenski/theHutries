@@ -23,7 +23,7 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector <Unit*
     makeCarrier = false;
 }
 
-void HutriesHall::showStatus()
+void HutriesHall::updateStatus()
 {
      std::ostringstream desc;
     desc << "Available carriers: " << rand()%20 << "\nAvailable workers: " << rand()%20 << "\nAvailable warriors: " << rand()%20 << "\nAvailable archers: " << rand()%20;

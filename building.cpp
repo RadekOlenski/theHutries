@@ -17,13 +17,6 @@ void Building::placeOnMap()
 
 }
 
-void Building::showStatus()
-{
-    std::ostringstream desc;
-    desc << "Capacity: " << (rand()%5)+1 << " workers\nWorkers: " << (rand()%5)+1 << "\nProducts in store: " << (rand()%5)+1;
-    description.text.setString (desc.str() );
-}
-
 int Building::checkHutries()
 {
     int hutriesCounter = 0;

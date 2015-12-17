@@ -14,7 +14,7 @@ class HutriesHall : public Building
     public:
 
         HutriesHall(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType = 0);
-        void showStatus();
+        void updateStatus();
         void showButtons();
         void deactivateButtons();
         void buttonAction();

@@ -17,7 +17,8 @@
 #include "hutrieshall.h"
 #include "farm.h"
 
-Game::Game(int applicationWidth, int applicationHeight) : chosenMode(0),
+Game::Game(int applicationWidth, int applicationHeight) : gameTime(5),
+                                                          chosenMode(0),
                                                           tempChosenMode(0),
                                                           hutrieApplication( sf::VideoMode( applicationWidth + 256 ,applicationHeight + 30, 32 ), "The Hutries"),// sf::Style::Fullscreen ),
                                                           gui(applicationWidth,applicationHeight, &hutrieApplication),
@@ -79,7 +80,7 @@ void Game::play()
     music.play();
     music.setVolume(40);
     titleThread.launch();
-    while( hutrieApplication.isOpen() )
+    while( hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime )
     {
         actions();
         displayAll();
@@ -258,6 +259,9 @@ void Game::actions()
             pHall->setMakeWorker(false);
         }
 
+
+///////////////////////////////////BUILDING ACTIONS /////////////////////////////////////////////////////////////////////////////
+
         std::vector <Building*>::iterator it;
         for(it = world.buildings.begin(); it != world.buildings.end(); ++it)
         {
@@ -279,7 +283,7 @@ void Game::actions()
                             int unitIndex = (*it)->getUnitIndex(2);
                             world.units.at(unitIndex)->addHutrie(world.workers.at(workerIndex));
                              (*it)->setHutriesCounter( (*it)->getHutriesCounter() + 1 );
-                            (*it)->showStatus();
+                            (*it)->updateStatus();
                             (*itc)->setBusy(true);
                             break;
                         }
@@ -310,7 +314,7 @@ void Game::actions()
                         int unitIndex = (*it)->getUnitIndex(0);                                                     // ktore z pol budynku ma byc zajete przez carriera
                         world.carriers.at(carrierIndex)->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
                         world.units.at(unitIndex)->addHutrie(world.carriers.at(carrierIndex));
-                        (*it)->showStatus();
+                        (*it)->updateStatus();
                         break;
                     }
                 }
@@ -322,6 +326,9 @@ void Game::actions()
 
           (*it)->setNeedCarrier(false);
           }
+          ////tu obsluga clockow
+
+           ////
 
         }
 
@@ -334,7 +341,7 @@ void Game::actions()
               //fixed.setCenter(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
               //gui.guiFrame.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))+distance);
             }
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)&& clock.getElapsedTime().asSeconds()>0.5)
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)&& clickingClock.getElapsedTime().asSeconds()>0.5)
         {
             if (sf::Mouse::getPosition(hutrieApplication).x < applicationWidth)         //jesli klikniecie w obrebie mapy
             {
@@ -437,27 +444,28 @@ void Game::actions()
            {
                chosenMode = 3;
                world.units.at(unitIndex)->getMapObject()->emphasizeUnits();
-               world.units.at(unitIndex)->getMapObject()->showStatus();
+               world.units.at(unitIndex)->getMapObject()->updateStatus();
                world.units.at(unitIndex)->getMapObject()->setEmphasize(true);
                world.units.at(unitIndex)->getMapObject()->soundPlay();
                world.lastClickedUnit = world.units.at(unitIndex);
            }
 ////////////////////////////BUTTONS ACTIONS///////////////////////////////////////////////////////////////////////////////////
           }
-          else if(gui.buildButton.checkBounds())  { chosenMode = 2; ting(); }
-          else if(gui.hutrieButton.checkBounds()) { chosenMode = 1; ting(); }
-          else if(gui.sawmill.checkBounds()     && gui.sawmill.isActive())      { buildingType = 1; ting(); }
-          else if(gui.stonecutter.checkBounds() && gui.stonecutter.isActive())  { buildingType = 2; ting(); }
-          else if(gui.barracks.checkBounds()    && gui.barracks.isActive())     { buildingType = 3; ting(); }
-          else if(gui.residence.checkBounds()   && gui.residence.isActive())    { buildingType = 4; ting(); }
-          else if(gui.goldmine.checkBounds() && gui.goldmine.isActive()) {buildingType = 5; ting();}
-          else if(gui.farm.checkBounds() && gui.farm.isActive()) {buildingType = 6; ting();}
-            else if(world.lastClickedUnit) { world.lastClickedUnit->getMapObject()->buttonAction();}
+          else if (gui.buildButton.checkBounds())                                { chosenMode = 2; ting(); }
+          else if (gui.hutrieButton.checkBounds())                               { chosenMode = 1; ting(); }
+          else if (gui.sawmill.checkBounds()     && gui.sawmill.isActive())      { buildingType = 1; ting(); }
+          else if (gui.stonecutter.checkBounds() && gui.stonecutter.isActive())  { buildingType = 2; ting(); }
+          else if (gui.barracks.checkBounds()    && gui.barracks.isActive())     { buildingType = 3; ting(); }
+          else if (gui.residence.checkBounds()   && gui.residence.isActive())    { buildingType = 4; ting(); }
+          else if (gui.goldmine.checkBounds()    && gui.goldmine.isActive())     { buildingType = 5; ting(); }
+          else if (gui.farm.checkBounds()        && gui.farm.isActive())         { buildingType = 6; ting(); }
+          else if (world.lastClickedUnit)                                        { world.lastClickedUnit->getMapObject()->buttonAction();}
 
 ////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
 
-           clock.restart();
+           clickingClock.restart();
         }
+        updateClock();
 }
 
 void Game::displayAll()
@@ -507,5 +515,41 @@ void Game::displayAll()
 
         hutrieApplication.draw(cursor);
         hutrieApplication.display();
-//        std::cout << int (clock.getElapsedTime().asSeconds())<< std::endl;
     }
+
+void Game::updateClock()
+{
+    std::ostringstream newTime;
+    int time = gameTime - deadline.getElapsedTime().asSeconds();
+    newTime << time/60 << ":" << time % 60;
+    gui.timeLeft.text.setString(newTime.str());
+}
+
+bool Game::getResult()
+{
+    return (rand() % 2) ? true : false;
+}
+
+void Game::gameOver (bool win)
+{
+   while( hutrieApplication.isOpen())
+   {
+     sf::Event event;
+     while( hutrieApplication.pollEvent( event ) )
+     {
+        if( event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) )
+        {
+           hutrieApplication.close();
+        }
+     }
+     cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
+     hutrieApplication.clear( sf::Color::Black );
+     hutrieApplication.setView(fixed);
+     gui.displayGUI();
+     hutrieApplication.draw( background );
+     hutrieApplication.draw(titleText.text);
+     gui.displayEndingText(win);
+     hutrieApplication.draw(cursor);
+     hutrieApplication.display();
+   };
+}

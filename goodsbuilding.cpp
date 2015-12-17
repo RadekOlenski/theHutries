@@ -50,17 +50,3 @@ void GoodsBuilding::buttonAction()
         needCarrier = true;
     }
 }
-
-//void GoodsBuilding::getGoods(string goodType)
-//{
-//    if (goodType == "wood")
-//        goodStore.push_back(new Wood());
-//    if (goodType == "food")
-//        goodStore.push_back(new Food());
-//    if (goodType == "gold")
-//        goodStore.push_back(new Gold());
-//    if (goodType == "stone")
-//        goodStore.push_back(new Stone());
-//
-//
-//}

@@ -10,7 +10,7 @@ StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*
     goodReady.text.setString("Stone ready");
 }
 
-void StoneCutter::showStatus()
+void StoneCutter::updateStatus()
 {
     std::ostringstream desc;
     desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<

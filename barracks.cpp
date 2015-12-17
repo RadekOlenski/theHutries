@@ -8,7 +8,7 @@ Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unit
     sound.openFromFile("audio/barracks.wav");
 }
 
-void Barracks::showStatus()
+void Barracks::updateStatus()
 {
     std::ostringstream desc;
     desc << "Capacity: " << (rand()%5)+1 << " soldiers\nWarriors during training: " << (rand()%5)+1 << "\nWarriors during training:: " << (rand()%5)+1;

@@ -11,7 +11,7 @@ Residence::Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> un
     sound.setVolume(20);
 }
 
-void Residence::showStatus()
+void Residence::updateStatus()
 {
     std::ostringstream desc;
     desc << "Slots left: " << slotsLeft << "\nGeneral: " << *worldSlots;

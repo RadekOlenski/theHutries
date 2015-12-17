@@ -16,7 +16,7 @@ void Sawmill::createProduct()
     myProducts.setProduct(1,1);
 }
 
-void Sawmill::showStatus()
+void Sawmill::updateStatus()
 {
     std::ostringstream desc;
     desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<

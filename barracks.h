@@ -12,7 +12,7 @@ class Barracks : public Building
 {
     public:
         Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType);
-        void showStatus();
+        void updateStatus();
     private:
 
 };

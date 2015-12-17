@@ -12,7 +12,7 @@ Farm::Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &units
 
 }
 
-void Farm::showStatus()
+void Farm::updateStatus()
 {
     std::ostringstream desc;
     desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<

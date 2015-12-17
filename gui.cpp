@@ -2,7 +2,7 @@
 #include <sstream>
 
 GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int width) :  guiFrame    ( sf::Vector2f(width,mapHeight)),
-                                                                                       barText     ( 10, mapHeight + 2, 20, "The Hutries", sf::Color::White),
+                                                                                       timeLeft    ( 20, mapHeight + 2, 20, "15:00", sf::Color::White),
                                                                                        errorInfo   ( 970, mapHeight + 2, 20, "Error:", sf::Color::White),
                                                                                        buildButton ( mapWidth + 60 , 100      , hutrieApplication, "sprites/buttons/hammer.png"),
                                                                                        hutrieButton( mapWidth + 140, 100      , hutrieApplication, "sprites/buttons/hutrie.png"),
@@ -60,7 +60,7 @@ void GUI::displayGUI()
     hutrieApplication->draw(gold.button);
     hutrieApplication->draw(stone.button);
     hutrieApplication->draw(food.button);
-    hutrieApplication->draw(barText.text);
+    hutrieApplication->draw(timeLeft.text);
     hutrieApplication->draw(tgold.text);
     hutrieApplication->draw(twood.text);
     hutrieApplication->draw(tfood.text);
@@ -110,6 +110,21 @@ void GUI::displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int
     hutrieApplication->draw(tWorkers.text);
     hutrieApplication->draw(tCarriers.text);
     hutrieApplication->draw(tSoldiers.text);
+
+}
+
+void GUI::displayEndingText(bool win)
+{
+    if (win)
+    {
+        GUIText win ( 400, 200, 60, "You Win!!!", sf::Color::Black);
+        hutrieApplication->draw(win.text);
+    }
+    else
+    {
+       GUIText lose ( 400, 200, 60, "You Lose!!!", sf::Color::Black);
+       hutrieApplication->draw(lose.text);
+    }
 
 }
 

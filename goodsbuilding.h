@@ -20,6 +20,7 @@ public:
         void buttonAction();
         virtual void createProduct() = 0;
         Goods myProducts;
+        //std::vector <sf::Clock*> clocks;
 protected:
         //virtual void getGoods();
         GUIButton callWorker;
