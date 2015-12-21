@@ -12,7 +12,7 @@ Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
 
 }
 
-void Goldmine::showStatus()
+void Goldmine::updateStatus()
 {
     std::ostringstream desc;
     desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<
@@ -22,5 +22,5 @@ void Goldmine::showStatus()
 
 void Goldmine::createProduct()
 {
-    myProducts.addProduct(4,1);
+    myProducts.setProduct(4,1);
 }

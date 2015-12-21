@@ -271,7 +271,7 @@ void Game::mouseRightClickActions()
 
 void Game::mouseLeftClickActions()
 {
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && clock.getElapsedTime().asSeconds() > 0.5)
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && clickingClock.getElapsedTime().asSeconds() > 0.5)
     {
         if (sf::Mouse::getPosition(hutrieApplication).x <
             applicationWidth)         //jesli klikniecie w obrebie mapy

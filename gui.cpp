@@ -1,41 +1,41 @@
 #include "gui.h"
 #include <sstream>
 
-GUI::GUI(int mapWidth,int mapHeight,sf::RenderWindow *hutrieApplication, int width) :
-        guiFrame    ( sf::Vector2f(width,mapHeight)),
-        timeLeft    ( 20, mapHeight + 2, 20, "15:00", sf::Color::White),
-        errorInfo   ( 970, mapHeight + 2, 20, "Error:", sf::Color::White),
-        buildButton ( mapWidth + 60 , 100      , hutrieApplication, "sprites/buttons/hammer.png"),
-        hutrieButton( mapWidth + 140, 100      , hutrieApplication, "sprites/buttons/hutrie.png"),
-        guiBar      ( 0             , mapHeight, hutrieApplication, "sprites/buttons/leather2.png"    , mapWidth + width, 30),
-        gold        ( 208           , mapHeight, hutrieApplication, "sprites/goods/gold.png"          , 30, 30),
-        wood        ( 208 + 192     , mapHeight, hutrieApplication, "sprites/goods/wood.png"          , 30, 30),
-        stone       ( 208 + 384     , mapHeight, hutrieApplication, "sprites/goods/stone.png"         , 30, 30),
-        food        ( 208 + 576     , mapHeight, hutrieApplication, "sprites/goods/food.png"          , 30, 30),
-        tgold       ( 280, mapHeight + 2, 20, "0", sf::Color::White),
-        twood       ( 280 + 192, mapHeight + 2, 20, "0", sf::Color::White),
-        tfood       ( 280 + 384, mapHeight + 2, 20, "0", sf::Color::White),
-        tstone      ( 280 + 576, mapHeight + 2, 20, "0", sf::Color::White),
-        sawmill     ( mapWidth + 30 , 170      , hutrieApplication, "sprites/buildings/sawmill.png"   , 90, 90),
-        tSawmill    ( mapWidth + 40 , 255      , 20, "Sawmill"),
-        stonecutter ( mapWidth + 150, 170      , hutrieApplication, "sprites/buildings/stone.png"     , 90, 90),
-        tStonecutter( mapWidth + 155, 255      , 20, "Stonecutter"),
-        goldmine    ( mapWidth + 30,  420      , hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png", 90, 90),
-        tGoldmine   ( mapWidth + 40,  505      , 20, "Goldmine"),
-        farm        ( mapWidth + 150, 420      , hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png", 90, 90),
-        tFarm       ( mapWidth + 155, 505      , 20, "Farm"),
-        barracks    ( mapWidth + 30 , 300      , hutrieApplication, "sprites/buildings/barracks.png"  , 90, 90),
-        tBarracks   ( mapWidth + 40 , 385      , 20, "Barracks"),
-        residence   ( mapWidth + 150, 300      , hutrieApplication, "sprites/buildings/residence.png" , 90, 90),
-        tResidence  ( mapWidth + 160, 385      , 20, "Residence"),
-        allHutries  ( mapWidth + 30 , 170      , hutrieApplication, "sprites/all.png"   , 96, 96),
-        tHutries    ( mapWidth + 150, 200      , 30, "26"),
-        allCarriers ( mapWidth + 30 , 270      , hutrieApplication, "sprites/carrier/right.png"   , 96, 96),
-        tCarriers   ( mapWidth + 150, 300      , 30, "12"),
-        allWorkers  ( mapWidth + 30 , 370      , hutrieApplication, "sprites/worker/right.png"   , 96, 96), tWorkers    ( mapWidth + 150, 400      , 30, "5"),
-        allSoldiers ( mapWidth + 30 , 470      , hutrieApplication, "sprites/warrior/right.png"   , 96, 96),
-        tSoldiers   ( mapWidth + 150, 500      , 30, "2")
-
+GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow *hutrieApplication, int width) :
+        guiFrame(sf::Vector2f(width, mapHeight)),
+        timeLeft(20, mapHeight + 2, 20, "15:00", sf::Color::White),
+        errorInfo(970, mapHeight + 2, 20, "Error:", sf::Color::White),
+        buildButton(mapWidth + 60, 100, hutrieApplication, "sprites/buttons/hammer.png"),
+        hutrieButton(mapWidth + 140, 100, hutrieApplication, "sprites/buttons/hutrie.png"),
+        guiBar(0, mapHeight, hutrieApplication, "sprites/buttons/leather2.png", mapWidth + width, 30),
+        gold(208, mapHeight, hutrieApplication, "sprites/goods/gold.png", 30, 30),
+        wood(208 + 192, mapHeight, hutrieApplication, "sprites/goods/wood.png", 30, 30),
+        stone(208 + 384, mapHeight, hutrieApplication, "sprites/goods/stone.png", 30, 30),
+        food(208 + 576, mapHeight, hutrieApplication, "sprites/goods/food.png", 30, 30),
+        tgold(280, mapHeight + 2, 20, "0", sf::Color::White),
+        twood(280 + 192, mapHeight + 2, 20, "0", sf::Color::White),
+        tfood(280 + 384, mapHeight + 2, 20, "0", sf::Color::White),
+        tstone(280 + 576, mapHeight + 2, 20, "0", sf::Color::White),
+        sawmill(mapWidth + 30, 170, hutrieApplication, "sprites/buildings/sawmill.png", 90, 90),
+        tSawmill(mapWidth + 40, 255, 20, "Sawmill"),
+        stonecutter(mapWidth + 150, 170, hutrieApplication, "sprites/buildings/stone.png", 90, 90),
+        tStonecutter(mapWidth + 155, 255, 20, "Stonecutter"),
+        goldmine(mapWidth + 30, 420, hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png", 90, 90),
+        tGoldmine(mapWidth + 40, 505, 20, "Goldmine"),
+        farm(mapWidth + 150, 420, hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png", 90, 90),
+        tFarm(mapWidth + 155, 505, 20, "Farm"),
+        barracks(mapWidth + 30, 300, hutrieApplication, "sprites/buildings/barracks.png", 90, 90),
+        tBarracks(mapWidth + 40, 385, 20, "Barracks"),
+        residence(mapWidth + 150, 300, hutrieApplication, "sprites/buildings/residence.png", 90, 90),
+        tResidence(mapWidth + 160, 385, 20, "Residence"),
+        allHutries(mapWidth + 30, 170, hutrieApplication, "sprites/all.png", 96, 96),
+        tHutries(mapWidth + 150, 200, 30, "26"),
+        allCarriers(mapWidth + 30, 270, hutrieApplication, "sprites/carrier/right.png", 96, 96),
+        tCarriers(mapWidth + 150, 300, 30, "12"),
+        allWorkers(mapWidth + 30, 370, hutrieApplication, "sprites/worker/right.png", 96, 96),
+        tWorkers(mapWidth + 150, 400, 30, "5"),
+        allSoldiers(mapWidth + 30, 470, hutrieApplication, "sprites/warrior/right.png", 96, 96),
+        tSoldiers(mapWidth + 150, 500, 30, "2")
 {
     this->width = width;
     height = mapHeight;
@@ -117,13 +117,13 @@ void GUI::displayEndingText(bool win)
 {
     if (win)
     {
-        GUIText win ( 400, 200, 60, "You Win!!!", sf::Color::Black);
+        GUIText win(400, 200, 60, "You Win!!!", sf::Color::Black);
         hutrieApplication->draw(win.text);
     }
     else
     {
-       GUIText lose ( 400, 200, 60, "You Lose!!!", sf::Color::Black);
-       hutrieApplication->draw(lose.text);
+        GUIText lose(400, 200, 60, "You Lose!!!", sf::Color::Black);
+        hutrieApplication->draw(lose.text);
     }
 
 }

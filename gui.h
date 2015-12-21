@@ -8,77 +8,82 @@
 
 class GUI
 {
-    public:
+public:
 
-        ///////////////////////////////GUI PROPERTIES ///////////////////////////////////////////
+    ///////////////////////////////GUI PROPERTIES ///////////////////////////////////////////
 
-        GUI(int mapWidth,int mapHeight, sf::RenderWindow *hutrieApplication, int width = 256);
-        //int getHeight() {return height;}
-        //int getWidth()  {return width;}
+    GUI(int mapWidth,int mapHeight, sf::RenderWindow *hutrieApplication, int width = 256);
+    //int getHeight() {return height;}
+    //int getWidth()  {return width;}
 
-        ////////////////////////////// BASIC TOOLS ////////////////////////////////////////////////
+    ////////////////////////////// BASIC TOOLS ////////////////////////////////////////////////
 
-        GUIButton buildButton;
-        GUIButton hutrieButton;
-        GUIText errorInfo;
-        GUIText tgold;
-        GUIText twood;
-        GUIText tstone;
-        GUIText tfood;
+    GUIButton buildButton;
+    GUIButton hutrieButton;
+    GUIText errorInfo;
+    GUIText timeLeft;
+    GUIText tgold;
+    GUIText twood;
+    GUIText tstone;
+    GUIText tfood;
 
-        /////////////////////////////// BUILDINGS SECTION //////////////////////////////////////////
+    /////////////////////////////// BUILDINGS SECTION //////////////////////////////////////////
 
-        GUIButton sawmill;
-        GUIText  tSawmill;
-        GUIButton barracks;
-        GUIText  tBarracks;
-        GUIButton residence;
-        GUIText  tResidence;
-        GUIButton stonecutter;
-        GUIText  tStonecutter;
-        GUIButton goldmine;
-        GUIText tGoldmine;
-        GUIButton farm;
-        GUIText tFarm;
+    GUIButton sawmill;
+    GUIText  tSawmill;
+    GUIButton barracks;
+    GUIText  tBarracks;
+    GUIButton residence;
+    GUIText  tResidence;
+    GUIButton stonecutter;
+    GUIText  tStonecutter;
+    GUIButton goldmine;
+    GUIText tGoldmine;
+    GUIButton farm;
+    GUIText tFarm;
 
-        /////////////////////////////// HUTRIES SECTION //////////////////////////////////////////
+    /////////////////////////////// HUTRIES SECTION //////////////////////////////////////////
 
-        GUIButton allHutries;
-        GUIButton allCarriers;
-        GUIButton allWorkers;
-        GUIButton allSoldiers;
-        GUIText tHutries;
-        GUIText tCarriers;
-        GUIText tWorkers;
-        GUIText tSoldiers;
+    GUIButton allHutries;
+    GUIButton allCarriers;
+    GUIButton allWorkers;
+    GUIButton allSoldiers;
+    GUIText tHutries;
+    GUIText tCarriers;
+    GUIText tWorkers;
+    GUIText tSoldiers;
 
-        //////////////////////////////// DRAWING FUNCTIONS /////////////////////////////////////////
+    //////////////////////////////// DRAWING FUNCTIONS /////////////////////////////////////////
 
-        void displayGUI();
-        void displayGUIBuildings();
-        void displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int soldierSize);
+    void displayGUI();
+    void displayGUIBuildings();
+    void displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int soldierSize);
 
-    private:
+    /////////////////////////////////////ENDING ////////////////////////////////////////////////
 
-        //////////////////////////// GENERAL //////////////////////////////////////////////////////
+    void displayEndingText(bool win);
 
-        sf::RenderWindow *hutrieApplication;
-        int width;
-        int height;
 
-        ////////////////////////////// GRAPHICS ///////////////////////////////////////////////////
+private:
 
-        sf::RectangleShape guiFrame;
-        sf::Texture texture;
-        GUIText barText;
+    //////////////////////////// GENERAL //////////////////////////////////////////////////////
 
-        /////////////////////////////// DOWN BAR //////////////////////////////////////////////////
+    sf::RenderWindow *hutrieApplication;
+    int width;
+    int height;
 
-        GUIButton guiBar;
-        GUIButton wood;
-        GUIButton stone;
-        GUIButton gold;
-        GUIButton food;
+    ////////////////////////////// GRAPHICS ///////////////////////////////////////////////////
+
+    sf::RectangleShape guiFrame;
+    sf::Texture texture;
+
+    /////////////////////////////// DOWN BAR //////////////////////////////////////////////////
+
+    GUIButton guiBar;
+    GUIButton wood;
+    GUIButton stone;
+    GUIButton gold;
+    GUIButton food;
 };
 
 #endif // GUI_H

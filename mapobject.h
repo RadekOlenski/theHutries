@@ -21,7 +21,7 @@ class MapObject
 
         //////////////////// GUI INFO //////////////////////////////////////////
 
-        virtual void showStatus() = 0;
+        virtual void updateStatus() = 0;
         virtual void showButtons();
         virtual void deactivateButtons();
         virtual void buttonAction();

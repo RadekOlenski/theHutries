@@ -14,8 +14,6 @@ class Game
     public:
         Game(int applicationWidth = 1024, int applicationHeight = 640);
         void play();
-        void gameOver(bool win);
-        bool getResult();
     private:
 
 protected:
@@ -29,16 +27,14 @@ protected:
     ////////////////LOGIC//////////////////////////
 
         World world;
-        int gameTime;
         int chosenMode;
         int tempChosenMode;
         int buildingType;
         bool buttonFlag;
         sf::Clock deadline;
-        sf::Clock clickingClock;
+        sf::Clock clock;
         sf::Thread titleThread;
         HutriesHall *pHall;
-        void updateClock();
 
     //////////GRAPHICS AND AUDIO//////////////////
     sf::Music music;

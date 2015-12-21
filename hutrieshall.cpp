@@ -24,7 +24,7 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*>
     makeCarrierFlag = false;
 }
 
-void HutriesHall::showStatus()
+void HutriesHall::updateStatus()
 {
     std::ostringstream desc;
     desc << "Available carriers: " << rand() % 20 << "\nAvailable workers: " << rand() % 20 <<
