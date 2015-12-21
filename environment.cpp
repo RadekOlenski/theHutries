@@ -19,7 +19,7 @@ Environment::Environment(sf::RenderWindow *hutrieApplication, std::vector <Unit*
 
 }
 
-void Environment::updateStatus()
+void Environment::showStatus()
 {
     std::ostringstream desc;
     desc << "Trees left: "<< (rand()%40)+1;

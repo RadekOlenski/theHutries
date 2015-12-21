@@ -15,9 +15,9 @@ class Building : public MapObject
         Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType = 1);
         void placeOnMap();
         void setType(int type) {buildingType = type;}
-        bool getNeedWorker() {return needWorker;}
+        bool getNeedWorkerFlag() {return needWorker;}
         void setNeedWorker (bool need) { needWorker = need;}
-        bool getNeedCarrier() {return needCarrier;}
+        bool getNeedCarrierFlag() {return needCarrier;}
         void setNeedCarrier (bool need) { needCarrier = need;}
         int getCapacity() {return capacity;}
         int getHutriesCounter() {return hutriesCounter;}

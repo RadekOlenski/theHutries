@@ -1,6 +1,8 @@
 #include "barracks.h"
 #include <sstream>
 #include <cstdlib>
+#include "warrior.h"
+
 
 Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType) : Building(hutrieApplication,unitsFromGame, pathName, buildingType)
 {

@@ -11,27 +11,35 @@
 
 class HutriesHall : public Building
 {
-    public:
+public:
 
-        HutriesHall(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType = 0);
-        void updateStatus();
-        void showButtons();
-        void deactivateButtons();
-        void buttonAction();
+    HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName,
+                int buildingType = 0);
 
-        bool getMakeWorker() {return makeWorker;};
-        bool getMakeCarrier() {return makeCarrier;};
-        void setMakeWorker(bool make) {this->makeWorker = make;};
-        void setMakeCarrier(bool make) {this->makeCarrier = make;};
-    private:
+    void updateStatus();
 
-        GUIButton createWorker;
-        GUIText tWorker;
-        GUIButton createCarrier;
-        GUIText tCarrier;
-        bool makeWorker;
-        bool makeCarrier;
+    void showButtons();
 
+    void deactivateButtons();
+
+    void buttonAction();
+
+    bool getMakeWorkerFlag() { return makeWorkerFlag; };
+
+    bool getMakeCarrierFlag() { return makeCarrierFlag; };
+
+    void setMakeWorkerFlag(bool make) { this->makeWorkerFlag = make; };
+
+    void setMakeCarrierFlag(bool make) { this->makeCarrierFlag = make; };
+
+private:
+
+    GUIButton createWorker;
+    GUIText tWorker;
+    GUIButton createCarrierButton;
+    GUIText tCarrier;
+    bool makeWorkerFlag;
+    bool makeCarrierFlag;
 };
 
 #endif // HUTRIESHALL_H

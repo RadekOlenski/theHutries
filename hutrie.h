@@ -19,14 +19,14 @@ class Hutrie : public MapObject
 
         Hutrie(sf::RenderWindow *hutrieApplication,std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding = true);
         virtual void moveHutrie() = 0;
-        void updateStatus();
+        void showStatus();
 
         bool isActive() {return active;}
         void setActive(bool active) {this->active = active;}
         bool isBusy() {return busy;}
         void setBusy(bool busy) {this->busy = busy;}
 
-    protected:
+        protected:
 
         sf::Texture upTexture;
         sf::Texture downTexture;

@@ -14,13 +14,12 @@ class GoodsBuilding : public Building
 public:
     GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName,
                   int buildingType);
-        //void showStatus();
+        //void updateStatus();
         void showButtons();
         void deactivateButtons();
         void buttonAction();
         virtual void createProduct() = 0;
         Goods myProducts;
-        //std::vector <sf::Clock*> clocks;
 protected:
         //virtual void getGoods();
         GUIButton callWorker;

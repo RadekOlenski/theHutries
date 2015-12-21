@@ -21,7 +21,7 @@ class MapObject
 
         //////////////////// GUI INFO //////////////////////////////////////////
 
-        virtual void updateStatus() = 0;
+        virtual void showStatus() = 0;
         virtual void showButtons();
         virtual void deactivateButtons();
         virtual void buttonAction();
@@ -31,9 +31,9 @@ class MapObject
 
         ////////////////////// FLAGS //////////////////////////////////////////
 
-        void emphasizeUnits(bool fillColor = true);
-        bool isEmphasize() {return emphasize;}
-        void setEmphasize(bool emphasize) {this->emphasize = emphasize;}
+        void highlightUnits(bool fillColor = true);
+        bool isHighlighted() {return highlight;}
+        void setHighlight(bool emphasize) { this->highlight = emphasize;}
 //        bool isActive() {return active;}
 //        void setActive(bool active) {this->active = active;}
         int getUnitIndex (int index = 0);
@@ -54,7 +54,7 @@ class MapObject
         std::vector <Unit*> objectUnits;
         sf::Music sound;
 //        bool active;
-        bool emphasize;
+        bool highlight;
         virtual void occupyUnits();
   };
 

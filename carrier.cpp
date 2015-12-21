@@ -22,9 +22,7 @@ void Carrier::moveHutrie()
 void Carrier::comeBack()
 {
     arrived = false;
-    myLuggage.setProduct(1,1);
    toDirection(390,370);
     busy = false;
-    arrived = true;
     //sprite.setTexture( transTexture );
 }

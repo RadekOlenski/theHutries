@@ -74,7 +74,7 @@ void Hutrie::toDirection(float targetX, float targetY)
 //    if (onBuilding) sprite.setTexture( transTexture );
 }
 
-void Hutrie::updateStatus()
+void Hutrie::showStatus()
 {
     std::ostringstream desc;
     desc << "Strength: " << strength << "\nAgility: " << agility << "\nEndurance: " << endurance;

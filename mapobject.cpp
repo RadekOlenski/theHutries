@@ -13,7 +13,7 @@ MapObject::MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> u
     sound.setVolume(10);
 
 //    active = true;                                                             //WHILE TRUE OBJECT WIL BE DRAWN ON SCREEN
-    emphasize = false;                                                         //WHILE FALSE NO GREEN BACKROUND UNDER OBJECT + NO INFO ON GUI
+    highlight = false;                                                         //WHILE FALSE NO GREEN BACKROUND UNDER OBJECT + NO INFO ON GUI
 
     //////////////CONNECTING MAPOBJECT WITH UNITS UNDER OBJECT//////////////////////////////////////////////////////////
 
@@ -48,7 +48,7 @@ void MapObject::occupyUnits()
 
 ////////////////ADD/DELETE GREEN FILL COLOR UNDER MAPOBJECT/////////////////////////////////////////////////////////////////////////////////////
 
-void MapObject::emphasizeUnits(bool fillColor)
+void MapObject::highlightUnits(bool fillColor)
 {
     std::vector <Unit*>::iterator it;
     sf::Color color(0, 255, 0, 30);

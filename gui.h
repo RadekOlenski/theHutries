@@ -21,7 +21,6 @@ class GUI
         GUIButton buildButton;
         GUIButton hutrieButton;
         GUIText errorInfo;
-        GUIText timeLeft;
         GUIText tgold;
         GUIText twood;
         GUIText tstone;
@@ -59,11 +58,6 @@ class GUI
         void displayGUIBuildings();
         void displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int soldierSize);
 
-        /////////////////////////////////////ENDING ////////////////////////////////////////////////
-
-        void displayEndingText(bool win);
-
-
     private:
 
         //////////////////////////// GENERAL //////////////////////////////////////////////////////
@@ -76,6 +70,7 @@ class GUI
 
         sf::RectangleShape guiFrame;
         sf::Texture texture;
+        GUIText barText;
 
         /////////////////////////////// DOWN BAR //////////////////////////////////////////////////
 

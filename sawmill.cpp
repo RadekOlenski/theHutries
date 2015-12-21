@@ -13,10 +13,10 @@ Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsF
 
 void Sawmill::createProduct()
 {
-    myProducts.setProduct(1,1);
+    myProducts.addProduct(1,1);
 }
 
-void Sawmill::updateStatus()
+void Sawmill::showStatus()
 {
     std::ostringstream desc;
     desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<
