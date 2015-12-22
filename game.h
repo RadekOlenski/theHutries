@@ -134,6 +134,8 @@ private:
     void mouseRightClickActions();
 
     void mouseLeftClickActions();
+
+    std::string getStats();
 };
 
 

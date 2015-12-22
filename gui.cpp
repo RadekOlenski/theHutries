@@ -117,12 +117,12 @@ void GUI::displayEndingText(bool win)
 {
     if (win)
     {
-        GUIText win(400, 200, 60, "You Win!!!", sf::Color::Black);
+        GUIText win(300, 100, 80, "You Win!!!", sf::Color::Black);
         hutrieApplication->draw(win.text);
     }
     else
     {
-        GUIText lose(400, 200, 60, "You Lose!!!", sf::Color::Black);
+        GUIText lose(300, 100, 80, "You Lose!!!", sf::Color::Black);
         hutrieApplication->draw(lose.text);
     }
 

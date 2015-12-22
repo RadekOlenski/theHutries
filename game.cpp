@@ -23,7 +23,7 @@
 //=================================================================================
 
 Game::Game(int applicationWidth, int applicationHeight) :
-        gameTime(500), chosenMode(0), tempChosenMode(0),
+        gameTime(10*60), chosenMode(0), tempChosenMode(0),
         hutrieApplication(sf::VideoMode(applicationWidth + 256, applicationHeight + 30, 32), "The Hutries"),
         // sf::Style::Fullscreen ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
@@ -86,7 +86,7 @@ void Game::clickSound()
 
 void Game::tingSound()
 {
-    buffer.loadFromFile("audio/ting.flac");
+    buffer.loadFromFile("audio/ting.wav");
     sound.play();
 }
 
@@ -745,8 +745,20 @@ bool Game::getResult()
     return (rand() % 2) ? true : false;
 }
 
+std::string Game::getStats()
+{
+    std::ostringstream stats;
+    stats << "You built " << world.buildings.size() << " buildings." << std::endl
+          << "You had " << world.hutries.size() << " hutries including: " << std::endl
+          << world.carriers.size() << " carriers" << std::endl
+          << world.workers.size() << " workers" << std::endl
+          << world.soldiers.size() << " soldiers" << std::endl;
+    return stats.str();
+}
+
 void Game::gameOver (bool win)
 {
+   GUIText stats(300,280,40,getStats());
    while( hutrieApplication.isOpen())
    {
      sf::Event event;
@@ -762,6 +774,7 @@ void Game::gameOver (bool win)
      hutrieApplication.setView(fixed);
      gui.displayGUI();
      hutrieApplication.draw( background );
+     hutrieApplication.draw( stats.text );
      hutrieApplication.draw(titleText.text);
      gui.displayEndingText(win);
      hutrieApplication.draw(cursor);

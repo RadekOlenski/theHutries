@@ -14,6 +14,8 @@ int main()
 
     Game game(applicationWidth, applicationHeight);
     game.play();
+    bool result = game.getResult();
+    game.gameOver(result);
 
 /////////////////////////// ENDING ////////////////////////////////////////////////////////////////////////////
     return 0;

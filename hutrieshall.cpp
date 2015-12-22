@@ -17,7 +17,7 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*>
     sprite.setScale(0.45, 0.5);
     sprite.setOrigin(30, 128);
 
-    sound.openFromFile("audio/castle.flac");
+    sound.openFromFile("audio/castle.wav");
     setSoundVolume(100);
 
     makeWorkerFlag = false;
