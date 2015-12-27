@@ -10,7 +10,7 @@
 class StoneCutter : public GoodsBuilding
 {
     public:
-        StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType);
+        StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
         void createProduct();
         void updateStatus();
     private:

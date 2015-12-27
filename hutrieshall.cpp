@@ -4,9 +4,8 @@
 #include <sstream>
 #include <iostream>
 
-HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName,
-                         int buildingType) :
-        Building(hutrieApplication, unitsFromGame, pathName, buildingType),
+HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
+        : Building(hutrieApplication, unitsFromGame, pathName),
         createCarrierButton(1024 + 40, 500, hutrieApplication, 150, 45),
         createWorker(1024 + 40, 560, hutrieApplication, 150, 45),
         tCarrier(1024 + 60, 510, 20, "Create Carrier"),

@@ -13,16 +13,19 @@ class Keyboard
 {
 public:
 
-    Keyboard(sf::RenderWindow *hutrieApplication);
+    Keyboard(sf::RenderWindow* hutrieApplication);
 
     void actionsLoop();
-    void switchMode(sf::Event event);
-    void switchBuildingType(sf::Event event);
-    void closeGame(sf::Event event);
 
 private:
 
-    sf::RenderWindow *hutrieApplication;
+    void switchMode(sf::Event event);
+
+    void switchBuildingType(sf::Event event);
+
+    void closeGame(sf::Event event);
+
+    sf::RenderWindow*hutrieApplication;
     sf::Event event;
 };
 

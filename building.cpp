@@ -2,10 +2,9 @@
 #include <cstdlib>
 #include <sstream>
 
-Building::Building(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName,
-                   int buildingType) : MapObject(hutrieApplication, unitsFromGame, pathName)
+Building::Building(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
+        : MapObject(hutrieApplication, unitsFromGame, pathName)
 {
-    this->buildingType = buildingType;
     needCarrier = false;
     needWorker = false;
 }

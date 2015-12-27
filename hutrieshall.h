@@ -13,8 +13,7 @@ class HutriesHall : public Building
 {
 public:
 
-    HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName,
-                int buildingType = 0);
+    HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName);
 
     void updateStatus();
 

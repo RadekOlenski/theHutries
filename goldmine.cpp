@@ -1,9 +1,8 @@
 #include "goldmine.h"
 #include <sstream>
 
-Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame,
-                   const std::string &pathName, int buildingType) : GoodsBuilding(hutrieApplication, unitsFromGame,
-                                                                                  pathName, buildingType)
+Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, const std::string &pathName)
+        : GoodsBuilding(hutrieApplication, unitsFromGame, pathName)
 {
     title.text.setString("Goldmine:");
     sound.openFromFile("audio/saw.wav"); //TODO znaleźć dźwięk kopalni

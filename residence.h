@@ -11,7 +11,7 @@
 class Residence : public Building
 {
     public:
-        Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType, int *worldSlots);
+        Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int *worldSlots);
         void updateStatus();
     static int getAddedSlotsNumber();
 private:

@@ -12,8 +12,7 @@
 class GoodsBuilding : public Building
 {
 public:
-    GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName,
-                  int buildingType);
+    GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName);
         //void updateStatus();
         void showButtons();
         void deactivateButtons();

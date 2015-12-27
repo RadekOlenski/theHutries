@@ -4,7 +4,8 @@
 #include "warrior.h"
 
 
-Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType) : Building(hutrieApplication,unitsFromGame, pathName, buildingType)
+Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName)
+        : Building(hutrieApplication,unitsFromGame, pathName)
 {
     title.text.setString("Barracks:");
     sound.openFromFile("audio/barracks.wav");

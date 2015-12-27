@@ -4,8 +4,8 @@
 using namespace std;
 
 GoodsBuilding::GoodsBuilding(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsFromGame,
-    std::string pathName, int buildingType)
-        : Building(hutrieApplication, unitsFromGame, pathName, buildingType),
+    std::string pathName)
+        : Building(hutrieApplication, unitsFromGame, pathName),
             callWorker(1024 + 40, 500, hutrieApplication, 150, 45),
             goodsReady(1024 + 40, 560, hutrieApplication, 150, 45),
             assignWorker(1024 + 60, 510, 20, "Assign worker"),

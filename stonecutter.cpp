@@ -1,7 +1,8 @@
 #include "stonecutter.h"
 #include <sstream>
 
-StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType) : GoodsBuilding(hutrieApplication,unitsFromGame, pathName, buildingType)
+StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName)
+        : GoodsBuilding(hutrieApplication,unitsFromGame, pathName)
 {
     title.text.setString("Stonecutter Hut:");
     sprite.setScale(0.45,0.45);

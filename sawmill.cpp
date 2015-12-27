@@ -1,8 +1,8 @@
 #include "sawmill.h"
 #include <sstream>
 
-Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName,
-                 int buildingType) : GoodsBuilding(hutrieApplication, unitsFromGame, pathName, buildingType)
+Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName)
+        : GoodsBuilding(hutrieApplication, unitsFromGame, pathName)
 {
 
     title.text.setString("Sawmill:");

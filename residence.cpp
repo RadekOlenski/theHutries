@@ -2,7 +2,8 @@
 #include <sstream>
 #include <cstdlib>
 
-Residence::Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType, int *worldSlots) : Building(hutrieApplication,unitsFromGame, pathName, buildingType)
+Residence::Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int *worldSlots)
+        : Building(hutrieApplication,unitsFromGame, pathName)
 {
     this->worldSlots = worldSlots;
     slotsLeft = rand() % 11;

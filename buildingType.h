@@ -9,6 +9,7 @@
 class BuildingType
 {
 public:
+    static const int HUTRIESHALL = 0;
     static const int SAWMILL = 1;
     static const int STONECUTTERHUT = 2;
     static const int BARRACKS = 3;

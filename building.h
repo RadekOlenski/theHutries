@@ -12,9 +12,9 @@
 class Building : public MapObject
 {
 public:
-    Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType = 1);
+    Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
     void placeOnMap();
-    void setType(int type) {buildingType = type;}
+
     bool getNeedWorkerFlag() {return needWorker;}
     void setNeedWorker (bool need) { needWorker = need;}
     bool getNeedCarrierFlag() {return needCarrier;}
@@ -32,7 +32,6 @@ protected:
     bool needWorker;
     bool needCarrier;
 private:
-    int buildingType;
 };
 
 #endif // BUILDING_H
