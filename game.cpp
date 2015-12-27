@@ -16,6 +16,7 @@
 #include "goldmine.h"
 #include "hutrieshall.h"
 #include "farm.h"
+#include "buildingType.h"
 
 
 //=================================================================================
@@ -23,7 +24,7 @@
 //=================================================================================
 
 Game::Game(int applicationWidth, int applicationHeight) :
-        gameTime(10*60), chosenMode(0), tempChosenMode(0),
+        gameTime(10 * 60), chosenMode(0), tempChosenMode(0),
         hutrieApplication(sf::VideoMode(applicationWidth + 256, applicationHeight + 30, 32), "The Hutries"),
         // sf::Style::Fullscreen ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
@@ -120,46 +121,48 @@ void Game::keyboardSwitchMode(sf::Event event)
 
 void Game::keyboardSwitchBuildingType(sf::Event event, int chosenMode)
 {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num1 && chosenMode == 2)
+    if (event.type != sf::Event::KeyPressed)
     {
-        buildingType = 1;                //SAWMILL
-        clickSound();
+        return;
     }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num2 && chosenMode == 2)
+    if (chosenMode == 2) // InteractionMode
     {
-        buildingType = 2;                //STONECUTTER
-        clickSound();
-    }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num3 && chosenMode == 2)
-    {
-        buildingType = 3;                //BARRACKS
-        clickSound();
-    }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num4 && chosenMode == 2)
-    {
-        buildingType = 4;                //RESIDENCE
-        clickSound();
-    }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num5 && chosenMode == 2)
-    {
-        buildingType = 5;                //GOLDMINE
-        clickSound();
-    }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Num6 && chosenMode == 2)
-    {
-        buildingType = 6;                //FARM
-        //model.buildingType = BuildingType.SAWMILL;
-        //modelFacade -> setBuildingType(BuildingType.SAWMILL);
-        clickSound();
-    }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
-    {
-        //std::cout<<world.availableSlots << std::endl;
-        std::vector <Carrier*>::iterator itc;
-        for(itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
+        switch (event.key.code)
         {
-            std::cout << "Wood: " << (*itc)->myLuggage.getWood() << ", Stone: " <<  (*itc)->myLuggage.getStone() << ", Food: " << (*itc)->myLuggage.getFood() << ", Gold: " << (*itc)->myLuggage.getGold() << std::endl;
+            case sf::Keyboard::Num1:
+                buildingType = BuildingType::SAWMILL;
+                break;
+            case sf::Keyboard::Num2:
+                buildingType = BuildingType::STONECUTTERHUT;
+                break;
+            case sf::Keyboard::Num3:
+                buildingType = BuildingType::BARRACKS;
+                break;
+            case sf::Keyboard::Num4:
+                buildingType = BuildingType::RESIDENCE;
+                break;
+            case sf::Keyboard::Num5:
+                buildingType = BuildingType::GOLDMINE;
+                break;
+            case sf::Keyboard::Num6:
+                buildingType = BuildingType::FARM;
+                break;
+            case sf::Keyboard::Space:
+            {
+                //std::cout<<world.availableSlots << std::endl;
+                std::vector<Carrier*>::iterator itc;
+                for (itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
+                {
+                    std::cout << "Wood: " << (*itc)->myLuggage.getWood() << ", Stone: " <<
+                    (*itc)->myLuggage.getStone() << ", Food: " << (*itc)->myLuggage.getFood() << ", Gold: " <<
+                    (*itc)->myLuggage.getGold() << std::endl;
+                }
+                break;
+            }
+            default:
+                break;
         }
+        clickSound();
     }
 }
 
@@ -293,15 +296,47 @@ void Game::mouseLeftClickActions()
 
 ////////////////////////////BUTTONS ACTIONS///////////////////////////////////////////////////////////////////////////////////
         }
-        else if (gui.buildButton.checkBounds())                                { chosenMode = 2; clickSound(); }
-        else if (gui.hutrieButton.checkBounds())                               { chosenMode = 1; clickSound(); }
-        else if (gui.sawmill.checkBounds()     && gui.sawmill.isActive())      { buildingType = 1; clickSound(); }
-        else if (gui.stonecutter.checkBounds() && gui.stonecutter.isActive())  { buildingType = 2; clickSound(); }
-        else if (gui.barracks.checkBounds()    && gui.barracks.isActive())     { buildingType = 3; clickSound(); }
-        else if (gui.residence.checkBounds()   && gui.residence.isActive())    { buildingType = 4; clickSound(); }
-        else if (gui.goldmine.checkBounds()    && gui.goldmine.isActive())     { buildingType = 5; clickSound(); }
-        else if (gui.farm.checkBounds()        && gui.farm.isActive())         { buildingType = 6; clickSound(); }
-        else if (world.lastClickedUnit)                                        { world.lastClickedUnit->getMapObject()->buttonAction();}
+        else if (gui.buildButton.checkBounds())
+        {
+            chosenMode = 2;
+            clickSound();
+        }
+        else if (gui.hutrieButton.checkBounds())
+        {
+            chosenMode = 1;
+            clickSound();
+        }
+        else if (gui.sawmill.checkBounds() && gui.sawmill.isActive())
+        {
+            buildingType = BuildingType::SAWMILL;
+            clickSound();
+        }
+        else if (gui.stonecutter.checkBounds() && gui.stonecutter.isActive())
+        {
+            buildingType = BuildingType::STONECUTTERHUT;
+            clickSound();
+        }
+        else if (gui.barracks.checkBounds() && gui.barracks.isActive())
+        {
+            buildingType = BuildingType::BARRACKS;
+            clickSound();
+        }
+        else if (gui.residence.checkBounds() && gui.residence.isActive())
+        {
+            buildingType = BuildingType::RESIDENCE;
+            clickSound();
+        }
+        else if (gui.goldmine.checkBounds() && gui.goldmine.isActive())
+        {
+            buildingType = BuildingType::GOLDMINE;
+            clickSound();
+        }
+        else if (gui.farm.checkBounds() && gui.farm.isActive())
+        {
+            buildingType = BuildingType::FARM;
+            clickSound();
+        }
+        else if (world.lastClickedUnit) { world.lastClickedUnit->getMapObject()->buttonAction(); }
 
 ////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
 
@@ -319,12 +354,12 @@ void Game::guiDeactivateButtonsFlags()
 {
     if (chosenMode != tempChosenMode)
     {
+        gui.residence.setActive(buttonFlag);
         buttonFlag = chosenMode == 2;
         gui.sawmill.setActive(buttonFlag);
         gui.stonecutter.setActive(buttonFlag);
         gui.goldmine.setActive(buttonFlag);
         gui.barracks.setActive(buttonFlag);
-        gui.residence.setActive(buttonFlag);
         gui.farm.setActive(buttonFlag);
         tempChosenMode = chosenMode;
     }
@@ -567,20 +602,20 @@ void Game::createBuilding(std::vector<Unit*> usedUnits)
 {
     switch (buildingType)                                                                      //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
     {
-        case 1:
+        case BuildingType::SAWMILL:
             //world.addBuilding(new Sawmill());
             world.buildings.push_back(
                     new Sawmill(&hutrieApplication, usedUnits, "sprites/buildings/sawmill.png", buildingType));
             break;
-        case 2:
+        case BuildingType::STONECUTTERHUT:
             world.buildings.push_back(
                     new StoneCutter(&hutrieApplication, usedUnits, "sprites/buildings/stone.png", buildingType));
             break;
-        case 3:
+        case BuildingType::BARRACKS:
             world.buildings.push_back(
                     new Barracks(&hutrieApplication, usedUnits, "sprites/buildings/barracks.png", buildingType));
             break;
-        case 4:
+        case BuildingType::RESIDENCE:
         {
             world.availableSlots += Residence::getAddedSlotsNumber();
             std::cout << "dostepne miejsca:" << world.availableSlots << std::endl;
@@ -589,12 +624,12 @@ void Game::createBuilding(std::vector<Unit*> usedUnits)
                                   &(world.availableSlots)));
             break;
         }
-        case 5:
+        case BuildingType::GOLDMINE:
             world.buildings.push_back(
                     new Goldmine(&hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png",
                                  buildingType));
             break;
-        case 6:
+        case BuildingType::FARM:
             world.buildings.push_back(
                     new Farm(&hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png",
                              buildingType));
@@ -650,7 +685,7 @@ void Game::play()
     music.play();
     music.setVolume(40);
     titleThread.launch();
-    while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime )
+    while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
     {
         actions();
         displayAll();
@@ -728,15 +763,15 @@ void Game::displayAll()
 
 ///////////////////////////ADD CURSOR SPRITE AND DISPLAY//////////////////////////////////////////////////////
 
-        hutrieApplication.draw(cursor);
-        hutrieApplication.display();
-    }
+    hutrieApplication.draw(cursor);
+    hutrieApplication.display();
+}
 
 void Game::updateClock()
 {
     std::ostringstream newTime;
     int time = gameTime - deadline.getElapsedTime().asSeconds();
-    newTime << time/60 << ":" << time % 60;
+    newTime << time / 60 << ":" << time % 60;
     gui.timeLeft.text.setString(newTime.str());
 }
 
@@ -749,35 +784,36 @@ std::string Game::getStats()
 {
     std::ostringstream stats;
     stats << "You built " << world.buildings.size() << " buildings." << std::endl
-          << "You had " << world.hutries.size() << " hutries including: " << std::endl
-          << world.carriers.size() << " carriers" << std::endl
-          << world.workers.size() << " workers" << std::endl
-          << world.soldiers.size() << " soldiers" << std::endl;
+    << "You had " << world.hutries.size() << " hutries including: " << std::endl
+    << world.carriers.size() << " carriers" << std::endl
+    << world.workers.size() << " workers" << std::endl
+    << world.soldiers.size() << " soldiers" << std::endl;
     return stats.str();
 }
 
-void Game::gameOver (bool win)
+void Game::gameOver(bool win)
 {
-   GUIText stats(300,280,40,getStats());
-   while( hutrieApplication.isOpen())
-   {
-     sf::Event event;
-     while( hutrieApplication.pollEvent( event ) )
-     {
-        if( event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) )
+    GUIText stats(300, 280, 40, getStats());
+    while (hutrieApplication.isOpen())
+    {
+        sf::Event event;
+        while (hutrieApplication.pollEvent(event))
         {
-           hutrieApplication.close();
+            if (event.type == sf::Event::Closed ||
+                (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+            {
+                hutrieApplication.close();
+            }
         }
-     }
-     cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
-     hutrieApplication.clear( sf::Color::Black );
-     hutrieApplication.setView(fixed);
-     gui.displayGUI();
-     hutrieApplication.draw( background );
-     hutrieApplication.draw( stats.text );
-     hutrieApplication.draw(titleText.text);
-     gui.displayEndingText(win);
-     hutrieApplication.draw(cursor);
-     hutrieApplication.display();
-   };
+        cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
+        hutrieApplication.clear(sf::Color::Black);
+        hutrieApplication.setView(fixed);
+        gui.displayGUI();
+        hutrieApplication.draw(background);
+        hutrieApplication.draw(stats.text);
+        hutrieApplication.draw(titleText.text);
+        gui.displayEndingText(win);
+        hutrieApplication.draw(cursor);
+        hutrieApplication.display();
+    };
 }

@@ -8,6 +8,7 @@
 #include "guitext.h"
 #include "gui.h"
 #include "hutrieshall.h"
+#include "goodsbuilding.h"
 
 class Game
 {

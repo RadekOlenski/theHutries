@@ -2,7 +2,8 @@
 #include <cstdlib>
 #include <sstream>
 
-Building::Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, int buildingType) : MapObject(hutrieApplication, unitsFromGame, pathName)
+Building::Building(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName,
+                   int buildingType) : MapObject(hutrieApplication, unitsFromGame, pathName)
 {
     this->buildingType = buildingType;
     needCarrier = false;
@@ -12,7 +13,7 @@ Building::Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unit
 void Building::placeOnMap()
 {
 
-    sprite.setPosition (objectUnits.at(0)->field.getPosition());
+    sprite.setPosition(objectUnits.at(0)->field.getPosition());
     occupyUnits();
 
 }
@@ -20,8 +21,8 @@ void Building::placeOnMap()
 int Building::checkHutries()
 {
     int hutriesCounter = 0;
-    std::vector <Unit*>::iterator it;
-    for(it = objectUnits.begin(); it != objectUnits.end(); ++it)
+    std::vector<Unit*>::iterator it;
+    for (it = objectUnits.begin(); it != objectUnits.end(); ++it)
     {
         hutriesCounter += (*it)->hutriesNumber();
     }
