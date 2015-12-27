@@ -1,7 +1,7 @@
-#include "gui.h"
 #include <sstream>
+#include "gui.h"
 
-GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow *hutrieApplication, int width) :
+GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width) :
         guiFrame(sf::Vector2f(width, mapHeight)),
         timeLeft(20, mapHeight + 2, 20, "15:00", sf::Color::White),
         errorInfo(970, mapHeight + 2, 20, "Error:", sf::Color::White),
@@ -37,6 +37,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow *hutrieApplication, int w
         allSoldiers(mapWidth + 30, 470, hutrieApplication, "sprites/warrior/right.png", 96, 96),
         tSoldiers(mapWidth + 150, 500, 30, "2")
 {
+
     this->width = width;
     height = mapHeight;
     this->hutrieApplication = hutrieApplication;

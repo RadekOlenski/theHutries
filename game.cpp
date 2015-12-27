@@ -1,5 +1,5 @@
-#include <iostream>
 #include <sstream>
+#include <iostream>
 
 #include "game.h"
 #include "unit.h"
@@ -18,6 +18,8 @@
 #include "farm.h"
 #include "buildingType.h"
 #include "interactionMode.h"
+#include "modelController.h"
+#include "keyboard.h"
 
 
 //=================================================================================
@@ -45,7 +47,7 @@ Game::Game(int applicationWidth, int applicationHeight) :
     /////////////////////////// CREATING BACKGROUND //////////////////////////////////////////////////////
 
     background.setSize(sf::Vector2f(1024, 640));
-//    backgroundTexture.loadFromFile( "sprites/background/background.jpg" );
+//  backgroundTexture.loadFromFile( "sprites/background/background.jpg" );
     backgroundTexture.loadFromFile("sprites/background/background.jpg");
     background.setTexture(&backgroundTexture);
 
@@ -92,111 +94,6 @@ void Game::tingSound()
     sound.play();
 }
 
-//=================================================================================
-//                             KEYBOARD ACTION FUNCTIONS
-//=================================================================================
-
-void Game::keyboardSwitchMode(sf::Event event)
-{
-    if (event.type != sf::Event::KeyPressed)
-    {
-        return;
-    }
-    switch (event.key.code)
-    {
-        case sf::Keyboard::F1:
-            chosenMode = InteractionMode::HUTRIEINFO;
-            break;
-        case sf::Keyboard::F2:
-            chosenMode = InteractionMode::BUILDMODE;
-            break;
-        case sf::Keyboard::F3:
-            chosenMode = InteractionMode::INFOMODE;
-            break;
-        case sf::Keyboard::F4:
-            chosenMode = InteractionMode::HUTRIEMODE;
-            break;
-        default:
-            break;
-    }
-    clickSound();
-}
-
-void Game::keyboardSwitchBuildingType(sf::Event event, int chosenMode)
-{
-    if (event.type != sf::Event::KeyPressed)
-    {
-        return;
-    }
-    if (chosenMode == InteractionMode::BUILDMODE)
-    {
-        switch (event.key.code)
-        {
-            case sf::Keyboard::Num1:
-                buildingType = BuildingType::SAWMILL;
-                break;
-            case sf::Keyboard::Num2:
-                buildingType = BuildingType::STONECUTTERHUT;
-                break;
-            case sf::Keyboard::Num3:
-                buildingType = BuildingType::BARRACKS;
-                break;
-            case sf::Keyboard::Num4:
-                buildingType = BuildingType::RESIDENCE;
-                break;
-            case sf::Keyboard::Num5:
-                buildingType = BuildingType::GOLDMINE;
-                break;
-            case sf::Keyboard::Num6:
-                buildingType = BuildingType::FARM;
-                break;
-            case sf::Keyboard::Space:
-            {
-                //std::cout<<world.availableSlots << std::endl;
-                std::vector<Carrier*>::iterator itc;
-                for (itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
-                {
-                    std::cout << "Wood: " << (*itc)->myLuggage.getWood() << ", Stone: " <<
-                    (*itc)->myLuggage.getStone() << ", Food: " << (*itc)->myLuggage.getFood() << ", Gold: " <<
-                    (*itc)->myLuggage.getGold() << std::endl;
-                }
-                break;
-            }
-            default:
-                break;
-        }
-        clickSound();
-    }
-}
-
-void Game::keyboardCloseGame(sf::Event event)
-{
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        hutrieApplication.close();
-}
-
-void Game::keyboardActionsLoop()
-{
-    sf::Event event;
-
-    while (hutrieApplication.pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed)
-            hutrieApplication.close();
-
-        /////////////SWITCHING BETWEEN MODES/////////////////////////////////////////////////////////////////////
-
-        keyboardSwitchMode(event);
-
-        ///////////// SWITCHING BETWEEN TYPES OF BUILDINGS/////////////////////////////////////////////////////////////////////
-
-        keyboardSwitchBuildingType(event, chosenMode);
-
-        ///////////////////////OTHER KEYBOARD FEATURES/////////////////////////////////////////////////////////////////////////////////////////
-
-        keyboardCloseGame(event);
-    }
-}
 //=================================================================================
 //                             MOUSE ACTION FUNCTIONS
 //=================================================================================
@@ -606,7 +503,6 @@ void Game::createBuilding(std::vector<Unit*> usedUnits)
     switch (buildingType)                                                                      //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
     {
         case BuildingType::SAWMILL:
-            //world.addBuilding(new Sawmill());
             world.buildings.push_back(
                     new Sawmill(&hutrieApplication, usedUnits, "sprites/buildings/sawmill.png", buildingType));
             break;
@@ -688,16 +584,17 @@ void Game::play()
     music.play();
     music.setVolume(40);
     titleThread.launch();
+    Keyboard* keyboard = new Keyboard(&hutrieApplication);
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
     {
-        actions();
+        actions(keyboard);
         displayAll();
     }
 }
 
-void Game::actions()
+void Game::actions(Keyboard* keyboard)
 {
-    keyboardActionsLoop();
+    keyboard->actionsLoop();
 
     mouseSetCursorPosition(cursor);
 
@@ -820,3 +717,4 @@ void Game::gameOver(bool win)
         hutrieApplication.display();
     };
 }
+

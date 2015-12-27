@@ -1,9 +1,9 @@
 #ifndef GUI_H
 #define GUI_H
 
-#include <SFML/Graphics.hpp>
-
 #include "guibutton.h"
+
+#include <SFML/Graphics.hpp>
 #include "guitext.h"
 
 class GUI

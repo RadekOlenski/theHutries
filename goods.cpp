@@ -22,6 +22,7 @@ void Goods::setProduct(int choice, int howMany)
             break;
         case 3:
             food += howMany;
+
             break;
         case 4:
             gold += howMany;

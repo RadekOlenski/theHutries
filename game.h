@@ -1,14 +1,14 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-
 #include "world.h"
+
+#include <SFML/Graphics.hpp>
 #include "guitext.h"
 #include "gui.h"
 #include "hutrieshall.h"
-#include "goodsbuilding.h"
+#include "keyboard.h"
 
 class Game
 {
@@ -68,19 +68,9 @@ private:
 
     /////////////FUNCTIONS////////////////////////
 
-    void actions();
+    void actions(Keyboard* keyboard);
 
     void displayAll();
-
-    //////// KEYBOARD ACTION FUNCTIONS   ///////
-
-    void keyboardSwitchMode(sf::Event event);
-
-    void keyboardSwitchBuildingType(sf::Event event, int chosenMode);
-
-    void keyboardCloseGame(sf::Event event);
-
-    void keyboardActionsLoop();
 
     //////////////////////////////////////////////
 
