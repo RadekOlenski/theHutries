@@ -17,6 +17,7 @@
 #include "hutrieshall.h"
 #include "farm.h"
 #include "buildingType.h"
+#include "interactionMode.h"
 
 
 //=================================================================================
@@ -97,26 +98,28 @@ void Game::tingSound()
 
 void Game::keyboardSwitchMode(sf::Event event)
 {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F1)
+    if (event.type != sf::Event::KeyPressed)
     {
-        chosenMode = 1;                 //HUTRIE BUILDING MODE
-        clickSound();
+        return;
     }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F2)
+    switch (event.key.code)
     {
-        chosenMode = 2;               //BUILD MODE
-        clickSound();
+        case sf::Keyboard::F1:
+            chosenMode = InteractionMode::HUTRIEINFO;
+            break;
+        case sf::Keyboard::F2:
+            chosenMode = InteractionMode::BUILDMODE;
+            break;
+        case sf::Keyboard::F3:
+            chosenMode = InteractionMode::INFOMODE;
+            break;
+        case sf::Keyboard::F4:
+            chosenMode = InteractionMode::HUTRIEMODE;
+            break;
+        default:
+            break;
     }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F3)
-    {
-        chosenMode = 3;                //INFO MODE
-        clickSound();
-    }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F4)
-    {
-        chosenMode = 4;                //HUTRIE MODE
-        clickSound();
-    }
+    clickSound();
 }
 
 void Game::keyboardSwitchBuildingType(sf::Event event, int chosenMode)
@@ -125,7 +128,7 @@ void Game::keyboardSwitchBuildingType(sf::Event event, int chosenMode)
     {
         return;
     }
-    if (chosenMode == 2) // InteractionMode
+    if (chosenMode == InteractionMode::BUILDMODE)
     {
         switch (event.key.code)
         {
@@ -240,12 +243,12 @@ void Game::mouseMapActions(unsigned int &unitIndex)
         switch (chosenMode) //BUTTONS F1,F2,F3 OR GUIBUTTONS
         {
 
-            case 2:   //postawienie budynku                                                                                                                                   //BUILDING zajmuje 4 pola na mapie!
+            case InteractionMode::BUILDMODE:   //postawienie budynku                                                                                                                                   //BUILDING zajmuje 4 pola na mapie!
             {
                 guiCreateBuilding(unitIndex);
                 break;
             }
-            case 4:     //poruszanie Hutrim
+            case InteractionMode::HUTRIEMODE:     //poruszanie Hutrim
             {
                 guiMoveHutrie(unitIndex);
                 break;
@@ -298,12 +301,12 @@ void Game::mouseLeftClickActions()
         }
         else if (gui.buildButton.checkBounds())
         {
-            chosenMode = 2;
+            chosenMode = InteractionMode::BUILDMODE;
             clickSound();
         }
         else if (gui.hutrieButton.checkBounds())
         {
-            chosenMode = 1;
+            chosenMode = InteractionMode::HUTRIEINFO;
             clickSound();
         }
         else if (gui.sawmill.checkBounds() && gui.sawmill.isActive())
@@ -355,7 +358,7 @@ void Game::guiDeactivateButtonsFlags()
     if (chosenMode != tempChosenMode)
     {
         gui.residence.setActive(buttonFlag);
-        buttonFlag = chosenMode == 2;
+        buttonFlag = chosenMode == InteractionMode::BUILDMODE;
         gui.sawmill.setActive(buttonFlag);
         gui.stonecutter.setActive(buttonFlag);
         gui.goldmine.setActive(buttonFlag);
@@ -410,7 +413,7 @@ void Game::guiMoveHutrie(unsigned int &unitIndex)
 
 void Game::guiHightlighUnit(unsigned int &unitIndex)
 {
-    chosenMode = 3;
+    chosenMode = InteractionMode::INFOMODE;
     world.units.at(unitIndex)->getMapObject()->highlightUnits();
     world.units.at(unitIndex)->getMapObject()->updateStatus();
     world.units.at(unitIndex)->getMapObject()->setHighlight(true);
@@ -720,8 +723,8 @@ void Game::displayAll()
     hutrieApplication.clear(sf::Color::Black);        //czyszczenie ekranu dla pierwszego wyswietlenia
     hutrieApplication.setView(fixed);
     gui.displayGUI();
-    if (chosenMode == 2) gui.displayGUIBuildings();
-    if (chosenMode == 1)
+    if (chosenMode == InteractionMode::BUILDMODE) gui.displayGUIBuildings();
+    if (chosenMode == InteractionMode::HUTRIEINFO)
         gui.displayGUIHutries(world.hutries.size(), world.carriers.size(), world.workers.size(),
                               world.soldiers.size());
     hutrieApplication.draw(background);
@@ -750,7 +753,7 @@ void Game::displayAll()
             }
 
             if ((*it)->getMapObject()->isHighlighted() &&
-                chosenMode == 3)            //jesli tryb info rysuj w prawym gui
+                chosenMode == InteractionMode::INFOMODE)            //jesli tryb info rysuj w prawym gui
             {
                 hutrieApplication.draw((*it)->getMapObject()->title.text);
                 hutrieApplication.draw((*it)->getMapObject()->description.text);
