@@ -20,6 +20,7 @@
 #include "interactionMode.h"
 #include "modelController.h"
 #include "keyboard.h"
+#include "gameLogicController.h"
 
 
 //=================================================================================
@@ -34,6 +35,17 @@ Game::Game(int applicationWidth, int applicationHeight) :
         world(&hutrieApplication, applicationWidth, applicationHeight),
         titleText(1024 + 20, 40, 45), titleThread(&GUIText::display, &titleText)
 {
+    //-----------------------------CREATING BASIC APPLICATION OBJECTS---------------------------------------------//
+    ModelController* modelController = new ModelController();
+    modelController->initializeGameModel();
+    GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController);
+    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
+
+    //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES------------------------------------------//
+    this->modelController = modelController;
+    this->gameLogicController = gameLogicController;
+    this->keyboard = keyboard;
+
     ///////////////////////SIZE OF MAP SCREEN////////////////////////////////////////////////////////////////////
 
     this->applicationWidth = applicationWidth;
@@ -285,7 +297,7 @@ void Game::guiCreateBuilding(unsigned int &unitIndex)
         world.prepareUnits(unitIndex, 2, 2, &usedUnits);
         if (world.isFieldEmpty(usedUnits))
         {
-            createBuilding(usedUnits);
+            gameLogicController->createBuilding(usedUnits);
             tingSound();
         }
         else
@@ -578,20 +590,18 @@ void Game::errorOutOfMap()
 
 void Game::play()
 {
-    ModelController* modelController = new ModelController();
-    modelController->initializeGameModel();
-    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
+
     music.play();
     music.setVolume(40);
     titleThread.launch();
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
     {
-        actions(keyboard);
+        actions();
         displayAll();
     }
 }
 
-void Game::actions(Keyboard* keyboard)
+void Game::actions()
 {
     keyboard->actionsLoop();
 

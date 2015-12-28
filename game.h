@@ -9,6 +9,7 @@
 #include "gui.h"
 #include "hutrieshall.h"
 #include "keyboard.h"
+#include "gameLogicController.h"
 
 class Game
 {
@@ -68,7 +69,7 @@ private:
 
     /////////////FUNCTIONS////////////////////////
 
-    void actions(Keyboard* keyboard);
+    void actions();
 
     void displayAll();
 
@@ -127,6 +128,10 @@ private:
     void mouseLeftClickActions();
 
     std::string getStats();
+
+    ModelController* modelController;
+    GameLogicController* gameLogicController;
+    Keyboard* keyboard;
 };
 
 
