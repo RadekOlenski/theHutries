@@ -1,25 +1,23 @@
 #include "gameModel.h"
 
-int GameModel::chosenMode = 0;
-int GameModel::buildingType = 0;
 
-int GameModel::getBuildingType()
+int GameModel::getChosenBuildingType()
 {
-    return buildingType;
+    return chosenBuildingType;
 }
 
-void GameModel::setBuildingType(int buildingType)
+void GameModel::setChosenBuildingType(int chosenBuildingType)
 {
-    GameModel::buildingType = buildingType;
+    GameModel::chosenBuildingType = chosenBuildingType;
 }
 
-void GameModel::setChosenMode(int chosenMode)
+void GameModel::setChosenInteractionMode(int chosenInteractionMode)
 {
-    GameModel::chosenMode = chosenMode;
+    GameModel::chosenInteractionMode = chosenInteractionMode;
 }
 
-int GameModel::getChosenMode()
+int GameModel::getChosenInteractionMode()
 {
-    return chosenMode;
+    return chosenInteractionMode;
 }
 

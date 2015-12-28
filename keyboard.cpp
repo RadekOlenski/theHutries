@@ -7,9 +7,10 @@
 #include "modelController.h"
 #include "buildingType.h"
 
-Keyboard::Keyboard(sf::RenderWindow* hutrieApplication)
+Keyboard::Keyboard(sf::RenderWindow*hutrieApplication, ModelController*modelController)
 {
     this->hutrieApplication = hutrieApplication;
+    this->modelController = modelController;
 }
 
 void Keyboard::actionsLoop()
@@ -17,17 +18,19 @@ void Keyboard::actionsLoop()
     while (hutrieApplication->pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
+        {
             hutrieApplication->close();
+        }
 
-        switchMode(event);
+        chooseInteractionMode(event);
 
-        switchBuildingType(event);
+        chooseBuildingType(event);
 
         closeGame(event);
     }
 }
 
-void Keyboard::switchMode(sf::Event event)
+void Keyboard::chooseInteractionMode(sf::Event event)
 {
     if (event.type != sf::Event::KeyPressed)
     {
@@ -36,16 +39,16 @@ void Keyboard::switchMode(sf::Event event)
     switch (event.key.code)
     {
         case sf::Keyboard::F1:
-            ModelController::setChosenMode(InteractionMode::HUTRIEINFO);
+            modelController->setChosenInteractionMode(InteractionMode::HUTRIEINFO);
             break;
         case sf::Keyboard::F2:
-            ModelController::setChosenMode(InteractionMode::BUILDMODE);
+            modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
             break;
         case sf::Keyboard::F3:
-            ModelController::setChosenMode(InteractionMode::INFOMODE);
+            modelController->setChosenInteractionMode(InteractionMode::INFOMODE);
             break;
         case sf::Keyboard::F4:
-            ModelController::setChosenMode(InteractionMode::HUTRIEMODE);
+            modelController->setChosenInteractionMode(InteractionMode::HUTRIEMODE);
             break;
         default:
             break;
@@ -53,33 +56,33 @@ void Keyboard::switchMode(sf::Event event)
     //clickSound();
 }
 
-void Keyboard::switchBuildingType(sf::Event event)
+void Keyboard::chooseBuildingType(sf::Event event)
 {
     if (event.type != sf::Event::KeyPressed)
     {
         return;
     }
-    if (ModelController::getChosenMode() == InteractionMode::BUILDMODE)
+    if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE)
     {
         switch (event.key.code)
         {
             case sf::Keyboard::Num1:
-                ModelController::setBuildingType(BuildingType::SAWMILL);
+                modelController->setChosenBuildingType(BuildingType::SAWMILL);
                 break;
             case sf::Keyboard::Num2:
-                ModelController::setBuildingType(BuildingType::STONECUTTERHUT);
+                modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
                 break;
             case sf::Keyboard::Num3:
-                ModelController::setBuildingType(BuildingType::BARRACKS);
+                modelController->setChosenBuildingType(BuildingType::BARRACKS);
                 break;
             case sf::Keyboard::Num4:
-                ModelController::setBuildingType(BuildingType::RESIDENCE);
+                modelController->setChosenBuildingType(BuildingType::RESIDENCE);
                 break;
             case sf::Keyboard::Num5:
-                ModelController::setBuildingType(BuildingType::GOLDMINE);
+                modelController->setChosenBuildingType(BuildingType::GOLDMINE);
                 break;
             case sf::Keyboard::Num6:
-                ModelController::setBuildingType(BuildingType::FARM);
+                modelController->setChosenBuildingType(BuildingType::FARM);
                 break;
             case sf::Keyboard::Space:
             {

@@ -10,14 +10,19 @@
 class ModelController
 {
 public:
-    static void setChosenMode(int chosenMode);
+    void setChosenInteractionMode(int chosenInteractionMode);
 
-    static int getChosenMode();
+    int getChosenInteractionMode();
 
-    static int getBuildingType();
+    int getChosenBuildingType();
 
-    static void setBuildingType(int buildingType);
+    void setChosenBuildingType(int chosenBuildingType);
 
+    void initializeGameModel();
+
+private:
+
+    GameModel* gameModel;
 };
 
 

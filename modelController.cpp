@@ -2,25 +2,31 @@
 #include "gameModel.h"
 #include "modelController.h"
 
-void ModelController::setChosenMode(int chosenMode)
+void ModelController::initializeGameModel()
 {
-    GameModel::setChosenMode(chosenMode);
+    GameModel* gameModel = new GameModel();
+    this->gameModel = gameModel;
 }
 
-int ModelController::getChosenMode()
+void ModelController::setChosenInteractionMode(int chosenInteractionMode)
 {
-    std::cout<<"Chosen Mode:"<<GameModel::getChosenMode()<<std::endl; //DEBUG
-    return GameModel::getChosenMode();
+    gameModel->setChosenInteractionMode(chosenInteractionMode);
 }
 
-int ModelController::getBuildingType()
+int ModelController::getChosenInteractionMode()
 {
-    std::cout<<"Building Type:"<<GameModel::getBuildingType()<<std::endl; //DEBUG
-    return GameModel::getBuildingType();
+    std::cout << "Chosen Mode:" << gameModel->getChosenInteractionMode() << std::endl; //DEBUG
+    return gameModel->getChosenInteractionMode();
 }
 
-void ModelController::setBuildingType(int buildingType)
+int ModelController::getChosenBuildingType()
 {
-    GameModel::setBuildingType(buildingType);
-    getBuildingType();                                                  //DEBUG
+    std::cout << "Building Type:" << gameModel->getChosenBuildingType() << std::endl; //DEBUG
+    return gameModel->getChosenBuildingType();
+}
+
+void ModelController::setChosenBuildingType(int chosenBuildingType)
+{
+    gameModel->setChosenBuildingType(chosenBuildingType);
+    getChosenBuildingType();                                                  //DEBUG
 }

@@ -7,25 +7,27 @@
 
 
 #include <SFML/Graphics.hpp>
+#include "modelController.h"
 
 
 class Keyboard
 {
 public:
 
-    Keyboard(sf::RenderWindow* hutrieApplication);
+    Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController);
 
     void actionsLoop();
 
 private:
 
-    void switchMode(sf::Event event);
+    void chooseInteractionMode(sf::Event event);
 
-    void switchBuildingType(sf::Event event);
+    void chooseBuildingType(sf::Event event);
 
     void closeGame(sf::Event event);
 
-    sf::RenderWindow*hutrieApplication;
+    sf::RenderWindow* hutrieApplication;
+    ModelController* modelController;
     sf::Event event;
 };
 

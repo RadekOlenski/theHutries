@@ -1,6 +1,3 @@
-//
-// Created by radek on 27.12.2015.
-//
 
 #ifndef THEHUTRIES_GAMEMODEL_H
 #define THEHUTRIES_GAMEMODEL_H
@@ -11,21 +8,22 @@ class GameModel
 {
 public:
 
-    static int getBuildingType();
+    int getChosenBuildingType();
 
-    static void setBuildingType(int buildingType);
+    void setChosenBuildingType(int chosenBuildingType);
 
-    static void setChosenMode(int chosenMode);
+    void setChosenInteractionMode(int chosenInteractionMode);
 
-    static int getChosenMode();
+    int getChosenInteractionMode();
 
 private:
 
-    static int chosenMode;
+    int chosenInteractionMode;
 
     int tempChosenMode;
 
-    static int buildingType;
+    int chosenBuildingType;
+
 };
 
 

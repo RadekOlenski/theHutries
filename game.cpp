@@ -125,7 +125,7 @@ void Game::mouseSelectUnit(unsigned int &unitIndex)
 void Game::mouseMapActions(unsigned int &unitIndex)
 {
 /*
-    if (chosenMode == 1 && !(world.units.at( unitIndex )->isEmpty()))    //poruszanie Hutrim do budynku
+    if (chosenInteractionMode == 1 && !(world.units.at( unitIndex )->isEmpty()))    //poruszanie Hutrim do budynku
             {
                 std::vector <Unit*> usedUnits;
                 usedUnits.push_back(world.units.at(unitIndex));
@@ -578,10 +578,12 @@ void Game::errorOutOfMap()
 
 void Game::play()
 {
+    ModelController* modelController = new ModelController();
+    modelController->initializeGameModel();
+    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
     music.play();
     music.setVolume(40);
     titleThread.launch();
-    Keyboard* keyboard = new Keyboard(&hutrieApplication);
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
     {
         actions(keyboard);

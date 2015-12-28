@@ -12,8 +12,7 @@ class Farm : public GoodsBuilding
 {
 
     public:
-        Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, const std::string &pathName,
-                 int buildingType);
+        Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, const std::string &pathName);
     void createProduct();
     void updateStatus();
 };
