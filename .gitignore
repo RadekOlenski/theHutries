@@ -2,4 +2,9 @@
 .idea
 /bin/*
 /cmake_modules/*
+/obj/*
 CMakeLists.txt
+*.cbp
+*.depend
+*.layout
+

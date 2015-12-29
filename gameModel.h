@@ -23,7 +23,6 @@ private:
     int tempChosenMode;
 
     int chosenBuildingType;
-
 };
 
 

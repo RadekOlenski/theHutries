@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <SFML/Graphics.hpp>
 #include "world.h"
 #include "modelController.h"
 

@@ -1,32 +1,34 @@
 #include <sstream>
 #include <iostream>
 
-#include "game.h"
-#include "unit.h"
-#include "mapobject.h"
 #include "hutrie.h"
 #include "carrier.h"
 #include "worker.h"
 #include "soldier.h"
-#include "building.h"
 #include "sawmill.h"
 #include "stonecutter.h"
 #include "residence.h"
 #include "barracks.h"
 #include "goldmine.h"
-#include "hutrieshall.h"
 #include "farm.h"
+#include "hutrieshall.h"
+#include "building.h"
 #include "buildingType.h"
 #include "interactionMode.h"
 #include "modelController.h"
 #include "keyboard.h"
 #include "gameLogicController.h"
+#include "mapobject.h"
+#include "unit.h"
+#include "game.h"
+#include "mouseLock.h"
 
+//using namespace sf;
 
 //=================================================================================
+
 //                              CONSTRUCTOR
 //=================================================================================
-
 Game::Game(int applicationWidth, int applicationHeight) :
         gameTime(10 * 60), chosenMode(0), tempChosenMode(0),
         hutrieApplication(sf::VideoMode(applicationWidth + 256, applicationHeight + 30, 32), "The Hutries"),
@@ -40,12 +42,12 @@ Game::Game(int applicationWidth, int applicationHeight) :
     modelController->initializeGameModel();
     GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController);
     Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
-
+    MouseLock* mouseLock = new MouseLock();
     //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES------------------------------------------//
     this->modelController = modelController;
     this->gameLogicController = gameLogicController;
     this->keyboard = keyboard;
-
+    this->mouseLock = mouseLock;
     ///////////////////////SIZE OF MAP SCREEN////////////////////////////////////////////////////////////////////
 
     this->applicationWidth = applicationWidth;
@@ -84,9 +86,9 @@ Game::Game(int applicationWidth, int applicationHeight) :
 }
 
 //=================================================================================
+
 //                              SOUND FUNCTIONS
 //=================================================================================
-
 void Game::errorSound()
 {
     buffer.loadFromFile("audio/error.wav");
@@ -175,6 +177,8 @@ void Game::mouseMapActions(unsigned int &unitIndex)
 
 void Game::mouseRightClickActions()
 {
+
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
     {
         //sf::Vector2f distance = gui.guiFrame.getPosition() - static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication));
@@ -186,7 +190,12 @@ void Game::mouseRightClickActions()
 
 void Game::mouseLeftClickActions()
 {
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && clickingClock.getElapsedTime().asSeconds() > 0.5)
+    if (mouseLock->getIsLocked())
+    {
+        return;
+    }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         if (sf::Mouse::getPosition(hutrieApplication).x <
             applicationWidth)         //jesli klikniecie w obrebie mapy
@@ -252,9 +261,7 @@ void Game::mouseLeftClickActions()
 
 ////////////////////////////RESTART CLOCK WHICH FORBIDS MULTICLICKING///////////////////////////////////////////////////////////////////////////////////
 
-        clickingClock.restart();
     }
-    updateClock();
 
 }
 
@@ -510,6 +517,7 @@ void Game::callWorker(std::vector<Worker*>::iterator itc, std::vector<Building*>
     }
 }
 
+/*
 void Game::createBuilding(std::vector<Unit*> usedUnits)
 {
     switch (buildingType)                                                                      //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
@@ -547,6 +555,7 @@ void Game::createBuilding(std::vector<Unit*> usedUnits)
     }
     world.buildings.back()->placeOnMap();
 }
+*/
 
 //=================================================================================
 //                              ERRORS
@@ -603,6 +612,8 @@ void Game::play()
 
 void Game::actions()
 {
+    mouseLock->update();
+
     keyboard->actionsLoop();
 
     mouseSetCursorPosition(cursor);
@@ -617,9 +628,11 @@ void Game::actions()
 
     carrierReturn();
 
-    mouseRightClickActions();
+    //mouseRightClickActions();
 
     mouseLeftClickActions();
+
+    updateClock();
 }
 
 void Game::displayAll()

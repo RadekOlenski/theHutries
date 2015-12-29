@@ -10,6 +10,7 @@
 #include "hutrieshall.h"
 #include "keyboard.h"
 #include "gameLogicController.h"
+#include "mouseLock.h"
 
 class Game
 {
@@ -103,8 +104,6 @@ private:
 
     void createHutrie(std::string objectType, std::string sprite);
 
-    void createBuilding(std::vector<Unit*> usedUnits);
-
     void tingSound();
 
     void errorUnitOccupied();
@@ -132,6 +131,7 @@ private:
     ModelController* modelController;
     GameLogicController* gameLogicController;
     Keyboard* keyboard;
+    MouseLock* mouseLock;
 };
 
 

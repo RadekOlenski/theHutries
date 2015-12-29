@@ -1,11 +1,7 @@
-//
-// Created by radek on 27.12.2015.
-//
-
-#include "keyboard.h"
-#include "interactionMode.h"
 #include "modelController.h"
+#include "interactionMode.h"
 #include "buildingType.h"
+#include "keyboard.h"
 
 Keyboard::Keyboard(sf::RenderWindow*hutrieApplication, ModelController*modelController)
 {
