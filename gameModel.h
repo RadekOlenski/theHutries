@@ -16,6 +16,22 @@ public:
 
     int getChosenInteractionMode();
 
+    int getApplicationWidth();
+
+    void setApplicationWidth(int applicationWidth);
+
+    int getApplicationHeight();
+
+    void setApplicationHeight(int applicationHeight);
+
+    unsigned int getSelectedUnitIndex();
+
+    void setSelectedUnitIndex(unsigned int selectedUnitIndex);
+
+    int getTempChosenMode();
+
+    void setTempChosenMode(int tempChosenMode);
+
 private:
 
     int chosenInteractionMode;
@@ -23,6 +39,12 @@ private:
     int tempChosenMode;
 
     int chosenBuildingType;
+
+    int applicationWidth;
+
+    int applicationHeight;
+
+    unsigned int selectedUnitIndex;
 };
 
 

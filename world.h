@@ -2,6 +2,7 @@
 #define WORLD_H
 
 #include <SFML/Graphics.hpp>
+
 #include <vector>
 
 #include "unit.h"
@@ -30,6 +31,8 @@ class World
         int getVerticalUnitsCounter()   {return verticalUnitsCounter; }
         void prepareUnits(int unitIndex, int height, int width, std::vector <Unit*> *usedUnits );
         bool isFieldEmpty(std::vector <Unit*> &usedUnits);
+		unsigned int findSelectedUnitIndex();
+		void increaseAvailableSlots(int addedSlotsNumber);
     private:
         int horizontalUnitsCounter;
         int verticalUnitsCounter;

@@ -10,6 +10,8 @@
 class ModelController
 {
 public:
+    ModelController();
+
     void setChosenInteractionMode(int chosenInteractionMode);
 
     int getChosenInteractionMode();
@@ -18,11 +20,25 @@ public:
 
     void setChosenBuildingType(int chosenBuildingType);
 
-    void initializeGameModel();
+    int getApplicationWidth();
+
+    void setApplicationWidth(int applicationWidth);
+
+    int getApplicationHeight();
+
+    void setApplicationHeight(int applicationHeight);
+
+    unsigned int getSelectedUnitIndex();
+
+    void setSelectedUnitIndex(unsigned int selectedUnitIndex);
+
+    int getTempChosenMode();
+
+    void setTempChosenMode(int tempChosenMode);
 
 private:
 
-    GameModel* gameModel;
+    GameModel*gameModel;
 };
 
 

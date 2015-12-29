@@ -6,13 +6,33 @@
 #define THEHUTRIES_MOUSE_H
 
 
+#include "mouseLock.h"
+#include "modelController.h"
+#include "gui.h"
+#include "gameLogicController.h"
+
 class Mouse
 {
 public:
+
+    Mouse(sf::RenderWindow* hutrieApplication, ModelController* modelController, GUI* gui,
+          GameLogicController* gameLogicController);
+
     void leftClickActions();
 
-public:
-//    sf::Clock clickingClock;
+    void updateMouseLock();
+
+private:
+
+    MouseLock* mouseLock;
+    sf::RenderWindow* hutrieApplication;
+    ModelController* modelController;
+    GUI* gui;
+    GameLogicController* gameLogicController;
+
+    void guiButtonsActions();
+
+    void handleClickOnMap();
 };
 
 

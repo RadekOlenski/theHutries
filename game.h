@@ -11,6 +11,7 @@
 #include "keyboard.h"
 #include "gameLogicController.h"
 #include "mouseLock.h"
+#include "mouse.h"
 
 class Game
 {
@@ -36,13 +37,8 @@ protected:
     ////////////////LOGIC//////////////////////////
 
     World world;
-    int chosenMode;
-    int tempChosenMode;
-    int buildingType;
-    bool buttonFlag;
     int gameTime;
     sf::Clock deadline;
-    sf::Clock clickingClock;
     sf::Thread titleThread;
     HutriesHall*pHall;
 
@@ -77,8 +73,6 @@ private:
     //////////////////////////////////////////////
 
     void mouseSetCursorPosition(sf::Sprite &cursor);
-
-    void guiDeactivateButtonsFlags();
 
     void createCarrier();
 
@@ -131,7 +125,8 @@ private:
     ModelController* modelController;
     GameLogicController* gameLogicController;
     Keyboard* keyboard;
-    MouseLock* mouseLock;
+    Mouse* mouse;
+
 };
 
 

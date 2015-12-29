@@ -2,6 +2,7 @@
 #define UNIT_H
 
 #include <SFML/Graphics.hpp>
+
 #include <vector>
 
 #include "mapobject.h"

@@ -2,25 +2,41 @@
 #define THEHUTRIES_GAMELOGICCONTROLLER_H
 
 #include <vector>
+
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "world.h"
 #include "modelController.h"
+#include "gui.h"
 
 class GameLogicController
 {
 
 public:
 
-    GameLogicController(World*world, sf::RenderWindow* hutrieApplication, ModelController* modelController);
+    GameLogicController(World* world, sf::RenderWindow* hutrieApplication, ModelController* modelController, GUI* gui);
 
     void createBuilding(std::vector<Unit*> usedUnits);
+
+    void findSelectedUnit();
+
+    bool isUnitEmpty();
+
+    void handleBuildingCreation();
+
+    void deactivateChosenModeFlag();
+
+    void setBuildingButtonsFlags(bool buttonFlag);
+
+    void highlightUnits();
+
+    void endHighlightUnit();
 
 private:
     World* world;
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
-
+    GUI* gui;
 };
 
 

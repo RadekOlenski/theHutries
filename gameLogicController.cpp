@@ -1,4 +1,6 @@
+
 #include <iostream>
+
 #include "buildingType.h"
 #include "sawmill.h"
 #include "stonecutter.h"
@@ -7,16 +9,45 @@
 #include "goldmine.h"
 #include "farm.h"
 #include "gameLogicController.h"
-
+#include "interactionMode.h"
+#include "gui.h"
 
 GameLogicController::GameLogicController(World*world, sf::RenderWindow*hutrieApplication,
-                                         ModelController*modelController)
+                                         ModelController*modelController, GUI* gui)
 {
     this->world = world;
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
+    this->gui = gui;
 }
 
+
+void GameLogicController::handleBuildingCreation()
+{
+    int selectedUnitIndex = modelController->getSelectedUnitIndex();
+    int horizontalUnitsCounter = world->getHorizontalUnitsCounter();
+    int verticalUnitsCounter = world->getVerticalUnitsCounter();
+
+    if ((selectedUnitIndex % horizontalUnitsCounter) != horizontalUnitsCounter - 1
+        && selectedUnitIndex < horizontalUnitsCounter * (verticalUnitsCounter - 1))
+    {
+        std::vector<Unit*> usedUnits;
+        world->prepareUnits(selectedUnitIndex, 2, 2, &usedUnits);
+        if (world->isFieldEmpty(usedUnits))
+        {
+            this->createBuilding(usedUnits);
+            //tingSound();
+        }
+        else
+        {
+            //errorUnitOccupied();
+        }
+    }
+    else
+    {
+        //errorOutOfMap();
+    }
+}
 
 void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
 {
@@ -33,8 +64,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             break;
         case BuildingType::RESIDENCE:
         {
-            world->availableSlots += Residence::getAddedSlotsNumber();
-            std::cout << "dostepne miejsca:" << world->availableSlots << std::endl;
+            world->increaseAvailableSlots(Residence::getAddedSlotsNumber());
             world->buildings.push_back(new Residence(hutrieApplication, usedUnits, "sprites/buildings/residence.png",
                                                                                           &(world->availableSlots)));
             break;
@@ -49,4 +79,57 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             break;
     }
     world->buildings.back()->placeOnMap();
+}
+
+void GameLogicController::findSelectedUnit()
+{
+    modelController->setSelectedUnitIndex(world->findSelectedUnitIndex());
+}
+
+bool GameLogicController::isUnitEmpty()
+{
+    return world->units.at(modelController->getSelectedUnitIndex())->isEmpty();
+}
+
+void GameLogicController::deactivateChosenModeFlag()
+{
+    int chosenMode = modelController->getChosenInteractionMode();
+    int tempChosenMode = modelController->getTempChosenMode();
+    if (chosenMode != tempChosenMode)
+    {
+        bool buttonFlag = (chosenMode == InteractionMode::BUILDMODE);
+        this->setBuildingButtonsFlags(buttonFlag);
+        modelController->setTempChosenMode(chosenMode);
+    }
+}
+
+void GameLogicController::setBuildingButtonsFlags(bool buttonFlag)
+{
+    gui->residence.setActive(buttonFlag);
+    gui->sawmill.setActive(buttonFlag);
+    gui->stonecutter.setActive(buttonFlag);
+    gui->goldmine.setActive(buttonFlag);
+    gui->barracks.setActive(buttonFlag);
+    gui->farm.setActive(buttonFlag);
+}
+
+void GameLogicController::highlightUnits()
+{
+    int selectedUnitIndex = modelController->getSelectedUnitIndex();
+    modelController->setChosenInteractionMode(InteractionMode::INFOMODE);
+    world->units.at(selectedUnitIndex)->getMapObject()->highlightUnits();
+    world->units.at(selectedUnitIndex)->getMapObject()->updateStatus();
+    world->units.at(selectedUnitIndex)->getMapObject()->setHighlight(true);
+    world->units.at(selectedUnitIndex)->getMapObject()->soundPlay();
+    world->lastClickedUnit = world->units.at(selectedUnitIndex);
+}
+
+void GameLogicController::endHighlightUnit()
+{
+    if (world->lastClickedUnit != NULL)
+    {
+        world->lastClickedUnit->getMapObject()->highlightUnits(false);
+        world->lastClickedUnit->getMapObject()->setHighlight(false);
+        world->lastClickedUnit->getMapObject()->soundPlay(false);
+    }
 }

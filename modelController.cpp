@@ -2,7 +2,7 @@
 #include "gameModel.h"
 #include "modelController.h"
 
-void ModelController::initializeGameModel()
+ModelController::ModelController()
 {
     GameModel* gameModel = new GameModel();
     this->gameModel = gameModel;
@@ -15,18 +15,56 @@ void ModelController::setChosenInteractionMode(int chosenInteractionMode)
 
 int ModelController::getChosenInteractionMode()
 {
-    std::cout << "Chosen Mode:" << gameModel->getChosenInteractionMode() << std::endl; //DEBUG
     return gameModel->getChosenInteractionMode();
 }
 
 int ModelController::getChosenBuildingType()
 {
-    std::cout << "Building Type:" << gameModel->getChosenBuildingType() << std::endl; //DEBUG
     return gameModel->getChosenBuildingType();
 }
 
 void ModelController::setChosenBuildingType(int chosenBuildingType)
 {
     gameModel->setChosenBuildingType(chosenBuildingType);
-    getChosenBuildingType();                                                  //DEBUG
+    getChosenBuildingType();
+}
+
+int ModelController::getApplicationWidth()
+{
+    return gameModel->getApplicationWidth();
+}
+
+void ModelController::setApplicationWidth(int applicationWidth)
+{
+    gameModel->setApplicationWidth(applicationWidth);
+}
+
+int ModelController::getApplicationHeight()
+{
+    return gameModel->getApplicationHeight();
+}
+
+void ModelController::setApplicationHeight(int applicationHeight)
+{
+    gameModel->setApplicationHeight(applicationHeight);
+}
+
+unsigned int ModelController::getSelectedUnitIndex()
+{
+    gameModel->getSelectedUnitIndex();
+}
+
+void ModelController::setSelectedUnitIndex(unsigned int selectedUnitIndex)
+{
+    gameModel->setSelectedUnitIndex(selectedUnitIndex);
+}
+
+int ModelController::getTempChosenMode()
+{
+    return gameModel->getTempChosenMode();
+}
+
+void ModelController::setTempChosenMode(int tempChosenMode)
+{
+    gameModel->setTempChosenMode(tempChosenMode);
 }

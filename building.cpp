@@ -11,10 +11,8 @@ Building::Building(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsF
 
 void Building::placeOnMap()
 {
-
     sprite.setPosition(objectUnits.at(0)->field.getPosition());
     occupyUnits();
-
 }
 
 int Building::checkHutries()

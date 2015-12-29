@@ -3,7 +3,7 @@
 #include "buildingType.h"
 #include "keyboard.h"
 
-Keyboard::Keyboard(sf::RenderWindow*hutrieApplication, ModelController*modelController)
+Keyboard::Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController)
 {
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
