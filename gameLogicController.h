@@ -4,19 +4,21 @@
 #include <vector>
 
 
+
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "world.h"
 #include "modelController.h"
 #include "gui.h"
 #include "hutrieshall.h"
+#include "guiController.h"
 
 class GameLogicController
 {
 
 public:
 
-    GameLogicController(World* world, sf::RenderWindow* hutrieApplication, ModelController* modelController, GUI* gui);
+    GameLogicController(World* world, sf::RenderWindow* hutrieApplication, ModelController* modelController, GUIController* guiController);
 
     void createBuilding(std::vector<Unit*> usedUnits);
 
@@ -49,7 +51,7 @@ private:
     World* world;
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
-    GUI* gui;
+    GUIController* guiController;
     HutriesHall* hutriesHall;
 };
 

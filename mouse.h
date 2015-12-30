@@ -16,8 +16,8 @@ class Mouse
 {
 public:
 
-    Mouse(sf::RenderWindow* hutrieApplication, ModelController* modelController, GUI* gui,
-          GameLogicController* gameLogicController, sf::Sprite* cursor);
+    Mouse(sf::RenderWindow* hutrieApplication, ModelController* modelController,
+          GameLogicController* gameLogicController);
 
     void leftClickActions();
 
@@ -25,15 +25,12 @@ public:
 
     void updateMouseLock();
 
-    void setCursorPosition();
 private:
 
     MouseLock* mouseLock;
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
-    GUI* gui;
     GameLogicController* gameLogicController;
-    sf::Sprite* cursor;
 
     void handleClickOnMap();
 };

@@ -1,25 +1,17 @@
 #include <SFML/Window/Mouse.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <iostream>
 #include "mouse.h"
-#include "mouseLock.h"
-#include "modelController.h"
 #include "interactionMode.h"
-#include "buildingType.h"
-#include "gameLogicController.h"
-#include "sound.h"
 
 
-Mouse::Mouse(sf::RenderWindow*hutrieApplication, ModelController*modelController, GUI*gui,
-             GameLogicController*gameLogicController, sf::Sprite*cursor)
+Mouse::Mouse(sf::RenderWindow*hutrieApplication, ModelController*modelController,
+             GameLogicController*gameLogicController)
 {
     MouseLock*mouseLock = new MouseLock();
     this->mouseLock = mouseLock;
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
-    this->gui = gui;
     this->gameLogicController = gameLogicController;
-    this->cursor = cursor;
 }
 
 void Mouse::leftClickActions()
@@ -28,7 +20,6 @@ void Mouse::leftClickActions()
     {
         return;
     }
-
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         int applicationWidth = modelController->getApplicationWidth();
@@ -42,8 +33,6 @@ void Mouse::leftClickActions()
             return;
         }
         gameLogicController->handleGUIButtonsAction();
-
-
     }
 }
 
@@ -53,7 +42,6 @@ void Mouse::rightClickActions()
     {
         return;
     }
-
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
     {
         //sf::Vector2f distance = gui.guiFrame.getPosition() - static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication));
@@ -80,7 +68,6 @@ void Mouse::handleClickOnMap()
         world.units.at(unitIndex)->addHutrie(world.hutries.back());
     }
 */
-
     if (gameLogicController->isUnitEmpty())                                                 //jesli unit jest wolny, bez zadnego mapobjectu
     {
         switch (modelController->getChosenInteractionMode()) //BUTTONS F1,F2,F3 OR GUIBUTTONS
@@ -106,7 +93,3 @@ void Mouse::handleClickOnMap()
     }
 }
 
-void Mouse::setCursorPosition()
-{
-    cursor->setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*hutrieApplication)));
-}

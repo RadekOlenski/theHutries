@@ -19,13 +19,13 @@ public:
 
     void actionsLoop();
 
+    void closeGame(sf::Event event);
+
 private:
 
     void chooseInteractionMode(sf::Event event);
 
     void chooseBuildingType(sf::Event event);
-
-    void closeGame(sf::Event event);
 
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;

@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <SFML/Audio.hpp>
+
 #include "world.h"
 
 #include <SFML/Graphics.hpp>
@@ -29,39 +30,28 @@ protected:
     /////////////////WINDOW////////////////////////
 
     sf::RenderWindow hutrieApplication;
-    sf::View fixed;
 
     ////////////////LOGIC//////////////////////////
 
     World world;
     int gameTime;
     sf::Clock deadline;
-    sf::Thread titleThread;
 
     void updateClock();
 
     //////////GRAPHICS AND AUDIO//////////////////
     sf::Music music;
     GUI gui;
-    GUIText titleText;
-    sf::RectangleShape background;
-    sf::Texture backgroundTexture;
-    sf::Sprite cursor;
-    sf::Texture cursorTexture;
 
 private:
 
     /////////////FUNCTIONS////////////////////////
 
-    void actions();
+    void handleActions();
 
-    void displayAll();
+    void drawApplication();
 
     //////////////////////////////////////////////
-
-    void createCarrier();
-
-    void createWorker();
 
     void carrierReturn();
 
@@ -81,15 +71,12 @@ private:
 
     void errorNoWorkers();
 
-    void createHutrie(std::string objectType, std::string sprite);
-
     void errorUnitOccupied();
 
     void errorOutOfMap();
 
-    std::string getStats();
-
     ModelController* modelController;
+    GUIController* guiController;
     GameLogicController* gameLogicController;
     Keyboard* keyboard;
     Mouse* mouse;

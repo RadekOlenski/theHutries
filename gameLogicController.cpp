@@ -10,17 +10,15 @@
 #include "farm.h"
 #include "gameLogicController.h"
 #include "interactionMode.h"
-#include "gui.h"
 #include "sound.h"
-#include "hutrieshall.h"
 
 GameLogicController::GameLogicController(World*world, sf::RenderWindow*hutrieApplication,
-                                         ModelController*modelController, GUI*gui)
+                                         ModelController*modelController, GUIController* guiController)
 {
     this->world = world;
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
-    this->gui = gui;
+    this->guiController = guiController;
     hutriesHall = dynamic_cast <HutriesHall*>(world->buildings.at(0));
 }
 
@@ -110,17 +108,12 @@ void GameLogicController::deactivateChosenModeFlag()
 
 void GameLogicController::setBuildingButtonsFlags(bool buttonFlag)
 {
-    gui->residence.setActive(buttonFlag);
-    gui->sawmill.setActive(buttonFlag);
-    gui->stonecutter.setActive(buttonFlag);
-    gui->goldmine.setActive(buttonFlag);
-    gui->barracks.setActive(buttonFlag);
-    gui->farm.setActive(buttonFlag);
+    guiController->setBuildingButtonsFlags(buttonFlag);
 }
 
 void GameLogicController::highlightUnits()
 {
-    int selectedUnitIndex = modelController->getSelectedUnitIndex();
+    unsigned int selectedUnitIndex = modelController->getSelectedUnitIndex();
     modelController->setChosenInteractionMode(InteractionMode::INFOMODE);
     world->units.at(selectedUnitIndex)->getMapObject()->highlightUnits();
     world->units.at(selectedUnitIndex)->getMapObject()->updateStatus();
@@ -141,7 +134,7 @@ void GameLogicController::endHighlightUnit()
 
 void GameLogicController::handleHutrieMoving()
 {
-    int unitIndex = modelController->getSelectedUnitIndex();
+    unsigned int unitIndex = modelController->getSelectedUnitIndex();
     std::vector<Unit*> usedUnits;
     usedUnits.push_back(world->units.at(unitIndex));
     world->soldiers.push_back(new Soldier(hutrieApplication, usedUnits, "sprites/warrior/right.png"));
@@ -215,57 +208,5 @@ void GameLogicController::createHutrie(std::string objectType, std::string sprit
 
 void GameLogicController::handleGUIButtonsAction()
 {
-    if (gui->buildButton.checkBounds())
-    {
-        modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
-        Sound::click();
-        return;
-    }
-    if (gui->hutrieButton.checkBounds())
-    {
-        modelController->setChosenInteractionMode(InteractionMode::HUTRIEINFO);
-        Sound::click();
-        return;
-    }
-    if (gui->sawmill.checkBounds() && gui->sawmill.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::SAWMILL);
-        Sound::click();
-        return;
-    }
-    if (gui->stonecutter.checkBounds() && gui->stonecutter.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
-        Sound::click();
-        return;
-    }
-    if (gui->barracks.checkBounds() && gui->barracks.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::BARRACKS);
-        Sound::click();
-        return;
-    }
-    if (gui->residence.checkBounds() && gui->residence.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::RESIDENCE);
-        Sound::click();
-        return;
-    }
-    if (gui->goldmine.checkBounds() && gui->goldmine.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::GOLDMINE);
-        Sound::click();
-        return;
-    }
-    if (gui->farm.checkBounds() && gui->farm.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::FARM);
-        Sound::click();
-        return;
-    }
-    if (world->lastClickedUnit)
-    {
-        world->lastClickedUnit->getMapObject()->buttonAction();
-        return;
-    }
+    guiController->handleGUIButtonsActions();
 }

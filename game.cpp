@@ -5,7 +5,6 @@
 #include "carrier.h"
 #include "worker.h"
 #include "sawmill.h"
-#include "interactionMode.h"
 #include "modelController.h"
 #include "keyboard.h"
 #include "gameLogicController.h"
@@ -15,20 +14,21 @@
 //                              CONSTRUCTOR
 //=================================================================================
 Game::Game(int applicationWidth, int applicationHeight) :
-        gameTime(10 * 60),
+        gameTime(0.5 * 60),
         hutrieApplication(sf::VideoMode(applicationWidth + 256, applicationHeight + 30, 32), "The Hutries"),
         // sf::Style::Fullscreen ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
-        world(&hutrieApplication, applicationWidth, applicationHeight),
-        titleText(1024 + 20, 40, 45), titleThread(&GUIText::display, &titleText)
+        world(&hutrieApplication, applicationWidth, applicationHeight)
 {
     //-----------------------------CREATING BASIC APPLICATION OBJECTS---------------------------------------------//
     ModelController* modelController = new ModelController();
-    GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController, &gui);
+    GUIController* guiController = new GUIController(&hutrieApplication, modelController, &world, &gui);
+    GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController, guiController);
     Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
-    Mouse* mouse = new Mouse(&hutrieApplication, modelController, &gui, gameLogicController, &cursor);
+    Mouse* mouse = new Mouse(&hutrieApplication, modelController, gameLogicController);
     //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES-----------------------------------------//
     this->modelController = modelController;
+    this->guiController = guiController;
     this->gameLogicController = gameLogicController;
     this->keyboard = keyboard;
     this->mouse = mouse;
@@ -42,20 +42,8 @@ Game::Game(int applicationWidth, int applicationHeight) :
     //sf::RenderWindow hutrieApplication( sf::VideoMode::getDesktopMode(), "The Hutries",sf::Style::Fullscreen );
     hutrieApplication.setFramerateLimit(60);
 
-    /////////////////////////// CREATING BACKGROUND //////////////////////////////////////////////////////
-
-    background.setSize(sf::Vector2f(1024, 640));
-    //  backgroundTexture.loadFromFile( "sprites/background/background.jpg" );
-    backgroundTexture.loadFromFile("sprites/background/background.jpg");
-    background.setTexture(&backgroundTexture);
-
-    /////////////////////////// CREATING CURSOR //////////////////////////////////////////////////////
-
-    hutrieApplication.setMouseCursorVisible(false);
-    fixed = hutrieApplication.getView();
-    //fixed.zoom(2);
-    cursorTexture.loadFromFile("sprites/cursor.png");
-    cursor.setTexture(cursorTexture);
+    guiController->createBackground();
+    guiController->createCursor();
 
     /////////////////////////// BACKGROUND MUSIC //////////////////////////////////////////////////////
 
@@ -226,24 +214,23 @@ void Game::errorOutOfMap()
 
 void Game::play()
 {
-
     music.play();
     music.setVolume(40);
-    titleThread.launch();
+    guiController->launchTitleThread();
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
     {
-        actions();
-        displayAll();
+        handleActions();
+        drawApplication();
     }
 }
 
-void Game::actions()
+void Game::handleActions()
 {
     mouse->updateMouseLock();
 
     keyboard->actionsLoop();
 
-    mouse->setCursorPosition();
+    guiController->setCursorPosition();
 
     gameLogicController->deactivateChosenModeFlag();
 
@@ -258,58 +245,9 @@ void Game::actions()
     updateClock();
 }
 
-void Game::displayAll()
+void Game::drawApplication()
 {
-    /////////////////////////DRAWING INTERFACE, GREEN GRID AND BACKGROUND///////////////////////////
-
-    hutrieApplication.clear(sf::Color::Black);        //czyszczenie ekranu dla pierwszego wyswietlenia
-    hutrieApplication.setView(fixed);
-    gui.displayGUI();
-    if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE) gui.displayGUIBuildings();
-    if (modelController->getChosenInteractionMode() == InteractionMode::HUTRIEINFO)
-        gui.displayGUIHutries(world.hutries.size(), world.carriers.size(), world.workers.size(),
-                              world.soldiers.size());
-    hutrieApplication.draw(background);
-    hutrieApplication.draw(titleText.text);             //migoczacy tekst tytulowy
-    std::vector<Unit*>::iterator it;                  //rysowanie zielonych kratek pol
-    for (it = world.units.begin(); it != world.units.end(); ++it)
-    {
-        hutrieApplication.draw((*it)->field);
-    }
-
-///////////////////////////DRAWING MAP OBJECTS//////////////////////////////////////////////////////
-
-    for (it = world.units.begin(); it !=
-                                   world.units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie - druga petla zeby ruszajacy sie Hutrie byli rysowani nad zielona kratka a nie pod
-    {
-        if (!((*it)->isEmpty()))
-        {
-            hutrieApplication.draw(
-                    (*it)->getMapObject()->sprite);          //rysuje obiekty (budynki, przyroda) widoczne na mapie
-            if ((*it)->hutriesNumber() > 0)
-            {
-                for (int i = 0; i < (*it)->hutriesNumber(); i++)             //jesli w wektorze jest jakis hutri
-                {
-                    hutrieApplication.draw((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
-                }
-            }
-
-            if ((*it)->getMapObject()->isHighlighted() &&
-                modelController->getChosenInteractionMode() == InteractionMode::INFOMODE)            //jesli tryb info rysuj w prawym gui
-            {
-                hutrieApplication.draw((*it)->getMapObject()->title.text);
-                hutrieApplication.draw((*it)->getMapObject()->description.text);
-                hutrieApplication.draw((*it)->getMapObject()->descriptionFrame.button);
-                (*it)->getMapObject()->showButtons();
-            }
-            else (*it)->getMapObject()->deactivateButtons();
-        }
-    }
-
-///////////////////////////ADD CURSOR SPRITE AND DISPLAY//////////////////////////////////////////////////////
-
-    hutrieApplication.draw(cursor);
-    hutrieApplication.display();
+    guiController->drawApplication();
 }
 
 void Game::updateClock()
@@ -325,41 +263,16 @@ bool Game::getResult()
     return (rand() % 2) ? true : false;
 }
 
-std::string Game::getStats()
-{
-    std::ostringstream stats;
-    stats << "You built " << world.buildings.size() << " buildings." << std::endl
-    << "You had " << world.hutries.size() << " hutries including: " << std::endl
-    << world.carriers.size() << " carriers" << std::endl
-    << world.workers.size() << " workers" << std::endl
-    << world.soldiers.size() << " soldiers" << std::endl;
-    return stats.str();
-}
-
 void Game::gameOver(bool win)
 {
-    GUIText stats(300, 280, 40, getStats());
     while (hutrieApplication.isOpen())
     {
         sf::Event event;
         while (hutrieApplication.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed ||
-                (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
-            {
-                hutrieApplication.close();
-            }
+            keyboard->closeGame(event);
         }
-        cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
-        hutrieApplication.clear(sf::Color::Black);
-        hutrieApplication.setView(fixed);
-        gui.displayGUI();
-        hutrieApplication.draw(background);
-        hutrieApplication.draw(stats.text);
-        hutrieApplication.draw(titleText.text);
-        gui.displayEndingText(win);
-        hutrieApplication.draw(cursor);
-        hutrieApplication.display();
+        guiController->displayGameOver(win);
     };
 }
 
