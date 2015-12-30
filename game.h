@@ -10,12 +10,12 @@
 #include "hutrieshall.h"
 #include "keyboard.h"
 #include "gameLogicController.h"
-#include "mouseLock.h"
 #include "mouse.h"
 
 class Game
 {
 public:
+
     Game(int applicationWidth = 1024, int applicationHeight = 640);
 
     void play();
@@ -61,8 +61,6 @@ private:
 
     //////////////////////////////////////////////
 
-    void mouseSetCursorPosition(sf::Sprite &cursor);
-
     void createCarrier();
 
     void createWorker();
@@ -90,22 +88,6 @@ private:
     void errorUnitOccupied();
 
     void errorOutOfMap();
-
-    void guiEndHighlightUnit();
-
-    void mouseSelectUnit(unsigned int &unitIndex);
-
-    void mouseMapActions(unsigned int &unitIndex);
-
-    void guiCreateBuilding(unsigned int &unitIndex);
-
-    void guiMoveHutrie(unsigned int &unitIndex);
-
-    void guiHightlighUnit(unsigned int &unitIndex);
-
-    void mouseRightClickActions();
-
-    void mouseLeftClickActions();
 
     std::string getStats();
 

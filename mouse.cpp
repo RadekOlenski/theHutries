@@ -11,7 +11,7 @@
 
 
 Mouse::Mouse(sf::RenderWindow*hutrieApplication, ModelController*modelController, GUI*gui,
-             GameLogicController*gameLogicController)
+             GameLogicController*gameLogicController, sf::Sprite*cursor)
 {
     MouseLock*mouseLock = new MouseLock();
     this->mouseLock = mouseLock;
@@ -19,6 +19,7 @@ Mouse::Mouse(sf::RenderWindow*hutrieApplication, ModelController*modelController
     this->modelController = modelController;
     this->gui = gui;
     this->gameLogicController = gameLogicController;
+    this->cursor = cursor;
 }
 
 void Mouse::leftClickActions()
@@ -46,6 +47,22 @@ void Mouse::leftClickActions()
             return;
 }
 */
+    }
+}
+
+void Mouse::rightClickActions()
+{
+    if (mouseLock->getIsLocked())
+    {
+        return;
+    }
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+    {
+        //sf::Vector2f distance = gui.guiFrame.getPosition() - static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication));
+        //std::cout << distance.x << "," << distance.y << std::endl;
+        //fixed.setCenter(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
+        //gui.guiFrame.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))+distance);
     }
 }
 
@@ -130,7 +147,7 @@ void Mouse::handleClickOnMap()
             }
             case InteractionMode::HUTRIEMODE:     //poruszanie Hutrim
             {
-                gameLogicController->highlightUnits();
+                gameLogicController->handleHutrieMoving();
                 break;
             }
             default:
@@ -142,4 +159,9 @@ void Mouse::handleClickOnMap()
     {
         gameLogicController->highlightUnits();
     }
+}
+
+void Mouse::setCursorPosition()
+{
+    cursor->setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*hutrieApplication)));
 }

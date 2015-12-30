@@ -134,3 +134,13 @@ void GameLogicController::endHighlightUnit()
         world->lastClickedUnit->getMapObject()->soundPlay(false);
     }
 }
+
+void GameLogicController::handleHutrieMoving()
+{
+    int unitIndex = modelController->getSelectedUnitIndex();
+    std::vector<Unit*> usedUnits;
+    usedUnits.push_back(world->units.at(unitIndex));
+    world->soldiers.push_back(new Soldier(hutrieApplication, usedUnits, "sprites/warrior/right.png"));
+    world->hutries.push_back(world->soldiers.back());
+    world->hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+}

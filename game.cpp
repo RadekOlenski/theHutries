@@ -6,24 +6,12 @@
 #include "worker.h"
 #include "soldier.h"
 #include "sawmill.h"
-#include "stonecutter.h"
-#include "residence.h"
-#include "barracks.h"
-#include "goldmine.h"
-#include "farm.h"
 #include "hutrieshall.h"
-#include "building.h"
-#include "buildingType.h"
 #include "interactionMode.h"
 #include "modelController.h"
 #include "keyboard.h"
 #include "gameLogicController.h"
-#include "mapobject.h"
-#include "unit.h"
 #include "game.h"
-#include "mouseLock.h"
-#include "mouse.h"
-#include "sound.h"
 
 //=================================================================================
 //                              CONSTRUCTOR
@@ -37,19 +25,15 @@ Game::Game(int applicationWidth, int applicationHeight) :
         titleText(1024 + 20, 40, 45), titleThread(&GUIText::display, &titleText)
 {
     //-----------------------------CREATING BASIC APPLICATION OBJECTS---------------------------------------------//
-
     ModelController* modelController = new ModelController();
     GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController, &gui);
     Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
-    Mouse* mouse = new Mouse(&hutrieApplication, modelController, &gui, gameLogicController);
+    Mouse* mouse = new Mouse(&hutrieApplication, modelController, &gui, gameLogicController, &cursor);
     //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES-----------------------------------------//
     this->modelController = modelController;
     this->gameLogicController = gameLogicController;
     this->keyboard = keyboard;
     this->mouse = mouse;
-    //----------------------------------INITIALIZE SOUND BUFFER-----------------------------------------------//
-    //sound->setSoundBuffer(soundBuffer);
-
     ///////////////////////SIZE OF MAP SCREEN////////////////////////////////////////////////////////////////////
 
     modelController->setApplicationWidth(applicationWidth);
@@ -83,43 +67,6 @@ Game::Game(int applicationWidth, int applicationHeight) :
     //rzutowanie hutries hall z vectora building na pelnoprawny object HutriesHall
     pHall = dynamic_cast <HutriesHall*>(world.buildings.at(0));
 }
-
-//=================================================================================
-//                             MOUSE ACTION FUNCTIONS
-//=================================================================================
-
-void Game::mouseSetCursorPosition(sf::Sprite &cursor)
-{
-    //ustawia sprite kursora na pozycji myszki
-    cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
-}
-
-void Game::mouseRightClickActions()
-{
-
-
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
-    {
-        //sf::Vector2f distance = gui.guiFrame.getPosition() - static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication));
-        //std::cout << distance.x << "," << distance.y << std::endl;
-        //fixed.setCenter(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
-        //gui.guiFrame.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))+distance);
-    }
-}
-
-//=================================================================================
-//                             GUI LOGIC FUNCTIONS
-//=================================================================================
-
-void Game::guiMoveHutrie(unsigned int &unitIndex)
-{
-    std::vector<Unit*> usedUnits;
-    usedUnits.push_back(world.units.at(unitIndex));
-    world.soldiers.push_back(new Soldier(&hutrieApplication, usedUnits, "sprites/warrior/right.png"));
-    world.hutries.push_back(world.soldiers.back());
-    world.hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
-}
-
 //=================================================================================
 //                             GAME LOGIC FUNCTIONS
 //=================================================================================
@@ -359,7 +306,7 @@ void Game::actions()
 
     keyboard->actionsLoop();
 
-    mouseSetCursorPosition(cursor);
+    mouse->setCursorPosition();
 
     gameLogicController->deactivateChosenModeFlag();
 

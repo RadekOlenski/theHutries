@@ -32,6 +32,8 @@ public:
 
     void endHighlightUnit();
 
+    void handleHutrieMoving();
+
 private:
     World* world;
     sf::RenderWindow* hutrieApplication;
