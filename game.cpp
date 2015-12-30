@@ -23,6 +23,7 @@
 #include "game.h"
 #include "mouseLock.h"
 #include "mouse.h"
+#include "sound.h"
 
 //=================================================================================
 //                              CONSTRUCTOR
@@ -41,13 +42,13 @@ Game::Game(int applicationWidth, int applicationHeight) :
     GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController, &gui);
     Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
     Mouse* mouse = new Mouse(&hutrieApplication, modelController, &gui, gameLogicController);
-
-    //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES------------------------------------------//
-
+    //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES-----------------------------------------//
     this->modelController = modelController;
     this->gameLogicController = gameLogicController;
     this->keyboard = keyboard;
     this->mouse = mouse;
+    //----------------------------------INITIALIZE SOUND BUFFER-----------------------------------------------//
+    //sound->setSoundBuffer(soundBuffer);
 
     ///////////////////////SIZE OF MAP SCREEN////////////////////////////////////////////////////////////////////
 
@@ -76,36 +77,11 @@ Game::Game(int applicationWidth, int applicationHeight) :
 
     /////////////////////////// BACKGROUND MUSIC //////////////////////////////////////////////////////
 
-    if (!music.openFromFile("audio/celtic.wav")) std::cout << "Loading music failed" << std::endl;
+    if (!music.openFromFile(Sound::musicPath)) std::cout << "Loading music failed" << std::endl;
     music.setLoop(true);
-
-    sound.setBuffer(buffer);
 
     //rzutowanie hutries hall z vectora building na pelnoprawny object HutriesHall
     pHall = dynamic_cast <HutriesHall*>(world.buildings.at(0));
-}
-
-//=================================================================================
-
-//                              SOUND FUNCTIONS
-//=================================================================================
-void Game::errorSound()
-{
-    buffer.loadFromFile("audio/error.wav");
-    sound.play();
-}
-
-void Game::clickSound()
-{
-    buffer.loadFromFile("audio/click.wav");
-    sound.setVolume(70);
-    sound.play();
-}
-
-void Game::tingSound()
-{
-    buffer.loadFromFile("audio/ting.wav");
-    sound.play();
 }
 
 //=================================================================================
@@ -160,7 +136,7 @@ void Game::createCarrier()
         }
         else
         {
-            errorSound();
+            Sound::error();
             gui.errorInfo.text.setString("Error: No more slots! Build residence!");
         }
         pHall->setMakeCarrierFlag(false);
@@ -330,33 +306,33 @@ void Game::callWorker(std::vector<Worker*>::iterator itc, std::vector<Building*>
 
 void Game::errorNoCarriers()
 {
-    errorSound();
+    Sound::error();
     gui.errorInfo.text.setString(
             "Error: No available carriers! Everyone is busy! Create carrier in HutriesHall or build residence");
 }
 
 void Game::errorNoSlots()
 {
-    errorSound();
+    Sound::error();
     gui.errorInfo.text.setString("Error: No more slots! Build residence!");
 }
 
 void Game::errorNoWorkers()
 {
-    errorSound();
+    Sound::error();
     gui.errorInfo.text.setString(
             "Error: No available workers! Everyone is busy! Create worker in HutriesHall or build residence");
 }
 
 void Game::errorUnitOccupied()
 {
-    errorSound();
+    Sound::error();
     gui.errorInfo.text.setString("Error: Unit not empty. Choose another one");
 }
 
 void Game::errorOutOfMap()
 {
-    errorSound();
+    Sound::error();
     gui.errorInfo.text.setString("Error: Building out of map. Choose another place");
 }
 

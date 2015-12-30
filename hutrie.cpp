@@ -5,6 +5,7 @@
 #include "hutrie.h"
 #include "mapobject.h"
 #include "unit.h"
+#include "sound.h"
 
 
 ///////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////////////////////////////
@@ -19,7 +20,7 @@ Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
 
     transTexture.loadFromFile("sprites/carrier/empty.png");
 
-    sound.openFromFile("audio/sir.wav");
+    sound.openFromFile(Sound::hutrie);
     sound.setVolume(100);
 
     strength = (rand() % 10) + 1;

@@ -1,4 +1,5 @@
 #include "stonecutter.h"
+#include "sound.h"
 #include <sstream>
 
 StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName)
@@ -7,7 +8,7 @@ StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*
     title.text.setString("Stonecutter Hut:");
     sprite.setScale(0.45,0.45);
     sprite.setOrigin(-10,-30);
-    sound.openFromFile("audio/rock.wav");
+    sound.openFromFile(Sound::stonecutter);
     goodReady.text.setString("Stone ready");
 }
 

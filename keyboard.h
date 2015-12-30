@@ -8,6 +8,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "modelController.h"
+#include "sound.h"
 
 
 class Keyboard

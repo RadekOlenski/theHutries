@@ -1,4 +1,5 @@
 #include "hutrieshall.h"
+#include "sound.h"
 
 #include <cstdlib>
 #include <sstream>
@@ -16,7 +17,7 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*>
     sprite.setScale(0.45, 0.5);
     sprite.setOrigin(30, 128);
 
-    sound.openFromFile("audio/castle.wav");
+    sound.openFromFile(Sound::hutrieshall);
     setSoundVolume(100);
 
     makeWorkerFlag = false;

@@ -10,6 +10,7 @@
 #include "modelController.h"
 #include "gui.h"
 #include "gameLogicController.h"
+#include "sound.h"
 
 class Mouse
 {

@@ -29,8 +29,6 @@ private:
 protected:
     /////////////////WINDOW////////////////////////
 
-    int applicationWidth;
-    int applicationHeight;
     sf::RenderWindow hutrieApplication;
     sf::View fixed;
 
@@ -53,16 +51,7 @@ protected:
     sf::Sprite cursor;
     sf::Texture cursorTexture;
 
-    sf::Sound sound;
-    sf::SoundBuffer buffer;
-
-
 private:
-
-
-    void errorSound();
-
-    void clickSound();
 
     /////////////FUNCTIONS////////////////////////
 
@@ -97,8 +86,6 @@ private:
     void errorNoWorkers();
 
     void createHutrie(std::string objectType, std::string sprite);
-
-    void tingSound();
 
     void errorUnitOccupied();
 

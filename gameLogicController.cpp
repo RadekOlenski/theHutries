@@ -11,6 +11,7 @@
 #include "gameLogicController.h"
 #include "interactionMode.h"
 #include "gui.h"
+#include "sound.h"
 
 GameLogicController::GameLogicController(World*world, sf::RenderWindow*hutrieApplication,
                                          ModelController*modelController, GUI* gui)
@@ -36,7 +37,7 @@ void GameLogicController::handleBuildingCreation()
         if (world->isFieldEmpty(usedUnits))
         {
             this->createBuilding(usedUnits);
-            //tingSound();
+            Sound::ting();
         }
         else
         {

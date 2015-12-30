@@ -7,6 +7,7 @@
 #include "interactionMode.h"
 #include "buildingType.h"
 #include "gameLogicController.h"
+#include "sound.h"
 
 
 Mouse::Mouse(sf::RenderWindow*hutrieApplication, ModelController*modelController, GUI*gui,
@@ -53,49 +54,49 @@ void Mouse::guiButtonsActions()
     if (gui->buildButton.checkBounds())
     {
         modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
-        //clickSound();
+        Sound::click();
         return;
     }
     if (gui->hutrieButton.checkBounds())
     {
         modelController->setChosenInteractionMode(InteractionMode::HUTRIEINFO);
-        //clickSound();
+        Sound::click();
         return;
     }
     if (gui->sawmill.checkBounds() && gui->sawmill.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::SAWMILL);
-        //clickSound();
+        Sound::click();
         return;
     }
     if (gui->stonecutter.checkBounds() && gui->stonecutter.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
-        //clickSound();
+        Sound::click();
         return;
     }
     if (gui->barracks.checkBounds() && gui->barracks.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::BARRACKS);
-        //clickSound();
+        Sound::click();
         return;
     }
     if (gui->residence.checkBounds() && gui->residence.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::RESIDENCE);
-        //clickSound();
+        Sound::click();
         return;
     }
     if (gui->goldmine.checkBounds() && gui->goldmine.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::GOLDMINE);
-        //clickSound();
+        Sound::click();
         return;
     }
     if (gui->farm.checkBounds() && gui->farm.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::FARM);
-        //clickSound();
+        Sound::click();
         return;
     }
 }

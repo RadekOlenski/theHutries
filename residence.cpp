@@ -1,4 +1,5 @@
 #include "residence.h"
+#include "sound.h"
 #include <sstream>
 #include <cstdlib>
 
@@ -8,7 +9,7 @@ Residence::Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> un
     this->worldSlots = worldSlots;
     slotsLeft = rand() % 11;
     title.text.setString("Residence:");
-    sound.openFromFile("audio/residence.wav");
+    sound.openFromFile(Sound::residence);
     sound.setVolume(20);
 }
 

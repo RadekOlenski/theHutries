@@ -1,12 +1,12 @@
 #include "farm.h"
+#include "sound.h"
 #include <sstream>
 
 Farm::Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, const std::string &pathName)
         : GoodsBuilding(hutrieApplication, unitsFromGame, pathName)
 {
     title.text.setString("Farm:");
-    sound.openFromFile("audio/saw.wav"); //TODO znaleźć dźwięk farmy
-    sound.setVolume(100);
+    sound.openFromFile(Sound::farm); //TODO znaleźć dźwięk farmy
     goodReady.text.setString("Food ready");
 
 }

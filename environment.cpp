@@ -1,5 +1,6 @@
 #include "environment.h"
 #include "unit.h"
+#include "sound.h"
 #include <sstream>
 #include <cstdlib>
 
@@ -12,7 +13,7 @@ Environment::Environment(sf::RenderWindow *hutrieApplication, std::vector <Unit*
     sprite.setScale(0.9,1);
 
     sound.setVolume(30);
-    sound.openFromFile("audio/trees.wav");
+    sound.openFromFile(Sound::trees);
 
     sprite.setPosition (objectUnits.at(0)->field.getPosition());
     occupyUnits();

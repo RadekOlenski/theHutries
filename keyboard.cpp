@@ -2,6 +2,7 @@
 #include "interactionMode.h"
 #include "buildingType.h"
 #include "keyboard.h"
+#include "sound.h"
 
 Keyboard::Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController)
 {
@@ -49,7 +50,7 @@ void Keyboard::chooseInteractionMode(sf::Event event)
         default:
             break;
     }
-    //clickSound();
+    Sound::click();
 }
 
 void Keyboard::chooseBuildingType(sf::Event event)
@@ -95,7 +96,7 @@ void Keyboard::chooseBuildingType(sf::Event event)
             default:
                 break;
         }
-        //   clickSound();
+        Sound::click();
     }
 }
 

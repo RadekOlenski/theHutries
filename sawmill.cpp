@@ -1,4 +1,5 @@
 #include "sawmill.h"
+#include "sound.h"
 #include <sstream>
 
 Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName)
@@ -6,8 +7,7 @@ Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsF
 {
 
     title.text.setString("Sawmill:");
-    sound.openFromFile("audio/saw.wav");
-    sound.setVolume(100);
+    sound.openFromFile(Sound::sawmill);
     goodReady.text.setString("Wood ready");
 }
 
