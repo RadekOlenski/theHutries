@@ -4,9 +4,7 @@
 #include "hutrie.h"
 #include "carrier.h"
 #include "worker.h"
-#include "soldier.h"
 #include "sawmill.h"
-#include "hutrieshall.h"
 #include "interactionMode.h"
 #include "modelController.h"
 #include "keyboard.h"
@@ -63,71 +61,10 @@ Game::Game(int applicationWidth, int applicationHeight) :
 
     if (!music.openFromFile(Sound::musicPath)) std::cout << "Loading music failed" << std::endl;
     music.setLoop(true);
-
-    //rzutowanie hutries hall z vectora building na pelnoprawny object HutriesHall
-    pHall = dynamic_cast <HutriesHall*>(world.buildings.at(0));
 }
 //=================================================================================
 //                             GAME LOGIC FUNCTIONS
 //=================================================================================
-
-void Game::createCarrier()
-{
-    if (pHall->getMakeCarrierFlag())
-    {
-        if (world.availableSlots > 0)
-        {
-            std::string objectType = "carrier";
-            std::string sprite = "sprites/carrier/up.png";
-            createHutrie(objectType, sprite);
-        }
-        else
-        {
-            Sound::error();
-            gui.errorInfo.text.setString("Error: No more slots! Build residence!");
-        }
-        pHall->setMakeCarrierFlag(false);
-    }
-}
-
-void Game::createWorker()
-{
-    if (pHall->getMakeWorkerFlag())
-    {
-        if (world.availableSlots > 0)
-        {
-            std::string objectType = "worker";
-            std::string sprite = "sprites/worker/up.png";
-            createHutrie(objectType, sprite);
-        }
-        else
-        {
-            errorNoSlots();
-        }
-        pHall->setMakeWorkerFlag(false);
-    }
-}
-
-void Game::createHutrie(std::string objectType, std::string sprite)
-{
-    std::vector<Unit*> usedUnits;
-    int unitIndex = pHall->getUnitIndex(6);                 // ktore z pol budynku ma byc zajete przez carriera
-    usedUnits.push_back(world.units.at((unsigned int) unitIndex));
-    if (objectType == "carrier")
-    {
-        std::cout << "Utworze dla ciebie Carriera!" << std::endl;
-        world.carriers.push_back(new Carrier(&hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
-        world.hutries.push_back(world.carriers.back());
-    }
-    else if (objectType == "worker")
-    {
-        std::cout << "Utworze dla ciebie Workera!" << std::endl;
-        world.workers.push_back(new Worker(&hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
-        world.hutries.push_back(world.workers.back());
-    }
-    world.units.at((unsigned int) unitIndex)->addHutrie(world.hutries.back());
-    world.availableSlots--;
-}
 
 void Game::assignIntoBuilding()
 {
@@ -310,9 +247,7 @@ void Game::actions()
 
     gameLogicController->deactivateChosenModeFlag();
 
-    createCarrier();
-
-    createWorker();
+    gameLogicController->handleHutriesCreation();
 
     assignIntoBuilding();
 

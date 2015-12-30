@@ -35,8 +35,6 @@ private:
     GameLogicController* gameLogicController;
     sf::Sprite* cursor;
 
-    void guiButtonsActions();
-
     void handleClickOnMap();
 };
 

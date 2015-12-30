@@ -7,7 +7,6 @@
 #include <SFML/Graphics.hpp>
 #include "guitext.h"
 #include "gui.h"
-#include "hutrieshall.h"
 #include "keyboard.h"
 #include "gameLogicController.h"
 #include "mouse.h"
@@ -38,7 +37,6 @@ protected:
     int gameTime;
     sf::Clock deadline;
     sf::Thread titleThread;
-    HutriesHall*pHall;
 
     void updateClock();
 

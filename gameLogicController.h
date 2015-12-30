@@ -3,11 +3,13 @@
 
 #include <vector>
 
+
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "world.h"
 #include "modelController.h"
 #include "gui.h"
+#include "hutrieshall.h"
 
 class GameLogicController
 {
@@ -34,11 +36,21 @@ public:
 
     void handleHutrieMoving();
 
+    void handleHutriesCreation();
+
+    void handleWorkerCreation();
+
+    void handleCarrierCreation();
+
+    void createHutrie(std::string objectType, std::string sprite);
+
+    void handleGUIButtonsAction();
 private:
     World* world;
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
     GUI* gui;
+    HutriesHall* hutriesHall;
 };
 
 

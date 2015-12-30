@@ -1,5 +1,5 @@
-
 #include <iostream>
+
 
 #include "buildingType.h"
 #include "sawmill.h"
@@ -12,14 +12,16 @@
 #include "interactionMode.h"
 #include "gui.h"
 #include "sound.h"
+#include "hutrieshall.h"
 
 GameLogicController::GameLogicController(World*world, sf::RenderWindow*hutrieApplication,
-                                         ModelController*modelController, GUI* gui)
+                                         ModelController*modelController, GUI*gui)
 {
     this->world = world;
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
     this->gui = gui;
+    hutriesHall = dynamic_cast <HutriesHall*>(world->buildings.at(0));
 }
 
 
@@ -67,14 +69,16 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
         {
             world->increaseAvailableSlots(Residence::getAddedSlotsNumber());
             world->buildings.push_back(new Residence(hutrieApplication, usedUnits, "sprites/buildings/residence.png",
-                                                                                          &(world->availableSlots)));
+                                                     &(world->availableSlots)));
             break;
         }
         case BuildingType::GOLDMINE:
-            world->buildings.push_back(new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png"));
+            world->buildings.push_back(
+                    new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png"));
             break;
         case BuildingType::FARM:
-            world->buildings.push_back(new Farm(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png"));
+            world->buildings.push_back(
+                    new Farm(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png"));
             break;
         default:
             break;
@@ -143,4 +147,125 @@ void GameLogicController::handleHutrieMoving()
     world->soldiers.push_back(new Soldier(hutrieApplication, usedUnits, "sprites/warrior/right.png"));
     world->hutries.push_back(world->soldiers.back());
     world->hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+}
+
+void GameLogicController::handleHutriesCreation()
+{
+    GameLogicController::handleWorkerCreation();
+
+    GameLogicController::handleCarrierCreation();
+}
+
+void GameLogicController::handleWorkerCreation()
+{
+    if (hutriesHall->getMakeWorkerFlag())
+    {
+        if (world->availableSlots > 0)
+        {
+            std::string objectType = "worker";
+            std::string sprite = "sprites/worker/up.png";
+            createHutrie(objectType, sprite);
+        }
+        else
+        {
+            //errorNoSlots();
+        }
+        hutriesHall->setMakeWorkerFlag(false);
+    }
+}
+
+void GameLogicController::handleCarrierCreation()
+{
+    if (hutriesHall->getMakeCarrierFlag())
+    {
+        if (world->availableSlots > 0)
+        {
+            std::string objectType = "carrier";
+            std::string sprite = "sprites/carrier/up.png";
+            createHutrie(objectType, sprite);
+        }
+        else
+        {
+            //errorNoSlots;
+        }
+        hutriesHall->setMakeCarrierFlag(false);
+    }
+}
+
+void GameLogicController::createHutrie(std::string objectType, std::string sprite)
+{
+    std::vector<Unit*> usedUnits;
+    int unitIndex = hutriesHall->getUnitIndex(6);                 // ktore z pol budynku ma byc zajete przez carriera
+    usedUnits.push_back(world->units.at((unsigned int) unitIndex));
+    if (objectType == "carrier")
+    {
+        std::cout << "Utworze dla ciebie Carriera!" << std::endl;
+        world->carriers.push_back(new Carrier(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
+        world->hutries.push_back(world->carriers.back());
+    }
+    else if (objectType == "worker")
+    {
+        std::cout << "Utworze dla ciebie Workera!" << std::endl;
+        world->workers.push_back(new Worker(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
+        world->hutries.push_back(world->workers.back());
+    }
+    world->units.at((unsigned int) unitIndex)->addHutrie(world->hutries.back());
+    world->availableSlots--;
+}
+
+void GameLogicController::handleGUIButtonsAction()
+{
+    if (gui->buildButton.checkBounds())
+    {
+        modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
+        Sound::click();
+        return;
+    }
+    if (gui->hutrieButton.checkBounds())
+    {
+        modelController->setChosenInteractionMode(InteractionMode::HUTRIEINFO);
+        Sound::click();
+        return;
+    }
+    if (gui->sawmill.checkBounds() && gui->sawmill.isActive())
+    {
+        modelController->setChosenBuildingType(BuildingType::SAWMILL);
+        Sound::click();
+        return;
+    }
+    if (gui->stonecutter.checkBounds() && gui->stonecutter.isActive())
+    {
+        modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
+        Sound::click();
+        return;
+    }
+    if (gui->barracks.checkBounds() && gui->barracks.isActive())
+    {
+        modelController->setChosenBuildingType(BuildingType::BARRACKS);
+        Sound::click();
+        return;
+    }
+    if (gui->residence.checkBounds() && gui->residence.isActive())
+    {
+        modelController->setChosenBuildingType(BuildingType::RESIDENCE);
+        Sound::click();
+        return;
+    }
+    if (gui->goldmine.checkBounds() && gui->goldmine.isActive())
+    {
+        modelController->setChosenBuildingType(BuildingType::GOLDMINE);
+        Sound::click();
+        return;
+    }
+    if (gui->farm.checkBounds() && gui->farm.isActive())
+    {
+        modelController->setChosenBuildingType(BuildingType::FARM);
+        Sound::click();
+        return;
+    }
+    if (world->lastClickedUnit)
+    {
+        world->lastClickedUnit->getMapObject()->buttonAction();
+        return;
+    }
 }

@@ -41,12 +41,9 @@ void Mouse::leftClickActions()
             handleClickOnMap();
             return;
         }
-        guiButtonsActions();
-        /*if (world.lastClickedUnit) {
-            world.lastClickedUnit->getMapObject()->buttonAction();
-            return;
-}
-*/
+        gameLogicController->handleGUIButtonsAction();
+
+
     }
 }
 
@@ -63,58 +60,6 @@ void Mouse::rightClickActions()
         //std::cout << distance.x << "," << distance.y << std::endl;
         //fixed.setCenter(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
         //gui.guiFrame.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))+distance);
-    }
-}
-
-void Mouse::guiButtonsActions()
-{
-    if (gui->buildButton.checkBounds())
-    {
-        modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
-        Sound::click();
-        return;
-    }
-    if (gui->hutrieButton.checkBounds())
-    {
-        modelController->setChosenInteractionMode(InteractionMode::HUTRIEINFO);
-        Sound::click();
-        return;
-    }
-    if (gui->sawmill.checkBounds() && gui->sawmill.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::SAWMILL);
-        Sound::click();
-        return;
-    }
-    if (gui->stonecutter.checkBounds() && gui->stonecutter.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
-        Sound::click();
-        return;
-    }
-    if (gui->barracks.checkBounds() && gui->barracks.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::BARRACKS);
-        Sound::click();
-        return;
-    }
-    if (gui->residence.checkBounds() && gui->residence.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::RESIDENCE);
-        Sound::click();
-        return;
-    }
-    if (gui->goldmine.checkBounds() && gui->goldmine.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::GOLDMINE);
-        Sound::click();
-        return;
-    }
-    if (gui->farm.checkBounds() && gui->farm.isActive())
-    {
-        modelController->setChosenBuildingType(BuildingType::FARM);
-        Sound::click();
-        return;
     }
 }
 
