@@ -94,7 +94,7 @@ void Game::callCarrier(std::vector<Carrier*>::iterator itc, std::vector<Building
         }
         if (itc == world.carriers.end())
         {
-            errorNoCarriers();
+            guiController->errorNoCarriers();
         }
     }
 }
@@ -168,44 +168,8 @@ void Game::callWorker(std::vector<Worker*>::iterator itc, std::vector<Building*>
     }
     if (itc == world.workers.end())
     {
-        errorNoWorkers();
+        guiController->errorNoWorkers();
     }
-}
-
-//=================================================================================
-//                              ERRORS
-//=================================================================================
-
-void Game::errorNoCarriers()
-{
-    Sound::error();
-    gui.errorInfo.text.setString(
-            "Error: No available carriers! Everyone is busy! Create carrier in HutriesHall or build residence");
-}
-
-void Game::errorNoSlots()
-{
-    Sound::error();
-    gui.errorInfo.text.setString("Error: No more slots! Build residence!");
-}
-
-void Game::errorNoWorkers()
-{
-    Sound::error();
-    gui.errorInfo.text.setString(
-            "Error: No available workers! Everyone is busy! Create worker in HutriesHall or build residence");
-}
-
-void Game::errorUnitOccupied()
-{
-    Sound::error();
-    gui.errorInfo.text.setString("Error: Unit not empty. Choose another one");
-}
-
-void Game::errorOutOfMap()
-{
-    Sound::error();
-    gui.errorInfo.text.setString("Error: Building out of map. Choose another place");
 }
 
 //=================================================================================

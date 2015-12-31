@@ -41,12 +41,12 @@ void GameLogicController::handleBuildingCreation()
         }
         else
         {
-            //errorUnitOccupied();
+            guiController->errorUnitOccupied();
         }
     }
     else
     {
-        //errorOutOfMap();
+        guiController->errorOutOfMap();
     }
 }
 
@@ -161,7 +161,7 @@ void GameLogicController::handleWorkerCreation()
         }
         else
         {
-            //errorNoSlots();
+            guiController->errorNoSlots();
         }
         hutriesHall->setMakeWorkerFlag(false);
     }
@@ -179,7 +179,7 @@ void GameLogicController::handleCarrierCreation()
         }
         else
         {
-            //errorNoSlots;
+            guiController->errorNoSlots();
         }
         hutriesHall->setMakeCarrierFlag(false);
     }

@@ -63,17 +63,7 @@ private:
 
     void callCarrier(std::vector<Carrier*>::iterator itc, std::vector<Building*>::iterator it, int unitIndex);
 
-    void errorNoCarriers();
-
-    void errorNoSlots();
-
     void callWorker(std::vector<Worker*>::iterator itc, std::vector<Building*>::iterator it, int unitIndex);
-
-    void errorNoWorkers();
-
-    void errorUnitOccupied();
-
-    void errorOutOfMap();
 
     ModelController* modelController;
     GUIController* guiController;

@@ -238,3 +238,36 @@ std::string GUIController::getEndingStats()
     << world->soldiers.size() << " soldiers" << std::endl;
     return stats.str();
 }
+
+void GUIController::errorNoCarriers()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: No available carriers! Everyone is busy! Create carrier in HutriesHall or build residence");
+}
+
+
+void GUIController::errorNoSlots()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: No more slots! Build residence!");
+}
+
+void GUIController::errorNoWorkers()
+{
+    Sound::error();
+    gui->errorInfo.text.setString(
+            "Error: No available workers! Everyone is busy! Create worker in HutriesHall or build residence");
+}
+
+void GUIController::errorUnitOccupied()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: Unit not empty. Choose another one");
+}
+
+
+void GUIController::errorOutOfMap()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: Building out of map. Choose another place");
+}

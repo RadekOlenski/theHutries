@@ -53,6 +53,15 @@ public:
 
     std::string getEndingStats();
 
+    void errorNoCarriers();
+
+    void errorNoSlots();
+
+    void errorNoWorkers();
+
+    void errorUnitOccupied();
+
+    void errorOutOfMap();
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
