@@ -185,6 +185,11 @@ void GameLogicController::handleCarrierCreation()
     }
 }
 
+void GameLogicController::handleSoldierCreation()
+{
+
+}
+
 void GameLogicController::createHutrie(std::string objectType, std::string sprite)
 {
     std::vector<Unit*> usedUnits;

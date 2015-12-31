@@ -8,7 +8,7 @@
 HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
         : Building(hutrieApplication, unitsFromGame, pathName),
         createCarrierButton(1024 + 40, 500, hutrieApplication, 150, 45),
-        createWorker(1024 + 40, 560, hutrieApplication, 150, 45),
+        createWorkerButton(1024 + 40, 560, hutrieApplication, 150, 45),
         tCarrier(1024 + 60, 510, 20, "Create Carrier"),
         tWorker(1024 + 70, 570, 20, "Create Worker")
 {
@@ -34,9 +34,9 @@ void HutriesHall::updateStatus()
 
 void HutriesHall::showButtons()
 {
-    createWorker.setActive(true);
+    createWorkerButton.setActive(true);
     createCarrierButton.setActive(true);
-    hutrieApplication->draw(createWorker.button);
+    hutrieApplication->draw(createWorkerButton.button);
     hutrieApplication->draw(createCarrierButton.button);
     hutrieApplication->draw(tWorker.text);
     hutrieApplication->draw(tCarrier.text);
@@ -46,12 +46,12 @@ void HutriesHall::showButtons()
 void HutriesHall::deactivateButtons()
 {
     createCarrierButton.setActive(false);
-    createWorker.setActive(false);
+    createWorkerButton.setActive(false);
 }
 
 void HutriesHall::buttonAction()
 {
-    if (createWorker.checkBounds() && createWorker.isActive())
+    if (createWorkerButton.checkBounds() && createWorkerButton.isActive())
     {
         std::cout << "Create Worker!!!!" << std::endl;
         makeWorkerFlag = true;

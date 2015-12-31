@@ -33,12 +33,14 @@ public:
 
 private:
 
-    GUIButton createWorker;
+    GUIButton createWorkerButton;
     GUIText tWorker;
     GUIButton createCarrierButton;
     GUIText tCarrier;
     bool makeWorkerFlag;
     bool makeCarrierFlag;
+
+
 };
 
 #endif // HUTRIESHALL_H

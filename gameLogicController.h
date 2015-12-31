@@ -43,6 +43,8 @@ public:
 
     void handleCarrierCreation();
 
+    void handleSoldierCreation();
+
     void createHutrie(std::string objectType, std::string sprite);
 
     void handleGUIButtonsAction();

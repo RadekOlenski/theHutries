@@ -14,8 +14,28 @@ class Barracks : public Building
     public:
         Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
         void updateStatus();
-    private:
 
+        bool getMakeWarriorFlag();
+
+        void setMakeWarriorFlag(bool makeWarriorFlag);
+
+        bool getMakeArcherFlag();
+
+        void setMakeArcherFlag(bool makeArcherFlag);
+
+        void buttonAction();
+
+        void showButtons();
+
+        void deactivateButtons();
+
+private:
+        GUIButton createWarriorButton;
+        GUIText textWarrior;
+        GUIButton createArcherButton;
+        GUIText textArcher;
+        bool makeWarriorFlag;
+        bool makeArcherFlag;
 };
 
 #endif // BARRACKS_H
