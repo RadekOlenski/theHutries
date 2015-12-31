@@ -9,7 +9,6 @@
 #include <SFML/Graphics.hpp>
 #include "world.h"
 #include "modelController.h"
-#include "gui.h"
 #include "hutrieshall.h"
 #include "guiController.h"
 
@@ -47,6 +46,18 @@ public:
     void createHutrie(std::string objectType, std::string sprite);
 
     void handleGUIButtonsAction();
+
+    void handleAssigningHutrie();
+
+    void needCarrier(std::vector<Building*>::iterator it);
+
+    void callCarrier(std::vector<Carrier*>::iterator itc, std::vector<Building*>::iterator it, unsigned int unitIndex);
+
+    void needWorker(std::vector<Building*>::iterator it);
+
+    void callWorker(std::vector<Worker*>::iterator itc, std::vector<Building*>::iterator it, unsigned int unitIndex);
+
+    void handleCarrierReturn();
 private:
     World* world;
     sf::RenderWindow* hutrieApplication;

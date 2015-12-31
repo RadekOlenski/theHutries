@@ -62,6 +62,8 @@ public:
     void errorUnitOccupied();
 
     void errorOutOfMap();
+
+    void checkCarrierGoods();
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;

@@ -271,3 +271,22 @@ void GUIController::errorOutOfMap()
     Sound::error();
     gui->errorInfo.text.setString("Error: Building out of map. Choose another place");
 }
+
+void GUIController::checkCarrierGoods()
+{
+    std::ostringstream desc;
+    desc << world->availableGoods.getWood();
+    gui->twood.text.setString(desc.str());
+
+    std::ostringstream desc1;
+    desc1 << world->availableGoods.getStone();
+    gui->tstone.text.setString(desc1.str());
+
+    std::ostringstream desc2;
+    desc2 << world->availableGoods.getFood();
+    gui->tfood.text.setString(desc2.str());
+
+    std::ostringstream desc3;
+    desc3 << world->availableGoods.getGold();
+    gui->tgold.text.setString(desc3.str());
+}

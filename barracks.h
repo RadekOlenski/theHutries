@@ -2,6 +2,7 @@
 #define BARRACKS_H
 
 #include <SFML/Graphics.hpp>
+
 #include <vector>
 #include <string>
 
