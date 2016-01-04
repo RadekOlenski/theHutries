@@ -23,6 +23,9 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std:
 
     makeWorkerFlag = false;
     makeCarrierFlag = false;
+
+    trainingWorker = false;
+    trainingCarrier = false;
 }
 
 void HutriesHall::updateStatus()

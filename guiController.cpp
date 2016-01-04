@@ -305,3 +305,15 @@ void GUIController::errorAlreadyCreatingWarrior()
     Sound::error();
     gui->errorInfo.text.setString("Error: You are currently creating Warrior!");
 }
+
+void GUIController::errorAlreadyCreatingWorker()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: You are currently creating Worker!");
+}
+
+void GUIController::errorAlreadyCreatingCarrier()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: You are currently creating Carrier!");
+}

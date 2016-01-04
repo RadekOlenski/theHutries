@@ -158,38 +158,80 @@ void GameLogicController::handleHutriesCreation()
 
 void GameLogicController::handleWorkerCreation()
 {
-    if (hutriesHall->getMakeWorkerFlag())
+    if (hutriesHall->getTrainingWorkerFlag())
     {
-        if (world->availableSlots > 0)
+        if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getWorkerTrainingTime())
         {
-            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);                 // ktore z pol budynku ma byc zajete przez carriera
             std::string objectType = "worker";
             std::string sprite = "sprites/worker/up.png";
+            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, sprite, unitIndex);
+            hutriesHall->setTrainingWorkerFlag(false);
         }
-        else
+    }
+    else if(!hutriesHall->getTrainingCarrierFlag())
+        hutriesHall->trainingClock.restart();
+    if (hutriesHall->getMakeWorkerFlag())
+    {
+        if (hutriesHall->getTrainingCarrierFlag())
+        {
+            guiController->errorAlreadyCreatingCarrier();
+            hutriesHall->setMakeWorkerFlag(false);
+            return;
+        }
+        if (world->availableSlots == 0)
         {
             guiController->errorNoSlots();
+            hutriesHall->setMakeWorkerFlag(false);
+            return;
         }
+        if (hutriesHall->getTrainingWorkerFlag())
+        {
+            guiController->errorAlreadyCreatingWorker();
+            hutriesHall->setMakeWorkerFlag(false);
+            return;
+        }
+        else hutriesHall->setTrainingWorkerFlag(true);
         hutriesHall->setMakeWorkerFlag(false);
     }
 }
 
 void GameLogicController::handleCarrierCreation()
 {
-    if (hutriesHall->getMakeCarrierFlag())
+    if (hutriesHall->getTrainingCarrierFlag())
     {
-        if (world->availableSlots > 0)
+        if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
         {
-            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);                 // ktore z pol budynku ma byc zajete przez carriera
             std::string objectType = "carrier";
             std::string sprite = "sprites/carrier/up.png";
+            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, sprite, unitIndex);
+            hutriesHall->setTrainingCarrierFlag(false);
         }
-        else
+    }
+    else if(!hutriesHall->getTrainingWorkerFlag())
+        hutriesHall->trainingClock.restart();
+    if (hutriesHall->getMakeCarrierFlag())
+    {
+        if (hutriesHall->getTrainingWorkerFlag())
+        {
+            guiController->errorAlreadyCreatingWorker();
+            hutriesHall->setMakeCarrierFlag(false);
+            return;
+        }
+        if (world->availableSlots == 0)
         {
             guiController->errorNoSlots();
+            hutriesHall->setMakeCarrierFlag(false);
+            return;
         }
+        if (hutriesHall->getTrainingCarrierFlag())
+        {
+            guiController->errorAlreadyCreatingCarrier();
+            hutriesHall->setMakeCarrierFlag(false);
+            return;
+        }
+        else hutriesHall->setTrainingCarrierFlag(true);
         hutriesHall->setMakeCarrierFlag(false);
     }
 }

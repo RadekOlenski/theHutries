@@ -68,18 +68,24 @@ public:
     void errorAlreadyCreatingArcher();
 
     void errorAlreadyCreatingWarrior();
+
+    void errorAlreadyCreatingCarrier();
+
+    void errorAlreadyCreatingWorker();
+
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
     World* world;
-    GUI* gui;
 
+    GUI* gui;
     sf::View fixed;
     sf::RectangleShape background;
     sf::Texture backgroundTexture;
     sf::Sprite cursor;
     sf::Texture cursorTexture;
     GUIText titleText;
+
     sf::Thread titleThread;
 
     void getView();
