@@ -15,4 +15,5 @@ void Worker::moveHutrie()
 {
     toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
     sprite.setTexture( transTexture );
+    arrived = true;
 }

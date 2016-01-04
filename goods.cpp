@@ -5,7 +5,7 @@ Goods::Goods() : wood(0), food(0), gold (0), stone (0)
 
 }
 
-Goods::Goods(int wood, int food, int gold, int stone) : wood(wood), food(food), gold (gold), stone ()
+Goods::Goods(int wood, int food, int gold, int stone) : wood(wood), food(food), gold (gold), stone (stone)
 {
 
 }

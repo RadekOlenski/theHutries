@@ -14,8 +14,11 @@ class Worker : public Hutrie
     public:
         Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding = true);
         void moveHutrie();
-    protected:
+        bool haveArrived () {return arrived;};
+        void setArrived (bool arrived) {this->arrived = arrived;};
+        sf::Clock productionClock;
     private:
+        bool arrived;
 };
 
 #endif // WORKER_H

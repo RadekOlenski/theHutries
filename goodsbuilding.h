@@ -8,6 +8,7 @@
 #include "guibutton.h"
 #include "guitext.h"
 #include "goods.h"
+#include "worker.h"
 
 class GoodsBuilding : public Building
 {
@@ -18,9 +19,14 @@ public:
         void deactivateButtons();
         void buttonAction();
         virtual void createProduct() = 0;
+        void checkProduction();
         Goods myProducts;
+        void addWorker(Worker* worker);
+        Worker* getWorker();
+        int getWorkersSize();
 protected:
         //virtual void getGoods();
+        std::vector <Worker*> myWorkers;
         GUIButton callWorker;
         GUIText assignWorker;
         GUIButton goodsReady;

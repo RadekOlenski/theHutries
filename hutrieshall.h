@@ -8,12 +8,13 @@
 #include "building.h"
 #include "guibutton.h"
 #include "guitext.h"
+#include "world.h"
 
 class HutriesHall : public Building
 {
 public:
 
-    HutriesHall(sf::RenderWindow *hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName);
+    HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std::vector<Unit*> unitsFromGame, std::string pathName);
 
     void updateStatus();
 
@@ -33,12 +34,15 @@ public:
 
 private:
 
+    unsigned int getAvailableWorkers();
+    unsigned int getAvailableCarriers();
     GUIButton createWorkerButton;
     GUIText tWorker;
     GUIButton createCarrierButton;
     GUIText tCarrier;
     bool makeWorkerFlag;
     bool makeCarrierFlag;
+    World *world;
 
 
 };

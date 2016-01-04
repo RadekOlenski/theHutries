@@ -43,7 +43,7 @@ World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int appli
     int unitIndex = 70;
     std::vector<Unit*> usedUnits;
     prepareUnits(unitIndex, 3, 3, &usedUnits);
-    buildings.push_back(new HutriesHall(hutrieApplication, usedUnits, "sprites/buildings/castle.png"));
+    buildings.push_back(new HutriesHall(hutrieApplication, this, usedUnits, "sprites/buildings/castle.png"));
     buildings.back()->placeOnMap();
     /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
 

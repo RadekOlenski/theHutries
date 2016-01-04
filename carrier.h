@@ -16,12 +16,15 @@ class Carrier : public Hutrie
         void moveHutrie();
         bool haveArrived () {return arrived;};
         void setArrived (bool arrived) {this->arrived = arrived;};
+        bool haveReturned () {return returned;};
+        void setReturned (bool returned) {this->returned = returned;};
         void comeBack();
         Goods getMyLuggage() {return myLuggage;};
         sf::Thread carrierThread;
         Goods myLuggage;
     private:
         bool arrived;
+        bool returned;
 
 };
 

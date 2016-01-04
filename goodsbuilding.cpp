@@ -12,7 +12,6 @@ GoodsBuilding::GoodsBuilding(sf::RenderWindow*hutrieApplication, std::vector<Uni
             goodReady(1024 + 70, 570, 20, "Good ready")
 {
     capacity = 3;
-    hutriesCounter = 0;
 }
 
 void GoodsBuilding::showButtons()
@@ -46,16 +45,33 @@ void GoodsBuilding::buttonAction()
     }
 }
 
-//void GoodsBuilding::getGoods(string goodType)
-//{
-//    if (goodType == "wood")
-//        goodStore.push_back(new Wood());
-//    if (goodType == "food")
-//        goodStore.push_back(new Food());
-//    if (goodType == "gold")
-//        goodStore.push_back(new Gold());
-//    if (goodType == "stone")
-//        goodStore.push_back(new Stone());
-//
-//
-//}
+void GoodsBuilding::addWorker(Worker* worker)
+{
+    myWorkers.push_back(worker);
+}
+
+Worker* GoodsBuilding::getWorker()
+{
+    Worker* tempWorker = myWorkers.back();
+    myWorkers.pop_back();
+    return tempWorker;
+}
+
+int GoodsBuilding::getWorkersSize()
+{
+    return myWorkers.size();
+}
+
+void GoodsBuilding::checkProduction()
+{
+    std::vector<Worker*>::iterator itw;
+    for (itw = myWorkers.begin(); itw != myWorkers.end(); ++itw)
+    {
+        if((*itw)->productionClock.getElapsedTime().asSeconds() > 15)
+        {
+            createProduct();
+            (*itw)->productionClock.restart();
+        }
+    }
+}
+

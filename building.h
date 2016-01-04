@@ -20,14 +20,12 @@ public:
     bool getNeedCarrierFlag() {return needCarrier;}
     void setNeedCarrier (bool need) { needCarrier = need;}
     int getCapacity() {return capacity;}
-    int getHutriesCounter() {return hutriesCounter;}
-    void setHutriesCounter(int counter) {hutriesCounter = counter;}
 
 protected:
     int buildTime;
     int buildCost;
     int capacity;
-    int hutriesCounter;
+
     int checkHutries();
     bool needWorker;
     bool needCarrier;

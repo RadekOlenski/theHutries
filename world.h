@@ -24,6 +24,7 @@ class World
         std::vector <Worker*> workers;
         std::vector <Building*> buildings;
         std::vector <Environment*> environment;
+        std::vector <int> goodsBuildingIndex;
 		Goods availableGoods;
 		int availableSlots;
         Unit* lastClickedUnit;

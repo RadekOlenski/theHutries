@@ -10,6 +10,7 @@
 #include "world.h"
 #include "modelController.h"
 #include "hutrieshall.h"
+#include "goodsbuilding.h"
 #include "guiController.h"
 
 class GameLogicController
@@ -26,6 +27,8 @@ public:
     bool isUnitEmpty();
 
     void handleBuildingCreation();
+
+    void handleGoodsProduction();
 
     void deactivateChosenModeFlag();
 
@@ -57,7 +60,7 @@ public:
 
     void needWorker(std::vector<Building*>::iterator it);
 
-    void callWorker(std::vector<Worker*>::iterator itc, std::vector<Building*>::iterator it, unsigned int unitIndex);
+    void callWorker(std::vector<Worker*>::iterator itc, GoodsBuilding* gBuilding, unsigned int unitIndex);
 
     void handleCarrierReturn();
 private:

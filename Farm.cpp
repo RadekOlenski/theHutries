@@ -14,8 +14,8 @@ Farm::Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &units
 void Farm::updateStatus()
 {
     std::ostringstream desc;
-    desc << "Capacity: " << capacity << " workers\nWorkers: " << hutriesCounter << "\nCarriers: " <<
-    checkHutries() - hutriesCounter << "\nProducts in store: " << myProducts.getFood();
+    desc << "Capacity: " << capacity << " workers\nWorkers: " << myWorkers.size() << "\nCarriers: " <<
+    checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getFood();
     description.text.setString(desc.str());
 }
 

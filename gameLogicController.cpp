@@ -56,9 +56,11 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
     {
         case BuildingType::SAWMILL:
             world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
+            world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
             break;
         case BuildingType::STONECUTTERHUT:
             world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stone.png"));
+            world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
             break;
         case BuildingType::BARRACKS:
             world->buildings.push_back(new Barracks(hutrieApplication, usedUnits, "sprites/buildings/barracks.png"));
@@ -73,10 +75,12 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
         case BuildingType::GOLDMINE:
             world->buildings.push_back(
                     new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png"));
+            world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
             break;
         case BuildingType::FARM:
             world->buildings.push_back(
                     new Farm(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png"));
+            world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
             break;
         default:
             break;
@@ -263,30 +267,31 @@ void GameLogicController::callCarrier(std::vector<Carrier*>::iterator itc, std::
 
 void GameLogicController::needWorker(std::vector<Building*>::iterator it)
 {
-    if ((*it)->getHutriesCounter() < (*it)->getCapacity())       //jesli aktualna ilosc w budynku mniejsza od pojemnosci
+    GoodsBuilding* gBuilding = dynamic_cast<GoodsBuilding*>( *it );
+    if (gBuilding->getWorkersSize() < (*it)->getCapacity())       //jesli aktualna ilosc w budynku mniejsza od pojemnosci
     {
         unsigned int unitIndex = (unsigned int) (*it)->getUnitIndex(2);
         std::vector<Worker*>::iterator itc;
-        callWorker(itc, it, unitIndex);
+        callWorker(itc, gBuilding, unitIndex);
     }
     (*it)->setNeedWorker(false);
 }
 
-void GameLogicController::callWorker(std::vector<Worker*>::iterator itc, std::vector<Building*>::iterator it,
+void GameLogicController::callWorker(std::vector<Worker*>::iterator itc, GoodsBuilding* gBuilding,
                                      unsigned int unitIndex)
 {
     for (itc = world->workers.begin(); itc != world->workers.end(); ++itc)
     {
         if (!((*itc)->isBusy()))
         {
+            (*itc)->setBusy(true);
             std::cout << "Nie jestem zajety! Ruszam do pracy!" << std::endl;
             unsigned int workerIndex = (unsigned int) std::distance(world->workers.begin(), itc);
-            world->workers.at(workerIndex)->reconnectUnits((*it)->getObjectUnits());
-            world->workers.at(workerIndex)->hutrieThread.launch();             //tworzy watek w ktorym porusza sie Hutrie
+            world->workers.at(workerIndex)->reconnectUnits(gBuilding->getObjectUnits());
+            world->workers.at(workerIndex)->hutrieThread.launch();             //uruchamia watek w ktorym porusza sie Hutrie
             world->units.at(unitIndex)->addHutrie(world->workers.at(workerIndex));
-            (*it)->setHutriesCounter((*it)->getHutriesCounter() + 1);
-            (*it)->updateStatus();
-            (*itc)->setBusy(true);
+            gBuilding->addWorker(world->workers.at(workerIndex));
+            gBuilding->updateStatus();
             break;
         }
     }
@@ -303,19 +308,30 @@ void GameLogicController::handleCarrierReturn()
     {
         if ((*itc)->haveArrived())
         {
+            (*itc)->myLuggage.setProduct(1,2);
             std::cout << "Czas wracac do domu" << std::endl;
             (*itc)->carrierThread.launch();
         }
-        else
+        else if ((*itc)->haveReturned())
         {
             world->availableGoods = world->availableGoods + (*itc)->myLuggage;
             (*itc)->myLuggage.setProduct(5);
-
-            //// na razie do sprawdzenia ////
             guiController->checkCarrierGoods();
-            ////////////////////////////////////////
+            (*itc)->setReturned(false);
+        }
+    }
+}
 
-            (*itc)->setArrived(false);
+void GameLogicController::handleGoodsProduction()
+{
+   GoodsBuilding* gBuilding;
+   for(unsigned int i = 0; i < world->goodsBuildingIndex.size(); i++)
+    {
+        unsigned int index = world->goodsBuildingIndex.at(i);
+        gBuilding = dynamic_cast<GoodsBuilding*> (world->buildings.at(index));
+        if (gBuilding->getWorkersSize()>0)
+        {
+            gBuilding->checkProduction();
         }
     }
 }

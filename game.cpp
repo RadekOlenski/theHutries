@@ -11,8 +11,8 @@
 //=================================================================================
 Game::Game(int applicationWidth, int applicationHeight) :
         gameTime(1 * 60),
-        hutrieApplication(sf::VideoMode(applicationWidth + 256, applicationHeight + 30, 32), "The Hutries"),
-        // sf::Style::Fullscreen ),
+        hutrieApplication(sf::VideoMode(applicationWidth + 256, applicationHeight + 30, 32), "The Hutries",
+         sf::Style::Fullscreen ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
         world(&hutrieApplication, applicationWidth, applicationHeight)
 {
@@ -79,6 +79,8 @@ void Game::handleActions()
     gameLogicController->handleAssigningHutrie();
 
     gameLogicController->handleCarrierReturn();
+
+    gameLogicController->handleGoodsProduction();
 
     updateClock();
 }

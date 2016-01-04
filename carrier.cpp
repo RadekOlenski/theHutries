@@ -21,8 +21,9 @@ void Carrier::moveHutrie()
 
 void Carrier::comeBack()
 {
-    arrived = false;
+   arrived = false;
    toDirection(390,370);
-    busy = false;
+   busy = false;
+   returned = true;
     //sprite.setTexture( transTexture );
 }
