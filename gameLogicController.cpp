@@ -11,6 +11,8 @@
 #include "gameLogicController.h"
 #include "interactionMode.h"
 #include "sound.h"
+#include "warrior.h"
+#include "archer.h"
 
 GameLogicController::GameLogicController(World*world, sf::RenderWindow*hutrieApplication,
                                          ModelController*modelController, GUIController* guiController)
@@ -64,6 +66,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             break;
         case BuildingType::BARRACKS:
             world->buildings.push_back(new Barracks(hutrieApplication, usedUnits, "sprites/buildings/barracks.png"));
+            world->barracksIndex.push_back(world->buildings.size() - 1);
             break;
         case BuildingType::RESIDENCE:
         {
@@ -149,8 +152,8 @@ void GameLogicController::handleHutrieMoving()
 void GameLogicController::handleHutriesCreation()
 {
     GameLogicController::handleWorkerCreation();
-
     GameLogicController::handleCarrierCreation();
+    GameLogicController::handleSoldierCreation();
 }
 
 void GameLogicController::handleWorkerCreation()
@@ -159,9 +162,10 @@ void GameLogicController::handleWorkerCreation()
     {
         if (world->availableSlots > 0)
         {
+            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);                 // ktore z pol budynku ma byc zajete przez carriera
             std::string objectType = "worker";
             std::string sprite = "sprites/worker/up.png";
-            createHutrie(objectType, sprite);
+            createHutrie(objectType, sprite, unitIndex);
         }
         else
         {
@@ -177,9 +181,10 @@ void GameLogicController::handleCarrierCreation()
     {
         if (world->availableSlots > 0)
         {
+            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);                 // ktore z pol budynku ma byc zajete przez carriera
             std::string objectType = "carrier";
             std::string sprite = "sprites/carrier/up.png";
-            createHutrie(objectType, sprite);
+            createHutrie(objectType, sprite, unitIndex);
         }
         else
         {
@@ -191,28 +196,89 @@ void GameLogicController::handleCarrierCreation()
 
 void GameLogicController::handleSoldierCreation()
 {
-
+    for(unsigned int i = 0; i < world->barracksIndex.size(); i++)
+    {
+        unsigned int index = world->barracksIndex.at(i);
+        barracks = dynamic_cast<Barracks*> (world->buildings.at(index));
+        unsigned int unitIndex = (unsigned int) barracks->getUnitIndex(2);
+        handleWarriorCreation(unitIndex);
+        handleArcherCreation(unitIndex);
+    }
 }
 
-void GameLogicController::createHutrie(std::string objectType, std::string sprite)
+void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
+{
+    if (barracks->getMakeWarriorFlag())
+    {
+        if (world->availableSlots > 0)
+        {
+            std::string objectType = "warrior";
+            std::string sprite = "sprites/warrior/up.png";
+            createHutrie(objectType, sprite, unitIndex);
+        }
+        else
+        {
+            guiController->errorNoSlots();
+        }
+        barracks->setMakeWarriorFlag(false);
+    }
+}
+
+void GameLogicController::handleArcherCreation(unsigned int unitIndex)
+{
+    if (barracks->getMakeArcherFlag())
+    {
+        if (world->availableSlots > 0)
+        {
+            std::string objectType = "archer";
+            std::string sprite = "sprites/warrior/up.png";
+            createHutrie(objectType, sprite, unitIndex);
+        }
+        else
+        {
+            guiController->errorNoSlots();
+        }
+        barracks->setMakeArcherFlag(false);
+    }
+}
+
+void GameLogicController::createHutrie(std::string objectType, std::string sprite, unsigned int unitIndex)
 {
     std::vector<Unit*> usedUnits;
-    int unitIndex = hutriesHall->getUnitIndex(6);                 // ktore z pol budynku ma byc zajete przez carriera
-    usedUnits.push_back(world->units.at((unsigned int) unitIndex));
+    usedUnits.push_back(world->units.at(unitIndex));
     if (objectType == "carrier")
     {
         std::cout << "Utworze dla ciebie Carriera!" << std::endl;
         world->carriers.push_back(new Carrier(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
         world->hutries.push_back(world->carriers.back());
+        world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        world->availableSlots--;
     }
     else if (objectType == "worker")
     {
         std::cout << "Utworze dla ciebie Workera!" << std::endl;
         world->workers.push_back(new Worker(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
         world->hutries.push_back(world->workers.back());
+        world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        world->availableSlots--;
     }
-    world->units.at((unsigned int) unitIndex)->addHutrie(world->hutries.back());
-    world->availableSlots--;
+    else if (objectType == "warrior")
+    {
+        std::cout << "Utworze dla ciebie Warriora!" << std::endl;
+        world->soldiers.push_back(new Warrior(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
+        world->hutries.push_back(world->soldiers.back());
+        world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        world->availableSlots--;
+
+    }
+    else if (objectType == "archer")
+    {
+        std::cout << "Utworze dla ciebie Archera!" << std::endl;
+        world->soldiers.push_back(new Archer(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
+        world->hutries.push_back(world->soldiers.back());
+        world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        world->availableSlots--;
+    }
 }
 
 void GameLogicController::handleGUIButtonsAction()
@@ -258,10 +324,10 @@ void GameLogicController::callCarrier(std::vector<Carrier*>::iterator itc, std::
             (*it)->updateStatus();
             break;
         }
-        if (itc == world->carriers.end())
-        {
-            guiController->errorNoCarriers();
-        }
+    }
+    if (itc == world->carriers.end())
+    {
+        guiController->errorNoCarriers();
     }
 }
 

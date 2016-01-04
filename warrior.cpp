@@ -5,7 +5,7 @@
 #include "warrior.h"
 
 Warrior::Warrior(sf::RenderWindow *hutrieApplication, const std::vector<Unit*> &unitsFromGame,
-                 const char *const pathName, bool onBuilding)  : Soldier(hutrieApplication, unitsFromGame, pathName, onBuilding)
+                 std::string pathName, bool onBuilding)  : Soldier(hutrieApplication, unitsFromGame, pathName, onBuilding)
 {
 
 };

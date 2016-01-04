@@ -1,9 +1,7 @@
 #include "barracks.h"
 
 #include <sstream>
-#include <cstdlib>
 #include <iostream>
-#include "warrior.h"
 #include "sound.h"
 
 Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName)
@@ -48,12 +46,12 @@ void Barracks::buttonAction()
 {
     if (createWarriorButton.checkBounds() && createWarriorButton.isActive())
     {
-        std::cout << "Create Worker!!!!" << std::endl;
+        std::cout << "Create Warrior!!!!" << std::endl;
         makeWarriorFlag = true;
     }
     if (createArcherButton.checkBounds() && createArcherButton.isActive())
     {
-        std::cout << "Create Carrier!!!!" << std::endl;
+        std::cout << "Create Archer!!!!" << std::endl;
         makeArcherFlag = true;
     }
 }

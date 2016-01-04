@@ -134,19 +134,17 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
     {
         if (!((*it)->isEmpty()))
         {
-            drawToApplication(
-                    (*it)->getMapObject()->sprite);          //rysuje obiekty (budynki, przyroda) widoczne na mapie
+            drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
             if ((*it)->hutriesNumber() > 0)
             {
                 for (int i = 0; i < (*it)->hutriesNumber(); i++)             //jesli w wektorze jest jakis hutri
                 {
-                    drawToApplication((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
+                   drawToApplication((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
                 }
             }
 
             if ((*it)->getMapObject()->isHighlighted()
-                && modelController->getChosenInteractionMode() ==
-                   InteractionMode::INFOMODE)            //jesli tryb info rysuj w prawym gui
+                && modelController->getChosenInteractionMode() == InteractionMode::INFOMODE)  //jesli tryb info rysuj w prawym gui
             {
                 drawToApplication((*it)->getMapObject()->title.text);
                 drawToApplication((*it)->getMapObject()->description.text);

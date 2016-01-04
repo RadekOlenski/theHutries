@@ -12,6 +12,7 @@
 #include "hutrieshall.h"
 #include "goodsbuilding.h"
 #include "guiController.h"
+#include "barracks.h"
 
 class GameLogicController
 {
@@ -48,7 +49,11 @@ public:
 
     void handleSoldierCreation();
 
-    void createHutrie(std::string objectType, std::string sprite);
+    void handleWarriorCreation(unsigned int unitindex);
+
+    void handleArcherCreation(unsigned int unitIndex);
+
+    void createHutrie(std::string objectType, std::string sprite, unsigned int unitIndex);
 
     void handleGUIButtonsAction();
 
@@ -69,6 +74,7 @@ private:
     ModelController* modelController;
     GUIController* guiController;
     HutriesHall* hutriesHall;
+    Barracks* barracks;
 };
 
 
