@@ -11,31 +11,51 @@
 
 class Barracks : public Building
 {
-    public:
-        Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
-        void updateStatus();
+public:
+    Barracks(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName);
 
-        bool getMakeWarriorFlag();
+    void updateStatus();
 
-        void setMakeWarriorFlag(bool makeWarriorFlag);
+    bool getMakeWarriorFlag();
 
-        bool getMakeArcherFlag();
+    void setMakeWarriorFlag(bool makeWarriorFlag);
 
-        void setMakeArcherFlag(bool makeArcherFlag);
+    bool getMakeArcherFlag();
 
-        void buttonAction();
+    void setMakeArcherFlag(bool makeArcherFlag);
 
-        void showButtons();
+    void buttonAction();
 
-        void deactivateButtons();
+    void showButtons();
+
+    void deactivateButtons();
+
+    sf::Clock trainingClock;
+
+    int getWarriorTrainingTime() { return warriorTrainingTime; };
+
+    int getArcherTrainingTime() { return archerTrainingTime; };
+
+    void setTrainingWarriorFlag(bool trainingWarrior) { this->trainingWarrior = trainingWarrior; };
+
+    bool getTrainingWarriorFlag() { return trainingWarrior; };
+
+    void setTrainingArcherFlag(bool trainingArcher) { this->trainingArcher = trainingArcher; };
+
+    bool getTrainingArcherFlag() { return trainingArcher; };
 
 private:
-        GUIButton createWarriorButton;
-        GUIText textWarrior;
-        GUIButton createArcherButton;
-        GUIText textArcher;
-        bool makeWarriorFlag;
-        bool makeArcherFlag;
+    GUIButton createWarriorButton;
+    GUIText textWarrior;
+    GUIButton createArcherButton;
+    GUIText textArcher;
+    bool makeWarriorFlag;
+    bool makeArcherFlag;
+    bool trainingWarrior;
+    bool trainingArcher;
+
+    const int warriorTrainingTime = 5;
+    const int archerTrainingTime = 3;
 };
 
 #endif // BARRACKS_H

@@ -237,6 +237,30 @@ std::string GUIController::getEndingStats()
     return stats.str();
 }
 
+void GUIController::checkCarrierGoods()
+{
+    std::ostringstream desc;
+    desc << world->availableGoods.getWood();
+    gui->twood.text.setString(desc.str());
+
+    std::ostringstream desc1;
+    desc1 << world->availableGoods.getStone();
+    gui->tstone.text.setString(desc1.str());
+
+    std::ostringstream desc2;
+    desc2 << world->availableGoods.getFood();
+    gui->tfood.text.setString(desc2.str());
+
+    std::ostringstream desc3;
+    desc3 << world->availableGoods.getGold();
+    gui->tgold.text.setString(desc3.str());
+}
+
+//=================================================================================
+//                              ERRORS
+//=================================================================================
+
+
 void GUIController::errorNoCarriers()
 {
     Sound::error();
@@ -270,21 +294,14 @@ void GUIController::errorOutOfMap()
     gui->errorInfo.text.setString("Error: Building out of map. Choose another place");
 }
 
-void GUIController::checkCarrierGoods()
+void GUIController::errorAlreadyCreatingArcher()
 {
-    std::ostringstream desc;
-    desc << world->availableGoods.getWood();
-    gui->twood.text.setString(desc.str());
+    Sound::error();
+    gui->errorInfo.text.setString("Error: You are currently creating Archer!");
+}
 
-    std::ostringstream desc1;
-    desc1 << world->availableGoods.getStone();
-    gui->tstone.text.setString(desc1.str());
-
-    std::ostringstream desc2;
-    desc2 << world->availableGoods.getFood();
-    gui->tfood.text.setString(desc2.str());
-
-    std::ostringstream desc3;
-    desc3 << world->availableGoods.getGold();
-    gui->tgold.text.setString(desc3.str());
+void GUIController::errorAlreadyCreatingWarrior()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: You are currently creating Warrior!");
 }

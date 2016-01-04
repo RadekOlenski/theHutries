@@ -64,6 +64,10 @@ public:
     void errorOutOfMap();
 
     void checkCarrierGoods();
+
+    void errorAlreadyCreatingArcher();
+
+    void errorAlreadyCreatingWarrior();
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;

@@ -208,36 +208,78 @@ void GameLogicController::handleSoldierCreation()
 
 void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
 {
-    if (barracks->getMakeWarriorFlag())
+    if (barracks->getTrainingWarriorFlag())
     {
-        if (world->availableSlots > 0)
+        if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getWarriorTrainingTime())
         {
             std::string objectType = "warrior";
             std::string sprite = "sprites/warrior/up.png";
             createHutrie(objectType, sprite, unitIndex);
+            barracks->setTrainingWarriorFlag(false);
         }
-        else
+    }
+    else if(!barracks->getTrainingArcherFlag())
+        barracks->trainingClock.restart();
+    if (barracks->getMakeWarriorFlag())
+    {
+        if (barracks->getTrainingArcherFlag())
+        {
+            guiController->errorAlreadyCreatingArcher();
+            barracks->setMakeWarriorFlag(false);
+            return;
+        }
+        if (world->availableSlots == 0)
         {
             guiController->errorNoSlots();
+            barracks->setMakeWarriorFlag(false);
+            return;
         }
+        if (barracks->getTrainingWarriorFlag())
+        {
+            guiController->errorAlreadyCreatingWarrior();
+            barracks->setMakeWarriorFlag(false);
+            return;
+        }
+        else barracks->setTrainingWarriorFlag(true);
         barracks->setMakeWarriorFlag(false);
     }
 }
 
 void GameLogicController::handleArcherCreation(unsigned int unitIndex)
 {
-    if (barracks->getMakeArcherFlag())
+    if (barracks->getTrainingArcherFlag())
     {
-        if (world->availableSlots > 0)
+        if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getArcherTrainingTime())
         {
             std::string objectType = "archer";
             std::string sprite = "sprites/warrior/up.png";
             createHutrie(objectType, sprite, unitIndex);
+            barracks->setTrainingArcherFlag(false);
         }
-        else
+    }
+    else if(!barracks->getTrainingWarriorFlag())
+        barracks->trainingClock.restart();
+    if (barracks->getMakeArcherFlag())
+    {
+        if (barracks->getTrainingWarriorFlag())
+        {
+            guiController->errorAlreadyCreatingWarrior();
+            barracks->setMakeArcherFlag(false);
+            return;
+        }
+        if (world->availableSlots == 0)
         {
             guiController->errorNoSlots();
+            barracks->setMakeArcherFlag(false);
+            return;
         }
+        if (barracks->getTrainingArcherFlag())
+        {
+            guiController->errorAlreadyCreatingArcher();
+            barracks->setMakeArcherFlag(false);
+            return;
+        }
+        else barracks->setTrainingArcherFlag(true);
         barracks->setMakeArcherFlag(false);
     }
 }
@@ -269,7 +311,6 @@ void GameLogicController::createHutrie(std::string objectType, std::string sprit
         world->hutries.push_back(world->soldiers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
         world->availableSlots--;
-
     }
     else if (objectType == "archer")
     {

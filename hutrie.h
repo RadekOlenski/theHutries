@@ -10,40 +10,44 @@
 
 //class MapObject;
 class Unit;
+
 class Hutrie : public MapObject
 {
 
-    public:
+public:
 
-        sf::Thread hutrieThread;
+    sf::Thread hutrieThread;
 
-        Hutrie(sf::RenderWindow *hutrieApplication,std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding = true);
-        virtual void moveHutrie() = 0;
-        void updateStatus();
+    Hutrie(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName, bool onBuilding = true);
 
-        bool isActive() {return active;}
-        void setActive(bool active) {this->active = active;}
-        bool isBusy() {return busy;}
-        void setBusy(bool busy) {this->busy = busy;}
+    virtual void moveHutrie() = 0;
 
-        protected:
+    void updateStatus();
 
-        sf::Texture upTexture;
-        sf::Texture downTexture;
-        sf::Texture leftTexture;
-        sf::Texture transTexture;
-        void toDirection(float targetX, float targetY);
-        bool busy;
+    bool isActive() { return active; }
 
-    private:
+    void setActive(bool active) { this->active = active; }
 
-        int strength;
-        int agility;
-        int endurance;
-        bool onBuilding;
-        bool active;
+    bool isBusy() { return busy; }
 
+    void setBusy(bool busy) { this->busy = busy; }
 
+protected:
+    sf::Texture upTexture;
+    sf::Texture downTexture;
+    sf::Texture leftTexture;
+    sf::Texture transTexture;
+
+    void toDirection(float targetX, float targetY);
+
+    bool busy;
+
+private:
+    int strength;
+    int agility;
+    int endurance;
+    bool onBuilding;
+    bool active;
 };
 
 #endif // HUTRIE_H

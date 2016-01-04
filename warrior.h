@@ -17,6 +17,5 @@ public:
 
     std::string pathName = "sprites/warrior/right.png";
     static const std::vector<Unit*> usedUnits;
-
 };
 #endif //THEHUTRIES_WARRIOR_H
