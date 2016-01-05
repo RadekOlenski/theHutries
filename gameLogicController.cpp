@@ -82,7 +82,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             break;
         case BuildingType::FARM:
             world->buildings.push_back(
-                    new Farm(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png"));
+                    new Farm(hutrieApplication, usedUnits, "sprites/buildings/farm.png"));
             world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
             break;
         default:
