@@ -6,7 +6,8 @@ Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
         : GoodsBuilding(hutrieApplication, unitsFromGame, pathName)
 {
     title.text.setString("Goldmine:");
-    sound.openFromFile(Sound::goldmine); //TODO znaleźć dźwięk kopalni
+    sound.openFromFile(Sound::goldmine);
+    sound.setVolume(50);
     goodReady.text.setString("Gold ready");
 
 }

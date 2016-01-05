@@ -7,6 +7,7 @@ Farm::Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &units
 {
     title.text.setString("Farm:");
     sound.openFromFile(Sound::farm); //TODO znaleźć dźwięk farmy
+    sound.setVolume(50);
     goodReady.text.setString("Food ready");
 
 }
