@@ -19,6 +19,8 @@ public:
 
     static void ting();
 
+    static void notification();
+
     static const std::string musicPath;
     static const std::string barracks;
     static const std::string trees;
@@ -36,6 +38,7 @@ private:
     static const std::string errorPath;
     static const std::string clickPath;
     static const std::string tingPath;
+    static const std::string notificationPath;
 };
 
 

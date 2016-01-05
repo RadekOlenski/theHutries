@@ -10,6 +10,8 @@ StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*
     sprite.setOrigin(-10,-30);
     sound.openFromFile(Sound::stonecutter);
     goodReady.text.setString("Stone ready");
+    textureWithProduct.loadFromFile("sprites/buildings/stonecutterHutWithProduct.png");
+    textureNoProduct.loadFromFile("sprites/buildings/stonecutterHut.png");
 }
 
 void StoneCutter::updateStatus()

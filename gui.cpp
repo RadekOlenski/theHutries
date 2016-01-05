@@ -18,7 +18,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         tstone(280 + 576, mapHeight + 2, 20, "0", sf::Color::White),
         sawmill(mapWidth + 30, 170, hutrieApplication, "sprites/buildings/sawmill.png", 90, 90),
         tSawmill(mapWidth + 40, 255, 20, "Sawmill"),
-        stonecutter(mapWidth + 150, 170, hutrieApplication, "sprites/buildings/stone.png", 90, 90),
+        stonecutter(mapWidth + 150, 170, hutrieApplication, "sprites/buildings/stonecutterHut.png", 90, 90),
         tStonecutter(mapWidth + 155, 255, 20, "Stonecutter"),
         goldmine(mapWidth + 30, 420, hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png", 90, 90),
         tGoldmine(mapWidth + 40, 505, 20, "Goldmine"),

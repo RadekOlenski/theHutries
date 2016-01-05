@@ -9,6 +9,8 @@ Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsF
     title.text.setString("Sawmill:");
     sound.openFromFile(Sound::sawmill);
     goodReady.text.setString("Wood ready");
+    textureWithProduct.loadFromFile("sprites/buildings/sawmillWithLogs.png");
+    textureNoProduct.loadFromFile("sprites/buildings/sawmill.png");
 }
 
 void Sawmill::createProduct()
@@ -23,3 +25,4 @@ void Sawmill::updateStatus()
     checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getWood();
     description.text.setString(desc.str());
 }
+

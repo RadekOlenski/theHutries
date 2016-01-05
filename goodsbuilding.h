@@ -25,11 +25,17 @@ public:
         Worker* getWorker();
         int getWorkersSize();
 protected:
-        //virtual void getGoods();
+
+    void changeBuildingSprite();
+
+    //virtual void getGoods();
         std::vector <Worker*> myWorkers;
         GUIButton callWorker;
         GUIText assignWorker;
         GUIButton goodsReady;
         GUIText goodReady;
+
+        sf::Texture textureWithProduct;
+        sf::Texture textureNoProduct;
 };
 #endif // GOODSBUILDING_H

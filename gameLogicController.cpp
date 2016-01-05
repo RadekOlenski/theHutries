@@ -61,7 +61,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
             break;
         case BuildingType::STONECUTTERHUT:
-            world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stone.png"));
+            world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stonecutterHut.png"));
             world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
             break;
         case BuildingType::BARRACKS:
@@ -77,7 +77,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
         }
         case BuildingType::GOLDMINE:
             world->buildings.push_back(
-                    new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmineRail.png"));
+                    new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmine.png"));
             world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
             break;
         case BuildingType::FARM:

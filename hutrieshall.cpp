@@ -19,7 +19,7 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std:
     sprite.setOrigin(30, 128);
 
     sound.openFromFile(Sound::hutrieshall);
-    setSoundVolume(100);
+    setSoundVolume(10);
 
     makeWorkerFlag = false;
     makeCarrierFlag = false;

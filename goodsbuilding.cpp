@@ -1,4 +1,5 @@
 #include "goodsbuilding.h"
+#include "sound.h"
 #include <iostream>
 
 using namespace std;
@@ -70,8 +71,22 @@ void GoodsBuilding::checkProduction()
         if((*itw)->productionClock.getElapsedTime().asSeconds() > 15)
         {
             createProduct();
+            Sound::notification();
             (*itw)->productionClock.restart();
         }
     }
+    changeBuildingSprite();
+}
+
+void GoodsBuilding::changeBuildingSprite()
+{
+    if(myProducts.getWood() > 0
+          || myProducts.getFood() > 0
+          || myProducts.getGold() > 0
+          || myProducts.getStone() > 0)
+    {
+        sprite.setTexture(textureWithProduct);
+    }
+    else sprite.setTexture(textureNoProduct);
 }
 

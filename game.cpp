@@ -52,7 +52,7 @@ Game::Game(int applicationWidth, int applicationHeight) :
 
 void Game::play()
 {
-    music.play();
+    //music.play();
     music.setVolume(40);
     guiController->launchTitleThread();
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)

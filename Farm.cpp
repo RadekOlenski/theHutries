@@ -9,7 +9,8 @@ Farm::Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &units
     sound.openFromFile(Sound::farm); //TODO znaleźć dźwięk farmy
     sound.setVolume(50);
     goodReady.text.setString("Food ready");
-
+    textureWithProduct.loadFromFile("sprites/buildings/farmWithProduct.png");
+    textureNoProduct.loadFromFile("sprites/buildings/farm.png");
 }
 
 void Farm::updateStatus()

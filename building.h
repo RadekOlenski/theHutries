@@ -21,6 +21,8 @@ public:
     void setNeedCarrier (bool need) { needCarrier = need;}
     int getCapacity() {return capacity;}
 
+
+
 protected:
     int buildTime;
     int buildCost;

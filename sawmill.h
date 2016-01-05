@@ -13,6 +13,7 @@ class Sawmill : public GoodsBuilding
         Sawmill(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
         void createProduct();
         void updateStatus();
+
     private:
         std::string goodType;
 };

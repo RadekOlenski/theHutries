@@ -30,6 +30,7 @@ void Mouse::leftClickActions()
             gameLogicController->findSelectedUnit();
 
             handleClickOnMap();
+
             return;
         }
         gameLogicController->handleGUIButtonsAction();
@@ -90,6 +91,7 @@ void Mouse::handleClickOnMap()
 ////////////////////////////EMPHASIZE UNIT WITH MAPOBJECT///////////////////////////////////////////////////////////////////////////////////
     {
         gameLogicController->highlightUnits();
+
     }
 }
 

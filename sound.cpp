@@ -9,6 +9,7 @@ sf::SoundBuffer Sound::soundBuffer = soundBuffer;
 const string Sound::errorPath = "audio/error.wav";
 const string Sound::clickPath = "audio/click.wav";
 const string Sound::tingPath = "audio/ting.wav";
+const string Sound::notificationPath = "audio/notification.wav";
 const string Sound::musicPath = "audio/celtic.wav";
 const string Sound::hutrie = "audio/sir.wav";
 const string Sound::trees = "audio/trees.wav";
@@ -43,5 +44,12 @@ void Sound::ting()
 {
     Sound::setSoundBuffer();
     soundBuffer.loadFromFile(tingPath);
+    sound.play();
+}
+
+void Sound::notification()
+{
+    Sound::setSoundBuffer();
+    soundBuffer.loadFromFile(notificationPath);
     sound.play();
 }

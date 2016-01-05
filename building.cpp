@@ -7,6 +7,7 @@ Building::Building(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsF
 {
     needCarrier = false;
     needWorker = false;
+
 }
 
 void Building::placeOnMap()

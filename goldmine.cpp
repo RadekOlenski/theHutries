@@ -9,7 +9,8 @@ Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
     sound.openFromFile(Sound::goldmine);
     sound.setVolume(50);
     goodReady.text.setString("Gold ready");
-
+    textureWithProduct.loadFromFile("sprites/buildings/goldmine/goldmineWithProduct2.png");
+    textureNoProduct.loadFromFile("sprites/buildings/goldmine/goldmine.png");
 }
 
 void Goldmine::updateStatus()
