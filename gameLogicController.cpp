@@ -294,7 +294,7 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
         if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getArcherTrainingTime())
         {
             std::string objectType = "archer";
-            std::string sprite = "sprites/warrior/up.png";
+            std::string sprite = "sprites/archer/up.png";
             createHutrie(objectType, sprite, unitIndex);
             barracks->setTrainingArcherFlag(false);
         }
