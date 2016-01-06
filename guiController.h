@@ -79,6 +79,8 @@ public:
 
     void errorMustBuildNearForest();
 
+    void errorMustBuildNearRocks();
+
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;

@@ -70,9 +70,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
 
             break;
         case BuildingType::STONECUTTERHUT:
-            world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stonecutterHut.png"));
-            world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
-            Sound::ting();
+            createStonecutterHut(usedUnits);
             break;
         case BuildingType::BARRACKS:
             world->buildings.push_back(new Barracks(hutrieApplication, usedUnits, "sprites/buildings/barracks.png"));
@@ -545,4 +543,35 @@ void GameLogicController::createSawmill(std::vector<Unit*> usedUnits)
         }
     }
     guiController->errorMustBuildNearForest();
+}
+
+void GameLogicController::createStonecutterHut(std::vector<Unit *> usedUnits)
+{
+    std::vector<unsigned int>::iterator it;
+    int selectedUnit = modelController->getSelectedUnitIndex();
+    for (it = world->rocksIndex.begin(); it < world->rocksIndex.end(); ++it)
+    {
+        for (int rocksUnit = 0; rocksUnit < 6; rocksUnit++)
+        {
+            int currentRocksUnit = world->environment.at(*it)->getUnitIndex(rocksUnit);
+            for (int j = selectedUnit - 17; j <= selectedUnit + 31; j += 16)
+            {
+                if (j == currentRocksUnit)
+                {
+                    world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stonecutterHut.png"));
+                    world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+                    Sound::ting();
+                    return;
+                }
+                else if (j + 3 == currentRocksUnit)
+                {
+                    world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stonecutterHut.png"));
+                    world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+                    Sound::ting();
+                    return;
+                }
+            }
+        }
+    }
+    guiController->errorMustBuildNearRocks();
 }

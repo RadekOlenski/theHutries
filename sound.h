@@ -23,7 +23,6 @@ public:
 
     static const std::string musicPath;
     static const std::string barracks;
-    static const std::string trees;
     static const std::string farm;
     static const std::string goldmine;
     static const std::string hutrie;
@@ -31,6 +30,9 @@ public:
     static const std::string residence;
     static const std::string sawmill;
     static const std::string stonecutter;
+    static const std::string trees;
+    static const std::string mountain;
+    static const std::string rocks;
 
 private:
     static sf::Sound sound;

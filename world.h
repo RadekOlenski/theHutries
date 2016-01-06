@@ -40,6 +40,8 @@ class World
 		void increaseAvailableSlots(int addedSlotsNumber);
     private:
 		void createForest();
+		void createMountains();
+		void createRocks();
         int horizontalUnitsCounter;
         int verticalUnitsCounter;
         sf::RenderWindow *hutrieApplication;

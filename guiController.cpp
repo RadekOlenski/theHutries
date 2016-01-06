@@ -335,3 +335,9 @@ void GUIController::errorMustBuildNearForest()
     Sound::error();
     gui->errorInfo.text.setString("Error: You have to build sawmill near forest!");
 }
+
+void GUIController::errorMustBuildNearRocks()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: You have to build stonecutterHut near rocks!");
+}

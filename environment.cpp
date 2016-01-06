@@ -7,10 +7,3 @@ Environment::Environment(sf::RenderWindow *hutrieApplication, std::vector<Unit *
 {
 
 }
-
-void Environment::updateStatus()
-{
-    std::ostringstream desc;
-    desc << "You can build sawmill \n next to the forest";
-    description.text.setString(desc.str());
-}
