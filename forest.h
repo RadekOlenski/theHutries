@@ -13,6 +13,7 @@ class Forest : public Environment
 
 public:
     Forest(sf::RenderWindow *hutrieApplication, std::vector<Unit *> &unitsFromGame, std::string pathName);
+    void updateStatus();
 
 };
 

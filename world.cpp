@@ -4,6 +4,8 @@
 #include "world.h"
 #include "hutrieshall.h"
 #include "forest.h"
+#include "mountain.h"
+#include "rocks.h"
 
 World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize)
         : lastClickedUnit(NULL)
@@ -55,6 +57,8 @@ World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int appli
     /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
 
     createForest();
+    createMountains();
+    createRocks();
 }
 
 void World::prepareUnits(int unitIndex, int height, int width, std::vector<Unit*>*usedUnits)
@@ -138,4 +142,64 @@ void World::createForest()
         std::cout << "Exception: " << d << ": Not enough space for object" << std::endl;
     }
     std::cout << "Ilosc drzew: " << trees << std::endl;
+}
+
+void World::createMountains()
+{
+    std::vector<Unit*> usedUnits;
+    int unitIndex;
+    try
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            int d = 0;
+            do
+            {
+                usedUnits.clear();
+                unitIndex = (rand() % (horizontalUnitsCounter - 3)) +
+                            ((rand() % (verticalUnitsCounter - 1)) * horizontalUnitsCounter);
+                prepareUnits(unitIndex, 2, 2, &usedUnits);
+                if (d > 1000) throw -1;
+                else d++;
+            }
+            while (!(isFieldEmpty(usedUnits)));
+            environment.push_back(new Mountain(hutrieApplication, usedUnits, "sprites/environment/mountain.png"));
+            this->mountainsIndex.push_back(this->environment.size() - 1);
+            std::cout << "Gory nr " << i << ", prob postawienia: " << d << std::endl;
+        }
+    }
+    catch (int d)
+    {
+        std::cout << "Exception: " << d << ": Not enough space for object" << std::endl;
+    }
+}
+
+void World::createRocks()
+{
+    std::vector<Unit*> usedUnits;
+    int unitIndex;
+    try
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            int d = 0;
+            do
+            {
+                usedUnits.clear();
+                unitIndex = (rand() % (horizontalUnitsCounter - 3)) +
+                            ((rand() % (verticalUnitsCounter - 1)) * horizontalUnitsCounter);
+                prepareUnits(unitIndex, 2, 3, &usedUnits);
+                if (d > 1000) throw -1;
+                else d++;
+            }
+            while (!(isFieldEmpty(usedUnits)));
+            environment.push_back(new Rocks(hutrieApplication, usedUnits, "sprites/environment/rocks.png"));
+            this->rocksIndex.push_back(this->environment.size() - 1);
+            std::cout << "Skaly nr " << i << ", prob postawienia: " << d << std::endl;
+        }
+    }
+    catch (int d)
+    {
+        std::cout << "Exception: " << d << ": Not enough space for object" << std::endl;
+    }
 }

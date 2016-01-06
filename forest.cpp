@@ -2,6 +2,7 @@
 // Created by Master on 05.01.2016.
 //
 
+#include <sstream>
 #include "forest.h"
 #include "sound.h"
 #include "unit.h"
@@ -19,4 +20,11 @@ Forest::Forest(sf::RenderWindow *hutrieApplication, std::vector<Unit *> &unitsFr
 
     sprite.setPosition(objectUnits.at(0)->field.getPosition());
     occupyUnits();
+}
+
+void Forest::updateStatus()
+{
+    std::ostringstream desc;
+    desc << "You can build sawmill \n next to the forest";
+    description.text.setString(desc.str());
 }

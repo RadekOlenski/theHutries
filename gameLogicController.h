@@ -25,6 +25,8 @@ public:
 
     void createSawmill(std::vector<Unit*> usedUnits);
 
+    void createStonecutterHut(std::vector<Unit*> usedUnits);
+
     void findSelectedUnit();
 
     bool isUnitEmpty();
