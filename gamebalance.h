@@ -36,8 +36,8 @@ class GameBalance
 
     //////////////////////////////////  TRAINING    ///////////////////////////////////////////////
 
-    const static int carrierTrainingTime = 0.3;
-    const static int workerTrainingTime = 0.5;
+    const static double carrierTrainingTime;
+    const static double workerTrainingTime;
     const static int archerTrainingTime = 3;
     const static int warriorTrainingTime = 5;
 
@@ -47,9 +47,9 @@ class GameBalance
 
     /////////////////////////////////   FINAL RESULT    ///////////////////////////////////////////
 
-    const static double warriotQuotient = 0.8;
-    const static double archerQuotient = 0.8;
-    const static double winResult = 6;
+    const static double warriorQuotient;
+    const static double archerQuotient;
+    const static double winResult;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 };

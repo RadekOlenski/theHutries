@@ -8,3 +8,9 @@
     Goods GameBalance::farmCost (4,3);
     Goods GameBalance::archerCost (0,0,0,3);
     Goods GameBalance::warriorCost (0,0,0,5);
+
+    const double GameBalance::warriorQuotient = 0.8;
+    const double GameBalance::archerQuotient = 0.8;
+    const double GameBalance::winResult = 6;
+    const double GameBalance::carrierTrainingTime = 0.3;
+    const double GameBalance::workerTrainingTime = 0.5;
