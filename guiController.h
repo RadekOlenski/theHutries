@@ -73,6 +73,8 @@ public:
 
     void errorAlreadyCreatingWorker();
 
+    void errorNoProductsToCarry();
+
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;

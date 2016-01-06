@@ -90,3 +90,9 @@ void GoodsBuilding::changeBuildingSprite()
     else sprite.setTexture(textureNoProduct);
 }
 
+void GoodsBuilding::giveProduct(Goods* luggage)
+{
+        luggage->setProduct(myProducts.whichProduct(),1);
+        myProducts.setProduct(myProducts.whichProduct(),-1);
+}
+

@@ -7,8 +7,9 @@
 
 #include "mapobject.h"
 #include "unit.h"
+#include "carrier.h"
 
-
+class Carrier;
 class Building : public MapObject
 {
 public:
@@ -20,14 +21,18 @@ public:
     bool getNeedCarrierFlag() {return needCarrier;}
     void setNeedCarrier (bool need) { needCarrier = need;}
     int getCapacity() {return capacity;}
-
+    void addCarrier(Carrier* carrier);
+    Carrier* getCarrier();
+    int getCarriersSize();
 
 
 protected:
+
     int buildTime;
     int buildCost;
     int capacity;
 
+    std::vector <Carrier*> myCarriers;
     int checkHutries();
     bool needWorker;
     bool needCarrier;

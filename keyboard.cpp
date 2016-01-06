@@ -3,9 +3,11 @@
 #include "buildingType.h"
 #include "keyboard.h"
 #include "sound.h"
+#include <iostream>
 
-Keyboard::Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController)
+Keyboard::Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController/*, World* world*/)
 {
+//    this->world = world;
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
 }
@@ -81,18 +83,23 @@ void Keyboard::chooseBuildingType(sf::Event event)
             case sf::Keyboard::Num6:
                 modelController->setChosenBuildingType(BuildingType::FARM);
                 break;
-            case sf::Keyboard::Space:
-            {
-                //std::cout<<world.availableSlots << std::endl;
-                /*std::vector<Carrier*>::iterator itc;
-                for (itc = world.carriers.begin(); itc != world.carriers.end(); ++itc)
-                {
-                    std::cout << "Wood: " << (*itc)->myLuggage.getWood() << ", Stone: " <<
-                    (*itc)->myLuggage.getStone() << ", Food: " << (*itc)->myLuggage.getFood() << ", Gold: " <<
-                    (*itc)->myLuggage.getGold() << std::endl;
-                }*/
-                break;
-            }
+//            case sf::Keyboard::Space:
+//            {
+////                world->availableGoods.setProduct(4,10);
+////                world->availableGoods.setProduct(3,5);
+//                std::cout<<world->availableSlots << std::endl;
+//                std::cout << "HutriesHall::   Wood: " << world->availableGoods.getWood() << ", Stone: " <<
+//                    world->availableGoods.getStone() << ", Food: " << world->availableGoods.getFood() << ", Gold: " <<
+//                    world->availableGoods.getGold() << std::endl << std::endl;
+//                std::vector<Carrier*>::iterator itc;
+//                for (itc = world->carriers.begin(); itc != world->carriers.end(); ++itc)
+//                {
+//                    std::cout << "Carrier::   Wood: " << (*itc)->myLuggage.getWood() << ", Stone: " <<
+//                    (*itc)->myLuggage.getStone() << ", Food: " << (*itc)->myLuggage.getFood() << ", Gold: " <<
+//                    (*itc)->myLuggage.getGold() << std::endl;
+//                }
+//                break;
+//            }
             default:
                 break;
         }

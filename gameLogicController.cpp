@@ -336,6 +336,7 @@ void GameLogicController::createHutrie(std::string objectType, std::string sprit
         world->carriers.push_back(new Carrier(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
         world->hutries.push_back(world->carriers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        world->carriers.back()->setBuilding(hutriesHall);
         world->availableSlots--;
     }
     else if (objectType == "worker")
@@ -404,6 +405,8 @@ void GameLogicController::callCarrier(std::vector<Carrier*>::iterator itc, std::
             world->carriers.at(carrierIndex)->reconnectUnits((*it)->getObjectUnits());
             world->carriers.at(carrierIndex)->hutrieThread.launch();          //tworzy watek w ktorym porusza sie Hutrie
             world->units.at(unitIndex)->addHutrie(world->carriers.at(carrierIndex));
+            (*it)->addCarrier(world->carriers.at(carrierIndex));
+            world->carriers.at(carrierIndex)->setBuilding(*it);
             (*it)->updateStatus();
             break;
         }
@@ -457,8 +460,18 @@ void GameLogicController::handleCarrierReturn()
     {
         if ((*itc)->haveArrived())
         {
-            (*itc)->myLuggage.setProduct(1,2);
+            GoodsBuilding* gBuilding = dynamic_cast<GoodsBuilding*>( (*itc)->getBuilding() );
+            if (!(gBuilding->myProducts.isEmpty()))
+            {
+                gBuilding->giveProduct( &((*itc)->myLuggage) );
+            }
+            else
+            {
+                guiController->errorNoProductsToCarry();
+            }
             std::cout << "Czas wracac do domu" << std::endl;
+//            gBuilding->addCarrier(world->carriers.at(carrierIndex));
+            (*itc)->setBuilding(hutriesHall);
             (*itc)->carrierThread.launch();
         }
         else if ((*itc)->haveReturned())

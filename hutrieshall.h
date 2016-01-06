@@ -63,8 +63,8 @@ private:
     bool trainingWorker;
     bool trainingCarrier;
 
-    const int workerTrainingTime = 5;
-    const int carrierTrainingTime = 3;
+    const int workerTrainingTime = 0.5;
+    const int carrierTrainingTime = 0.3;
 
     World *world;
 };

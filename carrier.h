@@ -7,8 +7,9 @@
 
 #include "hutrie.h"
 #include "goods.h"
+#include "building.h"
 
-
+class Building;
 class Carrier : public Hutrie
 {
     public:
@@ -22,7 +23,12 @@ class Carrier : public Hutrie
         Goods getMyLuggage() {return myLuggage;};
         sf::Thread carrierThread;
         Goods myLuggage;
+        Building * getBuilding() {return myBuilding;};
+        void setBuilding (Building *newBuilding) {myBuilding = newBuilding;};
+
     private:
+
+        Building* myBuilding;
         bool arrived;
         bool returned;
 

@@ -317,3 +317,9 @@ void GUIController::errorAlreadyCreatingCarrier()
     Sound::error();
     gui->errorInfo.text.setString("Error: You are currently creating Carrier!");
 }
+
+void GUIController::errorNoProductsToCarry()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Carrier: No products to carry!");
+}

@@ -9,13 +9,14 @@
 #include <SFML/Graphics.hpp>
 #include "modelController.h"
 #include "sound.h"
+//#include "world.h"
 
 
 class Keyboard
 {
 public:
-
-    Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController);
+//World* world;
+    Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController, World* world);
 
     void actionsLoop();
 

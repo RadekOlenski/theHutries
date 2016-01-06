@@ -24,6 +24,7 @@ public:
         void addWorker(Worker* worker);
         Worker* getWorker();
         int getWorkersSize();
+        void giveProduct(Goods *luggage);
 protected:
 
     void changeBuildingSprite();

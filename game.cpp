@@ -10,9 +10,9 @@
 //                              CONSTRUCTOR
 //=================================================================================
 Game::Game(int applicationWidth, int applicationHeight) :
-        gameTime(1 * 60),
+        gameTime(100 * 60),
         hutrieApplication(sf::VideoMode(applicationWidth + 256, applicationHeight + 30, 32), "The Hutries"
-         /*sf::Style::Fullscreen */),
+         /*,sf::Style::Fullscreen*/ ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
         world(&hutrieApplication, applicationWidth, applicationHeight)
 {
@@ -20,7 +20,7 @@ Game::Game(int applicationWidth, int applicationHeight) :
     ModelController* modelController = new ModelController();
     GUIController* guiController = new GUIController(&hutrieApplication, modelController, &world, &gui);
     GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController, guiController);
-    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
+    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController, &world);
     Mouse* mouse = new Mouse(&hutrieApplication, modelController, gameLogicController);
     //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES-----------------------------------------//
     this->modelController = modelController;

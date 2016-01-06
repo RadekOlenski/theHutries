@@ -26,3 +26,20 @@ int Building::checkHutries()
     }
     return hutriesCounter;
 }
+
+void Building::addCarrier(Carrier* carrier)
+{
+    myCarriers.push_back(carrier);
+}
+
+Carrier* Building::getCarrier()
+{
+    Carrier* tempCarrier = myCarriers.back();
+    myCarriers.pop_back();
+    return tempCarrier;
+}
+
+int Building::getCarriersSize()
+{
+    return myCarriers.size();
+}

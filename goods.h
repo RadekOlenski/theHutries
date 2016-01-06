@@ -6,14 +6,15 @@ class Goods
 {
 public:
     Goods();
-    Goods(int wood, int food, int gold, int stone);
-    int getWood() {return wood;};
-    int getGold() {return gold;};
-    int getFood() {return food;};
-    int getStone() {return stone;};
-    void setProduct(int choice, int howMany = 0);
+    Goods(unsigned int wood, unsigned int food, unsigned int gold, unsigned int stone);
+    unsigned int getWood() {return wood;};
+    unsigned int getGold() {return gold;};
+    unsigned int getFood() {return food;};
+    unsigned int getStone() {return stone;};
+    void setProduct(unsigned int choice, int howMany = 0);
     bool isEmpty();
-    Goods operator +( const Goods & goods );
+    Goods & operator +( Goods & goods );
+    unsigned int whichProduct();
 private:
     unsigned int wood;
     unsigned int stone;
