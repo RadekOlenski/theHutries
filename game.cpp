@@ -102,8 +102,8 @@ void Game::updateClock()
 
 bool Game::getResult()
 {
-    double result = world.archers.size() * 0.5 + world.warriors.size() * 0.8;
-    return (result >= 6) ? true : false;
+    double result = world.archers.size() * GameBalance::archerQuotient + world.warriors.size() * GameBalance::warriotQuotient;
+    return (result >= GameBalance::winResult) ? true : false;
 //    return (rand() % 2) ? true : false;
 }
 

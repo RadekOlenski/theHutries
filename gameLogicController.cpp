@@ -317,6 +317,7 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
             {
                 guiController->errorNotEnoughGoods();
                 barracks->setTrainingWarriorFlag(false);
+                barracks->updateStatus();
             }
             barracks->setFirstCheckFlag(false);
         }
@@ -326,7 +327,13 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
             std::string sprite = "sprites/warrior/up.png";
             createHutrie(objectType, sprite, unitIndex);
             barracks->setTrainingWarriorFlag(false);
+            barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
+        }
+        else
+        {
+            barracks->updateClock(barracks->getWarriorTrainingTime());
+            barracks->updateStatus();
         }
     }
     else if(!barracks->getTrainingArcherFlag())
@@ -352,6 +359,7 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
             return;
         }
         else barracks->setTrainingWarriorFlag(true);
+        barracks->updateStatus();
         barracks->setMakeWarriorFlag(false);
     }
 }
@@ -373,6 +381,7 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
             {
                 guiController->errorNotEnoughGoods();
                 barracks->setTrainingArcherFlag(false);
+                barracks->updateStatus();
             }
             barracks->setFirstCheckFlag(false);
         }
@@ -382,7 +391,13 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
             std::string sprite = "sprites/archer/up.png";
             createHutrie(objectType, sprite, unitIndex);
             barracks->setTrainingArcherFlag(false);
+            barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
+        }
+        else
+        {
+            barracks->updateClock(barracks->getArcherTrainingTime());
+            barracks->updateStatus();
         }
     }
     else if(!barracks->getTrainingWarriorFlag())
@@ -407,7 +422,11 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
             barracks->setMakeArcherFlag(false);
             return;
         }
-        else barracks->setTrainingArcherFlag(true);
+        else
+        {
+            barracks->setTrainingArcherFlag(true);
+            barracks->updateStatus();
+        }
         barracks->setMakeArcherFlag(false);
     }
 }
@@ -440,25 +459,16 @@ void GameLogicController::createHutrie(std::string objectType, std::string sprit
         world->hutries.push_back(world->warriors.back());
         world->soldiers.push_back(world->warriors.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        world->warriors.back()->sprite.setPosition( world->units.at(unitIndex+1)->field.getPosition().x, world->units.at(unitIndex+1)->field.getPosition().y );
     }
     else if (objectType == "archer")
     {
         std::cout << "Utworze dla ciebie Archera!" << std::endl;
-        Goods worldGoods = world->availableGoods;
-        if (worldGoods - GameBalance::archerCost >= 0)
-            {
-                world->archers.push_back(new Archer(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
-                world->hutries.push_back(world->archers.back());
-                world->soldiers.push_back(world->archers.back());
-                world->units.at(unitIndex)->addHutrie(world->hutries.back());
-                world->availableSlots--;
-                world->availableGoods = world -> availableGoods - GameBalance::archerCost;
-                guiController->checkCarrierGoods();
-            }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-            }
+        world->archers.push_back(new Archer(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
+        world->hutries.push_back(world->archers.back());
+        world->soldiers.push_back(world->archers.back());
+        world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        world->archers.back()->sprite.setPosition( world->units.at(unitIndex+1)->field.getPosition().x, world->units.at(unitIndex+1)->field.getPosition().y );
     }
 }
 
@@ -570,6 +580,7 @@ void GameLogicController::handleCarrierReturn()
             std::cout << "Czas wracac do domu" << std::endl;
 //            gBuilding->addCarrier(world->carriers.at(carrierIndex));
             (*itc)->setBuilding(hutriesHall);
+            (*itc)->reconnectUnits(hutriesHall->getObjectUnits());
             (*itc)->carrierThread.launch();
         }
         else if ((*itc)->haveReturned())

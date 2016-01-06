@@ -25,6 +25,6 @@ Rocks::Rocks(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &uni
 void Rocks::updateStatus()
 {
     std::ostringstream desc;
-    desc << "You can build stonecutterHut \n next to the rocks";
+    desc << "You can build Stonecutter\nHut next to the rocks";
     description.text.setString(desc.str());
 }

@@ -32,6 +32,7 @@ class GameBalance
     const static int maxProductsInStore = 5;
     const static int maxWorkers = 3;
     const static int productCraftingTime = 15;
+    const static int carrierLading = 3;
 
     //////////////////////////////////  TRAINING    ///////////////////////////////////////////////
 
@@ -43,6 +44,12 @@ class GameBalance
     //////////////////////////////////  CLOCKS    /////////////////////////////////////////////////
 
     const static int gameTime = 2 * 60;
+
+    /////////////////////////////////   FINAL RESULT    ///////////////////////////////////////////
+
+    const static double warriotQuotient = 0.8;
+    const static double archerQuotient = 0.8;
+    const static double winResult = 6;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 };

@@ -5,7 +5,7 @@
 GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width) :
         guiFrame(sf::Vector2f(width, mapHeight)),
         timeLeft(20, mapHeight + 2, 20, "15:00", sf::Color::White),
-        errorInfo(970, mapHeight + 2, 20, "Error:", sf::Color::White),
+        errorInfo(904, mapHeight + 2, 20, "Error:", sf::Color::White),
         buildButton(mapWidth + 60, 100, hutrieApplication, "sprites/buttons/hammer.png"),
         hutrieButton(mapWidth + 140, 100, hutrieApplication, "sprites/buttons/hutrie.png"),
         guiBar(0, mapHeight, hutrieApplication, "sprites/buttons/leather2.png", mapWidth + width, 30),

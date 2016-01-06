@@ -1,5 +1,6 @@
 #include "unit.h"
 #include "carrier.h"
+#include "gamebalance.h"
 
 
 Carrier::Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding) : Hutrie(hutrieApplication,unitsFromGame,pathName), carrierThread(&Carrier::comeBack, this)
@@ -15,7 +16,7 @@ void Carrier::moveHutrie()
     busy = true;
     toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
     //sprite.setTexture( transTexture );
-    sf::sleep(sf::seconds(3));
+    sf::sleep(sf::seconds(GameBalance::carrierLading));
     arrived = true;
 }
 

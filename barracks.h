@@ -49,11 +49,20 @@ public:
 
     bool getFirstCheckFlag() { return firstCheck; };
 
+    void setSoldiersCosts();
+
+    void updateClock(int fulltime );
+
+
 private:
     GUIButton createWarriorButton;
     GUIText textWarrior;
     GUIButton createArcherButton;
     GUIText textArcher;
+    GUIButton goldArcher;
+    GUIText tgoldArcher;
+    GUIButton goldWarrior;
+    GUIText tgoldWarrior;
     bool makeWarriorFlag;
     bool makeArcherFlag;
     bool trainingWarrior;
@@ -62,6 +71,9 @@ private:
 
     const int warriorTrainingTime = GameBalance::warriorTrainingTime;
     const int archerTrainingTime = GameBalance::archerTrainingTime;
+
+    unsigned int leftTrainingTime;
+
 };
 
 #endif // BARRACKS_H
