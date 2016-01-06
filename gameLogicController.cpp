@@ -2,6 +2,7 @@
 
 
 #include "buildingType.h"
+#include "buildingcost.h"
 #include "sawmill.h"
 #include "stonecutter.h"
 #include "barracks.h"
@@ -53,14 +54,14 @@ void GameLogicController::handleBuildingCreation()
 
 void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
 {
-    Goods goods(3,3,0,0);
+    //Goods goods(3,3,0,0);
     Goods worldGoods = world->availableGoods;
     switch (modelController->getChosenBuildingType())                                                                      //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
     {
         case BuildingType::SAWMILL:
-            if (worldGoods - goods >= 0)
+            if (worldGoods - BuildingCost::sawmillCost >= 0)
             {
-                createSawmill(usedUnits, goods);
+                createSawmill(usedUnits );
             }
             else
             {
@@ -511,7 +512,7 @@ void GameLogicController::handleGoodsProduction()
     }
 }
 
-void GameLogicController::createSawmill(std::vector<Unit*> usedUnits, Goods goods)
+void GameLogicController::createSawmill(std::vector<Unit*> usedUnits)
 {
     std::vector<unsigned int>::iterator it;
     int selectedUnit = modelController->getSelectedUnitIndex();
@@ -526,7 +527,7 @@ void GameLogicController::createSawmill(std::vector<Unit*> usedUnits, Goods good
                 {
                     world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
-                    world->availableGoods = world -> availableGoods - goods;
+                    world->availableGoods = world -> availableGoods - BuildingCost::sawmillCost;
                     guiController->checkCarrierGoods();
                     Sound::ting();
                     return;
@@ -535,7 +536,7 @@ void GameLogicController::createSawmill(std::vector<Unit*> usedUnits, Goods good
                 {
                     world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
-                    world->availableGoods = world -> availableGoods - goods;
+                    world->availableGoods = world -> availableGoods - BuildingCost::sawmillCost;
                     guiController->checkCarrierGoods();
                     Sound::ting();
                     return;

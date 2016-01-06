@@ -23,7 +23,7 @@ public:
 
     void createBuilding(std::vector<Unit*> usedUnits);
 
-    void createSawmill(std::vector<Unit*> usedUnits, Goods goods);
+    void createSawmill(std::vector<Unit*> usedUnits);
 
     void findSelectedUnit();
 

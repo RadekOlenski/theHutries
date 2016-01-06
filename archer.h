@@ -5,7 +5,6 @@
 #ifndef THEHUTRIES_ARCHER_H
 #define THEHUTRIES_ARCHER_H
 
-
 #include "soldier.h"
 
 class Archer : public Soldier
