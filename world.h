@@ -10,6 +10,8 @@
 #include "carrier.h"
 #include "worker.h"
 #include "soldier.h"
+#include "warrior.h"
+#include "archer.h"
 #include "building.h"
 #include "environment.h"
 #include "goods.h"
@@ -21,6 +23,8 @@ class World
         std::vector <Hutrie*> hutries;
         std::vector <Carrier*> carriers;
         std::vector <Soldier*> soldiers;
+        std::vector <Warrior*> warriors;
+        std::vector <Archer*> archers;
         std::vector <Worker*> workers;
         std::vector <Building*> buildings;
         std::vector <Environment*> environment;

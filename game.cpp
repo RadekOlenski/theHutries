@@ -5,14 +5,15 @@
 #include "keyboard.h"
 #include "gameLogicController.h"
 #include "game.h"
+#include "gamebalance.h"
 
 //=================================================================================
 //                              CONSTRUCTOR
 //=================================================================================
 Game::Game(int applicationWidth, int applicationHeight) :
-        gameTime(100 * 60),
+        gameTime(GameBalance::gameTime),
         hutrieApplication(sf::VideoMode(applicationWidth + 256, applicationHeight + 30, 32), "The Hutries"
-         /*,sf::Style::Fullscreen*/ ),
+         ,sf::Style::Fullscreen ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
         world(&hutrieApplication, applicationWidth, applicationHeight)
 {
@@ -53,7 +54,7 @@ Game::Game(int applicationWidth, int applicationHeight) :
 
 void Game::play()
 {
-    //music.play();
+    music.play();
     music.setVolume(40);
     guiController->launchTitleThread();
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
@@ -101,7 +102,9 @@ void Game::updateClock()
 
 bool Game::getResult()
 {
-    return (rand() % 2) ? true : false;
+    double result = world.archers.size() * 0.5 + world.warriors.size() * 0.8;
+    return (result >= 6) ? true : false;
+//    return (rand() % 2) ? true : false;
 }
 
 void Game::gameOver(bool win)

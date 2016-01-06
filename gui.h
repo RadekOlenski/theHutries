@@ -30,34 +30,60 @@ public:
     /////////////////////////////// BUILDINGS SECTION //////////////////////////////////////////
 
     GUIButton sawmill;
-    GUIText  tSawmill;
+    GUIText   tSawmill;
+    GUIButton woodSawmill;
+    GUIText   twoodSawmill;
+    GUIButton stoneSawmill;
+    GUIText   tstoneSawmill;
     GUIButton barracks;
-    GUIText  tBarracks;
+    GUIText   tBarracks;
+    GUIButton woodBarracks;
+    GUIText   twoodBarracks;
+    GUIButton stoneBarracks;
+    GUIText   tstoneBarracks;
     GUIButton residence;
-    GUIText  tResidence;
+    GUIText   tResidence;
+    GUIButton woodResidence;
+    GUIText   twoodResidence;
+    GUIButton stoneResidence;
+    GUIText   tstoneResidence;
     GUIButton stonecutter;
-    GUIText  tStonecutter;
+    GUIText   tStonecutter;
+    GUIButton woodStonecutter;
+    GUIText   twoodStonecutter;
+    GUIButton stoneStonecutter;
+    GUIText   tstoneStonecutter;
     GUIButton goldmine;
-    GUIText tGoldmine;
+    GUIText   tGoldmine;
+    GUIButton woodGoldmine;
+    GUIText   twoodGoldmine;
+    GUIButton stoneGoldmine;
+    GUIText   tstoneGoldmine;
     GUIButton farm;
-    GUIText tFarm;
+    GUIText   tFarm;
+    GUIButton woodFarm;
+    GUIText   twoodFarm;
+    GUIButton stoneFarm;
+    GUIText   tstoneFarm;
 
     /////////////////////////////// HUTRIES SECTION //////////////////////////////////////////
 
     GUIButton allHutries;
     GUIButton allCarriers;
     GUIButton allWorkers;
-    GUIButton allSoldiers;
+    GUIButton allWarriors;
+    GUIButton allArchers;
     GUIText tHutries;
     GUIText tCarriers;
     GUIText tWorkers;
-    GUIText tSoldiers;
+    GUIText tWarriors;
+    GUIText tArchers;
 
     //////////////////////////////// DRAWING FUNCTIONS /////////////////////////////////////////
 
     void displayGUI();
     void displayGUIBuildings();
-    void displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int soldierSize);
+    void displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int warriorSize, int archerSize);
 
     /////////////////////////////////////ENDING ////////////////////////////////////////////////
 
@@ -75,6 +101,7 @@ private:
 
     sf::RectangleShape guiFrame;
     sf::Texture texture;
+    void setBuildingsCosts();
 
     /////////////////////////////// DOWN BAR //////////////////////////////////////////////////
 

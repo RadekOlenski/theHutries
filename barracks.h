@@ -7,6 +7,7 @@
 #include <string>
 
 #include "building.h"
+#include "gamebalance.h"
 
 
 class Barracks : public Building
@@ -44,6 +45,10 @@ public:
 
     bool getTrainingArcherFlag() { return trainingArcher; };
 
+    void setFirstCheckFlag(bool firstCheck) { this->firstCheck = firstCheck; };
+
+    bool getFirstCheckFlag() { return firstCheck; };
+
 private:
     GUIButton createWarriorButton;
     GUIText textWarrior;
@@ -53,9 +58,10 @@ private:
     bool makeArcherFlag;
     bool trainingWarrior;
     bool trainingArcher;
+    bool firstCheck;
 
-    const int warriorTrainingTime = 5;
-    const int archerTrainingTime = 3;
+    const int warriorTrainingTime = GameBalance::warriorTrainingTime;
+    const int archerTrainingTime = GameBalance::archerTrainingTime;
 };
 
 #endif // BARRACKS_H

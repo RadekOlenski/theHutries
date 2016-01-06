@@ -6,16 +6,17 @@
 #include "forest.h"
 #include "mountain.h"
 #include "rocks.h"
+#include "gamebalance.h"
 
 World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize)
         : lastClickedUnit(NULL)
 {
     this->hutrieApplication = hutrieApplication;
     availableSlots = 10;                            //wartosc startowa bez zadnej rezydencji
-    availableGoods.setProduct(1,10);                //poczatkowe wartosci surowcow
-    availableGoods.setProduct(2,10);
-    availableGoods.setProduct(3,10);
-    availableGoods.setProduct(4,10);
+    availableGoods.setProduct(1,GameBalance::startingWood);                //poczatkowe wartosci surowcow
+    availableGoods.setProduct(2,GameBalance::startingStone);
+    availableGoods.setProduct(3,GameBalance::startingFood);
+    availableGoods.setProduct(4,GameBalance::startingGold);
 
     /////////////////////////// HOW MANY RECTANGLES IN X AND Y DIRECTION//////////////////////////////////////////////////////
 

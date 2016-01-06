@@ -10,6 +10,7 @@
 #include "guibutton.h"
 #include "guitext.h"
 #include "world.h"
+#include "gamebalance.h"
 
 class HutriesHall : public Building
 {
@@ -63,8 +64,8 @@ private:
     bool trainingWorker;
     bool trainingCarrier;
 
-    const int workerTrainingTime = 0.5;
-    const int carrierTrainingTime = 0.3;
+    const int workerTrainingTime = GameBalance::workerTrainingTime;
+    const int carrierTrainingTime = GameBalance::carrierTrainingTime;
 
     World *world;
 };

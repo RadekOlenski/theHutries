@@ -1,4 +1,5 @@
 #include "goodsbuilding.h"
+#include "gamebalance.h"
 #include "sound.h"
 #include <iostream>
 
@@ -12,7 +13,7 @@ GoodsBuilding::GoodsBuilding(sf::RenderWindow*hutrieApplication, std::vector<Uni
             assignWorker(1024 + 60, 510, 20, "Assign worker"),
             goodReady(1024 + 70, 570, 20, "Good ready")
 {
-    capacity = 3;
+    capacity = GameBalance::maxWorkers;
 }
 
 void GoodsBuilding::showButtons()
@@ -68,11 +69,12 @@ void GoodsBuilding::checkProduction()
     std::vector<Worker*>::iterator itw;
     for (itw = myWorkers.begin(); itw != myWorkers.end(); ++itw)
     {
-        if((*itw)->productionClock.getElapsedTime().asSeconds() > 15 && productsCounter() < productsCapacity )
+        if((*itw)->productionClock.getElapsedTime().asSeconds() > GameBalance::productCraftingTime && productsCounter() < productsCapacity )
         {
             createProduct();
             Sound::notification();
             (*itw)->productionClock.restart();
+            this->updateStatus();
         }
     }
     changeBuildingSprite();

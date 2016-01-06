@@ -32,7 +32,7 @@ void HutriesHall::updateStatus()
 {
     std::ostringstream desc;
     desc << "Available carriers: " << getAvailableCarriers() << "\nAvailable workers: " << getAvailableWorkers() <<
-    "\nAvailable warriors: " << rand() % 20 << "\nAvailable archers: " << rand() % 20;
+    "\nAvailable warriors: " << world->warriors.size()<< "\nAvailable archers: " << world->archers.size();
     description.text.setString(desc.str());
 }
 

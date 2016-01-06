@@ -116,7 +116,7 @@ void GUIController::displayElementsOfGUI()
     if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE) gui->displayGUIBuildings();
     if (modelController->getChosenInteractionMode() == InteractionMode::HUTRIEINFO)
         gui->displayGUIHutries(world->hutries.size(), world->carriers.size(), world->workers.size(),
-                               world->soldiers.size());
+                               world->warriors.size(), world->archers.size());
 }
 
 void GUIController::drawGrid(std::vector<Unit*>::iterator it)

@@ -19,6 +19,7 @@ Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unit
     makeArcherFlag = false;
     trainingWarrior = false;
     trainingArcher = false;
+    firstCheck = true;
 }
 
 void Barracks::updateStatus()

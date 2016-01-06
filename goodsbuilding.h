@@ -9,6 +9,7 @@
 #include "guitext.h"
 #include "goods.h"
 #include "worker.h"
+#include "gamebalance.h"
 
 class GoodsBuilding : public Building
 {
@@ -35,7 +36,7 @@ protected:
         GUIText assignWorker;
         GUIButton goodsReady;
         GUIText goodReady;
-        unsigned int productsCapacity = 5;
+        unsigned int productsCapacity = GameBalance::maxProductsInStore;
 
         sf::Texture textureWithProduct;
         sf::Texture textureNoProduct;
