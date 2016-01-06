@@ -27,6 +27,8 @@ public:
 
     void createStonecutterHut(std::vector<Unit*> usedUnits);
 
+    void createGoldmine(std::vector<Unit *> usedUnits);
+
     void findSelectedUnit();
 
     bool isUnitEmpty();

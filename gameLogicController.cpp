@@ -59,7 +59,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
         case BuildingType::SAWMILL:
             if (worldGoods - GameBalance::sawmillCost >= 0)
             {
-                createSawmill(usedUnits );
+                createSawmill(usedUnits);
             }
             else
             {
@@ -110,12 +110,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
         case BuildingType::GOLDMINE:
             if (worldGoods - GameBalance::goldmineCost >= 0)
             {
-                world->buildings.push_back(
-                new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmine.png"));
-                world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
-                world->availableGoods = world -> availableGoods - GameBalance::goldmineCost;
-                guiController->checkCarrierGoods();
-                Sound::ting();
+                createGoldmine(usedUnits);
             }
             else
             {
@@ -676,4 +671,42 @@ void GameLogicController::createStonecutterHut(std::vector<Unit *> usedUnits)
         }
     }
     guiController->errorMustBuildNearRocks();
+}
+
+void GameLogicController::createGoldmine(std::vector<Unit *> usedUnits)
+{
+    std::vector<unsigned int>::iterator it;
+    int selectedUnit = modelController->getSelectedUnitIndex();
+    for (it = world->mountainsIndex.begin(); it < world->mountainsIndex.end(); ++it)
+    {
+        for (int mountainUnit = 0; mountainUnit < 4; mountainUnit++)
+        {
+            int currentMountainUnit = world->environment.at(*it)->getUnitIndex(mountainUnit);
+            for (int j = selectedUnit - 17; j <= selectedUnit + 31; j += 16)
+            {
+                if (j == currentMountainUnit)
+                {
+                    world->buildings.push_back(
+                            new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmine.png"));
+                    world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+                    world->availableGoods = world -> availableGoods - GameBalance::goldmineCost;
+                    guiController->checkCarrierGoods();
+                    Sound::ting();
+                    return;
+                }
+                else if (j + 3 == currentMountainUnit)
+                {
+                    world->buildings.push_back(
+                            new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmine.png"));
+                    world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+                    world->availableGoods = world -> availableGoods - GameBalance::goldmineCost;
+                    guiController->checkCarrierGoods();
+                    Sound::ting();
+                    return;
+                }
+            }
+        }
+    }
+    guiController->errorMustBuildOnMountain();
+
 }

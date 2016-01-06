@@ -81,17 +81,19 @@ public:
 
     void errorMustBuildNearRocks();
 
+    void errorMustBuildOnMountain();
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
-    World* world;
 
+    World* world;
     GUI* gui;
     sf::View fixed;
     sf::RectangleShape background;
     sf::Texture backgroundTexture;
     sf::Sprite cursor;
     sf::Texture cursorTexture;
+
     GUIText titleText;
 
     sf::Thread titleThread;
