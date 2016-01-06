@@ -26,6 +26,9 @@ class World
         std::vector <Environment*> environment;
 		std::vector<unsigned int> barracksIndex;
         std::vector <int> goodsBuildingIndex;
+		std::vector<unsigned int> forestsIndex;
+		std::vector<unsigned int> rocksIndex;
+		std::vector<unsigned int> mountainsIndex;
 		Goods availableGoods;
 		int availableSlots;
         Unit* lastClickedUnit;
@@ -36,6 +39,7 @@ class World
 		unsigned int findSelectedUnitIndex();
 		void increaseAvailableSlots(int addedSlotsNumber);
     private:
+		void createForest();
         int horizontalUnitsCounter;
         int verticalUnitsCounter;
         sf::RenderWindow *hutrieApplication;

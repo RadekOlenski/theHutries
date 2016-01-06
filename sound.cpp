@@ -37,6 +37,7 @@ void Sound::click()
 {
     Sound::setSoundBuffer();
     soundBuffer.loadFromFile(clickPath);
+    sound.setVolume(30);
     sound.play();
 }
 

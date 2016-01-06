@@ -3,6 +3,7 @@
 
 #include "world.h"
 #include "hutrieshall.h"
+#include "forest.h"
 
 World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize)
         : lastClickedUnit(NULL)
@@ -33,14 +34,16 @@ World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int appli
         position.x = 0;
     }
 
-    //       for (int i = 0; i < verticalUnitsCounter; i++)             spis indexow w siatce
-    //       {
-    //           for (int j=0; j < horizontalUnitsCounter; j++)
-    //           {
-    //               std::cout << j + (i*horizontalUnitsCounter) << " ";
-    //           }
-    //        std::cout << std::endl;
-    //       }
+/*
+    for (int i = 0; i < verticalUnitsCounter; i++)             //spis indexow w siatce
+    {
+        for (int j = 0; j < horizontalUnitsCounter; j++)
+        {
+            std::cout << j + (i * horizontalUnitsCounter) << " ";
+        }
+        std::cout << std::endl;
+    }
+*/
 
     ////////////////////////////// ADDING TOWNHALL ///////////////////////////////////////////////////////////////////////////
 
@@ -51,33 +54,7 @@ World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int appli
     buildings.back()->placeOnMap();
     /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
 
-    int trees = 0;
-    try
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            int d = 0;
-            do
-            {
-                usedUnits.clear();
-                unitIndex = (rand() % (horizontalUnitsCounter - 3)) +
-                            ((rand() % (verticalUnitsCounter - 1)) * horizontalUnitsCounter);
-                prepareUnits(unitIndex, 2, 3, &usedUnits);
-                if (d > 1000) throw -1;
-                else d++;
-            }
-            while (!(isFieldEmpty(usedUnits)));
-            environment.push_back(new Environment(hutrieApplication, usedUnits, "sprites/environment/trees.png"));
-            trees = i;
-            std::cout << "Las nr " << i << ", prob postawienia: " << d << std::endl;
-        }
-    }
-    catch (int d)
-    {
-        std::cout << "Exception: " << d << ": Not enough space for object" << std::endl;
-    }
-    std::cout << "Ilosc drzew: " << trees << std::endl;
-
+    createForest();
 }
 
 void World::prepareUnits(int unitIndex, int height, int width, std::vector<Unit*>*usedUnits)
@@ -128,5 +105,37 @@ void World::increaseAvailableSlots(int addedSlotsNumber)
 {
     this->availableSlots += addedSlotsNumber;
     std::cout << "dostepne miejsca:" << this->availableSlots << std::endl;
+}
 
+void World::createForest()
+{
+    std::vector<Unit*> usedUnits;
+    int unitIndex;
+    int trees = 0;
+    try
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            int d = 0;
+            do
+            {
+                usedUnits.clear();
+                unitIndex = (rand() % (horizontalUnitsCounter - 3)) +
+                            ((rand() % (verticalUnitsCounter - 1)) * horizontalUnitsCounter);
+                prepareUnits(unitIndex, 2, 3, &usedUnits);
+                if (d > 1000) throw -1;
+                else d++;
+            }
+            while (!(isFieldEmpty(usedUnits)));
+            environment.push_back(new Forest(hutrieApplication, usedUnits, "sprites/environment/trees.png"));
+            this->forestsIndex.push_back(this->environment.size() - 1);
+            trees = i;
+            std::cout << "Las nr " << i << ", prob postawienia: " << d << std::endl;
+        }
+    }
+    catch (int d)
+    {
+        std::cout << "Exception: " << d << ": Not enough space for object" << std::endl;
+    }
+    std::cout << "Ilosc drzew: " << trees << std::endl;
 }

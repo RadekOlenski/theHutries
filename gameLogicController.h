@@ -23,6 +23,8 @@ public:
 
     void createBuilding(std::vector<Unit*> usedUnits);
 
+    void createSawmill(std::vector<Unit*> usedUnits, Goods goods);
+
     void findSelectedUnit();
 
     bool isUnitEmpty();

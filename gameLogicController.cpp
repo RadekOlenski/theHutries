@@ -39,7 +39,6 @@ void GameLogicController::handleBuildingCreation()
         if (world->isFieldEmpty(usedUnits))
         {
             this->createBuilding(usedUnits);
-            Sound::ting();
         }
         else
         {
@@ -61,10 +60,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
         case BuildingType::SAWMILL:
             if (worldGoods - goods >= 0)
             {
-                world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
-                world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
-                world->availableGoods = world -> availableGoods - goods;
-                guiController->checkCarrierGoods();
+                createSawmill(usedUnits, goods);
             }
             else
             {
@@ -75,27 +71,32 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
         case BuildingType::STONECUTTERHUT:
             world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stonecutterHut.png"));
             world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+            Sound::ting();
             break;
         case BuildingType::BARRACKS:
             world->buildings.push_back(new Barracks(hutrieApplication, usedUnits, "sprites/buildings/barracks.png"));
             world->barracksIndex.push_back(world->buildings.size() - 1);
+            Sound::ting();
             break;
         case BuildingType::RESIDENCE:
         {
             world->increaseAvailableSlots(Residence::getAddedSlotsNumber());
             world->buildings.push_back(new Residence(hutrieApplication, usedUnits, "sprites/buildings/residence.png",
                                                      &(world->availableSlots)));
+            Sound::ting();
             break;
         }
         case BuildingType::GOLDMINE:
             world->buildings.push_back(
                     new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmine.png"));
             world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+            Sound::ting();
             break;
         case BuildingType::FARM:
             world->buildings.push_back(
                     new Farm(hutrieApplication, usedUnits, "sprites/buildings/farm.png"));
             world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+            Sound::ting();
             break;
         default:
             break;
@@ -501,11 +502,46 @@ void GameLogicController::handleGoodsProduction()
    GoodsBuilding* gBuilding;
    for(unsigned int i = 0; i < world->goodsBuildingIndex.size(); i++)
     {
-        unsigned int index = world->goodsBuildingIndex.at(i);
+        unsigned int index = (unsigned int) world->goodsBuildingIndex.at(i);
         gBuilding = dynamic_cast<GoodsBuilding*> (world->buildings.at(index));
         if (gBuilding->getWorkersSize()>0)
         {
             gBuilding->checkProduction();
         }
     }
+}
+
+void GameLogicController::createSawmill(std::vector<Unit*> usedUnits, Goods goods)
+{
+    std::vector<unsigned int>::iterator it;
+    int selectedUnit = modelController->getSelectedUnitIndex();
+    for (it = world->forestsIndex.begin(); it < world->forestsIndex.end(); ++it)
+    {
+        for (int forestUnit = 0; forestUnit < 6; forestUnit++)
+        {
+            int currentForestUnit = world->environment.at(*it)->getUnitIndex(forestUnit);
+            for (int j = selectedUnit - 17; j <= selectedUnit + 31; j += 16)
+            {
+                if (j == currentForestUnit)
+                {
+                    world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
+                    world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+                    world->availableGoods = world -> availableGoods - goods;
+                    guiController->checkCarrierGoods();
+                    Sound::ting();
+                    return;
+                }
+                else if (j + 3 == currentForestUnit)
+                {
+                    world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
+                    world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+                    world->availableGoods = world -> availableGoods - goods;
+                    guiController->checkCarrierGoods();
+                    Sound::ting();
+                    return;
+                }
+            }
+        }
+    }
+    guiController->errorMustBuildNearForest();
 }

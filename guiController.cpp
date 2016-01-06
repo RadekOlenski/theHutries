@@ -329,3 +329,9 @@ void GUIController::errorNotEnoughGoods()
     Sound::error();
     gui->errorInfo.text.setString("Goods: Not enough goods for building!");
 }
+
+void GUIController::errorMustBuildNearForest()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: You have to build sawmill near forest!");
+}

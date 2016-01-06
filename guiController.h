@@ -77,6 +77,8 @@ public:
 
     void errorNotEnoughGoods();
 
+    void errorMustBuildNearForest();
+
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
