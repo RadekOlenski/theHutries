@@ -68,7 +68,7 @@ void GoodsBuilding::checkProduction()
     std::vector<Worker*>::iterator itw;
     for (itw = myWorkers.begin(); itw != myWorkers.end(); ++itw)
     {
-        if((*itw)->productionClock.getElapsedTime().asSeconds() > 15)
+        if((*itw)->productionClock.getElapsedTime().asSeconds() > 15 && productsCounter() < productsCapacity )
         {
             createProduct();
             Sound::notification();
@@ -94,5 +94,17 @@ void GoodsBuilding::giveProduct(Goods* luggage)
 {
         luggage->setProduct(myProducts.whichProduct(),1);
         myProducts.setProduct(myProducts.whichProduct(),-1);
+}
+
+unsigned int GoodsBuilding::productsCounter()
+{
+    switch(myProducts.whichProduct())
+    {
+    case 1:  return myProducts.getWood();
+    case 2:  return myProducts.getStone();
+    case 3:  return myProducts.getFood();
+    case 4:  return myProducts.getGold();
+    case 0:  return 0;
+    };
 }
 

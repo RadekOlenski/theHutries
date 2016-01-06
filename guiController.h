@@ -75,6 +75,8 @@ public:
 
     void errorNoProductsToCarry();
 
+    void errorNotEnoughGoods();
+
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;

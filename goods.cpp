@@ -5,7 +5,7 @@ Goods::Goods() : wood(0), food(0), gold (0), stone (0)
 
 }
 
-Goods::Goods(unsigned int wood, unsigned int food, unsigned int gold, unsigned int stone) : wood(wood), food(food), gold (gold), stone (stone)
+Goods::Goods(unsigned int wood, unsigned int stone, unsigned int food, unsigned int gold) : wood(wood), food(food), gold (gold), stone (stone)
 {
 
 }
@@ -42,6 +42,26 @@ Goods & Goods::operator +( Goods & goods )
      this->food += goods.food;
      this->gold += goods.gold;
      return *this;
+}
+
+Goods & Goods::operator -( Goods & goods )
+{
+     this->wood -= goods.wood;
+     this->stone -= goods.stone;
+     this->food -= goods.food;
+     this->gold -= goods.gold;
+     return *this;
+}
+
+bool Goods::operator >=( int number )
+{
+    return
+    (
+        this->wood  >= number &&
+        this->stone >= number &&
+        this->food  >= number &&
+        this->gold  >= number
+    );
 }
 
 bool Goods::isEmpty()

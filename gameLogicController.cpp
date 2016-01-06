@@ -54,11 +54,23 @@ void GameLogicController::handleBuildingCreation()
 
 void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
 {
+    Goods goods(3,3,0,0);
+    Goods worldGoods = world->availableGoods;
     switch (modelController->getChosenBuildingType())                                                                      //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
     {
         case BuildingType::SAWMILL:
-            world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
-            world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+            if (worldGoods - goods >= 0)
+            {
+                world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
+                world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+                world->availableGoods = world -> availableGoods - goods;
+                guiController->checkCarrierGoods();
+            }
+            else
+            {
+                guiController->errorNotEnoughGoods();
+            }
+
             break;
         case BuildingType::STONECUTTERHUT:
             world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stonecutterHut.png"));

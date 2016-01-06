@@ -16,8 +16,8 @@ Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
 void Goldmine::updateStatus()
 {
     std::ostringstream desc;
-    desc << "Capacity: " << capacity << " workers\nWorkers: " << myWorkers.size() << "\nCarriers: " <<
-    checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getGold();
+    desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
+    checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getGold() << "/" << productsCapacity;
     description.text.setString(desc.str());
 }
 

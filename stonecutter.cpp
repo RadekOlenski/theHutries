@@ -17,8 +17,8 @@ StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*
 void StoneCutter::updateStatus()
 {
     std::ostringstream desc;
-    desc << "Capacity: " << capacity << " workers\nWorkers: " << myWorkers.size() << "\nCarriers: " <<
-    checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getStone();
+    desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
+    checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getStone() << "/" << productsCapacity;
     description.text.setString(desc.str());
 }
 

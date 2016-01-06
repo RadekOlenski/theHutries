@@ -16,7 +16,7 @@ class Keyboard
 {
 public:
 //World* world;
-    Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController, World* world);
+    Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController/*, World* world*/);
 
     void actionsLoop();
 

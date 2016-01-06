@@ -21,8 +21,8 @@ void Sawmill::createProduct()
 void Sawmill::updateStatus()
 {
     std::ostringstream desc;
-    desc << "Capacity: " << capacity << " workers\nWorkers: " << myWorkers.size() << "\nCarriers: " <<
-    checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getWood();
+    desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
+    checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getWood() << "/" << productsCapacity;
     description.text.setString(desc.str());
 }
 

@@ -25,16 +25,17 @@ public:
         Worker* getWorker();
         int getWorkersSize();
         void giveProduct(Goods *luggage);
+        unsigned int productsCounter();
 protected:
 
-    void changeBuildingSprite();
-
-    //virtual void getGoods();
+        void changeBuildingSprite();
+        //virtual void getGoods();
         std::vector <Worker*> myWorkers;
         GUIButton callWorker;
         GUIText assignWorker;
         GUIButton goodsReady;
         GUIText goodReady;
+        unsigned int productsCapacity = 5;
 
         sf::Texture textureWithProduct;
         sf::Texture textureNoProduct;

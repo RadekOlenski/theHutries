@@ -29,7 +29,7 @@ public:
 protected:
 
     int buildTime;
-    int buildCost;
+    Goods buildCost;
     int capacity;
 
     std::vector <Carrier*> myCarriers;

@@ -9,6 +9,10 @@ World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int appli
 {
     this->hutrieApplication = hutrieApplication;
     availableSlots = 10;                            //wartosc startowa bez zadnej rezydencji
+    availableGoods.setProduct(1,10);                //poczatkowe wartosci surowcow
+    availableGoods.setProduct(2,10);
+    availableGoods.setProduct(3,10);
+    availableGoods.setProduct(4,10);
 
     /////////////////////////// HOW MANY RECTANGLES IN X AND Y DIRECTION//////////////////////////////////////////////////////
 

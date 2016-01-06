@@ -323,3 +323,9 @@ void GUIController::errorNoProductsToCarry()
     Sound::error();
     gui->errorInfo.text.setString("Carrier: No products to carry!");
 }
+
+void GUIController::errorNotEnoughGoods()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Goods: Not enough goods for building!");
+}

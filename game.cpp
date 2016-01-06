@@ -20,7 +20,7 @@ Game::Game(int applicationWidth, int applicationHeight) :
     ModelController* modelController = new ModelController();
     GUIController* guiController = new GUIController(&hutrieApplication, modelController, &world, &gui);
     GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController, guiController);
-    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController, &world);
+    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController/*, &world*/);
     Mouse* mouse = new Mouse(&hutrieApplication, modelController, gameLogicController);
     //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES-----------------------------------------//
     this->modelController = modelController;
@@ -40,6 +40,7 @@ Game::Game(int applicationWidth, int applicationHeight) :
 
     guiController->createBackground();
     guiController->createCursor();
+    guiController->checkCarrierGoods();
 
     /////////////////////////// BACKGROUND MUSIC //////////////////////////////////////////////////////
 
