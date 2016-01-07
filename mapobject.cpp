@@ -3,8 +3,8 @@
 
 MapObject::MapObject(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
         : title(1024 + 40, 170, 30),
-          descriptionFrame(1024 + 40, 230, hutrieApplication, pathName, 128, 128),
-          description(1024 + 40, 380, 20)
+          descriptionFrame(1024 + 60, 210, hutrieApplication, pathName, 128, 128),
+          description(1024 + 30, 340, 20)
 {
     this->hutrieApplication = hutrieApplication;
 

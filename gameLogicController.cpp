@@ -214,6 +214,13 @@ void GameLogicController::handleWorkerCreation()
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, sprite, unitIndex);
             hutriesHall->setTrainingWorkerFlag(false);
+            hutriesHall->updateStatus();
+
+        }
+        else
+        {
+            hutriesHall->updateClock(hutriesHall->getWorkerTrainingTime());
+            hutriesHall->updateStatus();
         }
     }
     else if(!hutriesHall->getTrainingCarrierFlag())
@@ -254,6 +261,12 @@ void GameLogicController::handleCarrierCreation()
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, sprite, unitIndex);
             hutriesHall->setTrainingCarrierFlag(false);
+            hutriesHall->updateStatus();
+        }
+        else
+        {
+            hutriesHall->updateClock(hutriesHall->getCarrierTrainingTime());
+            hutriesHall->updateStatus();
         }
     }
     else if(!hutriesHall->getTrainingWorkerFlag())

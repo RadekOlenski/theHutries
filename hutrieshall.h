@@ -49,6 +49,8 @@ public:
 
     sf::Clock trainingClock;
 
+    void updateClock(int trainingTime);
+
 private:
 
     unsigned int getAvailableWorkers();
@@ -59,6 +61,7 @@ private:
     GUIText tWorker;
     GUIButton createCarrierButton;
     GUIText tCarrier;
+    GUIText trainHutries;
     bool makeWorkerFlag;
     bool makeCarrierFlag;
     bool trainingWorker;
@@ -66,6 +69,8 @@ private:
 
     const int workerTrainingTime = GameBalance::workerTrainingTime;
     const int carrierTrainingTime = GameBalance::carrierTrainingTime;
+
+    unsigned int leftTrainingTime;
 
     World *world;
 };
