@@ -15,7 +15,7 @@ void Carrier::moveHutrie()
 {
     busy = true;
     toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
-    //sprite.setTexture( transTexture );
+    sprite.setTexture( transTexture );
     sf::sleep(sf::seconds(GameBalance::carrierLading));
     arrived = true;
 }
@@ -26,5 +26,5 @@ void Carrier::comeBack()
    toDirection(390,370);
    busy = false;
    returned = true;
-    //sprite.setTexture( transTexture );
+   sprite.setTexture( transTexture );
 }

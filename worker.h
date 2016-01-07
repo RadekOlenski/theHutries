@@ -12,7 +12,7 @@
 class Worker : public Hutrie
 {
     public:
-        Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding = true);
+        Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
         void moveHutrie();
         bool haveArrived () {return arrived;};
         void setArrived (bool arrived) {this->arrived = arrived;};

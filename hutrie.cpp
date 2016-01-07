@@ -10,10 +10,9 @@
 
 ///////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////////////////////////////
 
-Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding) : MapObject(hutrieApplication, unitsFromGame, pathName), hutrieThread(&Hutrie::moveHutrie, this)
+Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName) : MapObject(hutrieApplication, unitsFromGame, pathName), hutrieThread(&Hutrie::moveHutrie, this)
 {
     title.text.setString("Hutrie:");
-    this->onBuilding = onBuilding;
 
     sprite.setPosition( 384, 384 );
     sprite.setScale(0.64,0.64);
@@ -40,10 +39,6 @@ Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
 
 void Hutrie::toDirection(float targetX, float targetY)
 {
-//     if (!onBuilding) occupyUnits();
-//
-//    float targetY = objectUnits.at(0)->field.getPosition().y;
-//    float targetX = objectUnits.at(0)->field.getPosition().x;
 
     while( sprite.getPosition().y < targetY )
     {
@@ -72,7 +67,6 @@ void Hutrie::toDirection(float targetX, float targetY)
         sprite.move(-1,0);
         sf::sleep(sf::milliseconds(5));
     };
-//    if (onBuilding) sprite.setTexture( transTexture );
 }
 
 void Hutrie::updateStatus()

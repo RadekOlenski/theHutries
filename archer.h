@@ -10,8 +10,7 @@
 class Archer : public Soldier
 {
 public:
-    Archer(sf::RenderWindow *hutrieApplication, const std::vector<Unit*> &unitsFromGame, std::string pathName,
-    bool onBuilding = false);
+    Archer(sf::RenderWindow *hutrieApplication, const std::vector<Unit*> &unitsFromGame, std::string pathName);
 
     std::string pathName = "sprites/warrior/right.png";
     static const std::vector<Unit*> usedUnits;

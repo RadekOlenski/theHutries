@@ -18,7 +18,7 @@ public:
 
     sf::Thread hutrieThread;
 
-    Hutrie(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName, bool onBuilding = true);
+    Hutrie(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName);
 
     virtual void moveHutrie() = 0;
 
@@ -46,7 +46,6 @@ private:
     int strength;
     int agility;
     int endurance;
-    bool onBuilding;
     bool active;
 };
 

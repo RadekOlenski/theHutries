@@ -2,7 +2,7 @@
 #include "soldier.h"
 
 
-Soldier::Soldier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding) : Hutrie(hutrieApplication,unitsFromGame,pathName,onBuilding)
+Soldier::Soldier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName) : Hutrie(hutrieApplication,unitsFromGame,pathName)
 {
     title.text.setString("Warrior:");
 

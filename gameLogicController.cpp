@@ -210,8 +210,8 @@ void GameLogicController::handleWorkerCreation()
         if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getWorkerTrainingTime())
         {
             std::string objectType = "worker";
-            std::string sprite = "sprites/worker/up.png";
-            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
+            std::string sprite = "sprites/worker/right.png";
+            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(0);
             createHutrie(objectType, sprite, unitIndex);
             hutriesHall->setTrainingWorkerFlag(false);
             hutriesHall->updateStatus();
@@ -257,7 +257,7 @@ void GameLogicController::handleCarrierCreation()
         if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
         {
             std::string objectType = "carrier";
-            std::string sprite = "sprites/carrier/up.png";
+            std::string sprite = "sprites/carrier/right.png";
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, sprite, unitIndex);
             hutriesHall->setTrainingCarrierFlag(false);
@@ -332,7 +332,7 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
         if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getWarriorTrainingTime())
         {
             std::string objectType = "warrior";
-            std::string sprite = "sprites/warrior/up.png";
+            std::string sprite = "sprites/warrior/right.png";
             createHutrie(objectType, sprite, unitIndex);
             barracks->setTrainingWarriorFlag(false);
             barracks->updateStatus();
@@ -396,7 +396,7 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
         if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getArcherTrainingTime())
         {
             std::string objectType = "archer";
-            std::string sprite = "sprites/archer/up.png";
+            std::string sprite = "sprites/archer/right.png";
             createHutrie(objectType, sprite, unitIndex);
             barracks->setTrainingArcherFlag(false);
             barracks->updateStatus();

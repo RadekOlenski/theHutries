@@ -12,8 +12,7 @@ class Warrior : public Soldier
 {
 
 public:
-    Warrior(sf::RenderWindow *hutrieApplication, const std::vector<Unit*> &unitsFromGame, std::string pathName,
-            bool onBuilding = false);
+    Warrior(sf::RenderWindow *hutrieApplication, const std::vector<Unit*> &unitsFromGame, std::string pathName);
 
     std::string pathName = "sprites/warrior/right.png";
     static const std::vector<Unit*> usedUnits;
