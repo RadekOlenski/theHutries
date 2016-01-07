@@ -6,15 +6,21 @@
 
 Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName)
         : Building(hutrieApplication,unitsFromGame, pathName),
-          createWarriorButton(1024 + 40, 475, hutrieApplication, 150, 45),
-          createArcherButton(1024 + 40, 535, hutrieApplication, 150, 45),
-          textWarrior(1024 + 60, 485, 20, "Create Warrior"),
-          textArcher(1024 + 70, 545, 20, "Create Archer"),
-          goldArcher(1024 + 200, 545, hutrieApplication, "sprites/goods/gold.png", 25, 25),
-          tgoldArcher(1024 + 230, 545, 20, "3"),
-          goldWarrior(1024 + 200, 485, hutrieApplication, "sprites/goods/gold.png", 25, 25),
-          tgoldWarrior(1024 + 230, 485, 20, "3")
+          //createWarriorButton(1024 + 40, 475, hutrieApplication, 150, 45),
+          //createArcherButton(1024 + 40, 535, hutrieApplication, 150, 45),
+          //textWarrior(1024 + 60, 485, 20, "Create Warrior"),
+          //textArcher(1024 + 70, 545, 20, "Create Archer"),
+          trainHutries(1024 + 65, 440, 25, "Train Hutries:"),
 
+          createArcherButton(1024 + 140, 470, hutrieApplication, "sprites/archer/down.png", 90, 90),
+          textArcher(1024 + 160, 555, 20, "Archer"),
+          goldArcher(1024 + 170, 585, hutrieApplication, "sprites/goods/gold.png", 25, 25),
+          tgoldArcher(1024 + 195, 585, 20, "3"),
+
+          createWarriorButton(1024 + 30, 470, hutrieApplication, "sprites/warrior/down.png", 90, 90),
+          textWarrior(1024 + 50, 555, 20, "Warrior"),
+          goldWarrior(1024 + 60, 585, hutrieApplication, "sprites/goods/gold.png", 25, 25),
+          tgoldWarrior(1024 + 85, 585, 20, "3")
 {
     title.text.setString("Barracks:");
     sound.openFromFile(Sound::barracks);
@@ -40,6 +46,7 @@ void Barracks:: showButtons()
 {
     createWarriorButton.setActive(true);
     createArcherButton.setActive(true);
+    hutrieApplication->draw(trainHutries.text);
     hutrieApplication->draw(createWarriorButton.button);
     hutrieApplication->draw(createArcherButton.button);
     hutrieApplication->draw(textWarrior.text);
@@ -62,11 +69,13 @@ void Barracks::buttonAction()
     {
         std::cout << "Create Warrior!!!!" << std::endl;
         makeWarriorFlag = true;
+        Sound::click();
     }
     if (createArcherButton.checkBounds() && createArcherButton.isActive())
     {
         std::cout << "Create Archer!!!!" << std::endl;
         makeArcherFlag = true;
+        Sound::click();
     }
 }
 

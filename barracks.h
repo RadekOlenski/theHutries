@@ -63,6 +63,7 @@ private:
     GUIText tgoldArcher;
     GUIButton goldWarrior;
     GUIText tgoldWarrior;
+    GUIText trainHutries;
     bool makeWarriorFlag;
     bool makeArcherFlag;
     bool trainingWarrior;
