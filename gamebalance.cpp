@@ -23,5 +23,4 @@
     const float GameBalance::sawmillConstructionTime = 2;
     const float GameBalance::stonecutterHutConstructionTime = 2;
     const float GameBalance::farmConstructionTime = 2;
-
     const float GameBalance::goldmineConstructionTime = 2;

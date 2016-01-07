@@ -30,7 +30,7 @@ private:
 
     bool buildingConstructed;
     unsigned int leftConstructionTime;
-    const float constructionTime = GameBalance::stonecutterHutConstructionTime;
+    const float constructionTime = GameBalance::goldmineConstructionTime;
     sf::Clock constructionTimeClock;
 };
 
