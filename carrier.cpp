@@ -14,7 +14,7 @@ Carrier::Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsF
 void Carrier::moveHutrie()
 {
     busy = true;
-    toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
+    toDirection(objectUnits.at(2)->field.getPosition().x, objectUnits.at(2)->field.getPosition().y );
     sprite.setTexture( transTexture );
     sf::sleep(sf::seconds(GameBalance::carrierLading));
     arrived = true;
@@ -23,7 +23,7 @@ void Carrier::moveHutrie()
 void Carrier::comeBack()
 {
    arrived = false;
-   toDirection(390,370);
+   toDirection( 6*64, 7*64 );
    busy = false;
    returned = true;
    sprite.setTexture( transTexture );

@@ -14,7 +14,7 @@ Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
 {
     title.text.setString("Hutrie:");
 
-    sprite.setPosition( 384, 384 );
+    sprite.setPosition( 6*64, 7*64 );
     sprite.setScale(0.64,0.64);
 
     transTexture.loadFromFile("sprites/carrier/empty.png");
