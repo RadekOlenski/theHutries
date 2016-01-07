@@ -14,6 +14,7 @@ class GUIButton
         bool isActive() {return active;};
         void setActive (bool active) {this->active = active;};
         sf::Texture getTexture() {return texture;};
+        void setTexture(sf::Texture texture) { this->texture = texture; };
     private:
         sf::RenderWindow *hutrieApplication;
         sf::Texture texture;

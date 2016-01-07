@@ -47,7 +47,9 @@ class MapObject
 
         /////////////////////// CONSTRUCTOR /////////////////////////////////
 
-        MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame,std::string pathName);
+        MapObject (sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
+
+        void updateDescriptionTexture(sf::Texture texture);
 
 
     protected:

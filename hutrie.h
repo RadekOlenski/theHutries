@@ -33,6 +33,8 @@ public:
     void setBusy(bool busy) { this->busy = busy; }
 
 protected:
+
+    sf::Texture textureBasic;
     sf::Texture upTexture;
     sf::Texture downTexture;
     sf::Texture leftTexture;

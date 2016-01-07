@@ -79,7 +79,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
         case BuildingType::BARRACKS:
             if (worldGoods - GameBalance::barracksCost >= 0)
             {
-                world->buildings.push_back(new Barracks(hutrieApplication, usedUnits, "sprites/buildings/barracks.png"));
+                world->buildings.push_back(new Barracks(hutrieApplication, usedUnits));
                 world->barracksIndex.push_back(world->buildings.size() - 1);
                 world->availableGoods = world -> availableGoods - GameBalance::barracksCost;
                 guiController->checkCarrierGoods();
@@ -95,7 +95,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             if (worldGoods - GameBalance::residenceCost >= 0)
             {
                 world->increaseAvailableSlots(Residence::getAddedSlotsNumber());
-                world->buildings.push_back(new Residence(hutrieApplication, usedUnits, "sprites/buildings/residence.png",
+                world->buildings.push_back(new Residence(hutrieApplication, usedUnits,
                                                      &(world->availableSlots)));
                 world->availableGoods = world -> availableGoods - GameBalance::residenceCost;
                 guiController->checkCarrierGoods();
@@ -121,7 +121,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             if (worldGoods - GameBalance::farmCost >= 0)
             {
                 world->buildings.push_back(
-                new Farm(hutrieApplication, usedUnits, "sprites/buildings/farm.png"));
+                new Farm(hutrieApplication, usedUnits));
                 world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                 world->availableGoods = world -> availableGoods - GameBalance::farmCost;
                 guiController->checkCarrierGoods();
@@ -136,6 +136,29 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             break;
     }
     world->buildings.back()->placeOnMap();
+}
+
+void GameLogicController::constructBuilding()
+{
+    std::vector<Building*>::iterator it;
+    for(it = world->buildings.begin() + 1; it != world->buildings.end(); ++it)
+    {
+        if(!(*it)->getBuildingConstructedFlag())
+        {
+            if((*it)->getElapsedConstructionTime() >= (*it)->getConstructionTime())
+            {
+                (*it)->setBuildingConstructedFlag(true);
+                (*it)->setCoustructedBuildingTexture();
+                (*it)->setDescriptionTexture();
+                (*it)->updateStatus();
+            }
+            else
+            {
+                (*it)->updateConstructionClock((int) (*it)->getConstructionTime());
+                (*it)->updateStatus();
+            }
+        }
+    }
 }
 
 void GameLogicController::findSelectedUnit()
@@ -191,7 +214,7 @@ void GameLogicController::handleHutrieMoving()
     unsigned int unitIndex = modelController->getSelectedUnitIndex();
     std::vector<Unit*> usedUnits;
     usedUnits.push_back(world->units.at(unitIndex));
-    world->soldiers.push_back(new Soldier(hutrieApplication, usedUnits, "sprites/warrior/right.png"));
+    world->soldiers.push_back(new Warrior(hutrieApplication, usedUnits));
     world->hutries.push_back(world->soldiers.back());
     world->hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
 }
@@ -210,12 +233,10 @@ void GameLogicController::handleWorkerCreation()
         if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getWorkerTrainingTime())
         {
             std::string objectType = "worker";
-            std::string sprite = "sprites/worker/right.png";
-            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(0);
-            createHutrie(objectType, sprite, unitIndex);
+            unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
+            createHutrie(objectType, unitIndex);
             hutriesHall->setTrainingWorkerFlag(false);
             hutriesHall->updateStatus();
-
         }
         else
         {
@@ -257,9 +278,8 @@ void GameLogicController::handleCarrierCreation()
         if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
         {
             std::string objectType = "carrier";
-            std::string sprite = "sprites/carrier/right.png";
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
-            createHutrie(objectType, sprite, unitIndex);
+            createHutrie(objectType, unitIndex);
             hutriesHall->setTrainingCarrierFlag(false);
             hutriesHall->updateStatus();
         }
@@ -332,15 +352,14 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
         if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getWarriorTrainingTime())
         {
             std::string objectType = "warrior";
-            std::string sprite = "sprites/warrior/right.png";
-            createHutrie(objectType, sprite, unitIndex);
+            createHutrie(objectType, unitIndex);
             barracks->setTrainingWarriorFlag(false);
             barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
         }
         else
         {
-            barracks->updateClock(barracks->getWarriorTrainingTime());
+            barracks->updateTrainingClock(barracks->getWarriorTrainingTime());
             barracks->updateStatus();
         }
     }
@@ -396,15 +415,14 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
         if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getArcherTrainingTime())
         {
             std::string objectType = "archer";
-            std::string sprite = "sprites/archer/right.png";
-            createHutrie(objectType, sprite, unitIndex);
+            createHutrie(objectType, unitIndex);
             barracks->setTrainingArcherFlag(false);
             barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
         }
         else
         {
-            barracks->updateClock(barracks->getArcherTrainingTime());
+            barracks->updateTrainingClock(barracks->getArcherTrainingTime());
             barracks->updateStatus();
         }
     }
@@ -439,14 +457,14 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
     }
 }
 
-void GameLogicController::createHutrie(std::string objectType, std::string sprite, unsigned int unitIndex)
+void GameLogicController::createHutrie(std::string objectType, unsigned int unitIndex)
 {
     std::vector<Unit*> usedUnits;
     usedUnits.push_back(world->units.at(unitIndex));
     if (objectType == "carrier")
     {
         std::cout << "Utworze dla ciebie Carriera!" << std::endl;
-        world->carriers.push_back(new Carrier(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
+        world->carriers.push_back(new Carrier(hutrieApplication, usedUnits));
         world->hutries.push_back(world->carriers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
         world->carriers.back()->setBuilding(hutriesHall);
@@ -455,7 +473,7 @@ void GameLogicController::createHutrie(std::string objectType, std::string sprit
     else if (objectType == "worker")
     {
         std::cout << "Utworze dla ciebie Workera!" << std::endl;
-        world->workers.push_back(new Worker(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
+        world->workers.push_back(new Worker(hutrieApplication, usedUnits));
         world->hutries.push_back(world->workers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
         world->availableSlots--;
@@ -463,7 +481,7 @@ void GameLogicController::createHutrie(std::string objectType, std::string sprit
     else if (objectType == "warrior")
     {
         std::cout << "Utworze dla ciebie Warriora!" << std::endl;
-        world->warriors.push_back(new Warrior(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
+        world->warriors.push_back(new Warrior(hutrieApplication, usedUnits));
         world->hutries.push_back(world->warriors.back());
         world->soldiers.push_back(world->warriors.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
@@ -472,7 +490,7 @@ void GameLogicController::createHutrie(std::string objectType, std::string sprit
     else if (objectType == "archer")
     {
         std::cout << "Utworze dla ciebie Archera!" << std::endl;
-        world->archers.push_back(new Archer(hutrieApplication, usedUnits, sprite));//"sprites/carrier/empty.png"));
+        world->archers.push_back(new Archer(hutrieApplication, usedUnits));
         world->hutries.push_back(world->archers.back());
         world->soldiers.push_back(world->archers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
@@ -629,7 +647,7 @@ void GameLogicController::createSawmill(std::vector<Unit*> usedUnits)
             {
                 if (j == currentForestUnit)
                 {
-                    world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
+                    world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::sawmillCost;
                     guiController->checkCarrierGoods();
@@ -638,7 +656,7 @@ void GameLogicController::createSawmill(std::vector<Unit*> usedUnits)
                 }
                 else if (j + 3 == currentForestUnit)
                 {
-                    world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits, "sprites/buildings/sawmill.png"));
+                    world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::sawmillCost;
                     guiController->checkCarrierGoods();
@@ -664,7 +682,7 @@ void GameLogicController::createStonecutterHut(std::vector<Unit *> usedUnits)
             {
                 if (j == currentRocksUnit)
                 {
-                    world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stonecutterHut.png"));
+                    world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::stonecutterhutCost;
                     guiController->checkCarrierGoods();
@@ -673,7 +691,7 @@ void GameLogicController::createStonecutterHut(std::vector<Unit *> usedUnits)
                 }
                 else if (j + 3 == currentRocksUnit)
                 {
-                    world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits, "sprites/buildings/stonecutterHut.png"));
+                    world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::stonecutterhutCost;
                     guiController->checkCarrierGoods();
@@ -700,7 +718,7 @@ void GameLogicController::createGoldmine(std::vector<Unit *> usedUnits)
                 if (j == currentMountainUnit)
                 {
                     world->buildings.push_back(
-                            new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmine.png"));
+                            new Goldmine(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::goldmineCost;
                     guiController->checkCarrierGoods();
@@ -710,7 +728,7 @@ void GameLogicController::createGoldmine(std::vector<Unit *> usedUnits)
                 else if (j + 3 == currentMountainUnit)
                 {
                     world->buildings.push_back(
-                            new Goldmine(hutrieApplication, usedUnits, "sprites/buildings/goldmine/goldmine.png"));
+                            new Goldmine(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::goldmineCost;
                     guiController->checkCarrierGoods();

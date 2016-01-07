@@ -78,3 +78,7 @@ void MapObject::deactivateButtons() { }
 
 void MapObject::buttonAction() { }
 
+void MapObject::updateDescriptionTexture(sf::Texture texture)
+{
+    descriptionFrame.setTexture(texture);
+}

@@ -42,7 +42,8 @@ class World
         bool isFieldEmpty(std::vector <Unit*> &usedUnits);
 		unsigned int findSelectedUnitIndex();
 		void increaseAvailableSlots(int addedSlotsNumber);
-    private:
+
+private:
 		void createForest();
 		void createMountains();
 		void createRocks();

@@ -3,11 +3,12 @@
 #include "gamebalance.h"
 
 
-Carrier::Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding) : Hutrie(hutrieApplication,unitsFromGame,pathName), carrierThread(&Carrier::comeBack, this)
+Carrier::Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding)
+        : Hutrie(hutrieApplication,unitsFromGame, pathName), carrierThread(&Carrier::comeBack, this)
 {
-    upTexture.loadFromFile("sprites/carrier/up.png");
-    downTexture.loadFromFile("sprites/carrier/down.png");
-    leftTexture.loadFromFile("sprites/carrier/left.png");
+    upTexture.loadFromFile(Textures::carrierUp);
+    downTexture.loadFromFile(Textures::carrierDown);
+    leftTexture.loadFromFile(Textures::carrierLeft);
     arrived = false;
 }
 

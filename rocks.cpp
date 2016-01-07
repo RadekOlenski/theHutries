@@ -6,8 +6,9 @@
 #include "rocks.h"
 #include "sound.h"
 #include "unit.h"
+#include "textures.h"
 
-Rocks::Rocks(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, const std::string &pathName)
+Rocks::Rocks(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, std::string pathName)
         : Environment(hutrieApplication, unitsFromGame, pathName)
 {
     title.text.setString("Rocks:");

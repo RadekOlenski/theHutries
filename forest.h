@@ -7,12 +7,13 @@
 
 
 #include "environment.h"
+#include "textures.h"
 
 class Forest : public Environment
 {
 
 public:
-    Forest(sf::RenderWindow *hutrieApplication, std::vector<Unit *> &unitsFromGame, std::string pathName);
+    Forest(sf::RenderWindow *hutrieApplication, std::vector<Unit *> &unitsFromGame, std::string pathName = Textures::forest);
     void updateStatus();
 
 };

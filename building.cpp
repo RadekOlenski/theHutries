@@ -7,7 +7,6 @@ Building::Building(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsF
 {
     needCarrier = false;
     needWorker = false;
-
 }
 
 void Building::placeOnMap()
@@ -42,4 +41,14 @@ Carrier* Building::getCarrier()
 int Building::getCarriersSize()
 {
     return myCarriers.size();
+}
+
+void Building::setCoustructedBuildingTexture()
+{
+    sprite.setTexture(textureBasic);
+}
+
+void Building::setDescriptionTexture()
+{
+    this->updateDescriptionTexture(textureBasic);
 }

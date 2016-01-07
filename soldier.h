@@ -6,7 +6,7 @@
 #include <string>
 
 #include "hutrie.h"
-
+#include "textures.h"
 
 
 class Soldier : public Hutrie

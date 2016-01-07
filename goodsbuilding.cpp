@@ -5,9 +5,8 @@
 
 using namespace std;
 
-GoodsBuilding::GoodsBuilding(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsFromGame,
-    std::string pathName)
-        : Building(hutrieApplication, unitsFromGame, pathName),
+GoodsBuilding::GoodsBuilding(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsFromGame)
+        : Building(hutrieApplication, unitsFromGame),
             callWorker(1024 + 40, 500, hutrieApplication, 150, 45),
             goodsReady(1024 + 40, 560, hutrieApplication, 150, 45),
             assignWorker(1024 + 60, 510, 20, "Assign worker"),
@@ -89,7 +88,7 @@ void GoodsBuilding::changeBuildingSprite()
     {
         sprite.setTexture(textureWithProduct);
     }
-    else sprite.setTexture(textureNoProduct);
+    else sprite.setTexture(textureBasic);
 }
 
 void GoodsBuilding::giveProduct(Goods* luggage)

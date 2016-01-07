@@ -1,16 +1,20 @@
 #include "sawmill.h"
 #include "sound.h"
+#include "textures.h"
 #include <sstream>
 
-Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName)
-        : GoodsBuilding(hutrieApplication, unitsFromGame, pathName)
+Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame)
+        : GoodsBuilding(hutrieApplication, unitsFromGame)
 {
 
     title.text.setString("Sawmill:");
     sound.openFromFile(Sound::sawmill);
     goodReady.text.setString("Wood ready");
-    textureWithProduct.loadFromFile("sprites/buildings/sawmillWithLogs.png");
-    textureNoProduct.loadFromFile("sprites/buildings/sawmill.png");
+    textureBasic.loadFromFile(Textures::sawmillBasic);
+    textureWithProduct.loadFromFile(Textures::sawmillWithProduct);
+
+    buildingConstructed = false;
+    leftConstructionTime = 0;
 }
 
 void Sawmill::createProduct()
@@ -20,9 +24,24 @@ void Sawmill::createProduct()
 
 void Sawmill::updateStatus()
 {
-    std::ostringstream desc;
-    desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
-    checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getWood() << "/" << productsCapacity;
-    description.text.setString(desc.str());
+    if(buildingConstructed)
+    {
+        std::ostringstream desc;
+        desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
+        checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getWood() << "/" << productsCapacity;
+        description.text.setString(desc.str());
+    }
+    else
+    {
+        std::ostringstream desc;
+        desc << "Construction finish in " <<  leftConstructionTime  << " sec.";
+        description.text.setString (desc.str() );
+    }
 }
 
+
+void Sawmill::updateConstructionClock(int fulltime)
+{
+    leftConstructionTime = (unsigned int) (fulltime - constructionTimeClock.getElapsedTime().asSeconds());
+    if (leftConstructionTime < 0) leftConstructionTime = 0;
+}

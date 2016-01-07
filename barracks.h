@@ -8,12 +8,13 @@
 
 #include "building.h"
 #include "gamebalance.h"
+#include "textures.h"
 
 
 class Barracks : public Building
 {
 public:
-    Barracks(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName);
+    Barracks(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame);
 
     void updateStatus();
 
@@ -30,8 +31,6 @@ public:
     void showButtons();
 
     void deactivateButtons();
-
-    sf::Clock trainingClock;
 
     int getWarriorTrainingTime() { return warriorTrainingTime; };
 
@@ -51,10 +50,22 @@ public:
 
     void setSoldiersCosts();
 
-    void updateClock(int fulltime );
+    void updateTrainingClock(int fulltime);
 
+    void updateConstructionClock(int fulltime);
+
+    float getElapsedConstructionTime() { return constructionTimeClock.getElapsedTime().asSeconds(); };
+
+    bool getBuildingConstructedFlag() { return buildingConstructed; };
+
+    void setBuildingConstructedFlag(bool buildingConstructed) { this->buildingConstructed = buildingConstructed; };
+
+    float getConstructionTime() { return constructionTime; };
+
+    sf::Clock trainingClock;
 
 private:
+
     GUIButton createWarriorButton;
     GUIText textWarrior;
     GUIButton createArcherButton;
@@ -69,12 +80,16 @@ private:
     bool trainingWarrior;
     bool trainingArcher;
     bool firstCheck;
+    bool buildingConstructed;
 
     const int warriorTrainingTime = GameBalance::warriorTrainingTime;
     const int archerTrainingTime = GameBalance::archerTrainingTime;
 
     unsigned int leftTrainingTime;
+    unsigned int leftConstructionTime;
 
+    const float constructionTime = GameBalance::barracksConstructionTime;
+    sf::Clock constructionTimeClock;
 };
 
 #endif // BARRACKS_H

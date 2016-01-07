@@ -6,13 +6,13 @@
 #include <string>
 
 #include "hutrie.h"
-
+#include "textures.h"
 
 
 class Worker : public Hutrie
 {
     public:
-        Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
+        Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame,  std::string pathName = Textures::workerDown);
         void moveHutrie();
         bool haveArrived () {return arrived;};
         void setArrived (bool arrived) {this->arrived = arrived;};

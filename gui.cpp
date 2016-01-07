@@ -1,6 +1,7 @@
 #include <sstream>
 #include "gui.h"
 #include "gamebalance.h"
+#include "textures.h"
 
 GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width) :
         guiFrame(sf::Vector2f(width, mapHeight)),
@@ -8,69 +9,69 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         timeLeft(20, mapHeight + 2 + 128, 20, "15:00", sf::Color::White),
         errorInfo(mapWidth + 20 , mapHeight + 50, 20, ""),
         messageBox(mapWidth + 60, mapHeight + 10, 25, "Message Box:"),
-        buildButton(mapWidth + 60, 100, hutrieApplication, "sprites/buttons/hammer.png"),
-        hutrieButton(mapWidth + 140, 100, hutrieApplication, "sprites/buttons/hutrie.png"),
-        guiBar(0, mapHeight + 128, hutrieApplication, "sprites/buttons/leather2.png", mapWidth, 30),
-        gold(208, mapHeight + 128, hutrieApplication, "sprites/goods/gold.png", 30, 30),
-        wood(208 + 192, mapHeight + 128, hutrieApplication, "sprites/goods/wood.png", 30, 30),
-        stone(208 + 384, mapHeight + 128, hutrieApplication, "sprites/goods/stone.png", 30, 30),
-        food(208 + 576, mapHeight + 128, hutrieApplication, "sprites/goods/food.png", 30, 30),
+        buildButton(mapWidth + 60, 100, hutrieApplication, Textures::buildButton),
+        hutrieButton(mapWidth + 140, 100, hutrieApplication, Textures::hutrieButton),
+        guiBar(0, mapHeight + 128, hutrieApplication, Textures::guiBar, mapWidth, 30),
+        gold(208, mapHeight + 128, hutrieApplication, Textures::gold, 30, 30),
+        wood(208 + 192, mapHeight + 128, hutrieApplication, Textures::wood, 30, 30),
+        stone(208 + 384, mapHeight + 128, hutrieApplication, Textures::stone, 30, 30),
+        food(208 + 576, mapHeight + 128, hutrieApplication, Textures::food, 30, 30),
         tgold(280, mapHeight + 2 + 128, 20, "0", sf::Color::White),
         twood(280 + 192, mapHeight + 2 + 128, 20, "0", sf::Color::White),
         tstone(280 + 384, mapHeight + 2 + 128, 20, "0", sf::Color::White),
         tfood(280 + 576, mapHeight + 2 + 128, 20, "0", sf::Color::White),
 
-        sawmill(mapWidth + 30, 170, hutrieApplication, "sprites/buildings/sawmill.png", 90, 90),
+        sawmill(mapWidth + 30, 170, hutrieApplication, Textures::sawmillBasic, 90, 90),
         tSawmill(mapWidth + 40, 260, 20, "Sawmill"),
-        woodSawmill(mapWidth + 35, 290, hutrieApplication, "sprites/goods/wood.png", 25, 25),
+        woodSawmill(mapWidth + 35, 290, hutrieApplication, Textures::wood, 25, 25),
         twoodSawmill(mapWidth + 60, 290, 20, "3"),
-        stoneSawmill(mapWidth + 80, 290, hutrieApplication, "sprites/goods/stone.png", 25, 25),
+        stoneSawmill(mapWidth + 80, 290, hutrieApplication, Textures::stone, 25, 25),
         tstoneSawmill(mapWidth + 105, 290, 20, "3"),
 
-        stonecutter(mapWidth + 30 + 120, 170, hutrieApplication, "sprites/buildings/stonecutterHut.png", 90, 90),
+        stonecutter(mapWidth + 30 + 120, 170, hutrieApplication, Textures::stonecutterHutBasic, 90, 90),
         tStonecutter(mapWidth + 155, 260, 20, "Stonecutter"),
-        woodStonecutter(mapWidth + 35 + 120, 290, hutrieApplication, "sprites/goods/wood.png", 25, 25),
+        woodStonecutter(mapWidth + 35 + 120, 290, hutrieApplication, Textures::wood, 25, 25),
         twoodStonecutter(mapWidth + 60 + 120, 290, 20, "3"),
-        stoneStonecutter(mapWidth + 80 + 120, 290, hutrieApplication, "sprites/goods/stone.png", 25, 25),
+        stoneStonecutter(mapWidth + 80 + 120, 290, hutrieApplication, Textures::stone, 25, 25),
         tstoneStonecutter(mapWidth + 105 + 120, 290, 20, "3"),
 
-        farm(mapWidth + 30, 330, hutrieApplication, "sprites/buildings/farmGUI.png", 90, 90),
+        farm(mapWidth + 30, 330, hutrieApplication, Textures::farmGUI, 90, 90),
         tFarm(mapWidth + 40, 420, 20, "Farm"),
-        woodFarm(mapWidth + 35, 290 + 160, hutrieApplication, "sprites/goods/wood.png", 25, 25),
+        woodFarm(mapWidth + 35, 290 + 160, hutrieApplication, Textures::wood, 25, 25),
         twoodFarm(mapWidth + 60, 290 + 160, 20, "3"),
-        stoneFarm(mapWidth + 80, 290 + 160,  hutrieApplication, "sprites/goods/stone.png", 25, 25),
+        stoneFarm(mapWidth + 80, 290 + 160,  hutrieApplication, Textures::stone, 25, 25),
         tstoneFarm(mapWidth + 105, 290 + 160, 20, "3"),
 
-        goldmine(mapWidth + 150, 330, hutrieApplication, "sprites/buildings/goldmine/goldmineGUI.png", 90, 90),
+        goldmine(mapWidth + 150, 330, hutrieApplication, Textures::goldmineGUI, 90, 90),
         tGoldmine(mapWidth + 155, 420, 20, "Goldmine"),
-        woodGoldmine(mapWidth + 35 + 120, 290 + 160, hutrieApplication, "sprites/goods/wood.png", 25, 25),
+        woodGoldmine(mapWidth + 35 + 120, 290 + 160, hutrieApplication, Textures::wood, 25, 25),
         twoodGoldmine(mapWidth + 60 + 120, 290 + 160, 20, "3"),
-        stoneGoldmine(mapWidth + 80 + 120, 290 + 160, hutrieApplication, "sprites/goods/stone.png", 25, 25),
+        stoneGoldmine(mapWidth + 80 + 120, 290 + 160, hutrieApplication, Textures::stone, 25, 25),
         tstoneGoldmine(mapWidth + 105 + 120, 290 + 160, 20, "3"),
 
-        barracks(mapWidth + 30, 480, hutrieApplication, "sprites/buildings/barracks.png", 90, 90),
+        barracks(mapWidth + 30, 480, hutrieApplication, Textures::barracksBasic, 90, 90),
         tBarracks(mapWidth + 40, 565, 20, "Barracks"),
-        woodBarracks(mapWidth + 35, 290 + 305, hutrieApplication, "sprites/goods/wood.png", 25, 25),
+        woodBarracks(mapWidth + 35, 290 + 305, hutrieApplication, Textures::wood, 25, 25),
         twoodBarracks(mapWidth + 60, 290 + 305, 20, "3"),
-        stoneBarracks(mapWidth + 80, 290 + 305, hutrieApplication, "sprites/goods/stone.png", 25, 25),
+        stoneBarracks(mapWidth + 80, 290 + 305, hutrieApplication, Textures::stone, 25, 25),
         tstoneBarracks(mapWidth + 105, 290 + 305, 20, "3"),
 
-        residence(mapWidth + 150, 480, hutrieApplication, "sprites/buildings/residence.png", 90, 90),
+        residence(mapWidth + 150, 480, hutrieApplication, Textures::residenceBasic, 90, 90),
         tResidence(mapWidth + 160, 565, 20, "Residence"),
-        woodResidence(mapWidth + 35 + 120, 290 + 305, hutrieApplication, "sprites/goods/wood.png", 25, 25),
+        woodResidence(mapWidth + 35 + 120, 290 + 305, hutrieApplication, Textures::wood, 25, 25),
         twoodResidence(mapWidth + 60 + 120, 290 + 305, 20, "3"),
-        stoneResidence(mapWidth + 80 + 120, 290 + 305, hutrieApplication, "sprites/goods/stone.png", 25, 25),
+        stoneResidence(mapWidth + 80 + 120, 290 + 305, hutrieApplication, Textures::stone, 25, 25),
         tstoneResidence(mapWidth + 105 + 120, 290 + 305, 20, "3"),
 
-        allHutries(mapWidth + 30, 170, hutrieApplication, "sprites/all.png", 96, 96),
+        allHutries(mapWidth + 30, 170, hutrieApplication, Textures::allHutries, 96, 96),
         tHutries(mapWidth + 150, 200, 30, "26"),
-        allCarriers(mapWidth + 30, 260, hutrieApplication, "sprites/carrier/right.png", 96, 96),
+        allCarriers(mapWidth + 30, 260, hutrieApplication, Textures::carrierRight, 96, 96),
         tCarriers(mapWidth + 150, 290, 30, "12"),
-        allWorkers(mapWidth + 30, 350, hutrieApplication, "sprites/worker/right.png", 96, 96),
+        allWorkers(mapWidth + 30, 350, hutrieApplication, Textures::workerRight, 96, 96),
         tWorkers(mapWidth + 150, 380, 30, "5"),
-        allWarriors(mapWidth + 30, 440, hutrieApplication, "sprites/warrior/right.png", 96, 96),
+        allWarriors(mapWidth + 30, 440, hutrieApplication, Textures::warriorRight, 96, 96),
         tWarriors(mapWidth + 150, 470, 30, "2"),
-        allArchers(mapWidth + 30, 530, hutrieApplication, "sprites/archer/right.png", 96, 96),
+        allArchers(mapWidth + 30, 530, hutrieApplication, Textures::archerRight, 96, 96),
         tArchers(mapWidth + 150, 560, 30, "2")
 {
 
@@ -79,11 +80,11 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
     this->hutrieApplication = hutrieApplication;
 
     guiFrame.setPosition(mapWidth, 0);
-    texture.loadFromFile("sprites/background/pergamino.jpg");
+    texture.loadFromFile(Textures::guiTexture);
     guiFrame.setTexture(&texture);
 
     errorFrame.setPosition(mapWidth, mapHeight);
-    texture.loadFromFile("sprites/background/pergamino.jpg");
+    texture.loadFromFile(Textures::guiTexture);
     errorFrame.setTexture(&texture);
 
     buildButton.setActive(true);

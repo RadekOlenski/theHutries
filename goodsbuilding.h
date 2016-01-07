@@ -14,7 +14,7 @@
 class GoodsBuilding : public Building
 {
 public:
-    GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName);
+    GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame);
         //void updateStatus();
         void showButtons();
         void deactivateButtons();
@@ -39,6 +39,5 @@ protected:
         unsigned int productsCapacity = GameBalance::maxProductsInStore;
 
         sf::Texture textureWithProduct;
-        sf::Texture textureNoProduct;
 };
 #endif // GOODSBUILDING_H

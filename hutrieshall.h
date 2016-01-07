@@ -11,13 +11,13 @@
 #include "guitext.h"
 #include "world.h"
 #include "gamebalance.h"
+#include "textures.h"
 
 class HutriesHall : public Building
 {
 public:
 
-    HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std::vector<Unit *> unitsFromGame,
-                std::string pathName);
+    HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std::vector<Unit *> unitsFromGame, std::string pathName = Textures::hutriesHall);
 
     void updateStatus();
 
@@ -65,9 +65,10 @@ private:
     bool makeWorkerFlag;
     bool makeCarrierFlag;
     bool trainingWorker;
-    bool trainingCarrier;
 
+    bool trainingCarrier;
     const int workerTrainingTime = GameBalance::workerTrainingTime;
+
     const int carrierTrainingTime = GameBalance::carrierTrainingTime;
 
     unsigned int leftTrainingTime;

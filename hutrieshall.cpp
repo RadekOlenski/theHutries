@@ -11,10 +11,10 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std:
         //createWorkerButton(1024 + 40, 560, hutrieApplication, 150, 45),
 
           trainHutries(1024 + 65, 490, 25, "Train Hutries:"),
-          createWorkerButton(1024 + 30, 520, hutrieApplication, "sprites/worker/down.png", 90, 90),
+          createWorkerButton(1024 + 30, 520, hutrieApplication, Textures::workerDown, 90, 90),
           tWorker(1024 + 50, 605, 20, "Worker"),
 
-          createCarrierButton(1024 + 140, 520, hutrieApplication, "sprites/carrier/down.png", 90, 90),
+          createCarrierButton(1024 + 140, 520, hutrieApplication, Textures::carrierDown, 90, 90),
           tCarrier(1024 + 160, 605, 20, "Carrier")
 
           //tCarrier(1024 + 60, 510, 20, "Create Carrier"),

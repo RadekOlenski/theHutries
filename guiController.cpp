@@ -174,7 +174,7 @@ void GUIController::createBackground()
 void GUIController::createCursor()
 {
     hutrieApplication->setMouseCursorVisible(false);
-    cursorTexture.loadFromFile("sprites/cursor.png");
+    cursorTexture.loadFromFile(Textures::cursor);
     cursor.setTexture(cursorTexture);
 }
 

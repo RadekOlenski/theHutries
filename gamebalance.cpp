@@ -16,3 +16,12 @@
     const double GameBalance::workerTrainingTime = 0.5;
 
     double GameBalance::screenZoom = 1.1;
+
+    //////////////////////////////////  CONSTRUCTION TIME    //////////////////////////////////////
+    const float GameBalance::barracksConstructionTime = 2;
+    const float GameBalance::residenceConstructionTime = 2;
+    const float GameBalance::sawmillConstructionTime = 2;
+    const float GameBalance::stonecutterHutConstructionTime = 2;
+    const float GameBalance::farmConstructionTime = 2;
+
+    const float GameBalance::goldmineConstructionTime = 2;

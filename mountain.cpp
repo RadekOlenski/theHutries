@@ -6,8 +6,9 @@
 #include "mountain.h"
 #include "sound.h"
 #include "unit.h"
+#include "textures.h"
 
-Mountain::Mountain(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, const std::string &pathName)
+Mountain::Mountain(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, std::string pathName)
         : Environment(hutrieApplication, unitsFromGame, pathName)
 {
     title.text.setString("Mountain:");

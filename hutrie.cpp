@@ -6,6 +6,7 @@
 #include "mapobject.h"
 #include "unit.h"
 #include "sound.h"
+#include "textures.h"
 
 
 ///////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +18,7 @@ Hutrie::Hutrie(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
     sprite.setPosition( 6*64, 7*64 );
     sprite.setScale(0.64,0.64);
 
-    transTexture.loadFromFile("sprites/carrier/empty.png");
+    transTexture.loadFromFile(Textures::carrierEmpty);
 
     sound.openFromFile(Sound::hutrie);
     sound.setVolume(100);

@@ -53,7 +53,7 @@ World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int appli
     int unitIndex = 70;
     std::vector<Unit*> usedUnits;
     prepareUnits(unitIndex, 3, 3, &usedUnits);
-    buildings.push_back(new HutriesHall(hutrieApplication, this, usedUnits, "sprites/buildings/castle.png"));
+    buildings.push_back(new HutriesHall(hutrieApplication, this, usedUnits));
     buildings.back()->placeOnMap();
     /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
 
@@ -132,7 +132,7 @@ void World::createForest()
                 else d++;
             }
             while (!(isFieldEmpty(usedUnits)));
-            environment.push_back(new Forest(hutrieApplication, usedUnits, "sprites/environment/trees.png"));
+            environment.push_back(new Forest(hutrieApplication, usedUnits, Textures::forest));
             this->forestsIndex.push_back(this->environment.size() - 1);
             trees = i;
             std::cout << "Las nr " << i << ", prob postawienia: " << d << std::endl;
@@ -164,7 +164,7 @@ void World::createMountains()
                 else d++;
             }
             while (!(isFieldEmpty(usedUnits)));
-            environment.push_back(new Mountain(hutrieApplication, usedUnits, "sprites/environment/mountain.png"));
+            environment.push_back(new Mountain(hutrieApplication, usedUnits, Textures::mountain));
             this->mountainsIndex.push_back(this->environment.size() - 1);
             std::cout << "Gory nr " << i << ", prob postawienia: " << d << std::endl;
         }
@@ -194,7 +194,7 @@ void World::createRocks()
                 else d++;
             }
             while (!(isFieldEmpty(usedUnits)));
-            environment.push_back(new Rocks(hutrieApplication, usedUnits, "sprites/environment/rocks.png"));
+            environment.push_back(new Rocks(hutrieApplication, usedUnits, Textures::rocks));
             this->rocksIndex.push_back(this->environment.size() - 1);
             std::cout << "Skaly nr " << i << ", prob postawienia: " << d << std::endl;
         }

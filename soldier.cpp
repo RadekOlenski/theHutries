@@ -1,14 +1,15 @@
 #include "unit.h"
 #include "soldier.h"
+#include "textures.h"
 
 
 Soldier::Soldier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName) : Hutrie(hutrieApplication,unitsFromGame,pathName)
 {
     title.text.setString("Warrior:");
 
-    upTexture.loadFromFile("sprites/warrior/up.png");
-    downTexture.loadFromFile("sprites/warrior/down.png");
-    leftTexture.loadFromFile("sprites/warrior/left.png");
+    upTexture.loadFromFile(Textures::warriorUp);
+    downTexture.loadFromFile(Textures::warriorDown);
+    leftTexture.loadFromFile(Textures::warriorLeft);
 }
 
 void Soldier::moveHutrie()

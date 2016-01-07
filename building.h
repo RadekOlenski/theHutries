@@ -8,12 +8,13 @@
 #include "mapobject.h"
 #include "unit.h"
 #include "carrier.h"
+#include "textures.h"
 
 class Carrier;
 class Building : public MapObject
 {
 public:
-    Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
+    Building(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName = Textures::underConstruction);
     void placeOnMap();
 
     bool getNeedWorkerFlag() {return needWorker;}
@@ -25,7 +26,14 @@ public:
     Carrier* getCarrier();
     int getCarriersSize();
 
+    virtual float getElapsedConstructionTime() {} ;
+    virtual bool getBuildingConstructedFlag() {};
+    virtual void setBuildingConstructedFlag(bool buildingConstructed) {};
+    virtual float getConstructionTime() {};
+    virtual void updateConstructionClock(int fulltime) {};
 
+    void setCoustructedBuildingTexture();
+    void setDescriptionTexture();
 protected:
 
     int buildTime;
@@ -36,6 +44,8 @@ protected:
     int checkHutries();
     bool needWorker;
     bool needCarrier;
+
+    sf::Texture textureBasic;
 private:
 };
 

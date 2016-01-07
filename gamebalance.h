@@ -43,6 +43,15 @@ class GameBalance
     const static int archerTrainingTime = 3;
     const static int warriorTrainingTime = 5;
 
+    //////////////////////////////////  CONSTRUCTION TIME    //////////////////////////////////////
+
+    const static float barracksConstructionTime;
+    const static float residenceConstructionTime;
+    const static float sawmillConstructionTime;
+    const static float stonecutterHutConstructionTime;
+    const static float farmConstructionTime;
+    const static float goldmineConstructionTime;
+
     //////////////////////////////////  CLOCKS    /////////////////////////////////////////////////
 
     const static int gameTime = 2 * 60;

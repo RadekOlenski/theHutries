@@ -29,6 +29,8 @@ public:
 
     void createGoldmine(std::vector<Unit *> usedUnits);
 
+    void constructBuilding();
+
     void findSelectedUnit();
 
     bool isUnitEmpty();
@@ -59,7 +61,7 @@ public:
 
     void handleArcherCreation(unsigned int unitIndex);
 
-    void createHutrie(std::string objectType, std::string sprite, unsigned int unitIndex);
+    void createHutrie(std::string objectType, unsigned int unitIndex);
 
     void handleGUIButtonsAction();
 

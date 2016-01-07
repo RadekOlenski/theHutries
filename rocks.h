@@ -7,12 +7,13 @@
 
 
 #include "environment.h"
+#include "textures.h"
 
 class Rocks : public Environment
 {
 
 public:
-    Rocks(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, const std::string &pathName);
+    Rocks(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, std::string pathName = Textures::rocks);
     void updateStatus();
 };
 

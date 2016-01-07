@@ -12,9 +12,8 @@ class Warrior : public Soldier
 {
 
 public:
-    Warrior(sf::RenderWindow *hutrieApplication, const std::vector<Unit*> &unitsFromGame, std::string pathName);
+    Warrior(sf::RenderWindow *hutrieApplication, const std::vector<Unit*> &unitsFromGame, std::string pathName = Textures::warriorRight);
 
-    std::string pathName = "sprites/warrior/right.png";
     static const std::vector<Unit*> usedUnits;
 };
 #endif //THEHUTRIES_WARRIOR_H

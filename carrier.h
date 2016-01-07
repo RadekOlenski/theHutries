@@ -8,12 +8,13 @@
 #include "hutrie.h"
 #include "goods.h"
 #include "building.h"
+#include "textures.h"
 
 class Building;
 class Carrier : public Hutrie
 {
     public:
-        Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName, bool onBuilding = true);
+        Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName = Textures::carrierDown, bool onBuilding = true);
         void moveHutrie();
         bool haveArrived () {return arrived;};
         void setArrived (bool arrived) {this->arrived = arrived;};
@@ -23,8 +24,8 @@ class Carrier : public Hutrie
         Goods getMyLuggage() {return myLuggage;};
         sf::Thread carrierThread;
         Goods myLuggage;
-        Building * getBuilding() {return myBuilding;};
-        void setBuilding (Building *newBuilding) {myBuilding = newBuilding;};
+        Building* getBuilding() {return myBuilding;};
+        void setBuilding (Building* newBuilding) {myBuilding = newBuilding;};
 
     private:
 

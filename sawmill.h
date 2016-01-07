@@ -9,13 +9,30 @@
 
 class Sawmill : public GoodsBuilding
 {
-    public:
-        Sawmill(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName);
-        void createProduct();
-        void updateStatus();
+public:
+    Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame);
 
-    private:
-        std::string goodType;
+    void createProduct();
+
+    void updateStatus();
+
+    float getElapsedConstructionTime() { return constructionTimeClock.getElapsedTime().asSeconds(); };
+
+    bool getBuildingConstructedFlag() { return buildingConstructed; };
+
+    void setBuildingConstructedFlag(bool buildingConstructed) { this->buildingConstructed = buildingConstructed; };
+
+    float getConstructionTime() { return constructionTime; };
+
+    void updateConstructionClock(int fulltime);
+
+private:
+
+    bool buildingConstructed;
+    unsigned int leftConstructionTime;
+    const float constructionTime = GameBalance::sawmillConstructionTime;
+    sf::Clock constructionTimeClock;
+    std::string goodType;
 };
 
 #endif // SAWMILL_H
