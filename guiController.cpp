@@ -8,6 +8,7 @@
 #include "sound.h"
 #include "buildingType.h"
 #include "interactionMode.h"
+#include "gamebalance.h"
 
 GUIController::GUIController(sf::RenderWindow*hutrieApplication, ModelController*modelController, World*world, GUI*gui)
         : titleText(1024 + 20, 40, 45),
@@ -19,6 +20,7 @@ GUIController::GUIController(sf::RenderWindow*hutrieApplication, ModelController
     this->modelController = modelController;
     this->world = world;
     this->gui = gui;
+    firstIteration = true;
 }
 
 void GUIController::handleGUIButtonsActions()
@@ -108,7 +110,12 @@ void GUIController::drawApplication()
 void GUIController::getView()
 {
     fixed = hutrieApplication->getView();
-    //fixed.zoom(2);
+    if (firstIteration)
+    {
+        fixed.zoom(GameBalance::screenZoom);
+        firstIteration = false;
+    }
+
 }
 
 void GUIController::displayElementsOfGUI()
@@ -158,7 +165,7 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
 
 void GUIController::createBackground()
 {
-    background.setSize(sf::Vector2f(1024, 640));
+    background.setSize(sf::Vector2f(1024, 640 + 128));
     //  backgroundTexture.loadFromFile( "sprites/background/background.jpg" );
     backgroundTexture.loadFromFile("sprites/background/background.jpg");
     background.setTexture(&backgroundTexture);
@@ -264,58 +271,58 @@ void GUIController::checkCarrierGoods()
 void GUIController::errorNoCarriers()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: No available carriers! Everyone is busy! Create carrier in HutriesHall or build residence");
+    gui->errorInfo.text.setString("Error: No available carriers!\nEveryone is busy! \nCreate carrier in HutriesHall \nor build residence");
 }
 
 
 void GUIController::errorNoSlots()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: No more slots! Build residence!");
+    gui->errorInfo.text.setString("Error: \n        No more slots! \n       Build residence!");
 }
 
 void GUIController::errorNoWorkers()
 {
     Sound::error();
     gui->errorInfo.text.setString(
-            "Error: No available workers! Everyone is busy! Create worker in HutriesHall or build residence");
+            "Error: No available workers! \nEveryone is busy! \nCreate worker in HutriesHall\nor build residence");
 }
 
 void GUIController::errorUnitOccupied()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: Unit not empty. Choose another one");
+    gui->errorInfo.text.setString("Error: \n        Unit not empty.\n        Choose another one");
 }
 
 
 void GUIController::errorOutOfMap()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: Building out of map. Choose another place");
+    gui->errorInfo.text.setString("Error: \n        Building out of map.\n        Choose another place");
 }
 
 void GUIController::errorAlreadyCreatingArcher()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: You are currently creating Archer!");
+    gui->errorInfo.text.setString("Error: \n        You are currently \n        creating Archer!");
 }
 
 void GUIController::errorAlreadyCreatingWarrior()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: You are currently creating Warrior!");
+    gui->errorInfo.text.setString("Error: \n        You are currently \n        creating Warrior!");
 }
 
 void GUIController::errorAlreadyCreatingWorker()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: You are currently creating Worker!");
+    gui->errorInfo.text.setString("Error: \n        You are currently \n        creating Worker!");
 }
 
 void GUIController::errorAlreadyCreatingCarrier()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: You are currently creating Carrier!");
+    gui->errorInfo.text.setString("Error: \n        You are currently \n        creating Carrier!");
 }
 
 void GUIController::errorNoProductsToCarry()
@@ -327,23 +334,23 @@ void GUIController::errorNoProductsToCarry()
 void GUIController::errorNotEnoughGoods()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Goods: Not enough goods for building!");
+    gui->errorInfo.text.setString("Goods: \n        Not enough goods \n        for building!");
 }
 
 void GUIController::errorMustBuildNearForest()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: You have to build sawmill near forest!");
+    gui->errorInfo.text.setString("Error: \n        You have to build \n        sawmill near forest!");
 }
 
 void GUIController::errorMustBuildNearRocks()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: You have to build stonecutterHut near rocks!");
+    gui->errorInfo.text.setString("Error: \n        You have to build \n       Stonecutter Hut\n       near rocks!");
 }
 
 void GUIController::errorMustBuildOnMountain()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: You have to build goldmine on mountain!");
+    gui->errorInfo.text.setString("Error: \n        You have to build \n       goldmine on mountain!");
 }

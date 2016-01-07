@@ -12,7 +12,7 @@
 //=================================================================================
 Game::Game(int applicationWidth, int applicationHeight) :
         gameTime(GameBalance::gameTime),
-        hutrieApplication(sf::VideoMode(applicationWidth + 256, applicationHeight + 30, 32), "The Hutries"
+        hutrieApplication(sf::VideoMode::getDesktopMode()/*(applicationWidth + 256, applicationHeight + 30 + 128, 32)*/, "The Hutries"
          ,sf::Style::Fullscreen ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
         world(&hutrieApplication, applicationWidth, applicationHeight)

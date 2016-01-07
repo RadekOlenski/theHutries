@@ -21,6 +21,7 @@ public:
     GUIButton buildButton;
     GUIButton hutrieButton;
     GUIText errorInfo;
+    GUIText messageBox;
     GUIText timeLeft;
     GUIText tgold;
     GUIText twood;
@@ -100,6 +101,7 @@ private:
     ////////////////////////////// GRAPHICS ///////////////////////////////////////////////////
 
     sf::RectangleShape guiFrame;
+    sf::RectangleShape errorFrame;
     sf::Texture texture;
     void setBuildingsCosts();
 

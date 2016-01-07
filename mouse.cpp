@@ -23,7 +23,10 @@ void Mouse::leftClickActions()
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         int applicationWidth = modelController->getApplicationWidth();
-        if (sf::Mouse::getPosition(*hutrieApplication).x < applicationWidth)         //jesli klikniecie w obrebie mapy
+        int applicationHeight = modelController->getApplicationHeight();
+        if (sf::Mouse::getPosition(*hutrieApplication).x < applicationWidth &&
+            sf::Mouse::getPosition(*hutrieApplication).y > 64 &&
+            sf::Mouse::getPosition(*hutrieApplication).y < applicationHeight + 64)         //jesli klikniecie w obrebie mapy
         {
             gameLogicController->endHighlightUnit();
 

@@ -99,6 +99,8 @@ private:
     sf::Thread titleThread;
 
     void getView();
+
+    bool firstIteration;
 };
 
 

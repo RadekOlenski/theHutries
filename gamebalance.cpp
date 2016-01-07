@@ -14,3 +14,5 @@
     const double GameBalance::winResult = 6;
     const double GameBalance::carrierTrainingTime = 0.3;
     const double GameBalance::workerTrainingTime = 0.5;
+
+    double GameBalance::screenZoom = 1.1;

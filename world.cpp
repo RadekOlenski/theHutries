@@ -25,7 +25,7 @@ World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int appli
 
     /////////////////////////// CREATING GRID OF UNITS//////////////////////////////////////////////////////
 
-    sf::Vector2f position(0, 0);
+    sf::Vector2f position(0, 64);
     for (int j = 0; j < verticalUnitsCounter; j++)
     {
         for (int i = 0; i < horizontalUnitsCounter; i++)
