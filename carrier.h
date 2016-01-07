@@ -14,7 +14,7 @@ class Building;
 class Carrier : public Hutrie
 {
     public:
-        Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName = Textures::carrierDown, bool onBuilding = true);
+        Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName = Textures::carrierRight, bool onBuilding = true);
         void moveHutrie();
         bool haveArrived () {return arrived;};
         void setArrived (bool arrived) {this->arrived = arrived;};

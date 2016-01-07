@@ -167,7 +167,7 @@ void GUIController::createBackground()
 {
     background.setSize(sf::Vector2f(1024, 640 + 128));
     //  backgroundTexture.loadFromFile( "sprites/background/background.jpg" );
-    backgroundTexture.loadFromFile("sprites/background/background.jpg");
+    backgroundTexture.loadFromFile(Textures::background);
     background.setTexture(&backgroundTexture);
 }
 

@@ -70,8 +70,6 @@ void Game::handleActions()
 
     mouse->leftClickActions();
 
-    gameLogicController->constructBuilding();
-
     keyboard->actionsLoop();
 
     guiController->setCursorPosition();
