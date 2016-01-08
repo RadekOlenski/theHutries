@@ -233,6 +233,19 @@ void GUIController::displayGameOver(bool win)
     displayApplication();
 }
 
+void GUIController::displayMenu()
+{
+    setCursorPosition();
+    getView();
+    prepareToDisplay();
+    displayGUI();
+    drawToApplication(background);
+    drawToApplication(titleText.text);
+    hutrieApplication->draw(gui->startingText.text);
+    drawToApplication(cursor);
+    displayApplication();
+}
+
 std::string GUIController::getEndingStats()
 {
     std::ostringstream stats;

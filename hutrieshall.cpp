@@ -36,6 +36,7 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std:
     trainingCarrier = false;
 
     leftTrainingTime = 0;
+    doorIndex = 6;
 }
 
 void HutriesHall::updateStatus()

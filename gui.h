@@ -15,6 +15,7 @@ public:
     GUI(int mapWidth,int mapHeight, sf::RenderWindow *hutrieApplication, int width = 256);
     //int getHeight() {return height;}
     //int getWidth()  {return width;}
+    GUIText startingText;
 
     ////////////////////////////// BASIC TOOLS ////////////////////////////////////////////////
 
@@ -97,6 +98,7 @@ private:
     sf::RenderWindow *hutrieApplication;
     int width;
     int height;
+
 
     ////////////////////////////// GRAPHICS ///////////////////////////////////////////////////
 

@@ -25,6 +25,7 @@ public:
     void addCarrier(Carrier* carrier);
     Carrier* getCarrier();
     int getCarriersSize();
+    int getDoorIndex() {return doorIndex;};
 
     virtual float getElapsedConstructionTime() {} ;
     virtual bool getBuildingConstructedFlag() {};
@@ -39,6 +40,7 @@ protected:
     int buildTime;
     Goods buildCost;
     int capacity;
+    int doorIndex;
 
     std::vector <Carrier*> myCarriers;
     int checkHutries();

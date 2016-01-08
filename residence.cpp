@@ -15,6 +15,7 @@ Residence::Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> un
 
     buildingConstructed = false;
     leftConstructionTime = 0;
+    doorIndex = 3;
 }
 
 void Residence::updateStatus()

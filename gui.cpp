@@ -4,6 +4,7 @@
 #include "textures.h"
 
 GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width) :
+        startingText(200, 200, 80, "Press Space to start!!!"),
         guiFrame(sf::Vector2f(width, mapHeight)),
         errorFrame(sf::Vector2f(width, 128 + 30)),
         timeLeft(20, mapHeight + 2 + 128, 20, "15:00", sf::Color::White),
@@ -237,12 +238,12 @@ void GUI::displayEndingText(bool win)
 {
     if (win)
     {
-        GUIText win(300, 100, 80, "You Win!!!", sf::Color::Black);
+        GUIText win(300, 100, 80, "You Win!!!");
         hutrieApplication->draw(win.text);
     }
     else
     {
-        GUIText lose(300, 100, 80, "You Lose!!!", sf::Color::Black);
+        GUIText lose(300, 100, 80, "You Lose!!!");
         hutrieApplication->draw(lose.text);
     }
 

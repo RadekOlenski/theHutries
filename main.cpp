@@ -13,9 +13,12 @@ int main()
 /////////////////////////// CREATING AND STARTING GAME ////////////////////////////////////////////////////////
 
     Game game(applicationWidth, applicationHeight);
-    game.play();
-    bool result = game.getResult();
-    game.gameOver(result);
+    if (game.menu())
+    {
+        game.play();
+        bool result = game.getResult();
+        game.gameOver(result);
+    }
 
 /////////////////////////// ENDING ////////////////////////////////////////////////////////////////////////////
     return 0;

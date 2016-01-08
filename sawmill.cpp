@@ -15,6 +15,7 @@ Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsF
 
     buildingConstructed = false;
     leftConstructionTime = 0;
+    doorIndex = 2;
 }
 
 void Sawmill::createProduct()

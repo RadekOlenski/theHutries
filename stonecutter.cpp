@@ -16,6 +16,7 @@ StoneCutter::StoneCutter(sf::RenderWindow *hutrieApplication, std::vector <Unit*
 
     buildingConstructed = false;
     leftConstructionTime = 0;
+    doorIndex = 2;
 }
 
 void StoneCutter::updateStatus()

@@ -575,6 +575,7 @@ void GameLogicController::callWorker(std::vector<Worker*>::iterator itc, GoodsBu
             world->workers.at(workerIndex)->reconnectUnits(gBuilding->getObjectUnits());
             world->workers.at(workerIndex)->hutrieThread.launch();             //uruchamia watek w ktorym porusza sie Hutrie
             world->units.at(unitIndex)->addHutrie(world->workers.at(workerIndex));
+            (*itc)->productionClock.restart();
             gBuilding->addWorker(world->workers.at(workerIndex));
             gBuilding->updateStatus();
             break;

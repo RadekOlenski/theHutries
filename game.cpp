@@ -52,6 +52,7 @@ Game::Game(int applicationWidth, int applicationHeight) :
 //                              MAIN GAME LOOP
 //=================================================================================
 
+
 void Game::play()
 {
     music.play();
@@ -122,3 +123,19 @@ void Game::gameOver(bool win)
     };
 }
 
+bool Game::menu()
+{
+    while (hutrieApplication.isOpen())
+    {
+        sf::Event event;
+        while (hutrieApplication.pollEvent(event))
+        {
+            keyboard->closeGame(event);
+            if (event.type == sf::Event::KeyPressed)
+            {
+                return (event.key.code == sf::Keyboard::Space) ? true : false ;
+            }
+        }
+        guiController->displayMenu();
+    };
+}

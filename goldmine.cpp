@@ -15,6 +15,7 @@ Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
 
     buildingConstructed = false;
     leftConstructionTime = 0;
+    doorIndex = 3;
 }
 
 void Goldmine::updateStatus()

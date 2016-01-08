@@ -16,6 +16,7 @@ Farm::Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &units
 
     buildingConstructed = false;
     leftConstructionTime = 0;
+    doorIndex = 3;
 }
 
 void Farm::updateStatus()

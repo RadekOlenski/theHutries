@@ -10,11 +10,14 @@ Worker::Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFro
     upTexture.loadFromFile(Textures::workerUp);
     downTexture.loadFromFile(Textures::workerDown);
     leftTexture.loadFromFile(Textures::workerLeft);
+    sprite.setTexture( transTexture );
 }
 
 void Worker::moveHutrie()
 {
-    toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
+    productionClock.restart();
+    toDirection(objectUnits.at(2)->field.getPosition().x, objectUnits.at(2)->field.getPosition().y );
     sprite.setTexture( transTexture );
     arrived = true;
+    productionClock.restart();
 }

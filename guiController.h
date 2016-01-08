@@ -51,6 +51,8 @@ public:
 
     void displayGameOver(bool win);
 
+    void displayMenu();
+
     std::string getEndingStats();
 
     void errorNoCarriers();

@@ -10,12 +10,14 @@ Carrier::Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsF
     downTexture.loadFromFile(Textures::carrierDown);
     leftTexture.loadFromFile(Textures::carrierLeft);
     arrived = false;
+    sprite.setTexture( transTexture );
 }
 
 void Carrier::moveHutrie()
 {
     busy = true;
-    toDirection(objectUnits.at(2)->field.getPosition().x, objectUnits.at(2)->field.getPosition().y );
+    int door = myBuilding->getDoorIndex();
+    toDirection(objectUnits.at(door)->field.getPosition().x, objectUnits.at(door)->field.getPosition().y );
     sprite.setTexture( transTexture );
     sf::sleep(sf::seconds(GameBalance::carrierLading));
     arrived = true;

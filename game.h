@@ -17,6 +17,8 @@ public:
 
     Game(int applicationWidth = 1024, int applicationHeight = 640);
 
+    bool menu();
+
     void play();
 
     void gameOver(bool win);
