@@ -24,7 +24,7 @@ void Goldmine::updateStatus()
     {
         std::ostringstream desc;
         desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
-        checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getGold() << "/" << productsCapacity;
+        myCarriers.size() << "\nProducts in store: " << myProducts.getGold() << "/" << productsCapacity;
         description.text.setString(desc.str());
     }
     else

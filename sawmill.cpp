@@ -29,7 +29,7 @@ void Sawmill::updateStatus()
     {
         std::ostringstream desc;
         desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
-        checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getWood() << "/" << productsCapacity;
+        /*checkHutries() - myWorkers.size()*/myCarriers.size() << "\nProducts in store: " << myProducts.getWood() << "/" << productsCapacity;
         description.text.setString(desc.str());
     }
     else

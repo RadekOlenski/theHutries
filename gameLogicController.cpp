@@ -537,7 +537,7 @@ void GameLogicController::callCarrier(std::vector<Carrier*>::iterator itc, std::
             unsigned int carrierIndex = (unsigned int) std::distance(world->carriers.begin(), itc);
             world->carriers.at(carrierIndex)->reconnectUnits((*it)->getObjectUnits());
             world->carriers.at(carrierIndex)->hutrieThread.launch();          //tworzy watek w ktorym porusza sie Hutrie
-            world->units.at(unitIndex)->addHutrie(world->carriers.at(carrierIndex));
+            //world->units.at(unitIndex)->addHutrie(world->carriers.at(carrierIndex));
             (*it)->addCarrier(world->carriers.at(carrierIndex));
             world->carriers.at(carrierIndex)->setBuilding(*it);
             (*it)->updateStatus();
@@ -574,7 +574,7 @@ void GameLogicController::callWorker(std::vector<Worker*>::iterator itc, GoodsBu
             unsigned int workerIndex = (unsigned int) std::distance(world->workers.begin(), itc);
             world->workers.at(workerIndex)->reconnectUnits(gBuilding->getObjectUnits());
             world->workers.at(workerIndex)->hutrieThread.launch();             //uruchamia watek w ktorym porusza sie Hutrie
-            world->units.at(unitIndex)->addHutrie(world->workers.at(workerIndex));
+            //world->units.at(unitIndex)->addHutrie(world->workers.at(workerIndex));
             (*itc)->productionClock.restart();
             gBuilding->addWorker(world->workers.at(workerIndex));
             gBuilding->updateStatus();
@@ -605,10 +605,11 @@ void GameLogicController::handleCarrierReturn()
                 guiController->errorNoProductsToCarry();
             }
             std::cout << "Czas wracac do domu" << std::endl;
-//            gBuilding->addCarrier(world->carriers.at(carrierIndex));
             (*itc)->setBuilding(hutriesHall);
             (*itc)->reconnectUnits(hutriesHall->getObjectUnits());
             (*itc)->carrierThread.launch();
+            gBuilding->removeCarrier();
+            gBuilding->updateStatus();
         }
         else if ((*itc)->haveReturned())
         {

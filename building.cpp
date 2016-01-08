@@ -31,6 +31,11 @@ void Building::addCarrier(Carrier* carrier)
     myCarriers.push_back(carrier);
 }
 
+void Building::removeCarrier()
+{
+    myCarriers.erase(myCarriers.begin());
+}
+
 Carrier* Building::getCarrier()
 {
     Carrier* tempCarrier = myCarriers.back();

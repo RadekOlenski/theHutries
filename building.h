@@ -23,6 +23,7 @@ public:
     void setNeedCarrier (bool need) { needCarrier = need;}
     int getCapacity() {return capacity;}
     void addCarrier(Carrier* carrier);
+    void removeCarrier();
     Carrier* getCarrier();
     int getCarriersSize();
     int getDoorIndex() {return doorIndex;};
@@ -37,8 +38,6 @@ public:
     void setDescriptionTexture();
 protected:
 
-    int buildTime;
-    Goods buildCost;
     int capacity;
     int doorIndex;
 

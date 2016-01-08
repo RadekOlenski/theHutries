@@ -25,7 +25,7 @@ void Farm::updateStatus()
     {
         std::ostringstream desc;
         desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
-        checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getFood() << "/" << productsCapacity;
+        myCarriers.size() << "\nProducts in store: " << myProducts.getFood() << "/" << productsCapacity;
         description.text.setString(desc.str());
     }
     else

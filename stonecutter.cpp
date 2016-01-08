@@ -25,7 +25,7 @@ void StoneCutter::updateStatus()
     {
         std::ostringstream desc;
         desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
-        checkHutries() - myWorkers.size() << "\nProducts in store: " << myProducts.getStone() << "/" << productsCapacity;
+        myCarriers.size() << "\nProducts in store: " << myProducts.getStone() << "/" << productsCapacity;
         description.text.setString(desc.str());
     }
     else
