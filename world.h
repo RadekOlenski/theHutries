@@ -19,6 +19,7 @@ class World
 {
     public:
         World(sf::RenderWindow *hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize = 64);
+        virtual ~World();
         std::vector <Unit*> units;
         std::vector <Hutrie*> hutries;
         std::vector <Carrier*> carriers;

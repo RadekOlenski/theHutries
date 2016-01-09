@@ -204,3 +204,76 @@ void World::createRocks()
         std::cout << "Exception: " << d << ": Not enough space for object" << std::endl;
     }
 }
+
+World::~World()
+{
+
+    std::vector<Hutrie*>::iterator ithutries;
+    for (ithutries = hutries.begin(); ithutries != hutries.end(); ++ithutries) {
+    delete (*ithutries);
+    }
+
+    std::vector<Carrier*>::iterator itcarriers;
+    for (itcarriers = carriers.begin(); itcarriers != carriers.end(); ++itcarriers) {
+    delete (*itcarriers);
+    }
+
+    std::vector<Soldier*>::iterator itsoldiers;
+    for (itsoldiers = soldiers.begin(); itsoldiers != soldiers.end(); ++itsoldiers) {
+    delete (*itsoldiers);
+    }
+
+    std::vector<Warrior*>::iterator itwarriors;
+    for (itwarriors = warriors.begin(); itwarriors != warriors.end(); ++itwarriors) {
+    delete (*itwarriors);
+    }
+
+    std::vector<Archer*>::iterator itarchers;
+    for (itarchers = archers.begin(); itarchers != archers.end(); ++itarchers) {
+    delete (*itarchers);
+    }
+
+    std::vector<Worker*>::iterator itworkers;
+    for (itworkers = workers.begin(); itworkers != workers.end(); ++itworkers) {
+    delete (*itworkers);
+    }
+
+    std::vector<Building*>::iterator itbuildings;
+    for (itbuildings = buildings.begin(); itbuildings != buildings.end(); ++itbuildings) {
+    delete (*itbuildings);
+    }
+
+    std::vector<Environment*>::iterator itenvironment;
+    for (itenvironment = environment.begin(); itenvironment != environment.end(); ++itenvironment) {
+    delete (*itenvironment);
+    }
+
+//    std::vector<unsigned int>::iterator itbarracksIndex;
+//    for (itbarracksIndex = barracksIndex.begin(); itbarracksIndex != barracksIndex.end(); ++itbarracksIndex) {
+//    delete (*itbarracksIndex);
+//    }
+//
+    barracksIndex.clear();
+//    std::vector<int>::iterator itgoodsBuildingIndex;
+//    for (itgoodsBuildingIndex = goodsBuildingIndex.begin(); itgoodsBuildingIndex != goodsBuildingIndex.end(); ++itgoodsBuildingIndex) {
+//    delete (*itgoodsBuildingIndex);
+//    }
+    goodsBuildingIndex.clear();
+//    std::vector<unsigned int>::iterator itforestsIndex;
+//    for (itforestsIndex = forestsIndex.begin(); itforestsIndex != forestsIndex.end(); ++itforestsIndex) {
+//    delete (*itforestsIndex);
+//    }
+    forestsIndex.clear();
+//    std::vector<unsigned int> rocksIndex;
+//    std::vector<unsigned int>::iterator itrocksIndex;
+//    for (itrocksIndex = rocksIndex.begin(); itrocksIndex != rocksIndex.end(); ++itrocksIndex) {
+//    delete (*itrocksIndex);
+//    }
+    rocksIndex.clear();
+//    std::vector<unsigned int> mountainsIndex;
+//    std::vector<unsigned int>::iterator itmountainsIndex;
+//    for (itmountainsIndex = mountainsIndex.begin(); itmountainsIndex != mountainsIndex.end(); ++itmountainsIndex) {
+//    delete (*itmountainsIndex);
+//    }
+    mountainsIndex.clear();
+}

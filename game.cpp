@@ -58,6 +58,7 @@ void Game::play()
     music.play();
     music.setVolume(40);
     guiController->launchTitleThread();
+    deadline.restart();
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
     {
         handleActions();

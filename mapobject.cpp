@@ -25,6 +25,12 @@ MapObject::MapObject(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unit
     }
 }
 
+MapObject::~MapObject()
+{
+
+}
+
+
 void MapObject::reconnectUnits(std::vector<Unit*> unitsFromGame)
 {
     objectUnits.clear();
