@@ -32,6 +32,14 @@ public:
 
     void setTempChosenMode(int tempChosenMode);
 
+    float getHorizontalScreenZoom() { return horizontalScreenZoom; };
+
+    void setHorizontalScreenZoom(float horizontalScreenZoom) { this->horizontalScreenZoom = horizontalScreenZoom; };
+
+    float getVerticalScreenZoom() { return verticalScreenZoom; };
+
+    void setVerticalScreenZoom(float verticalScreenZoom) { this->verticalScreenZoom = verticalScreenZoom; };
+
 private:
 
     int chosenInteractionMode;
@@ -45,6 +53,10 @@ private:
     int applicationHeight;
 
     unsigned int selectedUnitIndex;
+
+    float horizontalScreenZoom;
+
+    float verticalScreenZoom;
 };
 
 

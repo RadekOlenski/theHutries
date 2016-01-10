@@ -15,7 +15,7 @@ class Game
 {
 public:
 
-    Game(int applicationWidth = 1024, int applicationHeight = 640);
+    Game(int applicationWidth = 1024, int applicationHeight = 640, float horizontalScreenZoom = 0.7, float verticalScreenZoom = 0.7);
 
     bool menu();
 
@@ -24,6 +24,8 @@ public:
     void gameOver(bool win);
 
     bool getResult();
+
+    void settings();
 
 protected:
     /////////////////WINDOW////////////////////////

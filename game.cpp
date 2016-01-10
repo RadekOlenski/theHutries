@@ -10,10 +10,10 @@
 //=================================================================================
 //                              CONSTRUCTOR
 //=================================================================================
-Game::Game(int applicationWidth, int applicationHeight) :
+Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZoom, float verticalScreenZoom) :
         gameTime(GameBalance::gameTime),
         hutrieApplication(sf::VideoMode::getDesktopMode()/*(applicationWidth + 256, applicationHeight + 30 + 128, 32)*/, "The Hutries"
-         /*,sf::Style::Fullscreen*/ ),
+         ,sf::Style::Fullscreen ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
         world(&hutrieApplication, applicationWidth, applicationHeight)
 {
@@ -33,6 +33,8 @@ Game::Game(int applicationWidth, int applicationHeight) :
 
     modelController->setApplicationWidth(applicationWidth);
     modelController->setApplicationHeight(applicationHeight);
+    modelController->setHorizontalScreenZoom(horizontalScreenZoom);
+    modelController->setVerticalScreenZoom(verticalScreenZoom);
 
     /////////////////////////// CREATING GAME WINDOW AND GUI //////////////////////////////////////////////////////
 
@@ -179,4 +181,16 @@ bool Game::menu()
     };
     gameLogicController->assignHutriesHall();
     return true;
+}
+
+void Game::settings()
+{
+    float x, y;
+    std::cout << "Wpisz swoja rozdzielczosc" << std::endl << "x: ";
+    std::cin >> x;
+    std::cout << "y: ";
+    std::cin >> y;
+
+    modelController->setHorizontalScreenZoom(x / 1280);
+    modelController->setVerticalScreenZoom(y / 800);
 }

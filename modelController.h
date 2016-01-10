@@ -32,6 +32,14 @@ public:
 
     void setTempChosenMode(int tempChosenMode);
 
+    float getHorizontalScreenZoom() { return gameModel->getHorizontalScreenZoom(); };
+
+    void setHorizontalScreenZoom(float horizontalScreenZoom) { gameModel->setHorizontalScreenZoom(horizontalScreenZoom);};
+
+    float getVerticalScreenZoom() { return gameModel->getVerticalScreenZoom(); };
+
+    void setVerticalScreenZoom(float verticalScreenZoom) { gameModel->setVerticalScreenZoom(verticalScreenZoom); };
+
 private:
 
     GameModel*gameModel;

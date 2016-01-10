@@ -9,8 +9,6 @@ class GameBalance
 {
     public:
 
-    static double screenZoom;
-
     //////////////////////////////////  COSTS ////////////////////////////////////////////////////
 
     static  Goods sawmillCost;

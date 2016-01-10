@@ -95,6 +95,8 @@ public:
 
     bool introFlag;
 
+    void countScreenZoomValues();
+
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;

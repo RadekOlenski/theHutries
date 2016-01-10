@@ -175,7 +175,8 @@ void GUIController::getView()
     fixed = hutrieApplication->getView();
     if (firstIteration)
     {
-        fixed.zoom(GameBalance::screenZoom);
+        fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(), modelController->getVerticalScreenZoom()));
+        //fixed.zoom(GameBalance::screenZoom);
         firstIteration = false;
     }
 
@@ -274,7 +275,11 @@ void GUIController::displayApplication()
 
 void GUIController::setCursorPosition()
 {
-    cursor.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(*hutrieApplication)));
+    sf::Vector2i pixelPos = sf::Mouse::getPosition(*hutrieApplication);
+    pixelPos.x = (int) (pixelPos.x * modelController->getHorizontalScreenZoom());
+    pixelPos.y = (int) (pixelPos.y * modelController->getVerticalScreenZoom());
+    sf::Vector2f worldPos = hutrieApplication->mapPixelToCoords(pixelPos);
+    cursor.setPosition(worldPos);
 }
 
 void GUIController::launchTitleThread()
@@ -352,17 +357,20 @@ void GUIController::updateGoodsNumber()
     gui->tgold.text.setString(desc3.str());
 }
 
+void GUIController::countScreenZoomValues()
+{
+
+}
+
 //=================================================================================
 //                              ERRORS
 //=================================================================================
-
 
 void GUIController::errorNoCarriers()
 {
     Sound::error();
     gui->errorInfo.text.setString("Error: No available carriers!\nEveryone is busy! \nCreate carrier in HutriesHall \nor build residence");
 }
-
 
 void GUIController::errorNoSlots()
 {
@@ -377,12 +385,12 @@ void GUIController::errorNoWorkers()
             "Error: No available workers! \nEveryone is busy! \nCreate worker in HutriesHall\nor build residence");
 }
 
+
 void GUIController::errorUnitOccupied()
 {
     Sound::error();
     gui->errorInfo.text.setString("Error: \n        Unit not empty.\n        Choose another one");
 }
-
 
 void GUIController::errorOutOfMap()
 {
