@@ -1,7 +1,3 @@
-//
-// Created by radek on 16.12.2015.
-//
-
 #ifndef THEHUTRIES_WARRIOR_H
 #define THEHUTRIES_WARRIOR_H
 

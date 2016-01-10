@@ -1,7 +1,3 @@
-//
-// Created by radek on 27.12.2015.
-//
-
 #ifndef THEHUTRIES_KEYBOARD_H
 #define THEHUTRIES_KEYBOARD_H
 

@@ -47,16 +47,24 @@ World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int appli
         std::cout << std::endl;
     }
 */
-
-    ////////////////////////////// ADDING TOWNHALL ///////////////////////////////////////////////////////////////////////////
-
     int unitIndex = 70;
     std::vector<Unit*> usedUnits;
     prepareUnits(unitIndex, 3, 3, &usedUnits);
     buildings.push_back(new HutriesHall(hutrieApplication, this, usedUnits));
     buildings.back()->placeOnMap();
-    /////////////////////////// ADDING ENVIRONMENT /////////////////////////////////////////////////////////////////
+}
 
+void World::createHutriesHall()
+{
+    int unitIndex = 70;
+    std::vector<Unit*> usedUnits;
+    prepareUnits(unitIndex, 3, 3, &usedUnits);
+    buildings.push_back(new HutriesHall(hutrieApplication, this, usedUnits));
+    buildings.back()->placeOnMap();
+}
+
+void World::createEnvironment()
+{
     createForest();
     createMountains();
     createRocks();
@@ -208,46 +216,61 @@ void World::createRocks()
 World::~World()
 {
 
+
+
+//    std::vector<Carrier*>::iterator itcarriers;
+//    for (itcarriers = carriers.begin(); itcarriers != carriers.end(); ++itcarriers) {
+//    delete (*itcarriers);
+//    }
+//    std::cout << "Koniec Carriers" << std::endl;
+//
+//    std::vector<Soldier*>::iterator itsoldiers;
+//    for (itsoldiers = soldiers.begin(); itsoldiers != soldiers.end(); ++itsoldiers) {
+//    delete (*itsoldiers);
+//    }
+//    std::cout << "Koniec Soldiers" << std::endl;
+//
+//    std::vector<Warrior*>::iterator itwarriors;
+//    for (itwarriors = warriors.begin(); itwarriors != warriors.end(); ++itwarriors) {
+//    delete (*itwarriors);
+//    }
+//    std::cout << "Koniec Warriors" << std::endl;
+//
+//    std::vector<Archer*>::iterator itarchers;
+//    for (itarchers = archers.begin(); itarchers != archers.end(); ++itarchers) {
+//    delete (*itarchers);
+//    }
+//    std::cout << "Koniec Archers" << std::endl;
+//
+//    std::vector<Worker*>::iterator itworkers;
+//    for (itworkers = workers.begin(); itworkers != workers.end(); ++itworkers) {
+//    delete (*itworkers);
+//    }
+//    std::cout << "Koniec Workers" << std::endl;
+
+    std::vector<Unit*>::iterator itunits;
+    for (itunits = units.begin(); itunits != units.end(); ++itunits) {
+    delete (*itunits);
+    }
+    std::cout << "Koniec Unit" << std::endl;
+
     std::vector<Hutrie*>::iterator ithutries;
     for (ithutries = hutries.begin(); ithutries != hutries.end(); ++ithutries) {
     delete (*ithutries);
     }
-
-    std::vector<Carrier*>::iterator itcarriers;
-    for (itcarriers = carriers.begin(); itcarriers != carriers.end(); ++itcarriers) {
-    delete (*itcarriers);
-    }
-
-    std::vector<Soldier*>::iterator itsoldiers;
-    for (itsoldiers = soldiers.begin(); itsoldiers != soldiers.end(); ++itsoldiers) {
-    delete (*itsoldiers);
-    }
-
-    std::vector<Warrior*>::iterator itwarriors;
-    for (itwarriors = warriors.begin(); itwarriors != warriors.end(); ++itwarriors) {
-    delete (*itwarriors);
-    }
-
-    std::vector<Archer*>::iterator itarchers;
-    for (itarchers = archers.begin(); itarchers != archers.end(); ++itarchers) {
-    delete (*itarchers);
-    }
-
-    std::vector<Worker*>::iterator itworkers;
-    for (itworkers = workers.begin(); itworkers != workers.end(); ++itworkers) {
-    delete (*itworkers);
-    }
+    std::cout << "Koniec Hutrie" << std::endl;
 
     std::vector<Building*>::iterator itbuildings;
     for (itbuildings = buildings.begin(); itbuildings != buildings.end(); ++itbuildings) {
     delete (*itbuildings);
     }
+    std::cout << "Koniec Building" << std::endl;
 
     std::vector<Environment*>::iterator itenvironment;
     for (itenvironment = environment.begin(); itenvironment != environment.end(); ++itenvironment) {
     delete (*itenvironment);
     }
-
+    std::cout << "Koniec Enviroment" << std::endl;
 //    std::vector<unsigned int>::iterator itbarracksIndex;
 //    for (itbarracksIndex = barracksIndex.begin(); itbarracksIndex != barracksIndex.end(); ++itbarracksIndex) {
 //    delete (*itbarracksIndex);

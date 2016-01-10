@@ -11,12 +11,23 @@ GUIButton::GUIButton(int positionX, int positionY, sf::RenderWindow *hutrieAppli
     if (rect) button.setTextureRect(sf::IntRect(rectX, rectY, rectSizeX, rectSizeY));
 }
 
-GUIButton::GUIButton(int positionX, int positionY, sf::RenderWindow *hutrieApplication, int sizeX, int sizeY)
+GUIButton::GUIButton(int positionX, int positionY, sf::RenderWindow *hutrieApplication, int sizeX, int sizeY, bool visible)
 {
     this->hutrieApplication = hutrieApplication;
     button.setSize(sf::Vector2f(sizeX,sizeY));
     button.setPosition(positionX, positionY);
-    button.setFillColor(sf::Color::Yellow);
+
+    if (visible)
+    {
+    //button.setOutlineColor(sf::Color::Black);
+    //button.setOutlineThickness(6);
+    sf::Color color(245, 255, 179, 100);
+    button.setFillColor(color);
+    }
+    else
+    {
+        button.setFillColor(sf::Color::Transparent);
+    }
 }
 
 

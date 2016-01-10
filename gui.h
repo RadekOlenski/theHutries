@@ -10,12 +10,24 @@ class GUI
 {
 public:
 
-    ///////////////////////////////GUI PROPERTIES ///////////////////////////////////////////
+    ///////////////////////////////GUI PROPERTIES /////////////////////////////////////////////
 
     GUI(int mapWidth,int mapHeight, sf::RenderWindow *hutrieApplication, int width = 256);
     //int getHeight() {return height;}
     //int getWidth()  {return width;}
+
+
+    /////////////////////////////// MENU    ///////////////////////////////////////////////////
+
     GUIText startingText;
+    GUIButton playButton;
+    GUIText playText;
+    GUIButton howToPlayButton;
+    GUIText howToPlayText;
+    GUIButton aboutButton;
+    GUIText aboutText;
+    GUIButton exitButton;
+    GUIText exitText;
 
     ////////////////////////////// BASIC TOOLS ////////////////////////////////////////////////
 
@@ -85,6 +97,7 @@ public:
 
     void displayGUI();
     void displayGUIBuildings();
+    void displayMenu();
     void displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int warriorSize, int archerSize);
 
     /////////////////////////////////////ENDING ////////////////////////////////////////////////

@@ -1,7 +1,3 @@
-//
-// Created by radek on 29.12.2015.
-//
-
 #ifndef THEHUTRIES_MOUSELOCK_H
 #define THEHUTRIES_MOUSELOCK_H
 

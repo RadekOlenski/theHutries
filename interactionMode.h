@@ -6,6 +6,8 @@ class InteractionMode
 {
 public:
 
+    static const int MENUMODE = 0;
+
     static const int HUTRIEINFO = 1;
 
     static const int BUILDMODE = 2;

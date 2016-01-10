@@ -1,7 +1,3 @@
-//
-// Created by radek on 27.12.2015.
-//
-
 #ifndef THEHUTRIES_BUILDINGTYPE_H
 #define THEHUTRIES_BUILDINGTYPE_H
 

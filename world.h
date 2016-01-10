@@ -43,6 +43,8 @@ class World
         bool isFieldEmpty(std::vector <Unit*> &usedUnits);
 		unsigned int findSelectedUnitIndex();
 		void increaseAvailableSlots(int addedSlotsNumber);
+		void createEnvironment();
+		void createHutriesHall();
 
 private:
 		void createForest();

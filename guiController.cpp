@@ -1,7 +1,3 @@
-//
-// Created by radek on 30.12.2015.
-//
-
 #include <sstream>
 #include <iostream>
 #include "guiController.h"
@@ -12,7 +8,11 @@
 
 GUIController::GUIController(sf::RenderWindow*hutrieApplication, ModelController*modelController, World*world, GUI*gui)
         : titleText(1024 + 20, 40, 45),
-        titleThread(&GUIText::display, &titleText)
+          bigTitleText (150, 100, 150, "The Hutries"),
+          quote(500, 400, 30, ""),
+          titleThread(&GUIText::display, &titleText),
+          bigTitleThread(&GUIText::animation, &bigTitleText),
+          quoteThread(&GUIController::displayIntro, this)
 {
 
 
@@ -21,6 +21,62 @@ GUIController::GUIController(sf::RenderWindow*hutrieApplication, ModelController
     this->world = world;
     this->gui = gui;
     firstIteration = true;
+    introFlag = false;
+    displayHutriesHall = false;
+}
+
+void GUIController::displayIntro()
+{
+    gui->startingText.text.setString("");
+    quote.animation();
+    quote.text.setColor(sf::Color (0,0,0,0));
+    gui->startingText.text.setPosition(200,300);
+    gui->startingText.text.setString(GameBalance::historyString);
+    sf::sleep(sf::seconds(5));
+    gui->startingText.text.setString(GameBalance::historyString2);
+    sf::sleep(sf::seconds(5));
+    displayHutriesHall = true;
+    gui->startingText.text.setPosition(200,550);
+    gui->startingText.text.setString(GameBalance::historyString3);
+    displayHutriesHall = true;
+    introFlag = false;
+}
+
+void GUIController::drawHutriesHall()
+{
+    drawToApplication(world->buildings.at(0)->sprite);
+}
+
+void GUIController::handleMenuButtonsActions()
+{
+    if (gui->playButton.checkBounds())
+    {
+        //modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
+        quote.text.setStyle(sf::Text::Italic);
+        quote.text.setString(GameBalance::quoteString);
+        introFlag = true;
+        //launchQuoteThread();
+        //displayIntro();
+        Sound::click();
+        return;
+    }
+    if (gui->aboutButton.checkBounds())
+    {
+        gui->startingText.text.setString(GameBalance::aboutString);
+        Sound::click();
+        return;
+    }
+    if (gui->howToPlayButton.checkBounds())
+    {
+        gui->startingText.text.setString(GameBalance::howToPlayString);
+        Sound::click();
+        return;
+    }
+     if (gui->exitButton.checkBounds())
+    {
+        Sound::click();
+        hutrieApplication->close();
+    }
 }
 
 void GUIController::handleGUIButtonsActions()
@@ -89,6 +145,16 @@ void GUIController::setBuildingButtonsFlags(bool buttonFlag)
     gui->barracks.setActive(buttonFlag);
     gui->farm.setActive(buttonFlag);
 }
+
+void GUIController::setMenuButtonsFlags (bool buttonFlag)
+{
+    gui->playButton.setActive(buttonFlag);
+    gui->howToPlayButton.setActive(buttonFlag);
+    gui->aboutButton.setActive(buttonFlag);
+    gui->exitButton.setActive(buttonFlag);
+}
+
+
 
 void GUIController::drawApplication()
 {
@@ -219,6 +285,16 @@ void GUIController::launchTitleThread()
     titleThread.launch();
 }
 
+void GUIController::launchBigTitleThread()
+{
+    bigTitleThread.launch();
+}
+
+void GUIController::launchQuoteThread()
+{
+    quoteThread.launch();
+}
+
 void GUIController::displayGameOver(bool win)
 {
     GUIText endingStats(300, 280, 40, getEndingStats());
@@ -238,11 +314,13 @@ void GUIController::displayMenu()
     setCursorPosition();
     getView();
     prepareToDisplay();
-    displayGUI();
     drawToApplication(background);
+    gui->displayMenu();
     drawToApplication(titleText.text);
-    hutrieApplication->draw(gui->startingText.text);
-    drawToApplication(cursor);
+    drawToApplication(quote.text);
+    drawToApplication(bigTitleText.text);
+    if (displayHutriesHall) drawHutriesHall();
+    if (!introFlag) drawToApplication(cursor);
     displayApplication();
 }
 
@@ -253,11 +331,12 @@ std::string GUIController::getEndingStats()
     << "You had " << world->hutries.size() << " hutries including: " << std::endl
     << world->carriers.size() << " carriers" << std::endl
     << world->workers.size() << " workers" << std::endl
-    << world->soldiers.size() << " soldiers" << std::endl;
+    << world->warriors.size() << " warriors" << std::endl
+    << world->archers.size() << " archers" << std::endl;
     return stats.str();
 }
 
-void GUIController::checkCarrierGoods()
+void GUIController::updateGoodsNumber()
 {
     std::ostringstream desc;
     desc << world->availableGoods.getWood();

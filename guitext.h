@@ -11,6 +11,7 @@ public:
     sf:: Text text;
     sf::Font font;
     void display();
+    void animation();
 };
 
 #endif // GUITEXT_H

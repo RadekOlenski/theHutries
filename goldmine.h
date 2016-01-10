@@ -1,7 +1,3 @@
-//
-// Created by Master on 08.12.2015.
-//
-
 #ifndef THEHUTRIES_GOLDMINE_H
 #define THEHUTRIES_GOLDMINE_H
 

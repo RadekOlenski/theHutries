@@ -33,6 +33,10 @@ public:
     static const std::string trees;
     static const std::string mountain;
     static const std::string rocks;
+    static const std::string winSound;
+    static const std::string loseSound;
+    static const std::string introMusic;
+    static const std::string menuMusic;
 
 private:
     static sf::Sound sound;

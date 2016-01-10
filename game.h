@@ -50,6 +50,8 @@ private:
 
     void drawApplication();
 
+    void changeBackgroundMusic(std::string musicPath);
+
     ModelController* modelController;
     GUIController* guiController;
     GameLogicController* gameLogicController;

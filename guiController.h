@@ -1,7 +1,3 @@
-//
-// Created by radek on 30.12.2015.
-//
-
 #ifndef THEHUTRIES_GUICONTROLLER_H
 #define THEHUTRIES_GUICONTROLLER_H
 
@@ -19,9 +15,15 @@ public:
 
     void handleGUIButtonsActions();
 
+    void handleMenuButtonsActions();
+
     void setBuildingButtonsFlags(bool buttonFlag);
 
+    void setMenuButtonsFlags(bool buttonFlag);
+
     void drawApplication();
+
+    void drawHutriesHall();
 
     void displayElementsOfGUI();
 
@@ -43,11 +45,17 @@ public:
 
     void displayGUI();
 
+    void displayIntro();
+
     void displayApplication();
 
     void setCursorPosition();
 
     void launchTitleThread();
+
+    void launchBigTitleThread();
+
+    void launchQuoteThread();
 
     void displayGameOver(bool win);
 
@@ -65,7 +73,7 @@ public:
 
     void errorOutOfMap();
 
-    void checkCarrierGoods();
+    void updateGoodsNumber();
 
     void errorAlreadyCreatingArcher();
 
@@ -84,12 +92,18 @@ public:
     void errorMustBuildNearRocks();
 
     void errorMustBuildOnMountain();
+
+    bool introFlag;
+
+    bool getDisplayHutriesHall() {return displayHutriesHall;};
+
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
 
     World* world;
     GUI* gui;
+
     sf::View fixed;
     sf::RectangleShape background;
     sf::Texture backgroundTexture;
@@ -97,12 +111,17 @@ private:
     sf::Texture cursorTexture;
 
     GUIText titleText;
+    GUIText bigTitleText;
+    GUIText quote;
 
     sf::Thread titleThread;
+    sf::Thread bigTitleThread;
+    sf::Thread quoteThread;
 
     void getView();
 
     bool firstIteration;
+    bool displayHutriesHall;
 };
 
 

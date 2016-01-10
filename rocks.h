@@ -1,7 +1,3 @@
-//
-// Created by Master on 06.01.2016.
-//
-
 #ifndef THEHUTRIES_ROCKS_H
 #define THEHUTRIES_ROCKS_H
 

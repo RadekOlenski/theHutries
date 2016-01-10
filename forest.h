@@ -1,7 +1,3 @@
-//
-// Created by Master on 05.01.2016.
-//
-
 #ifndef THEHUTRIES_FOREST_H
 #define THEHUTRIES_FOREST_H
 

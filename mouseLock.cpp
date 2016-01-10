@@ -1,7 +1,3 @@
-//
-// Created by radek on 29.12.2015.
-//
-
 #include "mouseLock.h"
 #include <SFML/Graphics.hpp>
 
@@ -31,6 +27,6 @@ void MouseLock::update()
         // has been released
         isLocked = false;
     }
-    
+
     MouseLock::hasLeftBeenPressed = isCurrentlyPressed;
 }

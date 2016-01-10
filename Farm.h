@@ -1,7 +1,3 @@
-//
-// Created by radek on 11.12.2015.
-//
-
 #ifndef THEHUTRIES_FARM_H
 #define THEHUTRIES_FARM_H
 

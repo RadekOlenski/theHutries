@@ -22,6 +22,11 @@ const string Sound::stonecutter = "audio/stonecutter.wav";
 const string Sound::trees = "audio/trees.wav";
 const string Sound::mountain = "audio/mountain.wav";
 const string Sound::rocks = "audio/rocks.wav";
+const string Sound::winSound = "audio/winSound.wav";
+const string Sound::loseSound = "audio/loseSound.wav";
+const string Sound::menuMusic = "audio/intro.wav";
+const string Sound::introMusic = "audio/warHorn.wav";
+
 
 void Sound::setSoundBuffer()
 {

@@ -41,11 +41,11 @@ Game::Game(int applicationWidth, int applicationHeight) :
 
     guiController->createBackground();
     guiController->createCursor();
-    guiController->checkCarrierGoods();
+    guiController->updateGoodsNumber();
 
     /////////////////////////// BACKGROUND MUSIC //////////////////////////////////////////////////////
 
-    if (!music.openFromFile(Sound::musicPath)) std::cout << "Loading music failed" << std::endl;
+    if (!music.openFromFile(Sound::menuMusic)) std::cout << "Loading music failed" << std::endl;
     music.setLoop(true);
 }
 //=================================================================================
@@ -55,15 +55,15 @@ Game::Game(int applicationWidth, int applicationHeight) :
 
 void Game::play()
 {
-    music.play();
-    music.setVolume(40);
-    guiController->launchTitleThread();
+    changeBackgroundMusic(Sound::musicPath);
     deadline.restart();
+    world.createEnvironment();
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
     {
         handleActions();
         drawApplication();
     }
+    music.stop();
 }
 
 void Game::handleActions()
@@ -91,6 +91,18 @@ void Game::handleActions()
     updateClock();
 }
 
+void Game::changeBackgroundMusic(std::string musicPath)
+{
+    for ( int i = 100; i > 0; i--)
+    {
+        music.setVolume(i);
+        sf::sleep(sf::milliseconds(5));
+    }
+    music.openFromFile(musicPath);
+    music.play();
+    music.setVolume(40);
+}
+
 void Game::drawApplication()
 {
     guiController->drawApplication();
@@ -108,11 +120,17 @@ bool Game::getResult()
 {
     double result = world.archers.size() * GameBalance::archerQuotient + world.warriors.size() * GameBalance::warriorQuotient;
     return (result >= GameBalance::winResult) ? true : false;
-//    return (rand() % 2) ? true : false;
 }
 
 void Game::gameOver(bool win)
 {
+    if (win) music.openFromFile(Sound::winSound);
+    else
+    {
+        music.openFromFile(Sound::loseSound);
+        music.setVolume(100);
+    }
+    music.play();
     while (hutrieApplication.isOpen())
     {
         sf::Event event;
@@ -126,8 +144,17 @@ void Game::gameOver(bool win)
 
 bool Game::menu()
 {
-    while (hutrieApplication.isOpen())
+    music.play();
+    guiController->launchTitleThread();
+    guiController->launchBigTitleThread();
+    guiController->setMenuButtonsFlags(true);
+    bool firstLoop = true;
+
+    while (hutrieApplication.isOpen() && modelController->getChosenInteractionMode() == 0)
     {
+        mouse->updateMouseLock();
+        //if (sf::Mouse::getPosition(hutrieApplication).x > 1024 )
+        mouse->leftClickActions();
         sf::Event event;
         while (hutrieApplication.pollEvent(event))
         {
@@ -136,7 +163,23 @@ bool Game::menu()
             {
                 return (event.key.code == sf::Keyboard::Space) ? true : false ;
             }
+           if(guiController->introFlag)
+            {
+               if (firstLoop)
+               {
+                    changeBackgroundMusic(Sound::introMusic);
+                    music.play();
+                    guiController->setMenuButtonsFlags(false);
+                    guiController->launchQuoteThread();
+                    firstLoop = false;
+               }
+               if (guiController->getDisplayHutriesHall())
+               {
+                  // world.createHutriesHall();
+               }
+            }
         }
         guiController->displayMenu();
     };
+    return true;
 }

@@ -82,7 +82,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
                 world->buildings.push_back(new Barracks(hutrieApplication, usedUnits));
                 world->barracksIndex.push_back(world->buildings.size() - 1);
                 world->availableGoods = world -> availableGoods - GameBalance::barracksCost;
-                guiController->checkCarrierGoods();
+                guiController->updateGoodsNumber();
                 Sound::ting();
             }
             else
@@ -98,7 +98,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
                 world->buildings.push_back(new Residence(hutrieApplication, usedUnits,
                                                      &(world->availableSlots)));
                 world->availableGoods = world -> availableGoods - GameBalance::residenceCost;
-                guiController->checkCarrierGoods();
+                guiController->updateGoodsNumber();
                 Sound::ting();
             }
             else
@@ -124,7 +124,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
                 new Farm(hutrieApplication, usedUnits));
                 world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                 world->availableGoods = world -> availableGoods - GameBalance::farmCost;
-                guiController->checkCarrierGoods();
+                guiController->updateGoodsNumber();
                 Sound::ting();
             }
             else
@@ -338,7 +338,7 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
             if (worldGoods - GameBalance::warriorCost >= 0)
             {
                 world->availableGoods = world -> availableGoods - GameBalance::warriorCost;
-                guiController->checkCarrierGoods();
+                guiController->updateGoodsNumber();
                 world->availableSlots--;
             }
             else
@@ -401,7 +401,7 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
             if (worldGoods - GameBalance::archerCost >= 0)
             {
                 world->availableGoods = world -> availableGoods - GameBalance::archerCost;
-                guiController->checkCarrierGoods();
+                guiController->updateGoodsNumber();
                 world->availableSlots--;
             }
             else
@@ -501,6 +501,7 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
 void GameLogicController::handleGUIButtonsAction()
 {
     guiController->handleGUIButtonsActions();
+    guiController->handleMenuButtonsActions();
 }
 
 void GameLogicController::handleAssigningHutrie()
@@ -616,7 +617,7 @@ void GameLogicController::handleCarrierReturn()
             world->availableGoods = world->availableGoods + (*itc)->myLuggage;
             hutriesHall->updateStatus();
             (*itc)->myLuggage.setProduct(5);
-            guiController->checkCarrierGoods();
+            guiController->updateGoodsNumber();
             (*itc)->setReturned(false);
         }
     }
@@ -652,7 +653,7 @@ void GameLogicController::createSawmill(std::vector<Unit*> usedUnits)
                     world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::sawmillCost;
-                    guiController->checkCarrierGoods();
+                    guiController->updateGoodsNumber();
                     Sound::ting();
                     return;
                 }
@@ -661,7 +662,7 @@ void GameLogicController::createSawmill(std::vector<Unit*> usedUnits)
                     world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::sawmillCost;
-                    guiController->checkCarrierGoods();
+                    guiController->updateGoodsNumber();
                     Sound::ting();
                     return;
                 }
@@ -687,7 +688,7 @@ void GameLogicController::createStonecutterHut(std::vector<Unit *> usedUnits)
                     world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::stonecutterhutCost;
-                    guiController->checkCarrierGoods();
+                    guiController->updateGoodsNumber();
                     Sound::ting();
                     return;
                 }
@@ -696,7 +697,7 @@ void GameLogicController::createStonecutterHut(std::vector<Unit *> usedUnits)
                     world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::stonecutterhutCost;
-                    guiController->checkCarrierGoods();
+                    guiController->updateGoodsNumber();
                     Sound::ting();
                     return;
                 }
@@ -723,7 +724,7 @@ void GameLogicController::createGoldmine(std::vector<Unit *> usedUnits)
                             new Goldmine(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::goldmineCost;
-                    guiController->checkCarrierGoods();
+                    guiController->updateGoodsNumber();
                     Sound::ting();
                     return;
                 }
@@ -733,7 +734,7 @@ void GameLogicController::createGoldmine(std::vector<Unit *> usedUnits)
                             new Goldmine(hutrieApplication, usedUnits));
                     world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
                     world->availableGoods = world -> availableGoods - GameBalance::goldmineCost;
-                    guiController->checkCarrierGoods();
+                    guiController->updateGoodsNumber();
                     Sound::ting();
                     return;
                 }

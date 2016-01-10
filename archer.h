@@ -1,7 +1,3 @@
-//
-// Created by Master on 04.01.2016.
-//
-
 #ifndef THEHUTRIES_ARCHER_H
 #define THEHUTRIES_ARCHER_H
 

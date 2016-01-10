@@ -1,7 +1,3 @@
-//
-// Created by Master on 06.01.2016.
-//
-
 #include <sstream>
 #include "mountain.h"
 #include "sound.h"

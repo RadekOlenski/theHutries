@@ -3,6 +3,7 @@
 
 
 #include "goods.h"
+#include <string>
 
 class GameBalance
 {
@@ -61,6 +62,15 @@ class GameBalance
     const static double warriorQuotient;
     const static double archerQuotient;
     const static double winResult;
+
+    /////////////////////////////////   MENU STRINGS    ///////////////////////////////////////////
+
+    static std::string aboutString;
+    static std::string howToPlayString;
+    static std::string historyString;
+    static std::string historyString2;
+    static std::string historyString3;
+    static std::string quoteString;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 };

@@ -21,3 +21,17 @@ void GUIText::display()
     }
 
 }
+
+void GUIText::animation()
+{
+    sf::Color basicColor(0,0,0,0);
+    text.setColor(basicColor);
+    for (int i = 0; i < 255; i++)
+    {
+        basicColor.a = i;
+        text.setColor(basicColor);
+        sf::sleep(sf::milliseconds(30));
+    }
+    sf::sleep(sf::seconds(6));
+
+}

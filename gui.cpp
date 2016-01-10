@@ -4,15 +4,27 @@
 #include "textures.h"
 
 GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width) :
-        startingText(200, 200, 80, "Press Space to start!!!"),
+
+        startingText(160, 320, 40, ""),
+        playButton(1024 + 45, 200, hutrieApplication, 170, 80, false),
+        playText  (1024 + 70, 210, 50, "Play"),
+        howToPlayButton(1024 + 45, 320, hutrieApplication, 170, 80, false),
+        howToPlayText  (1024 + 70, 330, 50, "How to \nplay"),
+        aboutButton(1024 + 45, 500, hutrieApplication, 170, 80, false),
+        aboutText  (1024 + 70, 510, 50, "About"),
+        exitButton(mapWidth, mapHeight, hutrieApplication, width, 128 + 30, false),
+        exitText  (1024 + 90,mapHeight + 50, 50, "Exit"),
+
         guiFrame(sf::Vector2f(width, mapHeight)),
         errorFrame(sf::Vector2f(width, 128 + 30)),
-        timeLeft(20, mapHeight + 2 + 128, 20, "15:00", sf::Color::White),
         errorInfo(mapWidth + 20 , mapHeight + 50, 20, ""),
         messageBox(mapWidth + 60, mapHeight + 10, 25, "Message Box:"),
+
         buildButton(mapWidth + 60, 100, hutrieApplication, Textures::buildButton),
         hutrieButton(mapWidth + 140, 100, hutrieApplication, Textures::hutrieButton),
+
         guiBar(0, mapHeight + 128, hutrieApplication, Textures::guiBar, mapWidth, 30),
+        timeLeft(20, mapHeight + 2 + 128, 20, "15:00", sf::Color::White),
         gold(208, mapHeight + 128, hutrieApplication, Textures::gold, 30, 30),
         wood(208 + 192, mapHeight + 128, hutrieApplication, Textures::wood, 30, 30),
         stone(208 + 384, mapHeight + 128, hutrieApplication, Textures::stone, 30, 30),
@@ -248,4 +260,21 @@ void GUI::displayEndingText(bool win)
     }
 
 }
+void GUI::displayMenu()
+{
+    hutrieApplication->draw(guiFrame);
+    hutrieApplication->draw(errorFrame);
+    hutrieApplication->draw(guiBar.button);
+
+    hutrieApplication->draw(startingText.text);
+    hutrieApplication->draw(playButton.button);
+    hutrieApplication->draw(playText.text);
+    hutrieApplication->draw(howToPlayButton.button);
+    hutrieApplication->draw(howToPlayText.text);
+    hutrieApplication->draw(aboutButton.button);
+    hutrieApplication->draw(aboutText.text);
+    hutrieApplication->draw(exitButton.button);
+    hutrieApplication->draw(exitText.text);
+}
+
 

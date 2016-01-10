@@ -1,7 +1,3 @@
-//
-// Created by Master on 05.01.2016.
-//
-
 #include <sstream>
 #include "forest.h"
 #include "sound.h"
