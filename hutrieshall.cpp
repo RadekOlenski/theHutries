@@ -84,13 +84,13 @@ void HutriesHall::buttonAction()
     {
         std::cout << "Create Worker!!!!" << std::endl;
         makeWorkerFlag = true;
-        Sound::click();
+        Sound::purchaseSound();
     }
     if (createCarrierButton.checkBounds() && createCarrierButton.isActive())
     {
         std::cout << "Create Carrier!!!!" << std::endl;
         makeCarrierFlag = true;
-        Sound::click();
+        Sound::purchaseSound();
     }
 }
 

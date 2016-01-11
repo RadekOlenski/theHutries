@@ -216,44 +216,53 @@ void World::createRocks()
 World::~World()
 {
 
+    std::vector<Hutrie*>::iterator ithutries;
+    for (ithutries = hutries.begin(); ithutries != hutries.end(); ++ithutries)
+    {
+        (*ithutries)->hutrieThread.terminate();
+    }
+    std::cout << "Koniec Hutrie Threads" << std::endl;
 
+    std::vector<Carrier*>::iterator itcarriers;
+    for (itcarriers = carriers.begin(); itcarriers != carriers.end(); ++itcarriers) {
+    delete (*itcarriers);
+    }
+    std::cout << "Koniec Carriers" << std::endl;
 
-//    std::vector<Carrier*>::iterator itcarriers;
-//    for (itcarriers = carriers.begin(); itcarriers != carriers.end(); ++itcarriers) {
-//    delete (*itcarriers);
-//    }
-//    std::cout << "Koniec Carriers" << std::endl;
-//
 //    std::vector<Soldier*>::iterator itsoldiers;
 //    for (itsoldiers = soldiers.begin(); itsoldiers != soldiers.end(); ++itsoldiers) {
 //    delete (*itsoldiers);
 //    }
 //    std::cout << "Koniec Soldiers" << std::endl;
-//
-//    std::vector<Warrior*>::iterator itwarriors;
-//    for (itwarriors = warriors.begin(); itwarriors != warriors.end(); ++itwarriors) {
-//    delete (*itwarriors);
-//    }
-//    std::cout << "Koniec Warriors" << std::endl;
-//
-//    std::vector<Archer*>::iterator itarchers;
-//    for (itarchers = archers.begin(); itarchers != archers.end(); ++itarchers) {
-//    delete (*itarchers);
-//    }
-//    std::cout << "Koniec Archers" << std::endl;
-//
-//    std::vector<Worker*>::iterator itworkers;
-//    for (itworkers = workers.begin(); itworkers != workers.end(); ++itworkers) {
-//    delete (*itworkers);
-//    }
-//    std::cout << "Koniec Workers" << std::endl;
 
-
-    std::vector<Hutrie*>::iterator ithutries;
-    for (ithutries = hutries.begin(); ithutries != hutries.end(); ++ithutries)
-    {
-        delete (*ithutries);
+    std::vector<Warrior*>::iterator itwarriors;
+    for (itwarriors = warriors.begin(); itwarriors != warriors.end(); ++itwarriors) {
+    delete (*itwarriors);
     }
+    std::cout << "Koniec Warriors" << std::endl;
+
+    std::vector<Archer*>::iterator itarchers;
+    for (itarchers = archers.begin(); itarchers != archers.end(); ++itarchers) {
+    delete (*itarchers);
+    }
+    std::cout << "Koniec Archers" << std::endl;
+
+    std::vector<Worker*>::iterator itworkers;
+    for (itworkers = workers.begin(); itworkers != workers.end(); ++itworkers) {
+    delete (*itworkers);
+    }
+    std::cout << "Koniec Workers" << std::endl;
+//
+//
+
+//    for (ithutries = hutries.begin(); ithutries != hutries.end(); ++ithutries)
+//    {
+//        delete (*ithutries);
+//    }
+//    std::cout << "Koniec Hutrie" << std::endl;
+    soldiers.clear();
+    std::cout << "Koniec Soldiers" << std::endl;
+    hutries.clear();
     std::cout << "Koniec Hutrie" << std::endl;
 
     std::vector<Building*>::iterator itbuildings;
@@ -275,32 +284,10 @@ World::~World()
     delete (*itunits);
     }
     std::cout << "Koniec Unit" << std::endl;
-//    std::vector<unsigned int>::iterator itbarracksIndex;
-//    for (itbarracksIndex = barracksIndex.begin(); itbarracksIndex != barracksIndex.end(); ++itbarracksIndex) {
-//    delete (*itbarracksIndex);
-//    }
-//
+
     barracksIndex.clear();
-//    std::vector<int>::iterator itgoodsBuildingIndex;
-//    for (itgoodsBuildingIndex = goodsBuildingIndex.begin(); itgoodsBuildingIndex != goodsBuildingIndex.end(); ++itgoodsBuildingIndex) {
-//    delete (*itgoodsBuildingIndex);
-//    }
     goodsBuildingIndex.clear();
-//    std::vector<unsigned int>::iterator itforestsIndex;
-//    for (itforestsIndex = forestsIndex.begin(); itforestsIndex != forestsIndex.end(); ++itforestsIndex) {
-//    delete (*itforestsIndex);
-//    }
     forestsIndex.clear();
-//    std::vector<unsigned int> rocksIndex;
-//    std::vector<unsigned int>::iterator itrocksIndex;
-//    for (itrocksIndex = rocksIndex.begin(); itrocksIndex != rocksIndex.end(); ++itrocksIndex) {
-//    delete (*itrocksIndex);
-//    }
     rocksIndex.clear();
-//    std::vector<unsigned int> mountainsIndex;
-//    std::vector<unsigned int>::iterator itmountainsIndex;
-//    for (itmountainsIndex = mountainsIndex.begin(); itmountainsIndex != mountainsIndex.end(); ++itmountainsIndex) {
-//    delete (*itmountainsIndex);
-//    }
     mountainsIndex.clear();
 }

@@ -25,6 +25,7 @@ const string Sound::loseSound = "audio/loseSound.flac";
 const string Sound::menuMusic = "audio/intro.flac";
 const string Sound::introMusic = "audio/warHorn.flac";
 const string Sound::construction = "audio/construction.flac";
+const string Sound::purchaseSoundPath = "audio/purchase.flac";
 
 
 void Sound::setSoundBuffer()
@@ -51,6 +52,14 @@ void Sound::ting()
 {
     Sound::setSoundBuffer();
     soundBuffer.loadFromFile(tingPath);
+    sound.play();
+}
+
+void Sound::purchaseSound()
+{
+    Sound::setSoundBuffer();
+    soundBuffer.loadFromFile(purchaseSoundPath);
+    sound.setVolume(100);
     sound.play();
 }
 

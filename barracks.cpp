@@ -82,13 +82,13 @@ void Barracks::buttonAction()
     {
         std::cout << "Create Warrior!!!!" << std::endl;
         makeWarriorFlag = true;
-        Sound::click();
+        Sound::purchaseSound();
     }
     if (createArcherButton.checkBounds() && createArcherButton.isActive())
     {
         std::cout << "Create Archer!!!!" << std::endl;
         makeArcherFlag = true;
-        Sound::click();
+        Sound::purchaseSound();
     }
 }
 
