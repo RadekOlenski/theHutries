@@ -138,5 +138,8 @@ void Barracks::setConstructedBuildingSound()
 {
     sound.pause();
     sound.openFromFile(Sound::barracks);
-    sound.play();
+    if(isHighlighted())
+    {
+        sound.play();
+    }
 }
