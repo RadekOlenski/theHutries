@@ -6,26 +6,26 @@ using namespace std;
 
 sf::Sound Sound::sound = sound;
 sf::SoundBuffer Sound::soundBuffer = soundBuffer;
-const string Sound::errorPath = "audio/error.wav";
-const string Sound::clickPath = "audio/click.wav";
-const string Sound::tingPath = "audio/ting.wav";
-const string Sound::notificationPath = "audio/notification.wav";
-const string Sound::musicPath = "audio/celtic.wav";
-const string Sound::hutrie = "audio/sir.wav";
-const string Sound::barracks = "audio/barracks.wav";
-const string Sound::farm = "audio/farm.wav";
-const string Sound::goldmine = "audio/goldmine.wav";
-const string Sound::hutrieshall = "audio/castle.wav";
-const string Sound::residence = "audio/residence.wav";
-const string Sound::sawmill = "audio/saw.wav";
-const string Sound::stonecutter = "audio/stonecutter.wav";
-const string Sound::trees = "audio/trees.wav";
-const string Sound::mountain = "audio/mountain.wav";
-const string Sound::rocks = "audio/rocks.wav";
-const string Sound::winSound = "audio/winSound.wav";
-const string Sound::loseSound = "audio/loseSound.wav";
-const string Sound::menuMusic = "audio/intro.wav";
-const string Sound::introMusic = "audio/warHorn.wav";
+const string Sound::errorPath = "audio/error.flac";
+const string Sound::clickPath = "audio/click.flac";
+const string Sound::tingPath = "audio/ting.flac";
+const string Sound::notificationPath = "audio/notification.flac";
+const string Sound::musicPath = "audio/celtic.flac";
+const string Sound::hutrie = "audio/sir.flac";
+const string Sound::barracks = "audio/barracks.flac";
+const string Sound::farm = "audio/farm.flac";
+const string Sound::goldmine = "audio/goldmine.flac";
+const string Sound::hutrieshall = "audio/castle.flac";
+const string Sound::residence = "audio/residence.flac";
+const string Sound::sawmill = "audio/saw.flac";
+const string Sound::stonecutter = "audio/stonecutter.flac";
+const string Sound::trees = "audio/trees.flac";
+const string Sound::mountain = "audio/mountain.flac";
+const string Sound::rocks = "audio/rocks.flac";
+const string Sound::winSound = "audio/winSound.flac";
+const string Sound::loseSound = "audio/loseSound.flac";
+const string Sound::menuMusic = "audio/intro.flac";
+const string Sound::introMusic = "audio/warHorn.flac";
 
 
 void Sound::setSoundBuffer()
