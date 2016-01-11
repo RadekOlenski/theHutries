@@ -23,7 +23,7 @@ void Residence::updateStatus()
     if(buildingConstructed)
     {
         std::ostringstream desc;
-        desc << "Slots left: " << slotsLeft << "\nGeneral: " << *worldSlots;
+        desc << "\n\nAvailable space in village: \n\t\t\t" << *worldSlots;
         description.text.setString (desc.str() );
     }
     else

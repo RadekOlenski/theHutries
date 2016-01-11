@@ -28,6 +28,10 @@ class GameBalance
     const static unsigned int startingFood = 10;
     const static unsigned int startingGold = 10;
 
+    //////////////////////////////////  BUILDINGS ////////////////////////////////////////////
+
+    const static int startingHutrieSlots = 10;
+	
     //////////////////////////////////  GOOODBUILDINGS ////////////////////////////////////////////
 
     const static int maxProductsInStore = 5;

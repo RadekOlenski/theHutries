@@ -100,7 +100,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             {
                 world->increaseAvailableSlots(Residence::getAddedSlotsNumber());
                 world->buildings.push_back(new Residence(hutrieApplication, usedUnits,
-                                                     &(world->availableSlots)));
+                                                     &(world->availableSlots)) );
                 world->availableGoods = world -> availableGoods - GameBalance::residenceCost;
                 guiController->updateGoodsNumber();
                 Sound::ting();
@@ -490,6 +490,7 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
         world->soldiers.push_back(world->warriors.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
         world->warriors.back()->sprite.setPosition( world->units.at(unitIndex+1)->field.getPosition().x, world->units.at(unitIndex+1)->field.getPosition().y );
+        world->warriors.back()->hutrieThread.launch();
     }
     else if (objectType == "archer")
     {
@@ -499,6 +500,7 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
         world->soldiers.push_back(world->archers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
         world->archers.back()->sprite.setPosition( world->units.at(unitIndex+1)->field.getPosition().x, world->units.at(unitIndex+1)->field.getPosition().y );
+        world->archers.back()->hutrieThread.launch();
     }
 }
 

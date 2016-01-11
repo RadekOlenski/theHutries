@@ -23,6 +23,7 @@ GUIController::GUIController(sf::RenderWindow*hutrieApplication, ModelController
     firstIteration = true;
     introFlag = false;
     displayHutriesHall = false;
+    readyForGame = false;
 }
 
 void GUIController::displayIntro()
@@ -40,6 +41,7 @@ void GUIController::displayIntro()
     gui->startingText.text.setPosition(200,550);
     gui->startingText.text.setString(GameBalance::historyString3);
     introFlag = false;
+    readyForGame = true;
 }
 
 void GUIController::drawHutriesHall()

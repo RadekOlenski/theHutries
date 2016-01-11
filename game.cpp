@@ -151,11 +151,11 @@ bool Game::menu()
     guiController->launchBigTitleThread();
     guiController->setMenuButtonsFlags(true);
     bool firstLoop = true;
+    sf::Event event;
     while (hutrieApplication.isOpen() && modelController->getChosenInteractionMode() == 0)
     {
         mouse->updateMouseLock();
         mouse->leftClickActions();
-        sf::Event event;
         while (hutrieApplication.pollEvent(event))
         {
             keyboard->closeGame(event);
@@ -166,7 +166,7 @@ bool Game::menu()
                 return true;
             }
         }
-        if(guiController->introFlag)
+        if(guiController->getIntroFlag())
         {
             if (firstLoop)
             {
@@ -179,7 +179,7 @@ bool Game::menu()
         }
         guiController->displayMenu();
     };
-    gameLogicController->assignHutriesHall();
+    if(guiController->getReadyForGame()) gameLogicController->assignHutriesHall();
     return true;
 }
 

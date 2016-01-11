@@ -93,7 +93,9 @@ public:
 
     void errorMustBuildOnMountain();
 
-    bool introFlag;
+    bool getIntroFlag() {return introFlag;};
+
+    bool getReadyForGame () {return readyForGame;};
 
     void countScreenZoomValues();
 
@@ -103,7 +105,6 @@ private:
 
     World* world;
     GUI* gui;
-
     sf::View fixed;
     sf::RectangleShape background;
     sf::Texture backgroundTexture;
@@ -122,6 +123,8 @@ private:
 
     bool firstIteration;
     bool displayHutriesHall;
+    bool introFlag;
+    bool readyForGame;
 };
 
 

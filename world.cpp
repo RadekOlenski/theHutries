@@ -12,7 +12,7 @@ World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int appli
         : lastClickedUnit(NULL)
 {
     this->hutrieApplication = hutrieApplication;
-    availableSlots = 10;                            //wartosc startowa bez zadnej rezydencji
+    availableSlots = GameBalance::startingHutrieSlots; ;                            //wartosc startowa bez zadnej rezydencji
     availableGoods.setProduct(1,GameBalance::startingWood);                //poczatkowe wartosci surowcow
     availableGoods.setProduct(2,GameBalance::startingStone);
     availableGoods.setProduct(3,GameBalance::startingFood);

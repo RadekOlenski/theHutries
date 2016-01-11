@@ -22,6 +22,6 @@ Forest::Forest(sf::RenderWindow *hutrieApplication, std::vector<Unit *> &unitsFr
 void Forest::updateStatus()
 {
     std::ostringstream desc;
-    desc << "You can build sawmill \n next to the forest";
+    desc << "\n\nYou can build sawmill \n next to the forest";
     description.text.setString(desc.str());
 }
