@@ -1,10 +1,13 @@
 #include "building.h"
+#include "sound.h"
 #include <cstdlib>
 #include <sstream>
 
 Building::Building(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
         : MapObject(hutrieApplication, unitsFromGame, pathName)
 {
+    sound.openFromFile(Sound::construction);
+    sound.setVolume(50);
     needCarrier = false;
     needWorker = false;
 }
@@ -48,7 +51,7 @@ int Building::getCarriersSize()
     return myCarriers.size();
 }
 
-void Building::setCoustructedBuildingTexture()
+void Building::setConstructedBuildingTexture()
 {
     sprite.setTexture(textureBasic);
 }
@@ -57,3 +60,4 @@ void Building::setDescriptionTexture()
 {
     this->updateDescriptionTexture(textureBasic);
 }
+

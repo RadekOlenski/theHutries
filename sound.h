@@ -37,6 +37,7 @@ public:
     static const std::string loseSound;
     static const std::string introMusic;
     static const std::string menuMusic;
+    static const std::string construction;
 
 private:
 

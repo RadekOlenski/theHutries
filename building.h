@@ -34,7 +34,8 @@ public:
     virtual float getConstructionTime() {};
     virtual void updateConstructionClock(int fulltime) {};
 
-    void setCoustructedBuildingTexture();
+    void setConstructedBuildingTexture();
+    virtual void setConstructedBuildingSound() {};
     void setDescriptionTexture();
 protected:
 

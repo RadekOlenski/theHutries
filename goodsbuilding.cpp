@@ -17,12 +17,15 @@ GoodsBuilding::GoodsBuilding(sf::RenderWindow*hutrieApplication, std::vector<Uni
 
 void GoodsBuilding::showButtons()
 {
-    callWorker.setActive(true);
-    goodsReady.setActive(true);
-    hutrieApplication->draw(callWorker.button);
-    hutrieApplication->draw(goodsReady.button);
-    hutrieApplication->draw(assignWorker.text);
-    hutrieApplication->draw(goodReady.text);
+    if(buildingConstructed)
+    {
+        callWorker.setActive(true);
+        goodsReady.setActive(true);
+        hutrieApplication->draw(callWorker.button);
+        hutrieApplication->draw(goodsReady.button);
+        hutrieApplication->draw(assignWorker.text);
+        hutrieApplication->draw(goodReady.text);
+    }
 
 }
 

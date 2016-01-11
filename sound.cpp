@@ -26,6 +26,7 @@ const string Sound::winSound = "audio/winSound.flac";
 const string Sound::loseSound = "audio/loseSound.flac";
 const string Sound::menuMusic = "audio/intro.flac";
 const string Sound::introMusic = "audio/warHorn.flac";
+const string Sound::construction = "audio/construction.flac";
 
 
 void Sound::setSoundBuffer()

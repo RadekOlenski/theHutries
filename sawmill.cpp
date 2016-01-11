@@ -8,7 +8,6 @@ Sawmill::Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsF
 {
 
     title.text.setString("Sawmill:");
-    sound.openFromFile(Sound::sawmill);
     goodReady.text.setString("Wood ready");
     textureBasic.loadFromFile(Textures::sawmillBasic);
     textureWithProduct.loadFromFile(Textures::sawmillWithProduct);
@@ -45,4 +44,11 @@ void Sawmill::updateConstructionClock(int fulltime)
 {
     leftConstructionTime = (unsigned int) (fulltime - constructionTimeClock.getElapsedTime().asSeconds());
     if (leftConstructionTime < 0) leftConstructionTime = 0;
+}
+
+void Sawmill::setConstructedBuildingSound()
+{
+    sound.pause();
+    sound.openFromFile(Sound::sawmill);
+    sound.play();
 }

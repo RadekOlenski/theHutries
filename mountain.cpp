@@ -12,7 +12,7 @@ Mountain::Mountain(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
     sprite.setOrigin(0, 20);
     sprite.setScale(0.50, 0.50);
 
-    sound.setVolume(30);
+    sound.setVolume(80);
     sound.openFromFile(Sound::mountain);
 
     sprite.setPosition(objectUnits.at(0)->field.getPosition());

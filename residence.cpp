@@ -8,8 +8,6 @@ Residence::Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> un
 {
     this->worldSlots = worldSlots;
     title.text.setString("Residence:");
-    sound.openFromFile(Sound::residence);
-    sound.setVolume(20);
     textureBasic.loadFromFile(Textures::residenceBasic);
     buildingConstructed = false;
     leftConstructionTime = 0;
@@ -36,4 +34,11 @@ void Residence::updateConstructionClock(int fulltime)
 {
     leftConstructionTime = (unsigned int) (fulltime - constructionTimeClock.getElapsedTime().asSeconds());
     if (leftConstructionTime < 0) leftConstructionTime = 0;
+}
+
+void Residence::setConstructedBuildingSound()
+{
+    sound.pause();
+    sound.openFromFile(Sound::residence);
+    sound.play();
 }

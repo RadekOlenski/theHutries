@@ -24,9 +24,10 @@ public:
 
     void updateConstructionClock(int fulltime);
 
+    void setConstructedBuildingSound();
+
 private:
 
-    bool buildingConstructed;
     unsigned int leftConstructionTime;
     const float constructionTime = GameBalance::farmConstructionTime;
 

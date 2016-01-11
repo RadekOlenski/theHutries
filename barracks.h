@@ -64,6 +64,8 @@ public:
 
     sf::Clock trainingClock;
 
+    void setConstructedBuildingSound();
+
 private:
 
     GUIButton createWarriorButton;
