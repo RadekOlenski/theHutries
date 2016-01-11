@@ -7,7 +7,6 @@ Residence::Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> un
         : Building(hutrieApplication,unitsFromGame)
 {
     this->worldSlots = worldSlots;
-    slotsLeft = rand() % 11;
     title.text.setString("Residence:");
     textureBasic.loadFromFile(Textures::residenceBasic);
 
