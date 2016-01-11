@@ -6,6 +6,7 @@
 class ModelController
 {
 public:
+
     ModelController();
 
     void setChosenInteractionMode(int chosenInteractionMode);

@@ -11,6 +11,7 @@
 class GUIController
 {
 public:
+
     GUIController(sf::RenderWindow* hutrieApplication, ModelController* modelController, World* world, GUI* gui);
 
     void handleGUIButtonsActions();
@@ -100,6 +101,7 @@ public:
     void countScreenZoomValues();
 
 private:
+
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
 

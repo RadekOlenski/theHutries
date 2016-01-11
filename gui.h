@@ -10,12 +10,7 @@ class GUI
 {
 public:
 
-    ///////////////////////////////GUI PROPERTIES /////////////////////////////////////////////
-
     GUI(int mapWidth,int mapHeight, sf::RenderWindow *hutrieApplication, int width = 256);
-    //int getHeight() {return height;}
-    //int getWidth()  {return width;}
-
 
     /////////////////////////////// MENU    ///////////////////////////////////////////////////
 

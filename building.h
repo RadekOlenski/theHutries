@@ -47,7 +47,6 @@ protected:
     bool needCarrier;
 
     sf::Texture textureBasic;
-private:
 };
 
 #endif // BUILDING_H

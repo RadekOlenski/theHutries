@@ -8,6 +8,7 @@
 class Textures
 {
 public:
+
     //---------------------------- BASIC ----------------------------//
     static std::string background;
     static std::string cursor;

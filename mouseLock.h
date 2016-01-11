@@ -6,7 +6,6 @@ class MouseLock
 {
 public:
 
-
     MouseLock();
 
     bool getIsLocked();
@@ -14,6 +13,7 @@ public:
     void update();
 
 private:
+
     bool isLocked;
     bool hasLeftBeenPressed;
     bool hasRightBeenPressed;

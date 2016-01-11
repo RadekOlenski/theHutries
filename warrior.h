@@ -8,6 +8,7 @@ class Warrior : public Soldier
 {
 
 public:
+
     Warrior(sf::RenderWindow *hutrieApplication, const std::vector<Unit*> &unitsFromGame, const std::vector<Unit*> &unitsForMoving, std::string pathName = Textures::warriorRight);
 
     static const std::vector<Unit*> usedUnits;

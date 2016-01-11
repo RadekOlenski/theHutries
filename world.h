@@ -18,6 +18,7 @@
 class World
 {
     public:
+
         World(sf::RenderWindow *hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize = 64);
         virtual ~World();
         std::vector <Unit*> units;
@@ -47,6 +48,7 @@ class World
 		void createHutriesHall();
 
 private:
+
 		void createForest();
 		void createMountains();
 		void createRocks();

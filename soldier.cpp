@@ -32,11 +32,7 @@ void Soldier::moveHutrie()
         }
         while (!(unitsForMoving.at(unitNumber)->isEmpty()));
         toDirection(unitsForMoving.at(unitNumber)->field.getPosition().x, unitsForMoving.at(unitNumber)->field.getPosition().y );
-        sf::sleep(sf::seconds(2));
+        sf::sleep(sf::seconds(rand() % 6));
     }
-//    while(1)
-//    {
-//        toDirection(rand() % 1024, rand()% 640);
-//    }
 }
 

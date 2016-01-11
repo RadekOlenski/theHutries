@@ -10,6 +10,7 @@
 class StoneCutter : public GoodsBuilding
 {
 public:
+
     StoneCutter(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame);
 
     void createProduct();

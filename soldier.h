@@ -12,9 +12,12 @@
 class Soldier : public Hutrie
 {
     public:
+
         Soldier(sf::RenderWindow *hutrieApplication, const std::vector <Unit*> unitsFromGame, std::vector<Unit*> unitsForMoving, std::string pathName);
         void moveHutrie();
+
     protected:
+
         std::vector <Unit*> unitsForMoving;
 };
 

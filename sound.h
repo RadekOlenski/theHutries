@@ -39,6 +39,7 @@ public:
     static const std::string menuMusic;
 
 private:
+
     static sf::Sound sound;
     static sf::SoundBuffer soundBuffer;
     static const std::string errorPath;

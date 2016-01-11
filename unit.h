@@ -12,6 +12,7 @@ class MapObject;
 class Unit
 {
     public:
+
         sf::RectangleShape field;
 
         void setMapObject (MapObject *mapObject) {this->mapObject = mapObject;}
@@ -29,6 +30,7 @@ class Unit
         int getIndex() {return index;}
 
     private:
+
         bool emptiness;
         MapObject *mapObject;
         std::vector <Hutrie*> dwellers;

@@ -9,6 +9,7 @@ class Mountain : public Environment
 {
 
 public:
+
     Mountain(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, std::string pathName = Textures::mountain);
     void updateStatus();
 };

@@ -80,6 +80,7 @@ public:
     void assignHutriesHall();
 
 private:
+
     World* world;
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;

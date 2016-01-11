@@ -34,8 +34,6 @@ class MapObject
         void highlightUnits(bool fillColor = true);
         bool isHighlighted() {return highlight;}
         void setHighlight(bool emphasize) { this->highlight = emphasize;}
-//        bool isActive() {return active;}
-//        void setActive(bool active) {this->active = active;}
         int getUnitIndex (int index);
         void reconnectUnits (std::vector <Unit*> unitsFromGame);
         std::vector <Unit*> getObjectUnits() {return objectUnits;};
@@ -54,9 +52,9 @@ class MapObject
 
 
     protected:
+
         std::vector <Unit*> objectUnits;
         sf::Music sound;
-//        bool active;
         bool highlight;
         virtual void occupyUnits();
   };

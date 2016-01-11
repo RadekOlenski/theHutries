@@ -27,7 +27,7 @@ public:
 
     void settings();
 
-protected:
+private:
     /////////////////WINDOW////////////////////////
 
     sf::RenderWindow hutrieApplication;
@@ -43,8 +43,6 @@ protected:
     //////////GRAPHICS AND AUDIO//////////////////
     sf::Music music;
     GUI gui;
-
-private:
 
     /////////////FUNCTIONS////////////////////////
 

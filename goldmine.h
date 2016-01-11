@@ -9,6 +9,7 @@ class Goldmine : public GoodsBuilding
 {
 
 public:
+
     Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame);
     void createProduct();
     void updateStatus();

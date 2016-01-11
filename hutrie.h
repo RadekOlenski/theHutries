@@ -43,8 +43,6 @@ protected:
     void toDirection(float targetX, float targetY);
 
     bool busy;
-
-private:
     int strength;
     int agility;
     int endurance;
