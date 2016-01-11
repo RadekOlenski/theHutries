@@ -68,7 +68,7 @@ std::string Textures::mountain = "sprites/environment/mountain.png";
 
 std::string Textures::buildButton = "sprites/buttons/hammer.png";
 std::string Textures::hutrieButton = "sprites/buttons/hutrie.png";
-std::string Textures::guiBar = "sprites/buttons/leather2.png";
+std::string Textures::guiBar = "sprites/buttons/goodsBar2.png";
 std::string Textures::guiTexture = "sprites/background/pergamino.jpg";
 
 std::string Textures::farmGUI = "sprites/buildings/farmGUI.png";
