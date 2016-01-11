@@ -72,6 +72,8 @@ public:
 
     static std::string aboutString;
     static std::string howToPlayString;
+    static std::string howToPlayString2;
+    static std::string howToPlayString3;
     static std::string historyString;
     static std::string historyString2;
     static std::string historyString3;

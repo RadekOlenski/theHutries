@@ -152,6 +152,7 @@ bool Game::menu()
     guiController->setMenuButtonsFlags(true);
     bool firstLoop = true;
     sf::Event event;
+   // modelController->setChosenInteractionMode(0);
     while (hutrieApplication.isOpen() && modelController->getChosenInteractionMode() == 0)
     {
         mouse->updateMouseLock();

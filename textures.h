@@ -83,6 +83,9 @@ public:
     static std::string goldmineGUI;
     static std::string allHutries;
 
+    static std::string arrow;
+    static std::string backArrow;
+
 };
 
 

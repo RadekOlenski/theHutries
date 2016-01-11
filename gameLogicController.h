@@ -47,7 +47,7 @@ public:
 
     void endHighlightUnit();
 
-    void handleHutrieMoving();
+//    void handleHutrieMoving();
 
     void handleHutriesCreation();
 
@@ -64,6 +64,8 @@ public:
     void createHutrie(std::string objectType, unsigned int unitIndex);
 
     void handleGUIButtonsAction();
+
+    void handleMenuButtonsAction();
 
     void handleAssigningHutrie();
 

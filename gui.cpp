@@ -15,6 +15,8 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         aboutText(1024 + 70, 510, 50, "About"),
         exitButton(mapWidth, mapHeight, hutrieApplication, width, 128 + 30, false),
         exitText(1024 + 90, mapHeight + 50, 50, "Exit"),
+        nextArrowButton(950, 700, hutrieApplication, Textures::arrow),
+        backArrowButton(50 , 700, hutrieApplication, Textures::backArrow),
 
         guiFrame(sf::Vector2f(width, mapHeight)),
         errorFrame(sf::Vector2f(width, 128 + 30)),
@@ -101,8 +103,6 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
     buildButton.setActive(true);
     hutrieButton.setActive(true);
-
-    setBuildingsCosts();
 }
 
 void GUI::displayGUI()
@@ -200,51 +200,6 @@ void GUI::displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int
 
 }
 
-void GUI::setBuildingsCosts()
-{
-    std::ostringstream desc;
-    desc << GameBalance::sawmillCost.getWood();
-    twoodSawmill.text.setString(desc.str());
-    std::ostringstream desc1;
-    desc1 << GameBalance::sawmillCost.getStone();
-    tstoneSawmill.text.setString(desc1.str());
-
-    std::ostringstream desc2;
-    desc2 << GameBalance::stonecutterhutCost.getWood();
-    twoodStonecutter.text.setString(desc2.str());
-    std::ostringstream desc3;
-    desc3 << GameBalance::stonecutterhutCost.getStone();
-    twoodStonecutter.text.setString(desc3.str());
-
-    std::ostringstream desc4;
-    desc4 << GameBalance::farmCost.getWood();
-    twoodFarm.text.setString(desc4.str());
-    std::ostringstream desc5;
-    desc5 << GameBalance::farmCost.getStone();
-    tstoneFarm.text.setString(desc5.str());
-
-    std::ostringstream desc6;
-    desc6 << GameBalance::goldmineCost.getWood();
-    twoodGoldmine.text.setString(desc6.str());
-    std::ostringstream desc7;
-    desc7 << GameBalance::goldmineCost.getStone();
-    tstoneGoldmine.text.setString(desc7.str());
-
-    std::ostringstream desc8;
-    desc8 << GameBalance::residenceCost.getWood();
-    twoodResidence.text.setString(desc8.str());
-    std::ostringstream desc9;
-    desc9 << GameBalance::residenceCost.getStone();
-    tstoneResidence.text.setString(desc9.str());
-
-    std::ostringstream desc10;
-    desc10 << GameBalance::barracksCost.getWood();
-    twoodBarracks.text.setString(desc10.str());
-    std::ostringstream desc11;
-    desc11 << GameBalance::barracksCost.getStone();
-    tstoneBarracks.text.setString(desc11.str());
-}
-
 void GUI::displayEndingText(bool win)
 {
     if (win)
@@ -276,6 +231,9 @@ void GUI::displayMenu()
     hutrieApplication->draw(aboutText.text);
     hutrieApplication->draw(exitButton.button);
     hutrieApplication->draw(exitText.text);
+    if (backArrowButton.isActive()) hutrieApplication->draw(backArrowButton.button);
+    if (nextArrowButton.isActive())hutrieApplication->draw(nextArrowButton.button);
+
 }
 
 

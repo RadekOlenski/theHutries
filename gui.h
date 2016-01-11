@@ -24,6 +24,8 @@ public:
     GUIText aboutText;
     GUIButton exitButton;
     GUIText exitText;
+    GUIButton nextArrowButton;
+    GUIButton backArrowButton;
 
     ////////////////////////////// BASIC TOOLS ////////////////////////////////////////////////
 
@@ -115,8 +117,6 @@ private:
     sf::RectangleShape guiFrame;
     sf::RectangleShape errorFrame;
     sf::Texture texture;
-
-    void setBuildingsCosts();
 
     /////////////////////////////// DOWN BAR //////////////////////////////////////////////////
 

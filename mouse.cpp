@@ -24,6 +24,10 @@ void Mouse::leftClickActions()
     {
         int applicationWidth = modelController->getApplicationWidth();
         int applicationHeight = modelController->getApplicationHeight();
+        if( modelController->getChosenInteractionMode() == 0)
+            {
+                gameLogicController->handleMenuButtonsAction();
+            }
         if (sf::Mouse::getPosition(*hutrieApplication).x < applicationWidth &&
             sf::Mouse::getPosition(*hutrieApplication).y > 64 &&
             sf::Mouse::getPosition(*hutrieApplication).y <
@@ -41,6 +45,7 @@ void Mouse::leftClickActions()
     }
 }
 
+
 void Mouse::updateMouseLock()
 {
     mouseLock->update();
@@ -57,11 +62,11 @@ void Mouse::handleClickOnMap()
                 gameLogicController->handleBuildingCreation();
                 break;
             }
-            case InteractionMode::HUTRIEMODE:     //poruszanie Hutrim
-            {
-                gameLogicController->handleHutrieMoving();
-                break;
-            }
+//            case InteractionMode::HUTRIEMODE:     //poruszanie Hutrim
+//            {
+//                gameLogicController->handleHutrieMoving();
+//                break;
+//            }
             default:
                 break;
         };

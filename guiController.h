@@ -98,9 +98,13 @@ public:
 
     bool getReadyForGame() { return readyForGame; };
 
+    void setBuildingsCosts();
+
     void countScreenZoomValues();
 
 private:
+
+    void updateHowToText();
 
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
@@ -127,6 +131,7 @@ private:
     bool displayHutriesHall;
     bool introFlag;
     bool readyForGame;
+    unsigned int chosenHowToText;
 };
 
 

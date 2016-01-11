@@ -75,5 +75,8 @@ std::string Textures::farmGUI = "sprites/buildings/farmGUI.png";
 std::string Textures::goldmineGUI = "sprites/buildings/goldmineGUI.png";
 std::string Textures::allHutries = "sprites/all.png";
 
+std::string Textures::arrow = "sprites/arrow.png";
+std::string Textures::backArrow = "sprites/backarrow.png";
+
 
 

@@ -15,7 +15,6 @@ GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelControlle
           quoteThread(&GUIController::displayIntro, this)
 {
 
-
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
     this->world = world;
@@ -24,6 +23,8 @@ GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelControlle
     introFlag = false;
     displayHutriesHall = false;
     readyForGame = false;
+    chosenHowToText = 0;
+    setBuildingsCosts();
 }
 
 void GUIController::displayIntro()
@@ -54,6 +55,8 @@ void GUIController::handleMenuButtonsActions()
 {
     if (gui->playButton.checkBounds())
     {
+        gui->nextArrowButton.setActive(false);
+        gui->backArrowButton.setActive(false);
         quote.text.setStyle(sf::Text::Italic);
         quote.text.setString(GameBalance::quoteString);
         introFlag = true;
@@ -62,13 +65,9 @@ void GUIController::handleMenuButtonsActions()
     }
     if (gui->aboutButton.checkBounds())
     {
+        gui->nextArrowButton.setActive(false);
+        gui->backArrowButton.setActive(false);
         gui->startingText.text.setString(GameBalance::aboutString);
-        Sound::click();
-        return;
-    }
-    if (gui->howToPlayButton.checkBounds())
-    {
-        gui->startingText.text.setString(GameBalance::howToPlayString);
         Sound::click();
         return;
     }
@@ -76,6 +75,49 @@ void GUIController::handleMenuButtonsActions()
     {
         Sound::click();
         hutrieApplication->close();
+    }
+    if (gui->howToPlayButton.checkBounds())
+    {
+        gui->startingText.text.setCharacterSize(30);
+        gui->startingText.text.setString(GameBalance::howToPlayString);
+        chosenHowToText = 0;
+        gui->nextArrowButton.setActive(true);
+        updateHowToText();
+        Sound::click();
+        return;
+    }
+    if (gui->nextArrowButton.checkBounds() && gui->nextArrowButton.isActive() )
+    {
+        chosenHowToText++;
+        updateHowToText();
+
+        Sound::click();
+    }
+    if (gui->backArrowButton.checkBounds() && gui->backArrowButton.isActive() )
+    {
+        chosenHowToText--;
+        updateHowToText();
+        Sound::click();
+    }
+    if (chosenHowToText == 2) gui->nextArrowButton.setActive(false);
+    else gui->nextArrowButton.setActive(true);
+    if (chosenHowToText == 0) gui->backArrowButton.setActive(false);
+    else gui->backArrowButton.setActive(true);
+}
+
+void GUIController::updateHowToText()
+{
+    switch (chosenHowToText)
+    {
+    case 0:
+      gui->startingText.text.setString(GameBalance::howToPlayString);
+      break;
+    case 1:
+      gui->startingText.text.setString(GameBalance::howToPlayString2);
+      break;
+    case 2:
+      gui->startingText.text.setString(GameBalance::howToPlayString3);
+      break;
     }
 }
 
@@ -358,6 +400,51 @@ void GUIController::updateGoodsNumber()
     std::ostringstream desc3;
     desc3 << world->availableGoods.getGold();
     gui->tgold.text.setString(desc3.str());
+}
+
+void GUIController::setBuildingsCosts()
+{
+    std::ostringstream desc;
+    desc << GameBalance::sawmillCost.getWood();
+    gui->twoodSawmill.text.setString(desc.str());
+    std::ostringstream desc1;
+    desc1 << GameBalance::sawmillCost.getStone();
+    gui->tstoneSawmill.text.setString(desc1.str());
+
+    std::ostringstream desc2;
+    desc2 << GameBalance::stonecutterhutCost.getWood();
+    gui->twoodStonecutter.text.setString(desc2.str());
+    std::ostringstream desc3;
+    desc3 << GameBalance::stonecutterhutCost.getStone();
+    gui->twoodStonecutter.text.setString(desc3.str());
+
+    std::ostringstream desc4;
+    desc4 << GameBalance::farmCost.getWood();
+    gui->twoodFarm.text.setString(desc4.str());
+    std::ostringstream desc5;
+    desc5 << GameBalance::farmCost.getStone();
+    gui->tstoneFarm.text.setString(desc5.str());
+
+    std::ostringstream desc6;
+    desc6 << GameBalance::goldmineCost.getWood();
+    gui->twoodGoldmine.text.setString(desc6.str());
+    std::ostringstream desc7;
+    desc7 << GameBalance::goldmineCost.getStone();
+    gui->tstoneGoldmine.text.setString(desc7.str());
+
+    std::ostringstream desc8;
+    desc8 << GameBalance::residenceCost.getWood();
+    gui->twoodResidence.text.setString(desc8.str());
+    std::ostringstream desc9;
+    desc9 << GameBalance::residenceCost.getStone();
+    gui->tstoneResidence.text.setString(desc9.str());
+
+    std::ostringstream desc10;
+    desc10 << GameBalance::barracksCost.getWood();
+    gui->twoodBarracks.text.setString(desc10.str());
+    std::ostringstream desc11;
+    desc11 << GameBalance::barracksCost.getStone();
+    gui->tstoneBarracks.text.setString(desc11.str());
 }
 
 void GUIController::countScreenZoomValues()

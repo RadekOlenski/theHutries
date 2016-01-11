@@ -212,15 +212,15 @@ void GameLogicController::endHighlightUnit()
     }
 }
 
-void GameLogicController::handleHutrieMoving()
-{
-    unsigned int unitIndex = modelController->getSelectedUnitIndex();
-    std::vector<Unit*> usedUnits;
-    usedUnits.push_back(world->units.at(unitIndex));
-    world->soldiers.push_back(new Warrior(hutrieApplication, usedUnits, world->units));
-    world->hutries.push_back(world->soldiers.back());
-    world->hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
-}
+//void GameLogicController::handleHutrieMoving()
+//{
+//    unsigned int unitIndex = modelController->getSelectedUnitIndex();
+//    std::vector<Unit*> usedUnits;
+//    usedUnits.push_back(world->units.at(unitIndex));
+//    world->soldiers.push_back(new Warrior(hutrieApplication, usedUnits, world->units));
+//    world->hutries.push_back(world->soldiers.back());
+//    world->hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
+//}
 
 void GameLogicController::handleHutriesCreation()
 {
@@ -542,6 +542,10 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
 void GameLogicController::handleGUIButtonsAction()
 {
     guiController->handleGUIButtonsActions();
+}
+
+void GameLogicController::handleMenuButtonsAction()
+{
     guiController->handleMenuButtonsActions();
 }
 

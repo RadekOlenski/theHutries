@@ -13,14 +13,14 @@ int main()
     const int applicationWidth = 1024;
     const int applicationHeight = 640;
 
-    float x, y;
+    float x = 1366, y = 768;
 
-    bool fullscreen;
-    std::cout << "Type resolution of your screen" << std::endl << "x: ";
-    std::cin >> x;
-    std::cout << "y: ";
-    std::cin >> y;
-
+//    bool fullscreen;
+//    std::cout << "Type resolution of your screen" << std::endl << "x: ";
+//    std::cin >> x;
+//    std::cout << "y: ";
+//    std::cin >> y;
+//
     float horizontalScreenZoom = x / 1280;
     float verticalScreenZoom = y / 800;
 
