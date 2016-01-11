@@ -23,7 +23,6 @@ Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unit
 
 {
     title.text.setString("Barracks:");
-    sound.openFromFile(Sound::barracks);
     textureBasic.loadFromFile(Textures::barracksBasic);
 
     makeWarriorFlag = false;
@@ -134,4 +133,11 @@ void Barracks::updateConstructionClock(int fulltime)
 {
     leftConstructionTime = (unsigned int) (fulltime - constructionTimeClock.getElapsedTime().asSeconds());
     if (leftConstructionTime < 0) leftConstructionTime = 0;
+}
+
+void Barracks::setConstructedBuildingSound()
+{
+    sound.pause();
+    sound.openFromFile(Sound::barracks);
+    sound.play();
 }

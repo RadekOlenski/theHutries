@@ -152,8 +152,9 @@ void GameLogicController::constructBuilding()
             if((*it)->getElapsedConstructionTime() >= (*it)->getConstructionTime())
             {
                 (*it)->setBuildingConstructedFlag(true);
-                (*it)->setCoustructedBuildingTexture();
+                (*it)->setConstructedBuildingTexture();
                 (*it)->setDescriptionTexture();
+                (*it)->setConstructedBuildingSound();
                 (*it)->updateStatus();
             }
             else

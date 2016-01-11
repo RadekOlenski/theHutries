@@ -7,8 +7,6 @@ Farm::Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &units
         : GoodsBuilding(hutrieApplication, unitsFromGame)
 {
     title.text.setString("Farm:");
-    sound.openFromFile(Sound::farm);
-    sound.setVolume(50);
     goodReady.text.setString("Food ready");
 
     textureBasic.loadFromFile(Textures::farmBasic);
@@ -45,4 +43,11 @@ void Farm::updateConstructionClock(int fulltime)
 {
     leftConstructionTime = (unsigned int) (fulltime - constructionTimeClock.getElapsedTime().asSeconds());
     if (leftConstructionTime < 0) leftConstructionTime = 0;
+}
+
+void Farm::setConstructedBuildingSound()
+{
+    sound.pause();
+    sound.openFromFile(Sound::farm);
+    sound.play();
 }

@@ -38,5 +38,6 @@ protected:
         GUIText goodReady;
         unsigned int productsCapacity = GameBalance::maxProductsInStore;
         sf::Texture textureWithProduct;
+        bool buildingConstructed;
 };
 #endif // GOODSBUILDING_H

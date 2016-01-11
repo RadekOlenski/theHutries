@@ -12,7 +12,6 @@ Rocks::Rocks(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &uni
     sprite.setOrigin(0, 0);
     sprite.setScale(0.6, 0.6);
 
-    sound.setVolume(30);
     sound.openFromFile(Sound::rocks);
 
     sprite.setPosition(objectUnits.at(0)->field.getPosition());

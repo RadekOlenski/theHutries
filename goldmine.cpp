@@ -7,8 +7,6 @@ Goldmine::Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *
         : GoodsBuilding(hutrieApplication, unitsFromGame)
 {
     title.text.setString("Goldmine:");
-    sound.openFromFile(Sound::goldmine);
-    sound.setVolume(50);
     goodReady.text.setString("Gold ready");
     textureBasic.loadFromFile(Textures::goldmineBasic);
     textureWithProduct.loadFromFile(Textures::goldmineWithProduct);
@@ -45,3 +43,11 @@ void Goldmine::updateConstructionClock(int fulltime)
     leftConstructionTime = (unsigned int) (fulltime - constructionTimeClock.getElapsedTime().asSeconds());
     if (leftConstructionTime < 0) leftConstructionTime = 0;
 }
+
+void Goldmine::setConstructedBuildingSound()
+{
+    sound.pause();
+    sound.openFromFile(Sound::goldmine);
+    sound.play();
+}
+
