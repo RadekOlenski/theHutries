@@ -32,6 +32,6 @@ void GUIText::animation()
         text.setColor(basicColor);
         sf::sleep(sf::milliseconds(30));
     }
-    sf::sleep(sf::seconds(6));
+    sf::sleep(sf::seconds(8));
 
 }

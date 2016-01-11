@@ -95,8 +95,6 @@ public:
 
     bool introFlag;
 
-    bool getDisplayHutriesHall() {return displayHutriesHall;};
-
 private:
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;

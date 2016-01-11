@@ -13,7 +13,7 @@
 Game::Game(int applicationWidth, int applicationHeight) :
         gameTime(GameBalance::gameTime),
         hutrieApplication(sf::VideoMode::getDesktopMode()/*(applicationWidth + 256, applicationHeight + 30 + 128, 32)*/, "The Hutries"
-         ,sf::Style::Fullscreen ),
+         /*,sf::Style::Fullscreen*/ ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
         world(&hutrieApplication, applicationWidth, applicationHeight)
 {
@@ -149,37 +149,34 @@ bool Game::menu()
     guiController->launchBigTitleThread();
     guiController->setMenuButtonsFlags(true);
     bool firstLoop = true;
-
     while (hutrieApplication.isOpen() && modelController->getChosenInteractionMode() == 0)
     {
         mouse->updateMouseLock();
-        //if (sf::Mouse::getPosition(hutrieApplication).x > 1024 )
         mouse->leftClickActions();
         sf::Event event;
         while (hutrieApplication.pollEvent(event))
         {
             keyboard->closeGame(event);
-            if (event.type == sf::Event::KeyPressed)
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
             {
-                return (event.key.code == sf::Keyboard::Space) ? true : false ;
+                world.createHutriesHall();
+                gameLogicController->assignHutriesHall();
+                return true;
             }
-           if(guiController->introFlag)
+        }
+        if(guiController->introFlag)
+        {
+            if (firstLoop)
             {
-               if (firstLoop)
-               {
-                    changeBackgroundMusic(Sound::introMusic);
-                    music.play();
-                    guiController->setMenuButtonsFlags(false);
-                    guiController->launchQuoteThread();
-                    firstLoop = false;
-               }
-               if (guiController->getDisplayHutriesHall())
-               {
-                  // world.createHutriesHall();
-               }
+                changeBackgroundMusic(Sound::introMusic);
+                music.play();
+                guiController->setMenuButtonsFlags(false);
+                guiController->launchQuoteThread();
+                firstLoop = false;
             }
         }
         guiController->displayMenu();
     };
+    gameLogicController->assignHutriesHall();
     return true;
 }

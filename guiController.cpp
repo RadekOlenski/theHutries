@@ -35,10 +35,10 @@ void GUIController::displayIntro()
     sf::sleep(sf::seconds(5));
     gui->startingText.text.setString(GameBalance::historyString2);
     sf::sleep(sf::seconds(5));
+    world->createHutriesHall();
     displayHutriesHall = true;
     gui->startingText.text.setPosition(200,550);
     gui->startingText.text.setString(GameBalance::historyString3);
-    displayHutriesHall = true;
     introFlag = false;
 }
 
@@ -51,12 +51,9 @@ void GUIController::handleMenuButtonsActions()
 {
     if (gui->playButton.checkBounds())
     {
-        //modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
         quote.text.setStyle(sf::Text::Italic);
         quote.text.setString(GameBalance::quoteString);
         introFlag = true;
-        //launchQuoteThread();
-        //displayIntro();
         Sound::click();
         return;
     }

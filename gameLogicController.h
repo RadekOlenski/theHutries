@@ -76,6 +76,9 @@ public:
     void callWorker(std::vector<Worker*>::iterator itc, GoodsBuilding* gBuilding, unsigned int unitIndex);
 
     void handleCarrierReturn();
+
+    void assignHutriesHall();
+
 private:
     World* world;
     sf::RenderWindow* hutrieApplication;

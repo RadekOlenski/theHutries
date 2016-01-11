@@ -3,7 +3,7 @@
 #include "textures.h"
 
 
-Soldier::Soldier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName) : Hutrie(hutrieApplication,unitsFromGame,pathName)
+Soldier::Soldier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, const std::vector<Unit*> &unitsForMoving, std::string pathName) : Hutrie(hutrieApplication,unitsFromGame,pathName)
 {
     title.text.setString("Warrior:");
 
@@ -16,4 +16,8 @@ void Soldier::moveHutrie()
 {
     occupyUnits();
     toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
+    //while(1)
+    //{
+	//
+    //}
 }

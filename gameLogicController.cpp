@@ -21,9 +21,13 @@ GameLogicController::GameLogicController(World*world, sf::RenderWindow*hutrieApp
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
     this->guiController = guiController;
-    hutriesHall = dynamic_cast <HutriesHall*>(world->buildings.at(0));
+
 }
 
+void GameLogicController::assignHutriesHall()
+{
+    hutriesHall = dynamic_cast <HutriesHall*>(world->buildings.at(0));
+}
 
 void GameLogicController::handleBuildingCreation()
 {
@@ -214,7 +218,7 @@ void GameLogicController::handleHutrieMoving()
     unsigned int unitIndex = modelController->getSelectedUnitIndex();
     std::vector<Unit*> usedUnits;
     usedUnits.push_back(world->units.at(unitIndex));
-    world->soldiers.push_back(new Warrior(hutrieApplication, usedUnits));
+    world->soldiers.push_back(new Warrior(hutrieApplication, usedUnits, world->units));
     world->hutries.push_back(world->soldiers.back());
     world->hutries.back()->hutrieThread.launch();                    //tworzy watek w ktorym porusza sie Hutrie
 }
@@ -481,7 +485,7 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
     else if (objectType == "warrior")
     {
         std::cout << "Utworze dla ciebie Warriora!" << std::endl;
-        world->warriors.push_back(new Warrior(hutrieApplication, usedUnits));
+        world->warriors.push_back(new Warrior(hutrieApplication, usedUnits, world->units));
         world->hutries.push_back(world->warriors.back());
         world->soldiers.push_back(world->warriors.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
@@ -490,7 +494,7 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
     else if (objectType == "archer")
     {
         std::cout << "Utworze dla ciebie Archera!" << std::endl;
-        world->archers.push_back(new Archer(hutrieApplication, usedUnits));
+        world->archers.push_back(new Archer(hutrieApplication, usedUnits, world->units));
         world->hutries.push_back(world->archers.back());
         world->soldiers.push_back(world->archers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
