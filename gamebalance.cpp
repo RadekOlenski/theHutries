@@ -8,6 +8,8 @@
     Goods GameBalance::farmCost (4,3);
     Goods GameBalance::archerCost (0,0,0,3);
     Goods GameBalance::warriorCost (0,0,0,5);
+    Goods GameBalance::workerCost (0,0,2,0);
+    Goods GameBalance::carrierCost (0,0,1,0);
 
     const double GameBalance::warriorQuotient = 0.8;
     const double GameBalance::archerQuotient = 0.8;

@@ -234,6 +234,23 @@ void GameLogicController::handleWorkerCreation()
 {
     if (hutriesHall->getTrainingWorkerFlag())
     {
+        if (hutriesHall->getFirstCheckFlag())
+        {
+            Goods worldGoods = world->availableGoods;
+            if (worldGoods - GameBalance::workerCost >= 0)
+            {
+                world->availableGoods = world -> availableGoods - GameBalance::workerCost;
+                guiController->updateGoodsNumber();
+                world->availableSlots--;
+            }
+            else
+            {
+                guiController->errorNotEnoughGoods();
+                hutriesHall->setTrainingWorkerFlag(false);
+                hutriesHall->updateStatus();
+            }
+            hutriesHall->setFirstCheckFlag(false);
+        }
         if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getWorkerTrainingTime())
         {
             std::string objectType = "worker";
@@ -241,6 +258,7 @@ void GameLogicController::handleWorkerCreation()
             createHutrie(objectType, unitIndex);
             hutriesHall->setTrainingWorkerFlag(false);
             hutriesHall->updateStatus();
+            hutriesHall->setFirstCheckFlag(true);
         }
         else
         {
@@ -279,6 +297,23 @@ void GameLogicController::handleCarrierCreation()
 {
     if (hutriesHall->getTrainingCarrierFlag())
     {
+        if (hutriesHall->getFirstCheckFlag())
+        {
+            Goods worldGoods = world->availableGoods;
+            if (worldGoods - GameBalance::carrierCost >= 0)
+            {
+                world->availableGoods = world -> availableGoods - GameBalance::carrierCost;
+                guiController->updateGoodsNumber();
+                world->availableSlots--;
+            }
+            else
+            {
+                guiController->errorNotEnoughGoods();
+                hutriesHall->setTrainingCarrierFlag(false);
+                hutriesHall->updateStatus();
+            }
+            hutriesHall->setFirstCheckFlag(false);
+        }
         if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
         {
             std::string objectType = "carrier";
@@ -286,6 +321,7 @@ void GameLogicController::handleCarrierCreation()
             createHutrie(objectType, unitIndex);
             hutriesHall->setTrainingCarrierFlag(false);
             hutriesHall->updateStatus();
+            hutriesHall->setFirstCheckFlag(true);
         }
         else
         {
@@ -472,7 +508,6 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
         world->hutries.push_back(world->carriers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
         world->carriers.back()->setBuilding(hutriesHall);
-        world->availableSlots--;
     }
     else if (objectType == "worker")
     {
@@ -480,7 +515,6 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
         world->workers.push_back(new Worker(hutrieApplication, usedUnits));
         world->hutries.push_back(world->workers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
-        world->availableSlots--;
     }
     else if (objectType == "warrior")
     {

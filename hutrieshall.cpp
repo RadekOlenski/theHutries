@@ -15,8 +15,12 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std:
           tWorker(1024 + 50, 605, 20, "Worker"),
 
           createCarrierButton(1024 + 140, 520, hutrieApplication, Textures::carrierDown, 90, 90),
-          tCarrier(1024 + 160, 605, 20, "Carrier")
+          tCarrier(1024 + 160, 605, 20, "Carrier"),
 
+          foodWorker(1024 + 105, 605, hutrieApplication, Textures::food, 25, 25),
+          tfoodWorker(1024 + 130, 605, 20, "3"),
+          foodCarrier(1024 + 215, 605, hutrieApplication, Textures::food, 25, 25),
+          tfoodCarrier(1024 + 240, 605, 20, "3")
           //tCarrier(1024 + 60, 510, 20, "Create Carrier"),
       //  tWorker(1024 + 70, 570, 20, "Create Worker")
 {
@@ -35,8 +39,11 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std:
     trainingWorker = false;
     trainingCarrier = false;
 
+    firstCheck = true;
     leftTrainingTime = 0;
     doorIndex = 6;
+
+    getHutriesCosts();
 }
 
 void HutriesHall::updateStatus()
@@ -59,7 +66,10 @@ void HutriesHall::showButtons()
     hutrieApplication->draw(createCarrierButton.button);
     hutrieApplication->draw(tWorker.text);
     hutrieApplication->draw(tCarrier.text);
-
+    hutrieApplication->draw(foodWorker.button);
+    hutrieApplication->draw(foodCarrier.button);
+    hutrieApplication->draw(tfoodWorker.text);
+    hutrieApplication->draw(tfoodCarrier.text);
 }
 
 void HutriesHall::deactivateButtons()
@@ -117,3 +127,14 @@ void HutriesHall::updateClock(int trainingTime)
     leftTrainingTime = trainingTime - trainingClock.getElapsedTime().asSeconds();
     if (leftTrainingTime < 0) leftTrainingTime = 0;
 }
+
+void HutriesHall::getHutriesCosts()
+{
+    std::ostringstream desc;
+    desc << GameBalance::workerCost.getFood();
+    tfoodWorker.text.setString(desc.str());
+    std::ostringstream desc1;
+    desc1 << GameBalance::carrierCost.getFood();
+    tfoodCarrier.text.setString(desc1.str());
+}
+

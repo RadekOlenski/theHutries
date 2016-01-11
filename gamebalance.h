@@ -20,13 +20,15 @@ class GameBalance
 
     static  Goods archerCost;
     static  Goods warriorCost;
+    static  Goods workerCost;
+    static  Goods carrierCost;
 
     //////////////////////////////////  GOODS   ///////////////////////////////////////////////////
 
-    const static unsigned int startingWood = 10;
-    const static unsigned int startingStone = 10;
-    const static unsigned int startingFood = 10;
-    const static unsigned int startingGold = 10;
+    const static unsigned int startingWood = 100;
+    const static unsigned int startingStone = 100;
+    const static unsigned int startingFood = 100;
+    const static unsigned int startingGold = 100;
 
     //////////////////////////////////  BUILDINGS ////////////////////////////////////////////
 

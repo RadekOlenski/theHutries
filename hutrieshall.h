@@ -51,6 +51,12 @@ public:
 
     void updateClock(int trainingTime);
 
+    void getHutriesCosts();
+
+    void setFirstCheckFlag(bool firstCheck) { this->firstCheck = firstCheck; };
+
+    bool getFirstCheckFlag() { return firstCheck; };
+
 private:
 
     unsigned int getAvailableWorkers();
@@ -62,6 +68,11 @@ private:
     GUIButton createCarrierButton;
     GUIText tCarrier;
     GUIText trainHutries;
+    GUIButton foodWorker;
+    GUIText tfoodWorker;
+    GUIButton foodCarrier;
+    GUIText tfoodCarrier;
+    bool firstCheck;
     bool makeWorkerFlag;
     bool makeCarrierFlag;
     bool trainingWorker;
