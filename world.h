@@ -15,46 +15,60 @@
 #include "building.h"
 #include "environment.h"
 #include "goods.h"
+
 class World
 {
-    public:
+public:
 
-        World(sf::RenderWindow *hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize = 64);
-        virtual ~World();
-        std::vector <Unit*> units;
-        std::vector <Hutrie*> hutries;
-        std::vector <Carrier*> carriers;
-        std::vector <Soldier*> soldiers;
-        std::vector <Warrior*> warriors;
-        std::vector <Archer*> archers;
-        std::vector <Worker*> workers;
-        std::vector <Building*> buildings;
-        std::vector <Environment*> environment;
-		std::vector<unsigned int> barracksIndex;
-        std::vector <int> goodsBuildingIndex;
-		std::vector<unsigned int> forestsIndex;
-		std::vector<unsigned int> rocksIndex;
-		std::vector<unsigned int> mountainsIndex;
-		Goods availableGoods;
-		int availableSlots;
-        Unit* lastClickedUnit;
-        int getHorizontalUnitsCounter() {return horizontalUnitsCounter; }
-        int getVerticalUnitsCounter()   {return verticalUnitsCounter; }
-        void prepareUnits(int unitIndex, int height, int width, std::vector <Unit*> *usedUnits );
-        bool isFieldEmpty(std::vector <Unit*> &usedUnits);
-		unsigned int findSelectedUnitIndex();
-		void increaseAvailableSlots(int addedSlotsNumber);
-		void createEnvironment();
-		void createHutriesHall();
+    World(sf::RenderWindow* hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize = 64);
+
+    virtual ~World();
+
+    std::vector<Unit*> units;
+    std::vector<Hutrie*> hutries;
+    std::vector<Carrier*> carriers;
+    std::vector<Soldier*> soldiers;
+    std::vector<Warrior*> warriors;
+    std::vector<Archer*> archers;
+    std::vector<Worker*> workers;
+    std::vector<Building*> buildings;
+    std::vector<Environment*> environment;
+    std::vector<unsigned int> barracksIndex;
+    std::vector<int> goodsBuildingIndex;
+    std::vector<unsigned int> forestsIndex;
+    std::vector<unsigned int> rocksIndex;
+    std::vector<unsigned int> mountainsIndex;
+    Goods availableGoods;
+    int availableSlots;
+    Unit* lastClickedUnit;
+
+    int getHorizontalUnitsCounter() { return horizontalUnitsCounter; }
+
+    int getVerticalUnitsCounter() { return verticalUnitsCounter; }
+
+    void prepareUnits(int unitIndex, int height, int width, std::vector<Unit*>* usedUnits);
+
+    bool isFieldEmpty(std::vector<Unit*> &usedUnits);
+
+    unsigned int findSelectedUnitIndex();
+
+    void increaseAvailableSlots(int addedSlotsNumber);
+
+    void createEnvironment();
+
+    void createHutriesHall();
 
 private:
 
-		void createForest();
-		void createMountains();
-		void createRocks();
-        int horizontalUnitsCounter;
-        int verticalUnitsCounter;
-        sf::RenderWindow *hutrieApplication;
+    void createForest();
+
+    void createMountains();
+
+    void createRocks();
+
+    int horizontalUnitsCounter;
+    int verticalUnitsCounter;
+    sf::RenderWindow* hutrieApplication;
 };
 
 #endif // WORLD_H

@@ -4,7 +4,6 @@
 #include <vector>
 
 
-
 #include <string>
 #include <SFML/Graphics.hpp>
 #include "world.h"
@@ -19,7 +18,8 @@ class GameLogicController
 
 public:
 
-    GameLogicController(World* world, sf::RenderWindow* hutrieApplication, ModelController* modelController, GUIController* guiController);
+    GameLogicController(World* world, sf::RenderWindow* hutrieApplication, ModelController* modelController,
+                        GUIController* guiController);
 
     void createBuilding(std::vector<Unit*> usedUnits);
 
@@ -27,7 +27,7 @@ public:
 
     void createStonecutterHut(std::vector<Unit*> usedUnits);
 
-    void createGoldmine(std::vector<Unit *> usedUnits);
+    void createGoldmine(std::vector<Unit*> usedUnits);
 
     void constructBuilding();
 
@@ -57,7 +57,7 @@ public:
 
     void handleSoldierCreation();
 
-    void handleWarriorCreation(unsigned int unitindex);
+    void handleWarriorCreation(unsigned int unitIndex);
 
     void handleArcherCreation(unsigned int unitIndex);
 
@@ -69,11 +69,11 @@ public:
 
     void needCarrier(std::vector<Building*>::iterator it);
 
-    void callCarrier(std::vector<Carrier*>::iterator itc, std::vector<Building*>::iterator it, unsigned int unitIndex);
+    void callCarrier(std::vector<Carrier*>::iterator itc, std::vector<Building*>::iterator it);
 
     void needWorker(std::vector<Building*>::iterator it);
 
-    void callWorker(std::vector<Worker*>::iterator itc, GoodsBuilding* gBuilding, unsigned int unitIndex);
+    void callWorker(std::vector<Worker*>::iterator itc, GoodsBuilding* gBuilding);
 
     void handleCarrierReturn();
 

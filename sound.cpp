@@ -1,6 +1,4 @@
 #include "sound.h"
-#include <string>
-#include <iostream>
 
 using namespace std;
 
@@ -31,7 +29,7 @@ const string Sound::construction = "audio/construction.flac";
 
 void Sound::setSoundBuffer()
 {
-   sound.setBuffer(soundBuffer);
+    sound.setBuffer(soundBuffer);
 }
 
 void Sound::error()

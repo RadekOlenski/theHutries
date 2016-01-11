@@ -11,7 +11,7 @@ class StoneCutter : public GoodsBuilding
 {
 public:
 
-    StoneCutter(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame);
+    StoneCutter(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame);
 
     void createProduct();
 
@@ -25,7 +25,7 @@ public:
 
     float getConstructionTime() { return constructionTime; };
 
-    void updateConstructionClock(int fulltime);
+    void updateConstructionClock(int fullTime);
 
     void setConstructedBuildingSound();
 

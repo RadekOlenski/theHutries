@@ -94,9 +94,9 @@ public:
 
     void errorMustBuildOnMountain();
 
-    bool getIntroFlag() {return introFlag;};
+    bool getIntroFlag() { return introFlag; };
 
-    bool getReadyForGame () {return readyForGame;};
+    bool getReadyForGame() { return readyForGame; };
 
     void countScreenZoomValues();
 

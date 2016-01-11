@@ -18,15 +18,11 @@ public:
 
     sf::Thread hutrieThread;
 
-    Hutrie(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName);
+    Hutrie(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName);
 
     virtual void moveHutrie() = 0;
 
     void updateStatus();
-
-    bool isActive() { return active; }
-
-    void setActive(bool active) { this->active = active; }
 
     bool isBusy() { return busy; }
 
@@ -34,7 +30,6 @@ public:
 
 protected:
 
-    sf::Texture textureBasic;
     sf::Texture upTexture;
     sf::Texture downTexture;
     sf::Texture leftTexture;
@@ -46,7 +41,6 @@ protected:
     int strength;
     int agility;
     int endurance;
-    bool active;
 };
 
 #endif // HUTRIE_H

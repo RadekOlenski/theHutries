@@ -1,4 +1,3 @@
-#include <iostream>
 #include "gameModel.h"
 #include "modelController.h"
 
@@ -51,7 +50,7 @@ void ModelController::setApplicationHeight(int applicationHeight)
 
 unsigned int ModelController::getSelectedUnitIndex()
 {
-    gameModel->getSelectedUnitIndex();
+    return gameModel->getSelectedUnitIndex();
 }
 
 void ModelController::setSelectedUnitIndex(unsigned int selectedUnitIndex)

@@ -11,17 +11,13 @@
 
 class Worker : public Hutrie
 {
-    public:
+public:
 
-        Worker(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame,  std::string pathName = Textures::workerRight);
-        void moveHutrie();
-        bool haveArrived () {return arrived;};
-        void setArrived (bool arrived) {this->arrived = arrived;};
-        sf::Clock productionClock;
+    Worker(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame,
+           std::string pathName = Textures::workerRight);
 
-    private:
-
-        bool arrived;
+    void moveHutrie();;;
+    sf::Clock productionClock;
 };
 
 #endif // WORKER_H

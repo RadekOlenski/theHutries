@@ -1,11 +1,11 @@
 #include "hutrieshall.h"
 #include "sound.h"
 
-#include <cstdlib>
 #include <sstream>
 #include <iostream>
 
-HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std::vector<Unit*> unitsFromGame, std::string pathName)
+HutriesHall::HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std::vector<Unit*> unitsFromGame,
+                         std::string pathName)
         : Building(hutrieApplication, unitsFromGame, pathName),
         //createCarrierButton(1024 + 40, 500, hutrieApplication, 150, 45),
         //createWorkerButton(1024 + 40, 560, hutrieApplication, 150, 45),
@@ -21,8 +21,8 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std:
           tfoodWorker(1024 + 130, 605, 20, "3"),
           foodCarrier(1024 + 215, 605, hutrieApplication, Textures::food, 25, 25),
           tfoodCarrier(1024 + 240, 605, 20, "3")
-          //tCarrier(1024 + 60, 510, 20, "Create Carrier"),
-      //  tWorker(1024 + 70, 570, 20, "Create Worker")
+//tCarrier(1024 + 60, 510, 20, "Create Carrier"),
+//  tWorker(1024 + 70, 570, 20, "Create Worker")
 {
     this->world = world;
     title.text.setString("Hutries Hall:");
@@ -49,12 +49,12 @@ HutriesHall::HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std:
 void HutriesHall::updateStatus()
 {
     std::ostringstream desc;
-    desc << "Training finish in " <<  leftTrainingTime
+    desc << "Training finish in " << leftTrainingTime
     << " sec.\nWorkers during training: " << trainingWorker
     << "\nCarriers during training: " << trainingCarrier
     << "\nAvailable Workers: " << getAvailableWorkers()
     << "\nAvailable Carriers: " << getAvailableCarriers();
-    description.text.setString (desc.str() );
+    description.text.setString(desc.str());
 }
 
 void HutriesHall::showButtons()
@@ -102,7 +102,7 @@ unsigned int HutriesHall::getAvailableWorkers()
     {
         if (!((*itw)->isBusy()))
         {
-            workersCounter ++;
+            workersCounter++;
         }
     }
     return workersCounter;
@@ -116,7 +116,7 @@ unsigned int HutriesHall::getAvailableCarriers()
     {
         if (!((*itc)->isBusy()))
         {
-            carriersCounter ++;
+            carriersCounter++;
         }
     }
     return carriersCounter;
@@ -124,7 +124,7 @@ unsigned int HutriesHall::getAvailableCarriers()
 
 void HutriesHall::updateClock(int trainingTime)
 {
-    leftTrainingTime = trainingTime - trainingClock.getElapsedTime().asSeconds();
+    leftTrainingTime = (unsigned int) (trainingTime - trainingClock.getElapsedTime().asSeconds());
     if (leftTrainingTime < 0) leftTrainingTime = 0;
 }
 

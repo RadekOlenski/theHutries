@@ -1,9 +1,8 @@
 #include "farm.h"
 #include "sound.h"
-#include "textures.h"
 #include <sstream>
 
-Farm::Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame)
+Farm::Farm(sf::RenderWindow* hutrieApplication, const std::vector<Unit*> &unitsFromGame)
         : GoodsBuilding(hutrieApplication, unitsFromGame)
 {
     title.text.setString("Farm:");
@@ -19,29 +18,29 @@ Farm::Farm(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &units
 
 void Farm::updateStatus()
 {
-    if(buildingConstructed)
+    if (buildingConstructed)
     {
         std::ostringstream desc;
-        desc <<  "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
+        desc << "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
         myCarriers.size() << "\nProducts in store: " << myProducts.getFood() << "/" << productsCapacity;
         description.text.setString(desc.str());
     }
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " <<  leftConstructionTime  << " sec.";
-        description.text.setString (desc.str() );
+        desc << "Construction finish in " << leftConstructionTime << " sec.";
+        description.text.setString(desc.str());
     }
 }
 
 void Farm::createProduct()
 {
-    myProducts.setProduct(3,1);
+    myProducts.setProduct(3, 1);
 }
 
-void Farm::updateConstructionClock(int fulltime)
+void Farm::updateConstructionClock(int fullTime)
 {
-    leftConstructionTime = (unsigned int) (fulltime - constructionTimeClock.getElapsedTime().asSeconds());
+    leftConstructionTime = (unsigned int) (fullTime - constructionTimeClock.getElapsedTime().asSeconds());
     if (leftConstructionTime < 0) leftConstructionTime = 0;
 }
 

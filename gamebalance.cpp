@@ -1,32 +1,30 @@
 #include "gamebalance.h"
 
-    Goods GameBalance::sawmillCost(3,3);
-    Goods GameBalance::stonecutterhutCost (3,3);
-    Goods GameBalance::barracksCost (3,5);
-    Goods GameBalance::residenceCost (5,3);
-    Goods GameBalance::goldmineCost (3,4);
-    Goods GameBalance::farmCost (4,3);
-    Goods GameBalance::archerCost (0,0,0,3);
-    Goods GameBalance::warriorCost (0,0,0,5);
-    Goods GameBalance::workerCost (0,0,2,0);
-    Goods GameBalance::carrierCost (0,0,1,0);
+Goods GameBalance::sawmillCost(3, 3);
+Goods GameBalance::stonecutterhutCost(3, 3);
+Goods GameBalance::barracksCost(3, 5);
+Goods GameBalance::residenceCost(5, 3);
+Goods GameBalance::goldmineCost(3, 4);
+Goods GameBalance::farmCost(4, 3);
+Goods GameBalance::archerCost(0, 0, 0, 3);
+Goods GameBalance::warriorCost(0, 0, 0, 5);
+Goods GameBalance::workerCost(0, 0, 2, 0);
+Goods GameBalance::carrierCost(0, 0, 1, 0);
 
-    const double GameBalance::warriorQuotient = 0.8;
-    const double GameBalance::archerQuotient = 0.8;
-    const double GameBalance::winResult = 6;
-    const double GameBalance::carrierTrainingTime = 0.3;
-    const double GameBalance::workerTrainingTime = 0.5;
+const double GameBalance::warriorQuotient = 0.8;
+const double GameBalance::archerQuotient = 0.8;
+const double GameBalance::winResult = 6;
 
-    //////////////////////////////////  CONSTRUCTION TIME    //////////////////////////////////////
+//////////////////////////////////  CONSTRUCTION TIME    //////////////////////////////////////
 
-    const float GameBalance::barracksConstructionTime = 2;
-    const float GameBalance::residenceConstructionTime = 2;
-    const float GameBalance::sawmillConstructionTime = 2;
-    const float GameBalance::stonecutterHutConstructionTime = 2;
-    const float GameBalance::farmConstructionTime = 2;
-    const float GameBalance::goldmineConstructionTime = 2;
+const float GameBalance::barracksConstructionTime = 2;
+const float GameBalance::residenceConstructionTime = 2;
+const float GameBalance::sawmillConstructionTime = 2;
+const float GameBalance::stonecutterHutConstructionTime = 2;
+const float GameBalance::farmConstructionTime = 2;
+const float GameBalance::goldmineConstructionTime = 2;
 
-    //////////////////////////////////  MENU STRINGS    ///////////////////////////////////////////
+//////////////////////////////////  MENU STRINGS    ///////////////////////////////////////////
 
     std::string GameBalance::aboutString ( "Created by: Marcin Jozwik\n              Radoslaw Olenski\n      Year: 2015\n   Version: 0.9.9.8\n\n Project for Object Oriented Programming Credit");
     std::string GameBalance::howToPlayString ("Mini tutorial");

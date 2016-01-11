@@ -6,19 +6,19 @@
 GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width) :
 
         startingText(160, 320, 40, ""),
-        skipText(830,10, 25, ""),
+        skipText(830, 10, 25, ""),
         playButton(1024 + 45, 200, hutrieApplication, 170, 80, false),
         playText  (1024 + 70, 210, 50, "Play"),
         howToPlayButton(1024 + 45, 320, hutrieApplication, 170, 160, false),
         howToPlayText  (1024 + 60, 330, 50, "How to \n play"),
         aboutButton(1024 + 45, 500, hutrieApplication, 170, 80, false),
-        aboutText  (1024 + 70, 510, 50, "About"),
+        aboutText(1024 + 70, 510, 50, "About"),
         exitButton(mapWidth, mapHeight, hutrieApplication, width, 128 + 30, false),
-        exitText  (1024 + 90,mapHeight + 50, 50, "Exit"),
+        exitText(1024 + 90, mapHeight + 50, 50, "Exit"),
 
         guiFrame(sf::Vector2f(width, mapHeight)),
         errorFrame(sf::Vector2f(width, 128 + 30)),
-        errorInfo(mapWidth + 20 , mapHeight + 50, 20, ""),
+        errorInfo(mapWidth + 20, mapHeight + 50, 20, ""),
         messageBox(mapWidth + 60, mapHeight + 10, 25, "Message Box:"),
 
         buildButton(mapWidth + 60, 100, hutrieApplication, Textures::buildButton),
@@ -53,7 +53,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         tFarm(mapWidth + 40, 420, 20, "Farm"),
         woodFarm(mapWidth + 35, 290 + 160, hutrieApplication, Textures::wood, 25, 25),
         twoodFarm(mapWidth + 60, 290 + 160, 20, "3"),
-        stoneFarm(mapWidth + 80, 290 + 160,  hutrieApplication, Textures::stone, 25, 25),
+        stoneFarm(mapWidth + 80, 290 + 160, hutrieApplication, Textures::stone, 25, 25),
         tstoneFarm(mapWidth + 105, 290 + 160, 20, "3"),
 
         goldmine(mapWidth + 150, 330, hutrieApplication, Textures::goldmineGUI, 90, 90),
@@ -89,8 +89,6 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         tArchers(mapWidth + 150, 560, 30, "2")
 {
 
-    this->width = width;
-    height = mapHeight;
     this->hutrieApplication = hutrieApplication;
 
     guiFrame.setPosition(mapWidth, 0);
@@ -233,7 +231,7 @@ void GUI::setBuildingsCosts()
     tstoneGoldmine.text.setString(desc7.str());
 
     std::ostringstream desc8;
-    desc8<< GameBalance::residenceCost.getWood();
+    desc8 << GameBalance::residenceCost.getWood();
     twoodResidence.text.setString(desc8.str());
     std::ostringstream desc9;
     desc9 << GameBalance::residenceCost.getStone();
@@ -261,6 +259,7 @@ void GUI::displayEndingText(bool win)
     }
 
 }
+
 void GUI::displayMenu()
 {
     hutrieApplication->draw(guiFrame);

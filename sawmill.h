@@ -11,7 +11,7 @@ class Sawmill : public GoodsBuilding
 {
 public:
 
-    Sawmill(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame);
+    Sawmill(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame);
 
     void createProduct();
 
@@ -25,7 +25,7 @@ public:
 
     float getConstructionTime() { return constructionTime; };
 
-    void updateConstructionClock(int fulltime);
+    void updateConstructionClock(int fullTime);
 
     void setConstructedBuildingSound();
 
@@ -34,7 +34,6 @@ private:
     unsigned int leftConstructionTime;
     const float constructionTime = GameBalance::sawmillConstructionTime;
     sf::Clock constructionTimeClock;
-    std::string goodType;
 };
 
 #endif // SAWMILL_H

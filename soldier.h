@@ -11,14 +11,16 @@
 
 class Soldier : public Hutrie
 {
-    public:
+public:
 
-        Soldier(sf::RenderWindow *hutrieApplication, const std::vector <Unit*> unitsFromGame, std::vector<Unit*> unitsForMoving, std::string pathName);
-        void moveHutrie();
+    Soldier(sf::RenderWindow* hutrieApplication, const std::vector<Unit*> unitsFromGame,
+            std::vector<Unit*> unitsForMoving, std::string pathName);
 
-    protected:
+    void moveHutrie();
 
-        std::vector <Unit*> unitsForMoving;
+protected:
+
+    std::vector<Unit*> unitsForMoving;
 };
 
 #endif // SOLDIER_H

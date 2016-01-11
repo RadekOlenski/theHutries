@@ -2,12 +2,9 @@
 #include "interactionMode.h"
 #include "buildingType.h"
 #include "keyboard.h"
-#include "sound.h"
-#include <iostream>
 
-Keyboard::Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController/*, World* world*/)
+Keyboard::Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController)
 {
-//    this->world = world;
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
 }

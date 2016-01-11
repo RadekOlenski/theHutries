@@ -6,17 +6,16 @@
 #include "forest.h"
 #include "mountain.h"
 #include "rocks.h"
-#include "gamebalance.h"
 
-World::World(sf::RenderWindow*hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize)
+World::World(sf::RenderWindow* hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize)
         : lastClickedUnit(NULL)
 {
     this->hutrieApplication = hutrieApplication;
-    availableSlots = GameBalance::startingHutrieSlots; ;                            //wartosc startowa bez zadnej rezydencji
-    availableGoods.setProduct(1,GameBalance::startingWood);                //poczatkowe wartosci surowcow
-    availableGoods.setProduct(2,GameBalance::startingStone);
-    availableGoods.setProduct(3,GameBalance::startingFood);
-    availableGoods.setProduct(4,GameBalance::startingGold);
+    availableSlots = GameBalance::startingHutrieSlots;;                            //wartosc startowa bez zadnej rezydencji
+    availableGoods.setProduct(1, GameBalance::startingWood);                //poczatkowe wartosci surowcow
+    availableGoods.setProduct(2, GameBalance::startingStone);
+    availableGoods.setProduct(3, GameBalance::startingFood);
+    availableGoods.setProduct(4, GameBalance::startingGold);
 
     /////////////////////////// HOW MANY RECTANGLES IN X AND Y DIRECTION//////////////////////////////////////////////////////
 
@@ -70,7 +69,7 @@ void World::createEnvironment()
     createRocks();
 }
 
-void World::prepareUnits(int unitIndex, int height, int width, std::vector<Unit*>*usedUnits)
+void World::prepareUnits(int unitIndex, int height, int width, std::vector<Unit*>* usedUnits)
 {
     std::vector<int> field;
     for (int i = 0; i < height; i++)
@@ -112,6 +111,7 @@ unsigned int World::findSelectedUnitIndex()
             return (unsigned int) std::distance(this->units.begin(), it);
         }
     }
+    return 0;
 }
 
 void World::increaseAvailableSlots(int addedSlotsNumber)
@@ -250,20 +250,23 @@ World::~World()
 
 
     std::vector<Hutrie*>::iterator ithutries;
-    for (ithutries = hutries.begin(); ithutries != hutries.end(); ++ithutries) {
-    delete (*ithutries);
+    for (ithutries = hutries.begin(); ithutries != hutries.end(); ++ithutries)
+    {
+        delete (*ithutries);
     }
     std::cout << "Koniec Hutrie" << std::endl;
 
     std::vector<Building*>::iterator itbuildings;
-    for (itbuildings = buildings.begin(); itbuildings != buildings.end(); ++itbuildings) {
-    delete (*itbuildings);
+    for (itbuildings = buildings.begin(); itbuildings != buildings.end(); ++itbuildings)
+    {
+        delete (*itbuildings);
     }
     std::cout << "Koniec Building" << std::endl;
 
     std::vector<Environment*>::iterator itenvironment;
-    for (itenvironment = environment.begin(); itenvironment != environment.end(); ++itenvironment) {
-    delete (*itenvironment);
+    for (itenvironment = environment.begin(); itenvironment != environment.end(); ++itenvironment)
+    {
+        delete (*itenvironment);
     }
     std::cout << "Koniec Enviroment" << std::endl;
 

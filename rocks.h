@@ -10,7 +10,9 @@ class Rocks : public Environment
 
 public:
 
-    Rocks(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame, std::string pathName = Textures::rocks);
+    Rocks(sf::RenderWindow* hutrieApplication, const std::vector<Unit*> &unitsFromGame,
+          std::string pathName = Textures::rocks);
+
     void updateStatus();
 };
 

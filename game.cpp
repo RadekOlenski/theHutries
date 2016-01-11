@@ -5,23 +5,23 @@
 #include "keyboard.h"
 #include "gameLogicController.h"
 #include "game.h"
-#include "gamebalance.h"
 
 //=================================================================================
 //                              CONSTRUCTOR
 //=================================================================================
-Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZoom, float verticalScreenZoom, bool fullscreen) :
-        gameTime(GameBalance::gameTime),
-        hutrieApplication(sf::VideoMode::getDesktopMode(), "The Hutries",sf::Style::Fullscreen ),
-        gui(applicationWidth, applicationHeight, &hutrieApplication),
-        world(&hutrieApplication, applicationWidth, applicationHeight)
+Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZoom, float verticalScreenZoom, bool fullscreen)
+        : gameTime(GameBalance::gameTime),
+          hutrieApplication(sf::VideoMode::getDesktopMode(), "The Hutries", sf::Style::Fullscreen),
+          gui(applicationWidth, applicationHeight, &hutrieApplication),
+          world(&hutrieApplication, applicationWidth, applicationHeight)
 {
     //-----------------------------CREATING BASIC APPLICATION OBJECTS---------------------------------------------//
     if (!fullscreen) hutrieApplication.create(sf::VideoMode::getDesktopMode(), "The Hutries");
     ModelController* modelController = new ModelController();
     GUIController* guiController = new GUIController(&hutrieApplication, modelController, &world, &gui);
-    GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController, guiController);
-    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController/*, &world*/);
+    GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController,
+                                                                       guiController);
+    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
     Mouse* mouse = new Mouse(&hutrieApplication, modelController, gameLogicController);
     //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES-----------------------------------------//
     this->modelController = modelController;
@@ -38,7 +38,6 @@ Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZo
 
     /////////////////////////// CREATING GAME WINDOW AND GUI //////////////////////////////////////////////////////
 
-    //sf::RenderWindow hutrieApplication( sf::VideoMode::getDesktopMode(), "The Hutries",sf::Style::Fullscreen );
     hutrieApplication.setFramerateLimit(60);
 
     guiController->createBackground();
@@ -95,7 +94,7 @@ void Game::handleActions()
 
 void Game::changeBackgroundMusic(std::string musicPath)
 {
-    for ( int i = 100; i > 0; i--)
+    for (int i = 100; i > 0; i--)
     {
         music.setVolume(i);
         sf::sleep(sf::milliseconds(5));
@@ -113,15 +112,16 @@ void Game::drawApplication()
 void Game::updateClock()
 {
     std::ostringstream newTime;
-    int time = gameTime - deadline.getElapsedTime().asSeconds();
+    int time = (int) (gameTime - deadline.getElapsedTime().asSeconds());
     newTime << time / 60 << ":" << time % 60;
     gui.timeLeft.text.setString(newTime.str());
 }
 
 bool Game::getResult()
 {
-    double result = world.archers.size() * GameBalance::archerQuotient + world.warriors.size() * GameBalance::warriorQuotient;
-    return (result >= GameBalance::winResult) ? true : false;
+    double result =
+            world.archers.size() * GameBalance::archerQuotient + world.warriors.size() * GameBalance::warriorQuotient;
+    return result >= GameBalance::winResult;
 }
 
 void Game::gameOver(bool win)
@@ -166,7 +166,7 @@ bool Game::menu()
                 return true;
             }
         }
-        if(guiController->getIntroFlag())
+        if (guiController->getIntroFlag())
         {
             if (firstLoop)
             {
@@ -179,7 +179,7 @@ bool Game::menu()
         }
         guiController->displayMenu();
     };
-    if(guiController->getReadyForGame()) gameLogicController->assignHutriesHall();
+    if (guiController->getReadyForGame()) gameLogicController->assignHutriesHall();
     return true;
 }
 

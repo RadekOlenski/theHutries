@@ -1,11 +1,10 @@
 #include "unit.h"
 #include "soldier.h"
-#include "textures.h"
-#include <cstdlib>
-#include <ctime>
 
 
-Soldier::Soldier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::vector<Unit*> unitsForMoving, std::string pathName) : Hutrie(hutrieApplication,unitsFromGame,pathName)
+Soldier::Soldier(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame,
+                 std::vector<Unit*> unitsForMoving, std::string pathName)
+        : Hutrie(hutrieApplication, unitsFromGame, pathName)
 {
     title.text.setString("Warrior:");
 
@@ -30,10 +29,11 @@ void Soldier::moveHutrie()
     {
         do
         {
-            unitNumber = rand() % 160;
+            unitNumber = (unsigned int) (rand() % 160);
         }
         while (!(unitsForMoving.at(unitNumber)->isEmpty()));
-        toDirection(unitsForMoving.at(unitNumber)->field.getPosition().x, unitsForMoving.at(unitNumber)->field.getPosition().y );
+        toDirection(unitsForMoving.at(unitNumber)->field.getPosition().x,
+                    unitsForMoving.at(unitNumber)->field.getPosition().y);
         sf::sleep(sf::seconds(rand() % 6));
     }
 }

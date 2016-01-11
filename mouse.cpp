@@ -4,10 +4,10 @@
 #include "interactionMode.h"
 
 
-Mouse::Mouse(sf::RenderWindow*hutrieApplication, ModelController*modelController,
-             GameLogicController*gameLogicController)
+Mouse::Mouse(sf::RenderWindow* hutrieApplication, ModelController* modelController,
+             GameLogicController* gameLogicController)
 {
-    MouseLock*mouseLock = new MouseLock();
+    MouseLock* mouseLock = new MouseLock();
     this->mouseLock = mouseLock;
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
@@ -26,7 +26,8 @@ void Mouse::leftClickActions()
         int applicationHeight = modelController->getApplicationHeight();
         if (sf::Mouse::getPosition(*hutrieApplication).x < applicationWidth &&
             sf::Mouse::getPosition(*hutrieApplication).y > 64 &&
-            sf::Mouse::getPosition(*hutrieApplication).y < applicationHeight + 64)         //jesli klikniecie w obrebie mapy
+            sf::Mouse::getPosition(*hutrieApplication).y <
+            applicationHeight + 64)         //jesli klikniecie w obrebie mapy
         {
             gameLogicController->endHighlightUnit();
 
@@ -40,21 +41,6 @@ void Mouse::leftClickActions()
     }
 }
 
-void Mouse::rightClickActions()
-{
-    if (mouseLock->getIsLocked())
-    {
-        return;
-    }
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
-    {
-        //sf::Vector2f distance = gui.guiFrame.getPosition() - static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication));
-        //std::cout << distance.x << "," << distance.y << std::endl;
-        //fixed.setCenter(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication)));
-        //gui.guiFrame.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(hutrieApplication))+distance);
-    }
-}
-
 void Mouse::updateMouseLock()
 {
     mouseLock->update();
@@ -62,16 +48,6 @@ void Mouse::updateMouseLock()
 
 void Mouse::handleClickOnMap()
 {
-/*
-    if (chosenInteractionMode == 1 && !(world.units.at( unitIndex )->isEmpty()))    //poruszanie Hutrim do budynku
-    {
-        std::vector <Unit*> usedUnits;
-        usedUnits.push_back(world.units.at(unitIndex));
-        world.hutries.push_back(new Worker(&hutrieApplication, usedUnits,"sprites/worker/right.png" ));
-        world.hutries.back()->hutrieThread.launch();                         //tworzy watek w ktorym porusza sie Hutrie
-        world.units.at(unitIndex)->addHutrie(world.hutries.back());
-    }
-*/
     if (gameLogicController->isUnitEmpty())                                                 //jesli unit jest wolny, bez zadnego mapobjectu
     {
         switch (modelController->getChosenInteractionMode()) //BUTTONS F1,F2,F3 OR GUIBUTTONS

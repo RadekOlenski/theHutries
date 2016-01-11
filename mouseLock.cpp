@@ -7,7 +7,6 @@ MouseLock::MouseLock()
 {
     MouseLock::isLocked = false;
     MouseLock::hasLeftBeenPressed = false;
-    MouseLock::hasRightBeenPressed = false;
 }
 
 bool MouseLock::getIsLocked()

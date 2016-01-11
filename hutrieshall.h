@@ -17,7 +17,8 @@ class HutriesHall : public Building
 {
 public:
 
-    HutriesHall(sf::RenderWindow *hutrieApplication, World *world, std::vector<Unit *> unitsFromGame, std::string pathName = Textures::hutriesHall);
+    HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std::vector<Unit*> unitsFromGame,
+                std::string pathName = Textures::hutriesHall);
 
     void updateStatus();
 
@@ -84,7 +85,7 @@ private:
 
     unsigned int leftTrainingTime;
 
-    World *world;
+    World* world;
 };
 
 #endif // HUTRIESHALL_H

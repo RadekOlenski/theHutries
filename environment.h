@@ -10,7 +10,8 @@
 class Environment : public MapObject
 {
 public:
-    Environment(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame, std::string pathName);
+    Environment(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName);
+
     virtual void updateStatus() { };
 
 };

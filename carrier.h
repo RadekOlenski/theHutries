@@ -11,27 +11,34 @@
 #include "textures.h"
 
 class Building;
+
 class Carrier : public Hutrie
 {
-    public:
-        Carrier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::string pathName = Textures::carrierRight, bool onBuilding = true);
-        void moveHutrie();
-        bool haveArrived () {return arrived;};
-        void setArrived (bool arrived) {this->arrived = arrived;};
-        bool haveReturned () {return returned;};
-        void setReturned (bool returned) {this->returned = returned;};
-        void comeBack();
-        Goods getMyLuggage() {return myLuggage;};
-        sf::Thread carrierThread;
-        Goods myLuggage;
-        Building* getBuilding() {return myBuilding;};
-        void setBuilding (Building* newBuilding) {myBuilding = newBuilding;};
+public:
+    Carrier(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame,
+            std::string pathName = Textures::carrierRight);
 
-    private:
+    void moveHutrie();
 
-        Building* myBuilding;
-        bool arrived;
-        bool returned;
+    bool haveArrived() { return arrived; };;
+
+    bool haveReturned() { return returned; };
+
+    void setReturned(bool returned) { this->returned = returned; };
+
+    void comeBack();;
+    sf::Thread carrierThread;
+    Goods myLuggage;
+
+    Building* getBuilding() { return myBuilding; };
+
+    void setBuilding(Building* newBuilding) { myBuilding = newBuilding; };
+
+private:
+
+    Building* myBuilding;
+    bool arrived;
+    bool returned;
 
 };
 

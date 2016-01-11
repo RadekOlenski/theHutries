@@ -16,7 +16,6 @@ private:
 
     bool isLocked;
     bool hasLeftBeenPressed;
-    bool hasRightBeenPressed;
 };
 
 

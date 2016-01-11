@@ -8,10 +8,14 @@ class GUIText
 {
 public:
 
-    GUIText(int positionX, int positionY, int characterSize, std::string displayedText = "",  sf::Color color = sf::Color::Black );
-    sf:: Text text;
+    GUIText(int positionX, int positionY, int characterSize, std::string displayedText = "",
+            sf::Color color = sf::Color::Black);
+
+    sf::Text text;
     sf::Font font;
+
     void display();
+
     void animation();
 };
 

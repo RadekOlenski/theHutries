@@ -10,7 +10,7 @@ class GUI
 {
 public:
 
-    GUI(int mapWidth,int mapHeight, sf::RenderWindow *hutrieApplication, int width = 256);
+    GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width = 256);
 
     /////////////////////////////// MENU    ///////////////////////////////////////////////////
 
@@ -40,41 +40,41 @@ public:
     /////////////////////////////// BUILDINGS SECTION //////////////////////////////////////////
 
     GUIButton sawmill;
-    GUIText   tSawmill;
+    GUIText tSawmill;
     GUIButton woodSawmill;
-    GUIText   twoodSawmill;
+    GUIText twoodSawmill;
     GUIButton stoneSawmill;
-    GUIText   tstoneSawmill;
+    GUIText tstoneSawmill;
     GUIButton barracks;
-    GUIText   tBarracks;
+    GUIText tBarracks;
     GUIButton woodBarracks;
-    GUIText   twoodBarracks;
+    GUIText twoodBarracks;
     GUIButton stoneBarracks;
-    GUIText   tstoneBarracks;
+    GUIText tstoneBarracks;
     GUIButton residence;
-    GUIText   tResidence;
+    GUIText tResidence;
     GUIButton woodResidence;
-    GUIText   twoodResidence;
+    GUIText twoodResidence;
     GUIButton stoneResidence;
-    GUIText   tstoneResidence;
+    GUIText tstoneResidence;
     GUIButton stonecutter;
-    GUIText   tStonecutter;
+    GUIText tStonecutter;
     GUIButton woodStonecutter;
-    GUIText   twoodStonecutter;
+    GUIText twoodStonecutter;
     GUIButton stoneStonecutter;
-    GUIText   tstoneStonecutter;
+    GUIText tstoneStonecutter;
     GUIButton goldmine;
-    GUIText   tGoldmine;
+    GUIText tGoldmine;
     GUIButton woodGoldmine;
-    GUIText   twoodGoldmine;
+    GUIText twoodGoldmine;
     GUIButton stoneGoldmine;
-    GUIText   tstoneGoldmine;
+    GUIText tstoneGoldmine;
     GUIButton farm;
-    GUIText   tFarm;
+    GUIText tFarm;
     GUIButton woodFarm;
-    GUIText   twoodFarm;
+    GUIText twoodFarm;
     GUIButton stoneFarm;
-    GUIText   tstoneFarm;
+    GUIText tstoneFarm;
 
     /////////////////////////////// HUTRIES SECTION //////////////////////////////////////////
 
@@ -92,8 +92,11 @@ public:
     //////////////////////////////// DRAWING FUNCTIONS /////////////////////////////////////////
 
     void displayGUI();
+
     void displayGUIBuildings();
+
     void displayMenu();
+
     void displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int warriorSize, int archerSize);
 
     /////////////////////////////////////ENDING ////////////////////////////////////////////////
@@ -104,9 +107,7 @@ private:
 
     //////////////////////////// GENERAL //////////////////////////////////////////////////////
 
-    sf::RenderWindow *hutrieApplication;
-    int width;
-    int height;
+    sf::RenderWindow* hutrieApplication;
 
 
     ////////////////////////////// GRAPHICS ///////////////////////////////////////////////////
@@ -114,6 +115,7 @@ private:
     sf::RectangleShape guiFrame;
     sf::RectangleShape errorFrame;
     sf::Texture texture;
+
     void setBuildingsCosts();
 
     /////////////////////////////// DOWN BAR //////////////////////////////////////////////////

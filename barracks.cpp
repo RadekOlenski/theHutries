@@ -3,24 +3,22 @@
 #include <sstream>
 #include <iostream>
 #include "sound.h"
-#include "gamebalance.h"
 
 
-Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame)
-        : Building(hutrieApplication,unitsFromGame),
+Barracks::Barracks(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame)
+        : Building(hutrieApplication, unitsFromGame),
 
           trainHutries(1024 + 65, 440, 25, "Train Hutries:"),
 
           createArcherButton(1024 + 140, 470, hutrieApplication, Textures::archerDown, 90, 90),
           textArcher(1024 + 160, 555, 20, "Archer"),
           goldArcher(1024 + 170, 585, hutrieApplication, Textures::gold, 25, 25),
-          tgoldArcher(1024 + 195, 585, 20, "3"),
+          tGoldArcher(1024 + 195, 585, 20, "3"),
 
           createWarriorButton(1024 + 30, 470, hutrieApplication, Textures::warriorDown, 90, 90),
           textWarrior(1024 + 50, 555, 20, "Warrior"),
           goldWarrior(1024 + 60, 585, hutrieApplication, Textures::gold, 25, 25),
-          tgoldWarrior(1024 + 85, 585, 20, "3")
-
+          tGoldWarrior(1024 + 85, 585, 20, "3")
 {
     title.text.setString("Barracks:");
     textureBasic.loadFromFile(Textures::barracksBasic);
@@ -39,23 +37,24 @@ Barracks::Barracks(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unit
 
 void Barracks::updateStatus()
 {
-    if(buildingConstructed)
+    if (buildingConstructed)
     {
         std::ostringstream desc;
-        desc << "Training finish in " <<  leftTrainingTime  << " sec.\nWarriors during training: " << trainingWarrior << "\nArchers during training:: " << trainingArcher;
-        description.text.setString (desc.str() );
+        desc << "Training finish in " << leftTrainingTime << " sec.\nWarriors during training: " << trainingWarrior <<
+        "\nArchers during training:: " << trainingArcher;
+        description.text.setString(desc.str());
     }
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " <<  leftConstructionTime  << " sec.";
-        description.text.setString (desc.str() );
+        desc << "Construction finish in " << leftConstructionTime << " sec.";
+        description.text.setString(desc.str());
     }
 }
 
-void Barracks:: showButtons()
+void Barracks::showButtons()
 {
-    if(buildingConstructed)
+    if (buildingConstructed)
     {
         createWarriorButton.setActive(true);
         createArcherButton.setActive(true);
@@ -66,8 +65,8 @@ void Barracks:: showButtons()
         hutrieApplication->draw(textArcher.text);
         hutrieApplication->draw(goldArcher.button);
         hutrieApplication->draw(goldWarrior.button);
-        hutrieApplication->draw(tgoldArcher.text);
-        hutrieApplication->draw(tgoldWarrior.text);
+        hutrieApplication->draw(tGoldArcher.text);
+        hutrieApplication->draw(tGoldWarrior.text);
     }
 }
 
@@ -117,21 +116,21 @@ void Barracks::setSoldiersCosts()
 {
     std::ostringstream desc;
     desc << GameBalance::warriorCost.getGold();
-    tgoldWarrior.text.setString(desc.str());
+    tGoldWarrior.text.setString(desc.str());
     std::ostringstream desc1;
     desc1 << GameBalance::archerCost.getGold();
-    tgoldArcher.text.setString(desc1.str());
+    tGoldArcher.text.setString(desc1.str());
 }
 
-void Barracks::updateTrainingClock(int fulltime)
+void Barracks::updateTrainingClock(int fullTime)
 {
-    leftTrainingTime = (unsigned int) (fulltime - trainingClock.getElapsedTime().asSeconds());
+    leftTrainingTime = (unsigned int) (fullTime - trainingClock.getElapsedTime().asSeconds());
     if (leftTrainingTime < 0) leftTrainingTime = 0;
 }
 
-void Barracks::updateConstructionClock(int fulltime)
+void Barracks::updateConstructionClock(int fullTime)
 {
-    leftConstructionTime = (unsigned int) (fulltime - constructionTimeClock.getElapsedTime().asSeconds());
+    leftConstructionTime = (unsigned int) (fullTime - constructionTimeClock.getElapsedTime().asSeconds());
     if (leftConstructionTime < 0) leftConstructionTime = 0;
 }
 

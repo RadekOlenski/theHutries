@@ -10,9 +10,12 @@ class Goldmine : public GoodsBuilding
 
 public:
 
-    Goldmine(sf::RenderWindow *hutrieApplication, const std::vector<Unit *> &unitsFromGame);
+    Goldmine(sf::RenderWindow* hutrieApplication, const std::vector<Unit*> &unitsFromGame);
+
     void createProduct();
+
     void updateStatus();
+
     float getElapsedConstructionTime() { return constructionTimeClock.getElapsedTime().asSeconds(); };
 
     bool getBuildingConstructedFlag() { return buildingConstructed; };
@@ -21,7 +24,7 @@ public:
 
     float getConstructionTime() { return constructionTime; };
 
-    void updateConstructionClock(int fulltime);
+    void updateConstructionClock(int fullTime);
 
     void setConstructedBuildingSound();
 

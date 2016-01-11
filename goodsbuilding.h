@@ -15,29 +15,42 @@ class GoodsBuilding : public Building
 {
 public:
 
-    GoodsBuilding(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame);
+    GoodsBuilding(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame);
+
     void showButtons();
+
     void deactivateButtons();
+
     void buttonAction();
+
     virtual void createProduct() = 0;
+
     void checkProduction();
+
     Goods myProducts;
+
     void addWorker(Worker* worker);
+
     Worker* getWorker();
+
     int getWorkersSize();
-    void giveProduct(Goods *luggage);
+
+    void giveProduct(Goods* luggage);
+
     unsigned int productsCounter();
 
 protected:
 
-        void changeBuildingSprite();
-        std::vector <Worker*> myWorkers;
-        GUIButton callWorker;
-        GUIText assignWorker;
-        GUIButton goodsReady;
-        GUIText goodReady;
-        unsigned int productsCapacity = GameBalance::maxProductsInStore;
-        sf::Texture textureWithProduct;
-        bool buildingConstructed;
+    void changeBuildingSprite();
+
+    std::vector<Worker*> myWorkers;
+    GUIButton callWorker;
+    GUIText assignWorker;
+    GUIButton goodsReady;
+    GUIText goodReady;
+    unsigned int productsCapacity = GameBalance::maxProductsInStore;
+    sf::Texture textureWithProduct;
+    bool buildingConstructed;
 };
+
 #endif // GOODSBUILDING_H

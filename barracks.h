@@ -14,7 +14,7 @@
 class Barracks : public Building
 {
 public:
-    Barracks(sf::RenderWindow *hutrieApplication, std::vector<Unit *> unitsFromGame);
+    Barracks(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame);
 
     void updateStatus();
 
@@ -50,9 +50,9 @@ public:
 
     void setSoldiersCosts();
 
-    void updateTrainingClock(int fulltime);
+    void updateTrainingClock(int fullTime);
 
-    void updateConstructionClock(int fulltime);
+    void updateConstructionClock(int fullTime);
 
     float getElapsedConstructionTime() { return constructionTimeClock.getElapsedTime().asSeconds(); };
 
@@ -73,9 +73,9 @@ private:
     GUIButton createArcherButton;
     GUIText textArcher;
     GUIButton goldArcher;
-    GUIText tgoldArcher;
+    GUIText tGoldArcher;
     GUIButton goldWarrior;
-    GUIText tgoldWarrior;
+    GUIText tGoldWarrior;
     GUIText trainHutries;
     bool makeWarriorFlag;
     bool makeArcherFlag;

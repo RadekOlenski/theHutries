@@ -13,7 +13,8 @@ class Residence : public Building
 {
 public:
 
-    Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, int *worldSlots);
+    Residence(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame, int* worldSlots);
+
     void updateStatus();
 
     float getElapsedConstructionTime() { return constructionTimeClock.getElapsedTime().asSeconds(); };
@@ -24,7 +25,7 @@ public:
 
     float getConstructionTime() { return constructionTime; };
 
-    void updateConstructionClock(int fulltime);
+    void updateConstructionClock(int fullTime);
 
     void setConstructedBuildingSound();
 
@@ -34,7 +35,7 @@ private:
     unsigned int leftConstructionTime;
     const float constructionTime = GameBalance::residenceConstructionTime;
     sf::Clock constructionTimeClock;
-    int *worldSlots;
+    int* worldSlots;
 };
 
 #endif // RESIDENCE_H

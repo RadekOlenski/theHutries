@@ -7,21 +7,21 @@
 
 class GameBalance
 {
-    public:
+public:
 
     //////////////////////////////////  COSTS ////////////////////////////////////////////////////
 
-    static  Goods sawmillCost;
-    static  Goods stonecutterhutCost;
-    static  Goods barracksCost;
-    static  Goods residenceCost;
-    static  Goods goldmineCost;
-    static  Goods farmCost;
+    static Goods sawmillCost;
+    static Goods stonecutterhutCost;
+    static Goods barracksCost;
+    static Goods residenceCost;
+    static Goods goldmineCost;
+    static Goods farmCost;
 
-    static  Goods archerCost;
-    static  Goods warriorCost;
-    static  Goods workerCost;
-    static  Goods carrierCost;
+    static Goods archerCost;
+    static Goods warriorCost;
+    static Goods workerCost;
+    static Goods carrierCost;
 
     //////////////////////////////////  GOODS   ///////////////////////////////////////////////////
 
@@ -44,8 +44,8 @@ class GameBalance
 
     //////////////////////////////////  TRAINING    ///////////////////////////////////////////////
 
-    const static double carrierTrainingTime;
-    const static double workerTrainingTime;
+    const static int carrierTrainingTime = 1;
+    const static int workerTrainingTime = 1;
     const static int archerTrainingTime = 3;
     const static int warriorTrainingTime = 5;
 

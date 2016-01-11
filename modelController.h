@@ -35,7 +35,10 @@ public:
 
     float getHorizontalScreenZoom() { return gameModel->getHorizontalScreenZoom(); };
 
-    void setHorizontalScreenZoom(float horizontalScreenZoom) { gameModel->setHorizontalScreenZoom(horizontalScreenZoom);};
+    void setHorizontalScreenZoom(float horizontalScreenZoom)
+    {
+        gameModel->setHorizontalScreenZoom(horizontalScreenZoom);
+    };
 
     float getVerticalScreenZoom() { return gameModel->getVerticalScreenZoom(); };
 
@@ -43,7 +46,7 @@ public:
 
 private:
 
-    GameModel*gameModel;
+    GameModel* gameModel;
 };
 
 

@@ -1,18 +1,19 @@
 #include "goods.h"
 
-Goods::Goods() : wood(0), food(0), gold (0), stone (0)
+Goods::Goods() : wood(0), food(0), gold(0), stone(0)
 {
 
 }
 
-Goods::Goods(unsigned int wood, unsigned int stone, unsigned int food, unsigned int gold) : wood(wood), food(food), gold (gold), stone (stone)
+Goods::Goods(unsigned int wood, unsigned int stone, unsigned int food, unsigned int gold)
+        : wood(wood), food(food), gold(gold), stone(stone)
 {
 
 }
 
 void Goods::setProduct(unsigned int choice, int howMany)
 {
-    switch(choice)
+    switch (choice)
     {
         case 1:
             wood += howMany;
@@ -32,48 +33,50 @@ void Goods::setProduct(unsigned int choice, int howMany)
             food = 0;
             gold = 0;
             break;
+        default:
+            break;
     };
 }
 
-Goods & Goods::operator +( Goods & goods )
+Goods &Goods::operator+(Goods &goods)
 {
-     this->wood += goods.wood;
-     this->stone += goods.stone;
-     this->food += goods.food;
-     this->gold += goods.gold;
-     return *this;
+    this->wood += goods.wood;
+    this->stone += goods.stone;
+    this->food += goods.food;
+    this->gold += goods.gold;
+    return *this;
 }
 
-Goods & Goods::operator -( Goods & goods )
+Goods &Goods::operator-(Goods &goods)
 {
-     this->wood -= goods.wood;
-     this->stone -= goods.stone;
-     this->food -= goods.food;
-     this->gold -= goods.gold;
-     return *this;
+    this->wood -= goods.wood;
+    this->stone -= goods.stone;
+    this->food -= goods.food;
+    this->gold -= goods.gold;
+    return *this;
 }
 
-bool Goods::operator >=( int number )
+bool Goods::operator>=(int number)
 {
     return
-    (
-        this->wood  >= number &&
-        this->stone >= number &&
-        this->food  >= number &&
-        this->gold  >= number
-    );
+            (
+                    this->wood >= number &&
+                    this->stone >= number &&
+                    this->food >= number &&
+                    this->gold >= number
+            );
 }
 
 bool Goods::isEmpty()
 {
-    return ( (wood == 0 && stone == 0 && food == 0 && gold == 0) ? true : false );
+    return wood == 0 && stone == 0 && food == 0 && gold == 0;
 }
 
 unsigned int Goods::whichProduct()
 {
-    if  (wood) return 1;
+    if (wood) return 1;
     else if (stone) return 2;
-    else if (gold)  return 4;
-    else if (food)  return 3;
+    else if (gold) return 4;
+    else if (food) return 3;
     else return 0;
 }

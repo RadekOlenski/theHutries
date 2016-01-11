@@ -1,7 +1,7 @@
 #include "mapobject.h"
 #include "unit.h"
 
-MapObject::MapObject(sf::RenderWindow*hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
+MapObject::MapObject(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
         : title(1024 + 40, 170, 30),
           descriptionFrame(1024 + 60, 210, hutrieApplication, pathName, 128, 128),
           description(1024 + 30, 340, 20)
@@ -75,7 +75,7 @@ void MapObject::soundPlay(bool play)
 
 int MapObject::getUnitIndex(int index)
 {
-    objectUnits.at((unsigned int) index)->getIndex();
+    return objectUnits.at((unsigned int) index)->getIndex();
 }
 
 void MapObject::showButtons() { }

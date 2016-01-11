@@ -1,10 +1,9 @@
 #include <sstream>
 #include "forest.h"
 #include "sound.h"
-#include "textures.h"
 #include "world.h"
 
-Forest::Forest(sf::RenderWindow *hutrieApplication, std::vector<Unit *> &unitsFromGame, std::string pathName)
+Forest::Forest(sf::RenderWindow* hutrieApplication, std::vector<Unit*> &unitsFromGame, std::string pathName)
         : Environment(hutrieApplication, unitsFromGame, pathName)
 {
     title.text.setString("Forest:");

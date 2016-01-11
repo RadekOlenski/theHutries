@@ -6,9 +6,9 @@
 #include "interactionMode.h"
 #include "gamebalance.h"
 
-GUIController::GUIController(sf::RenderWindow*hutrieApplication, ModelController*modelController, World*world, GUI*gui)
+GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelController* modelController, World* world, GUI* gui)
         : titleText(1024 + 20, 40, 45),
-          bigTitleText (150, 100, 150, "The Hutries"),
+          bigTitleText(150, 100, 150, "The Hutries"),
           quote(500, 400, 30, ""),
           titleThread(&GUIText::display, &titleText),
           bigTitleThread(&GUIText::animation, &bigTitleText),
@@ -31,15 +31,15 @@ void GUIController::displayIntro()
     gui->startingText.text.setString("");
     quote.animation();
     gui->skipText.text.setString("Press Space to skip");
-    quote.text.setColor(sf::Color (0,0,0,0));
-    gui->startingText.text.setPosition(200,300);
+    quote.text.setColor(sf::Color (0, 0, 0, 0));
+    gui->startingText.text.setPosition(200, 300);
     gui->startingText.text.setString(GameBalance::historyString);
     sf::sleep(sf::seconds(5));
     gui->startingText.text.setString(GameBalance::historyString2);
     sf::sleep(sf::seconds(5));
     world->createHutriesHall();
     displayHutriesHall = true;
-    gui->startingText.text.setPosition(200,550);
+    gui->startingText.text.setPosition(200, 550);
     gui->startingText.text.setString(GameBalance::historyString3);
     introFlag = false;
     readyForGame = true;
@@ -72,7 +72,7 @@ void GUIController::handleMenuButtonsActions()
         Sound::click();
         return;
     }
-     if (gui->exitButton.checkBounds())
+    if (gui->exitButton.checkBounds())
     {
         Sound::click();
         hutrieApplication->close();
@@ -146,14 +146,13 @@ void GUIController::setBuildingButtonsFlags(bool buttonFlag)
     gui->farm.setActive(buttonFlag);
 }
 
-void GUIController::setMenuButtonsFlags (bool buttonFlag)
+void GUIController::setMenuButtonsFlags(bool buttonFlag)
 {
     gui->playButton.setActive(buttonFlag);
     gui->howToPlayButton.setActive(buttonFlag);
     gui->aboutButton.setActive(buttonFlag);
     gui->exitButton.setActive(buttonFlag);
 }
-
 
 
 void GUIController::drawApplication()
@@ -213,12 +212,13 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
             {
                 for (int i = 0; i < (*it)->hutriesNumber(); i++)             //jesli w wektorze jest jakis hutri
                 {
-                   drawToApplication((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
+                    drawToApplication((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
                 }
             }
 
             if ((*it)->getMapObject()->isHighlighted()
-                && modelController->getChosenInteractionMode() == InteractionMode::INFOMODE)  //jesli tryb info rysuj w prawym gui
+                && modelController->getChosenInteractionMode() ==
+                   InteractionMode::INFOMODE)  //jesli tryb info rysuj w prawym gui
             {
                 drawToApplication((*it)->getMapObject()->title.text);
                 drawToApplication((*it)->getMapObject()->description.text);
@@ -372,7 +372,8 @@ void GUIController::countScreenZoomValues()
 void GUIController::errorNoCarriers()
 {
     Sound::error();
-    gui->errorInfo.text.setString("Error: No available carriers!\nEveryone is busy! \nCreate carrier in HutriesHall \nor build residence");
+    gui->errorInfo.text.setString(
+            "Error: No available carriers!\nEveryone is busy! \nCreate carrier in HutriesHall \nor build residence");
 }
 
 void GUIController::errorNoSlots()

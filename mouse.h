@@ -17,8 +17,6 @@ public:
 
     void leftClickActions();
 
-    void rightClickActions();
-
     void updateMouseLock();
 
 private:
