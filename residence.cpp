@@ -39,5 +39,8 @@ void Residence::setConstructedBuildingSound()
 {
     sound.pause();
     sound.openFromFile(Sound::residence);
-    sound.play();
+    if(isHighlighted())
+    {
+        sound.play();
+    }
 }

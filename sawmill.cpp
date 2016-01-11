@@ -50,5 +50,8 @@ void Sawmill::setConstructedBuildingSound()
 {
     sound.pause();
     sound.openFromFile(Sound::sawmill);
-    sound.play();
+    if(isHighlighted())
+    {
+        sound.play();
+    }
 }

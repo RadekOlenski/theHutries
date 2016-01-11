@@ -48,5 +48,8 @@ void Farm::setConstructedBuildingSound()
 {
     sound.pause();
     sound.openFromFile(Sound::farm);
-    sound.play();
+    if(isHighlighted())
+    {
+        sound.play();
+    }
 }

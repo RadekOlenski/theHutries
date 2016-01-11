@@ -47,6 +47,9 @@ void Goldmine::setConstructedBuildingSound()
 {
     sound.pause();
     sound.openFromFile(Sound::goldmine);
-    sound.play();
+    if(isHighlighted())
+    {
+        sound.play();
+    }
 }
 

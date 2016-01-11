@@ -49,5 +49,8 @@ void StoneCutter::setConstructedBuildingSound()
 {
     sound.pause();
     sound.openFromFile(Sound::stonecutter);
-    sound.play();
+    if(isHighlighted())
+    {
+        sound.play();
+    }
 }
