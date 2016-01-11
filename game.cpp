@@ -10,14 +10,14 @@
 //=================================================================================
 //                              CONSTRUCTOR
 //=================================================================================
-Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZoom, float verticalScreenZoom) :
+Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZoom, float verticalScreenZoom, bool fullscreen) :
         gameTime(GameBalance::gameTime),
-        hutrieApplication(sf::VideoMode::getDesktopMode()/*(applicationWidth + 256, applicationHeight + 30 + 128, 32)*/, "The Hutries"
-         ,sf::Style::Fullscreen ),
+        hutrieApplication(sf::VideoMode::getDesktopMode(), "The Hutries",sf::Style::Fullscreen ),
         gui(applicationWidth, applicationHeight, &hutrieApplication),
         world(&hutrieApplication, applicationWidth, applicationHeight)
 {
     //-----------------------------CREATING BASIC APPLICATION OBJECTS---------------------------------------------//
+    if (!fullscreen) hutrieApplication.create(sf::VideoMode::getDesktopMode(), "The Hutries");
     ModelController* modelController = new ModelController();
     GUIController* guiController = new GUIController(&hutrieApplication, modelController, &world, &gui);
     GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController, guiController);

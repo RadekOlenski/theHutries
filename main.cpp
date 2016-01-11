@@ -1,5 +1,8 @@
 #include <ctime>
+#include <string>
 #include "game.h"
+
+bool fullscreenEnable();
 
 int main()
 {
@@ -11,7 +14,9 @@ int main()
     const int applicationHeight = 640;
 
     float x, y;
-    std::cout << "Wpisz swoja rozdzielczosc" << std::endl << "x: ";
+
+    bool fullscreen;
+    std::cout << "Type resolution of your screen" << std::endl << "x: ";
     std::cin >> x;
     std::cout << "y: ";
     std::cin >> y;
@@ -21,7 +26,7 @@ int main()
 
 /////////////////////////// CREATING AND STARTING GAME ////////////////////////////////////////////////////////
 
-    Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom);
+    Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom, fullscreenEnable());
     if (game.menu())
     {
         game.play();
@@ -31,4 +36,16 @@ int main()
 
 /////////////////////////// ENDING ////////////////////////////////////////////////////////////////////////////
     return 0;
+}
+
+bool fullscreenEnable()
+{
+    std::string answer;
+    do
+    {
+        std::cout << "Fullscreen? [y/n]" << std::endl;
+        std::cin >> answer;
+    }
+    while (answer.find_first_not_of("YyNn") != std::string::npos);
+    return (bool) answer.find_first_not_of("yY");
 }

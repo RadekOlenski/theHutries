@@ -30,6 +30,7 @@ void GUIController::displayIntro()
 {
     gui->startingText.text.setString("");
     quote.animation();
+    gui->skipText.text.setString("Press Space to skip");
     quote.text.setColor(sf::Color (0,0,0,0));
     gui->startingText.text.setPosition(200,300);
     gui->startingText.text.setString(GameBalance::historyString);
@@ -178,7 +179,7 @@ void GUIController::getView()
     if (firstIteration)
     {
         fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(), modelController->getVerticalScreenZoom()));
-        //fixed.zoom(GameBalance::screenZoom);
+        //fixed.zoom(1.1);
         firstIteration = false;
     }
 

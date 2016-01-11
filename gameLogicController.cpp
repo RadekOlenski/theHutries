@@ -98,7 +98,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
         {
             if (worldGoods - GameBalance::residenceCost >= 0)
             {
-                world->increaseAvailableSlots(Residence::getAddedSlotsNumber());
+                world->increaseAvailableSlots(GameBalance::hutrieSlotsAddition);
                 world->buildings.push_back(new Residence(hutrieApplication, usedUnits,
                                                      &(world->availableSlots)) );
                 world->availableGoods = world -> availableGoods - GameBalance::residenceCost;

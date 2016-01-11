@@ -6,10 +6,11 @@
 GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width) :
 
         startingText(160, 320, 40, ""),
+        skipText(830,10, 25, ""),
         playButton(1024 + 45, 200, hutrieApplication, 170, 80, false),
         playText  (1024 + 70, 210, 50, "Play"),
-        howToPlayButton(1024 + 45, 320, hutrieApplication, 170, 80, false),
-        howToPlayText  (1024 + 70, 330, 50, "How to \nplay"),
+        howToPlayButton(1024 + 45, 320, hutrieApplication, 170, 160, false),
+        howToPlayText  (1024 + 60, 330, 50, "How to \n play"),
         aboutButton(1024 + 45, 500, hutrieApplication, 170, 80, false),
         aboutText  (1024 + 70, 510, 50, "About"),
         exitButton(mapWidth, mapHeight, hutrieApplication, width, 128 + 30, false),
@@ -267,6 +268,7 @@ void GUI::displayMenu()
     hutrieApplication->draw(guiBar.button);
 
     hutrieApplication->draw(startingText.text);
+    hutrieApplication->draw(skipText.text);
     hutrieApplication->draw(playButton.button);
     hutrieApplication->draw(playText.text);
     hutrieApplication->draw(howToPlayButton.button);

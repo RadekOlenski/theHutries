@@ -248,11 +248,6 @@ World::~World()
 //    }
 //    std::cout << "Koniec Workers" << std::endl;
 
-    std::vector<Unit*>::iterator itunits;
-    for (itunits = units.begin(); itunits != units.end(); ++itunits) {
-    delete (*itunits);
-    }
-    std::cout << "Koniec Unit" << std::endl;
 
     std::vector<Hutrie*>::iterator ithutries;
     for (ithutries = hutries.begin(); ithutries != hutries.end(); ++ithutries) {
@@ -271,6 +266,12 @@ World::~World()
     delete (*itenvironment);
     }
     std::cout << "Koniec Enviroment" << std::endl;
+
+     std::vector<Unit*>::iterator itunits;
+    for (itunits = units.begin(); itunits != units.end(); ++itunits) {
+    delete (*itunits);
+    }
+    std::cout << "Koniec Unit" << std::endl;
 //    std::vector<unsigned int>::iterator itbarracksIndex;
 //    for (itbarracksIndex = barracksIndex.begin(); itbarracksIndex != barracksIndex.end(); ++itbarracksIndex) {
 //    delete (*itbarracksIndex);

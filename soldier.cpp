@@ -2,6 +2,7 @@
 #include "soldier.h"
 #include "textures.h"
 #include <cstdlib>
+#include <ctime>
 
 
 Soldier::Soldier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, std::vector<Unit*> unitsForMoving, std::string pathName) : Hutrie(hutrieApplication,unitsFromGame,pathName)
@@ -21,7 +22,8 @@ Soldier::Soldier(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsF
 
 void Soldier::moveHutrie()
 {
-    occupyUnits();
+    //occupyUnits();
+    srand(time(NULL));
     toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
     int unitNumber;
     while(1)

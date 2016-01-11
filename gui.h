@@ -15,6 +15,7 @@ public:
     /////////////////////////////// MENU    ///////////////////////////////////////////////////
 
     GUIText startingText;
+    GUIText skipText;
     GUIButton playButton;
     GUIText playText;
     GUIButton howToPlayButton;

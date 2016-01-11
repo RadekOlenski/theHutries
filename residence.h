@@ -15,7 +15,6 @@ public:
 
     Residence(sf::RenderWindow *hutrieApplication, std::vector <Unit*> unitsFromGame, int *worldSlots);
     void updateStatus();
-    static int getAddedSlotsNumber();
 
     float getElapsedConstructionTime() { return constructionTimeClock.getElapsedTime().asSeconds(); };
 
@@ -33,7 +32,6 @@ private:
     unsigned int leftConstructionTime;
     const float constructionTime = GameBalance::residenceConstructionTime;
     sf::Clock constructionTimeClock;
-    static const int slotsAddition = 10;
     int *worldSlots;
 };
 
