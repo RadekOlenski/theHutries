@@ -12,6 +12,7 @@ public:
     //---------------------------- BASIC ----------------------------//
     static std::string background;
     static std::string cursor;
+    static std::string hammerCursor;
 
     //---------------------------- BUILDINGS ------------------------//
 

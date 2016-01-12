@@ -34,6 +34,8 @@ public:
 
     void createCursor();
 
+    void setCursorSprite();
+
     void setCursorPosition();
 
     //------------------------------------------ DISPLAY ----------------------------------//
@@ -86,6 +88,8 @@ public:
 
     void highlightClock(bool highlight);
 
+    void updateBuildingsHighlight();
+
     //------------------------------------------ ERRORS ----------------------------------//
 
     void errorNoCarriers();
@@ -135,6 +139,7 @@ private:
     sf::Texture backgroundTexture;
     sf::Sprite cursor;
     sf::Texture cursorTexture;
+    sf::Texture cursorHammerTexture;
 
     GUIText titleText;
     GUIText bigTitleText;

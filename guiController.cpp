@@ -132,15 +132,17 @@ void GUIController::updateHowToText()
 
 void GUIController::handleGUIButtonsActions()
 {
-    if (gui->buildButton.checkBounds())
-    {
-        modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
-        Sound::click();
-        return;
-    }
     if (gui->hutrieButton.checkBounds())
     {
         modelController->setChosenInteractionMode(InteractionMode::HUTRIEINFO);
+        Sound::click();
+        return;
+    }
+
+    if (gui->buildButton.checkBounds())
+    {
+        modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
+        modelController->setChosenBuildingType(BuildingType::HUTRIESHALL);
         Sound::click();
         return;
     }
@@ -148,38 +150,41 @@ void GUIController::handleGUIButtonsActions()
     {
         modelController->setChosenBuildingType(BuildingType::SAWMILL);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->stonecutter.checkBounds() && gui->stonecutter.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->barracks.checkBounds() && gui->barracks.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::BARRACKS);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->residence.checkBounds() && gui->residence.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::RESIDENCE);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->goldmine.checkBounds() && gui->goldmine.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::GOLDMINE);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->farm.checkBounds() && gui->farm.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::FARM);
         Sound::click();
-        return;
+//        return;
     }
+
+    updateBuildingsHighlight();
+
     if (world->lastClickedUnit)
     {
         world->lastClickedUnit->getMapObject()->buttonAction();
@@ -187,6 +192,37 @@ void GUIController::handleGUIButtonsActions()
     }
 }
 
+void GUIController::updateBuildingsHighlight()
+{
+    gui->sawmill.button.setFillColor(sf::Color::White);
+    gui->stonecutter.button.setFillColor(sf::Color::White);
+    gui->goldmine.button.setFillColor(sf::Color::White);
+    gui->farm.button.setFillColor(sf::Color::White);
+    gui->barracks.button.setFillColor(sf::Color::White);
+    gui->residence.button.setFillColor(sf::Color::White);
+
+    switch(modelController->getChosenBuildingType())
+    {
+    case 1:
+        gui->sawmill.button.setFillColor(sf::Color::Green);
+        break;
+    case 2:
+        gui->stonecutter.button.setFillColor(sf::Color::Green);
+        break;
+    case 3:
+        gui->goldmine.button.setFillColor(sf::Color::Green);
+        break;
+    case 4:
+        gui->farm.button.setFillColor(sf::Color::Green);
+        break;
+    case 5:
+        gui->barracks.button.setFillColor(sf::Color::Green);
+        break;
+    case 6:
+        gui->residence.button.setFillColor(sf::Color::Green);
+        break;
+    }
+}
 void GUIController::highlightClock(bool highlight)
 {
     if (highlight)
@@ -234,10 +270,22 @@ void GUIController::drawApplication()
     std::vector<Unit*>::iterator it;
     drawGrid(it);
     drawMapObjects(it);
-
     drawToApplication(gui->timeLeft.text);
+    setCursorSprite();
     drawToApplication(cursor);
     displayApplication();
+}
+
+void GUIController::setCursorSprite()
+{
+    if (modelController->getChosenInteractionMode() == 2 && modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL)
+    {
+        cursor.setTexture(cursorHammerTexture);
+    }
+    else
+    {
+       cursor.setTexture(cursorTexture);
+    }
 }
 
 void GUIController::getView()
@@ -310,6 +358,7 @@ void GUIController::createCursor()
 {
     hutrieApplication->setMouseCursorVisible(false);
     cursorTexture.loadFromFile(Textures::cursor);
+    cursorHammerTexture.loadFromFile(Textures::hammerCursor);
     cursor.setTexture(cursorTexture);
 }
 

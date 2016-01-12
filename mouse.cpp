@@ -2,6 +2,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "mouse.h"
 #include "interactionMode.h"
+#include "buildingType.h"
 
 
 Mouse::Mouse(sf::RenderWindow* hutrieApplication, ModelController* modelController,
@@ -61,6 +62,8 @@ void Mouse::handleClickOnMap()
             case InteractionMode::BUILDMODE:   //postawienie budynku                                                                                                                                   //BUILDING zajmuje 4 pola na mapie!
             {
                 gameLogicController->handleBuildingCreation();
+
+
                 break;
             }
 //            case InteractionMode::HUTRIEMODE:     //poruszanie Hutrim

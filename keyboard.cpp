@@ -3,10 +3,11 @@
 #include "buildingType.h"
 #include "keyboard.h"
 
-Keyboard::Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController)
+Keyboard::Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController, GUIController* guiController)
 {
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
+    this->guiController = guiController;
 }
 
 void Keyboard::actionsLoop()
@@ -68,21 +69,22 @@ void Keyboard::chooseBuildingType(sf::Event event)
             case sf::Keyboard::Num2:
                 modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
                 break;
+            case sf::Keyboard::Num4:
+                modelController->setChosenBuildingType(BuildingType::GOLDMINE);
+                break;
+            case sf::Keyboard::Num3:
+                modelController->setChosenBuildingType(BuildingType::FARM);
+                break;
             case sf::Keyboard::Num5:
                 modelController->setChosenBuildingType(BuildingType::BARRACKS);
                 break;
             case sf::Keyboard::Num6:
                 modelController->setChosenBuildingType(BuildingType::RESIDENCE);
                 break;
-            case sf::Keyboard::Num3:
-                modelController->setChosenBuildingType(BuildingType::GOLDMINE);
-                break;
-            case sf::Keyboard::Num4:
-                modelController->setChosenBuildingType(BuildingType::FARM);
-                break;
             default:
                 break;
         }
+        guiController->updateBuildingsHighlight();
         Sound::click();
     }
 }

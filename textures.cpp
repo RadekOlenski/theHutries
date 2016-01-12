@@ -4,6 +4,7 @@
 //---------------------------- BASIC ----------------------------//
 std::string Textures::background = "sprites/background/background.jpg";
 std::string Textures::cursor = "sprites/cursor.png";
+std::string Textures::hammerCursor = "sprites/hammercursor.png";
 
 //---------------------------- BUILDINGS ------------------------//
 

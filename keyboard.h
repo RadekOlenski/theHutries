@@ -4,13 +4,14 @@
 
 #include <SFML/Graphics.hpp>
 #include "modelController.h"
+#include "guiController.h"
 #include "sound.h"
 
 class Keyboard
 {
 public:
 
-    Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController);
+    Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController, GUIController* guiController);
 
     void actionsLoop();
 
@@ -24,6 +25,7 @@ private:
 
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
+    GUIController* guiController;
     sf::Event event;
 };
 

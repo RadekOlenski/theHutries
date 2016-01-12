@@ -22,7 +22,7 @@ Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZo
     GUIController* guiController = new GUIController(&hutrieApplication, modelController, &world, &gui);
     GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController,
                                                                        guiController);
-    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController);
+    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController, guiController);
     Mouse* mouse = new Mouse(&hutrieApplication, modelController, gameLogicController);
     //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES-----------------------------------------//
     this->modelController = modelController;
