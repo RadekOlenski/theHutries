@@ -14,6 +14,46 @@ public:
 
     GUIController(sf::RenderWindow* hutrieApplication, ModelController* modelController, World* world, GUI* gui);
 
+    //------------------------------------------ DRAW ----------------------------------//
+
+    void drawApplication();
+
+    void drawHutriesHall();
+
+    void drawGrid(std::vector<Unit*>::iterator it);
+
+    void drawMapObjects(std::vector<Unit*>::iterator it);
+
+    void drawToApplication(sf::RectangleShape shape);
+
+    void drawToApplication(sf::Sprite sprite);
+
+    void drawToApplication(sf::Text text);
+
+    void createBackground();
+
+    void createCursor();
+
+    void setCursorPosition();
+
+    //------------------------------------------ DISPLAY ----------------------------------//
+
+    void displayApplication();
+
+    void displayElementsOfGUI();
+
+    void displayGUI();
+
+    void displayIntro();
+
+    void displayGameOver(bool win);
+
+    void displayMenu();
+
+    void prepareToDisplay();
+
+    //------------------------------------------ BUTTONS ----------------------------------//
+
     void handleGUIButtonsActions();
 
     void handleMenuButtonsActions();
@@ -22,35 +62,7 @@ public:
 
     void setMenuButtonsFlags(bool buttonFlag);
 
-    void drawApplication();
-
-    void drawHutriesHall();
-
-    void displayElementsOfGUI();
-
-    void drawGrid(std::vector<Unit*>::iterator it);
-
-    void drawMapObjects(std::vector<Unit*>::iterator it);
-
-    void createBackground();
-
-    void drawToApplication(sf::RectangleShape shape);
-
-    void drawToApplication(sf::Sprite sprite);
-
-    void drawToApplication(sf::Text text);
-
-    void createCursor();
-
-    void prepareToDisplay();
-
-    void displayGUI();
-
-    void displayIntro();
-
-    void displayApplication();
-
-    void setCursorPosition();
+    //------------------------------------- LAUNCH TEXT THREADS --------------------------//
 
     void launchTitleThread();
 
@@ -60,9 +72,19 @@ public:
 
     void displayGameOver(bool win,  bool next);
 
-    void displayMenu();
+    //------------------------------------------ OTHER ----------------------------------//
+
+    void setBuildingsCosts();
+
+    void updateGoodsNumber();
+
+    bool getIntroFlag() { return introFlag; };
+
+    bool getReadyForGame() { return readyForGame; };
 
     std::string getEndingStats();
+
+    //------------------------------------------ ERRORS ----------------------------------//
 
     void errorNoCarriers();
 
@@ -73,8 +95,6 @@ public:
     void errorUnitOccupied();
 
     void errorOutOfMap();
-
-    void updateGoodsNumber();
 
     void errorAlreadyCreatingArcher();
 

@@ -21,6 +21,10 @@ public:
     GameLogicController(World* world, sf::RenderWindow* hutrieApplication, ModelController* modelController,
                         GUIController* guiController);
 
+    //-------------------------------------- CREATE BUILDING ------------------------------//
+
+    void handleBuildingCreation();
+
     void createBuilding(std::vector<Unit*> usedUnits);
 
     void createSawmill(std::vector<Unit*> usedUnits);
@@ -29,25 +33,13 @@ public:
 
     void createGoldmine(std::vector<Unit*> usedUnits);
 
-    void constructBuilding();
-
-    void findSelectedUnit();
-
-    bool isUnitEmpty();
-
-    void handleBuildingCreation();
-
-    void handleGoodsProduction();
-
-    void deactivateChosenModeFlag();
-
     void setBuildingButtonsFlags(bool buttonFlag);
 
-    void highlightUnits();
+    void constructBuilding();
 
-    void endHighlightUnit();
+    void assignHutriesHall();
 
-//    void handleHutrieMoving();
+    //------------------------------------------ CREATE HUTRIE ----------------------------------//
 
     void handleHutriesCreation();
 
@@ -63,9 +55,7 @@ public:
 
     void createHutrie(std::string objectType, unsigned int unitIndex);
 
-    void handleGUIButtonsAction();
-
-    void handleMenuButtonsAction();
+    //------------------------------------------ ASSIGN HUTRIE ----------------------------------//
 
     void handleAssigningHutrie();
 
@@ -79,7 +69,25 @@ public:
 
     void handleCarrierReturn();
 
-    void assignHutriesHall();
+    //------------------------------------------ OTHER ----------------------------------//
+
+    void findSelectedUnit();
+
+    bool isUnitEmpty();
+
+    void handleGoodsProduction();
+
+    void deactivateChosenModeFlag();
+
+    void highlightUnits();
+
+    void endHighlightUnit();
+
+//    void handleHutrieMoving();
+
+    void handleGUIButtonsAction();
+
+    void handleMenuButtonsAction();
 
 private:
 

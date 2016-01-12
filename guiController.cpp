@@ -255,9 +255,9 @@ void GUIController::getView()
 
 void GUIController::displayElementsOfGUI()
 {
-    if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE) gui->displayGUIBuildings();
+    if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE) gui->displayBuildingsGUI();
     if (modelController->getChosenInteractionMode() == InteractionMode::HUTRIEINFO)
-        gui->displayGUIHutries(world->hutries.size(), world->carriers.size(), world->workers.size(),
+        gui->displayHutriesGUI(world->hutries.size(), world->carriers.size(), world->workers.size(),
                                world->warriors.size(), world->archers.size());
 }
 
@@ -337,7 +337,7 @@ void GUIController::drawToApplication(sf::Text text)
 
 void GUIController::displayGUI()
 {
-    gui->displayGUI();
+    gui->displayMainGUI();
 }
 
 void GUIController::displayApplication()
@@ -479,11 +479,6 @@ void GUIController::setBuildingsCosts()
     std::ostringstream desc11;
     desc11 << GameBalance::barracksCost.getStone();
     gui->tstoneBarracks.text.setString(desc11.str());
-}
-
-void GUIController::countScreenZoomValues()
-{
-
 }
 
 //=================================================================================
