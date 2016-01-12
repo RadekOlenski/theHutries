@@ -90,6 +90,8 @@ public:
 
     void updateBuildingsHighlight();
 
+    void showEmptyUnits(bool mark = true);
+
     //------------------------------------------ ERRORS ----------------------------------//
 
     void errorNoCarriers();
