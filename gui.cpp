@@ -13,31 +13,30 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         howToPlayText  (1024 + 60, 330, 50, "How to \n play"),
         aboutButton(1024 + 45, 500, hutrieApplication, 170, 80, false),
         aboutText(1024 + 70, 510, 50, "About"),
-        exitButton(mapWidth, mapHeight, hutrieApplication, width, 128 + 30, false),
-        exitText(1024 + 90, mapHeight + 50, 50, "Exit"),
-        nextArrowButton(950, 700, hutrieApplication, Textures::arrow),
-        backArrowButton(50 , 700, hutrieApplication, Textures::backArrow),
+        exitButton(mapWidth, mapHeight, hutrieApplication, width, 128, false),
+        exitText(1024 + 90, mapHeight + 30, 50, "Exit"),
+        nextArrowButton(950, 650, hutrieApplication, Textures::arrow),
+        backArrowButton(50 , 650, hutrieApplication, Textures::backArrow),
 
         endingStats(150, 280, 40, GameBalance::loseString),
 
         guiFrame(sf::Vector2f(width, mapHeight)),
-        errorFrame(sf::Vector2f(width, 128 + 30)),
-        errorInfo(mapWidth + 20, mapHeight + 50, 20, ""),
-        messageBox(mapWidth + 60, mapHeight + 10, 25, "Message Box:"),
+        errorFrame(sf::Vector2f(width, 128)),
+        errorInfo(mapWidth + 20, mapHeight + 10, 20, "Message Box:"),
 
         buildButton(mapWidth + 60, 100, hutrieApplication, Textures::buildButton),
         hutrieButton(mapWidth + 140, 100, hutrieApplication, Textures::hutrieButton),
 
-        guiBar(0, mapHeight + 128, hutrieApplication, Textures::guiBar, mapWidth, 30),
-        timeLeft(20, mapHeight + 2 + 128, 20, "15:00", sf::Color::White),
-        gold(208, mapHeight + 128, hutrieApplication, Textures::gold, 30, 30),
-        wood(208 + 192, mapHeight + 128, hutrieApplication, Textures::wood, 30, 30),
-        stone(208 + 384, mapHeight + 128, hutrieApplication, Textures::stone, 30, 30),
-        food(208 + 576, mapHeight + 128, hutrieApplication, Textures::food, 30, 30),
-        tgold(280, mapHeight + 2 + 128, 20, "0", sf::Color::White),
-        twood(280 + 192, mapHeight + 2 + 128, 20, "0", sf::Color::White),
-        tstone(280 + 384, mapHeight + 2 + 128, 20, "0", sf::Color::White),
-        tfood(280 + 576, mapHeight + 2 + 128, 20, "0", sf::Color::White),
+        guiBar(0, mapHeight + 98 , hutrieApplication, Textures::guiBar, mapWidth, 30),
+        timeLeft(20, mapHeight + 2 + 98, 20, "15:00", sf::Color::White),
+        gold(208, mapHeight + 98, hutrieApplication, Textures::gold, 30, 30),
+        wood(208 + 192, mapHeight + 98, hutrieApplication, Textures::wood, 30, 30),
+        stone(208 + 384, mapHeight + 98, hutrieApplication, Textures::stone, 30, 30),
+        food(208 + 576, mapHeight + 98, hutrieApplication, Textures::food, 30, 30),
+        tgold(280, mapHeight + 2 + 98, 20, "0", sf::Color::White),
+        twood(280 + 192, mapHeight + 2 + 98, 20, "0", sf::Color::White),
+        tstone(280 + 384, mapHeight + 2 + 98, 20, "0", sf::Color::White),
+        tfood(280 + 576, mapHeight + 2 + 98, 20, "0", sf::Color::White),
 
         sawmill(mapWidth + 30, 170, hutrieApplication, Textures::sawmillBasic, 90, 90),
         tSawmill(mapWidth + 40, 260, 20, "Sawmill"),
@@ -124,7 +123,6 @@ void GUI::displayMainGUI()
     hutrieApplication->draw(tfood.text);
     hutrieApplication->draw(tstone.text);
     hutrieApplication->draw(errorInfo.text);
-    hutrieApplication->draw(messageBox.text);
 
 }
 

@@ -60,6 +60,7 @@ void Game::play()
 {
     changeBackgroundMusic(Sound::musicPath);
     deadline.restart();
+    modelController->setChosenInteractionMode(3);
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
     {
         handleActions();
@@ -118,7 +119,7 @@ void Game::updateClock()
         Sound::reminderSound();
         guiController->highlightClock(true);
     }
-    if (time % 60 == 55) guiController->highlightClock(false);
+    if (time % 60 == 56) guiController->highlightClock(false);
     if (changeMusicFlag && time == 28)
     {
         changeBackgroundMusic(Sound::introMusic);
@@ -189,7 +190,7 @@ bool Game::menu()
         {
             if (firstLoop)
             {
-                changeBackgroundMusic(Sound::introMusic);
+                music.openFromFile(Sound::introMusic);
                 music.play();
                 guiController->setMenuButtonsFlags(false);
                 guiController->launchQuoteThread();
@@ -199,16 +200,4 @@ bool Game::menu()
         guiController->displayMenu();
     };
     return true;
-}
-
-void Game::settings()
-{
-    float x, y;
-    std::cout << "Wpisz swoja rozdzielczosc" << std::endl << "x: ";
-    std::cin >> x;
-    std::cout << "y: ";
-    std::cin >> y;
-
-    modelController->setHorizontalScreenZoom(x / 1280);
-    modelController->setVerticalScreenZoom(y / 800);
 }

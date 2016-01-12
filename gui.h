@@ -34,7 +34,6 @@ public:
     GUIButton buildButton;
     GUIButton hutrieButton;
     GUIText errorInfo;
-    GUIText messageBox;
     GUIText timeLeft;
     GUIText tgold;
     GUIText twood;

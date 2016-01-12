@@ -12,17 +12,15 @@ HutriesHall::HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std:
 
           trainHutries(1024 + 65, 490, 25, "Train Hutries:"),
           createWorkerButton(1024 + 30, 520, hutrieApplication, Textures::workerDown, 90, 90),
-          tWorker(1024 + 50, 605, 20, "Worker"),
+          tWorker(1024 + 40, 605, 20, "Worker"),
 
           createCarrierButton(1024 + 140, 520, hutrieApplication, Textures::carrierDown, 90, 90),
-          tCarrier(1024 + 160, 605, 20, "Carrier"),
+          tCarrier(1024 + 150, 605, 20, "Carrier"),
 
-          foodWorker(1024 + 105, 605, hutrieApplication, Textures::food, 25, 25),
-          tfoodWorker(1024 + 130, 605, 20, "3"),
-          foodCarrier(1024 + 215, 605, hutrieApplication, Textures::food, 25, 25),
-          tfoodCarrier(1024 + 240, 605, 20, "3")
-//tCarrier(1024 + 60, 510, 20, "Create Carrier"),
-//  tWorker(1024 + 70, 570, 20, "Create Worker")
+          foodWorker(1024 + 95, 605, hutrieApplication, Textures::food, 25, 25),
+          tfoodWorker(1024 + 120, 605, 20, "3"),
+          foodCarrier(1024 + 205, 605, hutrieApplication, Textures::food, 25, 25),
+          tfoodCarrier(1024 + 230, 605, 20, "3")
 {
     this->world = world;
     title.text.setString("Hutries Hall:");

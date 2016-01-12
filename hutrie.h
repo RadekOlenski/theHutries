@@ -38,9 +38,6 @@ protected:
     void toDirection(float targetX, float targetY);
 
     bool busy;
-    int strength;
-    int agility;
-    int endurance;
 };
 
 #endif // HUTRIE_H

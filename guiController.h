@@ -121,6 +121,7 @@ public:
     void countScreenZoomValues();
 
 private:
+    void getView();
 
     void updateHowToText();
 
@@ -143,7 +144,6 @@ private:
     sf::Thread bigTitleThread;
     sf::Thread quoteThread;
 
-    void getView();
 
     bool firstIteration;
     bool displayHutriesHall;

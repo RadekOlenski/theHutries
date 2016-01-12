@@ -39,7 +39,6 @@ void GUIController::displayIntro()
     sf::sleep(sf::seconds(5));
     gui->startingText.text.setString(GameBalance::historyString2);
     sf::sleep(sf::seconds(5));
-//    world->createHutriesHall();
     displayHutriesHall = true;
     gui->startingText.text.setPosition(200, 550);
     gui->startingText.text.setString(GameBalance::historyString3);
@@ -194,13 +193,13 @@ void GUIController::highlightClock(bool highlight)
     {
         gui->timeLeft.text.setCharacterSize(600);
         gui->timeLeft.text.setColor(sf::Color::Black);
-        gui->timeLeft.text.move(0,-60);
+        gui->timeLeft.text.setPosition(30,30);
     }
     else
     {
         gui->timeLeft.text.setCharacterSize(20);
         gui->timeLeft.text.setColor(sf::Color::White);
-        gui->timeLeft.text.setPosition(20,640 + 2 + 128);
+        gui->timeLeft.text.setPosition(20,640 + 2 + 98);
     }
 }
 
@@ -227,9 +226,9 @@ void GUIController::drawApplication()
 {
     getView();
     prepareToDisplay();
+    drawToApplication(background);
     displayGUI();
     displayElementsOfGUI();
-    drawToApplication(background);
     drawToApplication(titleText.text);
 
     std::vector<Unit*>::iterator it;
@@ -246,8 +245,8 @@ void GUIController::getView()
     fixed = hutrieApplication->getView();
     if (firstIteration)
     {
+        //fixed.zoom(1.08);
         fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(), modelController->getVerticalScreenZoom()));
-        //fixed.zoom(1.1);
         firstIteration = false;
     }
 

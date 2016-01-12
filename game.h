@@ -25,8 +25,7 @@ public:
 
     bool getResult();
 
-    void settings();
-
+World world;
 private:
     /////////////////WINDOW////////////////////////
 
@@ -34,7 +33,7 @@ private:
 
     ////////////////LOGIC//////////////////////////
 
-    World world;
+
     int gameTime;
     sf::Clock deadline;
 

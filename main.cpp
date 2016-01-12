@@ -16,9 +16,10 @@ int main()
     float x = 1366, y = 768;
 
     bool fullscreen;
+    std::cout << "Minimal supported resolution is 1366x768. \nChanging to lower on your own risk." << std::endl;
     do
     {
-        std::cout << "Type resolution of your screen" << std::endl << "x: ";
+        std::cout << "Type resolution of your screen:" << std::endl << "x: ";
         std::cin >> x;
         std::cout << "y: ";
         std::cin >> y;
@@ -26,15 +27,15 @@ int main()
     while (x <= 0 || y <=0);
 
     float horizontalScreenZoom = x / 1280;
-    float verticalScreenZoom = y / 800;
+    float verticalScreenZoom = y / 768;
 
 /////////////////////////// CREATING AND STARTING GAME ////////////////////////////////////////////////////////
 
     Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom, fullscreenEnable());
     if (game.menu())
     {
-        //game.play();
-        bool result = true; //game.getResult();
+        game.play();
+        bool result = game.getResult();
         game.gameOver(result);
     }
 

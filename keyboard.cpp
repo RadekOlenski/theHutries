@@ -68,16 +68,16 @@ void Keyboard::chooseBuildingType(sf::Event event)
             case sf::Keyboard::Num2:
                 modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
                 break;
-            case sf::Keyboard::Num3:
+            case sf::Keyboard::Num5:
                 modelController->setChosenBuildingType(BuildingType::BARRACKS);
                 break;
-            case sf::Keyboard::Num4:
+            case sf::Keyboard::Num6:
                 modelController->setChosenBuildingType(BuildingType::RESIDENCE);
                 break;
-            case sf::Keyboard::Num5:
+            case sf::Keyboard::Num3:
                 modelController->setChosenBuildingType(BuildingType::GOLDMINE);
                 break;
-            case sf::Keyboard::Num6:
+            case sf::Keyboard::Num4:
                 modelController->setChosenBuildingType(BuildingType::FARM);
                 break;
             default:

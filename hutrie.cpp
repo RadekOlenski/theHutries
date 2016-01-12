@@ -22,17 +22,8 @@ Hutrie::Hutrie(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFrom
     sound.openFromFile(Sound::hutrie);
     sound.setVolume(100);
 
-    strength = (rand() % 10) + 1;
-    agility = (rand() % 10) + 1;
-    endurance = (rand() % 10) + 1;
-
     busy = false;
 }
-
-//void Hutrie::moveHutrie()
-//{
-//
-//}
 
 ///////////////////////////MOVING TO SPECIFIC MOUSE DIRECTION/////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,7 +62,7 @@ void Hutrie::toDirection(float targetX, float targetY)
 void Hutrie::updateStatus()
 {
     std::ostringstream desc;
-    desc << "Strength: " << strength << "\nAgility: " << agility << "\nEndurance: " << endurance;
+    desc << "I'm ready for\n\taction!";
     description.text.setString(desc.str());
 }
 
