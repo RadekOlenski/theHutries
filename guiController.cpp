@@ -144,7 +144,6 @@ void GUIController::handleGUIButtonsActions()
         modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
         modelController->setChosenBuildingType(BuildingType::HUTRIESHALL);
         Sound::click();
-        return;
     }
     if (gui->sawmill.checkBounds() && gui->sawmill.isActive())
     {
