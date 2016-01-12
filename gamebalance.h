@@ -60,13 +60,16 @@ public:
 
     //////////////////////////////////  CLOCKS    /////////////////////////////////////////////////
 
-    const static int gameTime = 5 * 60;
+    const static int gameTime = 35;//5 * 60;
 
     /////////////////////////////////   FINAL RESULT    ///////////////////////////////////////////
 
     const static double warriorQuotient;
     const static double archerQuotient;
     const static double winResult;
+
+    static std::string winString;
+    static std::string loseString;
 
     /////////////////////////////////   MENU STRINGS    ///////////////////////////////////////////
 

@@ -23,7 +23,7 @@ void Soldier::moveHutrie()
 {
     //occupyUnits();
     srand(time(NULL));
-    toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
+    //toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
     int unitNumber;
     while(1)
     {

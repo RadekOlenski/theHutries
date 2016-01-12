@@ -5,6 +5,7 @@
 #include "keyboard.h"
 #include "gameLogicController.h"
 #include "game.h"
+#include "sound.h"
 
 //=================================================================================
 //                              CONSTRUCTOR
@@ -48,6 +49,7 @@ Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZo
 
     if (!music.openFromFile(Sound::menuMusic)) std::cout << "Loading music failed" << std::endl;
     music.setLoop(true);
+    changeMusicFlag = true;
 }
 //=================================================================================
 //                              MAIN GAME LOOP
@@ -111,8 +113,19 @@ void Game::drawApplication()
 
 void Game::updateClock()
 {
-    std::ostringstream newTime;
     int time = (int) (gameTime - deadline.getElapsedTime().asSeconds());
+    if (time % 60 == 0  &&  time != 0)
+    {
+        Sound::reminderSound();
+        guiController->highlightClock(true);
+    }
+    if (time % 60 == 55) guiController->highlightClock(false);
+    if (changeMusicFlag && time == 28)
+    {
+        changeBackgroundMusic(Sound::introMusic);
+        changeMusicFlag = false;
+    }
+    std::ostringstream newTime;
     newTime << time / 60 << ":" << time % 60;
     gui.timeLeft.text.setString(newTime.str());
 }
@@ -133,6 +146,8 @@ void Game::gameOver(bool win)
         music.setVolume(100);
     }
     music.play();
+
+    bool next = false;
     while (hutrieApplication.isOpen())
     {
         sf::Event event;
@@ -140,7 +155,11 @@ void Game::gameOver(bool win)
         {
             keyboard->closeGame(event);
         }
-        guiController->displayGameOver(win);
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            next = true;
+        }
+        guiController->displayGameOver(win,next);
     };
 }
 

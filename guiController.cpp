@@ -23,6 +23,7 @@ GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelControlle
     introFlag = false;
     displayHutriesHall = false;
     readyForGame = false;
+    lockArrows = true;
     chosenHowToText = 0;
     setBuildingsCosts();
 }
@@ -55,6 +56,7 @@ void GUIController::handleMenuButtonsActions()
 {
     if (gui->playButton.checkBounds())
     {
+        lockArrows = true;
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
         quote.text.setStyle(sf::Text::Italic);
@@ -65,6 +67,7 @@ void GUIController::handleMenuButtonsActions()
     }
     if (gui->aboutButton.checkBounds())
     {
+        lockArrows = true;
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
         gui->startingText.text.setString(GameBalance::aboutString);
@@ -73,11 +76,15 @@ void GUIController::handleMenuButtonsActions()
     }
     if (gui->exitButton.checkBounds())
     {
+        lockArrows = true;
+        gui->nextArrowButton.setActive(false);
+        gui->backArrowButton.setActive(false);
         Sound::click();
         hutrieApplication->close();
     }
     if (gui->howToPlayButton.checkBounds())
     {
+        lockArrows = false;
         gui->startingText.text.setCharacterSize(30);
         gui->startingText.text.setString(GameBalance::howToPlayString);
         chosenHowToText = 0;
@@ -99,10 +106,13 @@ void GUIController::handleMenuButtonsActions()
         updateHowToText();
         Sound::click();
     }
-    if (chosenHowToText == 2) gui->nextArrowButton.setActive(false);
-    else gui->nextArrowButton.setActive(true);
-    if (chosenHowToText == 0) gui->backArrowButton.setActive(false);
-    else gui->backArrowButton.setActive(true);
+    if (!lockArrows)
+    {
+        if (chosenHowToText == 2 ) gui->nextArrowButton.setActive(false);
+        else gui->nextArrowButton.setActive(true);
+        if (chosenHowToText == 0 ) gui->backArrowButton.setActive(false);
+        else gui->backArrowButton.setActive(true);
+    }
 }
 
 void GUIController::updateHowToText()
@@ -178,6 +188,22 @@ void GUIController::handleGUIButtonsActions()
     }
 }
 
+void GUIController::highlightClock(bool highlight)
+{
+    if (highlight)
+    {
+        gui->timeLeft.text.setCharacterSize(600);
+        gui->timeLeft.text.setColor(sf::Color::Black);
+        gui->timeLeft.text.move(0,-60);
+    }
+    else
+    {
+        gui->timeLeft.text.setCharacterSize(20);
+        gui->timeLeft.text.setColor(sf::Color::White);
+        gui->timeLeft.text.setPosition(20,640 + 2 + 128);
+    }
+}
+
 void GUIController::setBuildingButtonsFlags(bool buttonFlag)
 {
     gui->residence.setActive(buttonFlag);
@@ -210,6 +236,7 @@ void GUIController::drawApplication()
     drawGrid(it);
     drawMapObjects(it);
 
+    drawToApplication(gui->timeLeft.text);
     drawToApplication(cursor);
     displayApplication();
 }
@@ -219,8 +246,8 @@ void GUIController::getView()
     fixed = hutrieApplication->getView();
     if (firstIteration)
     {
-        fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(), modelController->getVerticalScreenZoom()));
-        //fixed.zoom(1.1);
+        //fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(), modelController->getVerticalScreenZoom()));
+        fixed.zoom(1.1);
         firstIteration = false;
     }
 
@@ -342,14 +369,21 @@ void GUIController::launchQuoteThread()
     quoteThread.launch();
 }
 
-void GUIController::displayGameOver(bool win)
+void GUIController::displayGameOver(bool win, bool next)
 {
-    GUIText endingStats(300, 280, 40, getEndingStats());
+    if (next)
+    {
+       gui->endingStats.text.setString(getEndingStats());
+    }
+    else if (win)
+    {
+        gui->endingStats.text.setString(GameBalance::winString);
+    }
     setCursorPosition();
     prepareToDisplay();
     displayGUI();
     drawToApplication(background);
-    drawToApplication(endingStats.text);
+    drawToApplication(gui->endingStats.text);
     drawToApplication(titleText.text);
     gui->displayEndingText(win);
     drawToApplication(cursor);

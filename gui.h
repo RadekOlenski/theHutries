@@ -27,6 +27,8 @@ public:
     GUIButton nextArrowButton;
     GUIButton backArrowButton;
 
+    GUIText endingStats;
+
     ////////////////////////////// BASIC TOOLS ////////////////////////////////////////////////
 
     GUIButton buildButton;

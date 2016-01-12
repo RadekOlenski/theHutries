@@ -52,6 +52,8 @@ private:
 
     void changeBackgroundMusic(std::string musicPath);
 
+    bool changeMusicFlag;
+
     ModelController* modelController;
     GUIController* guiController;
     GameLogicController* gameLogicController;

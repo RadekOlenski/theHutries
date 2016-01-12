@@ -28,9 +28,11 @@ const float GameBalance::goldmineConstructionTime = 2;
 
     std::string GameBalance::aboutString ( "Created by: Marcin Jozwik\n              Radoslaw Olenski\n      Year: 2015\n   Version: 0.9.9.8\n\n Project for Object Oriented Programming Assignment ");
     std::string GameBalance::quoteString("\"Now, to disbelieve truth brings death,\nas to believe, life; and again,\nto believe the lie and to disbelieve\nthe truth hutries to destruction.\"\nThe Sacred Writings \nof Clement of Alexandria");
-    std::string GameBalance::historyString ("You are Hutron the Great.\nChief of tribe called Hutries.\nYour peaceful life has been disturbed\nby dragon attack.");
+    std::string GameBalance::historyString ("You are Hutron the Great.\nChief of tribe called Hutries.\nYour peaceful life has been disturbed\nby dragon attack. You village no longer exists.");
     std::string GameBalance::historyString2 ("You escape with a few Hutries.\nBut you're not safe. \nGather your men! \nDragon will be back.");
     std::string GameBalance::historyString3 ("Just enter your castle and prepare to fight!\nTrain as many soldiers as possible!");
-    std::string GameBalance::howToPlayString ("Your main objective is to defend your village from dragon's attack.\nIn order to it you need to train as many soldiers as possible.");
+    std::string GameBalance::howToPlayString ("Your main objective is to defend your village from dragon's attack.\nIn order to do it you need to train as many soldiers as possible.\n\nBuild 6 types of buildings, create 4 types of Hutries \nand multiply 4 types of goods.\n\nOnly clever moves will lead you to victory.");
     std::string GameBalance::howToPlayString2 ("To create new building use the Hammer Icon at upper right corner,\nchoose building from the list and empty field on a map. \nIf you have enough goods, building will start.\n\nTo create new workers and carriers use buttons connected with \nHutries Hall. This action requires food.\nIn case of warriors and archers use Barracks and gold.");
     std::string GameBalance::howToPlayString3  ("Buildings: \nGoodsbuildings create goods: wood, stone, food, and gold. You need \nworker to start production and, when product is ready, carrier \nto transport it to Hutries Hall. Building must be near goods deposit.\n\nResidence creates space for more Hutries in your village.\n\nBarracks allows you to create soldiers : warriors and archers. ");
+    std::string GameBalance::loseString("Your troops fought bravely, \nbut they could not withstand attack.\nThe Dragon was too powerful...\nThere is no hope for you.\nThe Hutries Tribe has gone.\nForever...");
+    std::string GameBalance::winString ("Win, win, win :D");

@@ -58,7 +58,7 @@ public:
 
     void launchQuoteThread();
 
-    void displayGameOver(bool win);
+    void displayGameOver(bool win,  bool next);
 
     void displayMenu();
 
@@ -102,6 +102,8 @@ public:
 
     void countScreenZoomValues();
 
+    void highlightClock(bool highlight);
+
 private:
 
     void updateHowToText();
@@ -131,6 +133,7 @@ private:
     bool displayHutriesHall;
     bool introFlag;
     bool readyForGame;
+    bool lockArrows;
     unsigned int chosenHowToText;
 };
 
