@@ -60,7 +60,6 @@ void Game::play()
 {
     changeBackgroundMusic(Sound::musicPath);
     deadline.restart();
-    world.createEnvironment();
     while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
     {
         handleActions();
@@ -132,14 +131,17 @@ void Game::updateClock()
 
 bool Game::getResult()
 {
-    double result =
-            world.archers.size() * GameBalance::archerQuotient + world.warriors.size() * GameBalance::warriorQuotient;
+    double result = world.archers.size() * GameBalance::archerQuotient + world.warriors.size() * GameBalance::warriorQuotient;
     return result >= GameBalance::winResult;
 }
 
 void Game::gameOver(bool win)
 {
-    if (win) music.openFromFile(Sound::winSound);
+    if (win)
+    {
+        music.openFromFile(Sound::winSound);
+        music.setLoop(false);
+    }
     else
     {
         music.openFromFile(Sound::loseSound);
@@ -171,7 +173,6 @@ bool Game::menu()
     guiController->setMenuButtonsFlags(true);
     bool firstLoop = true;
     sf::Event event;
-   // modelController->setChosenInteractionMode(0);
     while (hutrieApplication.isOpen() && modelController->getChosenInteractionMode() == 0)
     {
         mouse->updateMouseLock();
@@ -181,8 +182,6 @@ bool Game::menu()
             keyboard->closeGame(event);
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
             {
-                world.createHutriesHall();
-                gameLogicController->assignHutriesHall();
                 return true;
             }
         }
@@ -199,7 +198,6 @@ bool Game::menu()
         }
         guiController->displayMenu();
     };
-    if (guiController->getReadyForGame()) gameLogicController->assignHutriesHall();
     return true;
 }
 

@@ -46,11 +46,8 @@ World::World(sf::RenderWindow* hutrieApplication, int applicationWidth, int appl
         std::cout << std::endl;
     }
 */
-//    int unitIndex = 70;
-//    std::vector<Unit*> usedUnits;
-//    prepareUnits(unitIndex, 3, 3, &usedUnits);
-//    buildings.push_back(new HutriesHall(hutrieApplication, this, usedUnits));
-//    buildings.back()->placeOnMap();
+    createHutriesHall();
+    createEnvironment();
 }
 
 void World::createHutriesHall()

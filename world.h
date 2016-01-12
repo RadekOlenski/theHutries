@@ -54,10 +54,6 @@ public:
 
     void increaseAvailableSlots(int addedSlotsNumber);
 
-    void createEnvironment();
-
-    void createHutriesHall();
-
 private:
 
     void createForest();
@@ -65,6 +61,10 @@ private:
     void createMountains();
 
     void createRocks();
+
+    void createEnvironment();
+
+    void createHutriesHall();
 
     int horizontalUnitsCounter;
     int verticalUnitsCounter;

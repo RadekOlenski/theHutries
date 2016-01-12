@@ -39,12 +39,12 @@ void GUIController::displayIntro()
     sf::sleep(sf::seconds(5));
     gui->startingText.text.setString(GameBalance::historyString2);
     sf::sleep(sf::seconds(5));
-    world->createHutriesHall();
+//    world->createHutriesHall();
     displayHutriesHall = true;
     gui->startingText.text.setPosition(200, 550);
     gui->startingText.text.setString(GameBalance::historyString3);
     introFlag = false;
-    readyForGame = true;
+    modelController->setReadyForGame(true);
 }
 
 void GUIController::drawHutriesHall()
@@ -246,8 +246,8 @@ void GUIController::getView()
     fixed = hutrieApplication->getView();
     if (firstIteration)
     {
-        //fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(), modelController->getVerticalScreenZoom()));
-        fixed.zoom(1.1);
+        fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(), modelController->getVerticalScreenZoom()));
+        //fixed.zoom(1.1);
         firstIteration = false;
     }
 
@@ -413,7 +413,8 @@ std::string GUIController::getEndingStats()
     << world->carriers.size() << " carriers" << std::endl
     << world->workers.size() << " workers" << std::endl
     << world->warriors.size() << " warriors" << std::endl
-    << world->archers.size() << " archers" << std::endl;
+    << world->archers.size() << " archers" << std::endl
+    << "\t\t\t\t\t\t\t\t\t\t\tPress ESC to exit";
     return stats.str();
 }
 
@@ -571,3 +572,10 @@ void GUIController::errorMustBuildOnMountain()
     Sound::error();
     gui->errorInfo.text.setString("Error: \n        You have to build \n       goldmine on mountain!");
 }
+
+void GUIController::errorToMuchWorkers()
+{
+    Sound::error();
+    gui->errorInfo.text.setString("Error: \n        Too much workers!");
+}
+

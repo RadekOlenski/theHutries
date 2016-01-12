@@ -18,7 +18,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         nextArrowButton(950, 700, hutrieApplication, Textures::arrow),
         backArrowButton(50 , 700, hutrieApplication, Textures::backArrow),
 
-        endingStats(300, 280, 40, GameBalance::loseString),
+        endingStats(150, 280, 40, GameBalance::loseString),
 
         guiFrame(sf::Vector2f(width, mapHeight)),
         errorFrame(sf::Vector2f(width, 128 + 30)),

@@ -44,6 +44,10 @@ public:
 
     void setVerticalScreenZoom(float verticalScreenZoom) { gameModel->setVerticalScreenZoom(verticalScreenZoom); };
 
+    bool getReadyForGame() {return gameModel->getReadyForGame();};
+
+    void setReadyForGame(bool readyForGame) {gameModel->setReadyForGame(readyForGame);}
+
 private:
 
     GameModel* gameModel;

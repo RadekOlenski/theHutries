@@ -84,6 +84,8 @@ public:
 
     std::string getEndingStats();
 
+    void highlightClock(bool highlight);
+
     //------------------------------------------ ERRORS ----------------------------------//
 
     void errorNoCarriers();
@@ -114,15 +116,9 @@ public:
 
     void errorMustBuildOnMountain();
 
-    bool getIntroFlag() { return introFlag; };
-
-    bool getReadyForGame() { return readyForGame; };
-
-    void setBuildingsCosts();
+    void errorToMuchWorkers();
 
     void countScreenZoomValues();
-
-    void highlightClock(bool highlight);
 
 private:
 

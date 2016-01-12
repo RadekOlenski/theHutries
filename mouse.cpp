@@ -27,6 +27,7 @@ void Mouse::leftClickActions()
         if( modelController->getChosenInteractionMode() == 0)
             {
                 gameLogicController->handleMenuButtonsAction();
+                if (!modelController->getReadyForGame()) return;
             }
         if (sf::Mouse::getPosition(*hutrieApplication).x < applicationWidth &&
             sf::Mouse::getPosition(*hutrieApplication).y > 64 &&

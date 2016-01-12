@@ -39,6 +39,10 @@ public:
 
     void setVerticalScreenZoom(float verticalScreenZoom) { this->verticalScreenZoom = verticalScreenZoom; };
 
+    bool getReadyForGame() {return readyForGame;};
+
+    void setReadyForGame(bool readyForGame) {this->readyForGame = readyForGame;}
+
 private:
 
     int chosenInteractionMode;
@@ -56,6 +60,8 @@ private:
     float horizontalScreenZoom;
 
     float verticalScreenZoom;
+
+    bool readyForGame;
 };
 
 

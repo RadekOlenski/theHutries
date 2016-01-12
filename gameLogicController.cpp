@@ -19,12 +19,12 @@ GameLogicController::GameLogicController(World* world, sf::RenderWindow* hutrieA
     this->hutrieApplication = hutrieApplication;
     this->modelController = modelController;
     this->guiController = guiController;
-
+    hutriesHall = dynamic_cast <HutriesHall*>(world->buildings.at(0));
 }
 
 void GameLogicController::assignHutriesHall()
 {
-    hutriesHall = dynamic_cast <HutriesHall*>(world->buildings.at(0));
+//    hutriesHall = dynamic_cast <HutriesHall*>(world->buildings.at(0));
 }
 
 void GameLogicController::handleBuildingCreation()
@@ -603,6 +603,10 @@ void GameLogicController::needWorker(std::vector<Building*>::iterator it)
     {
         std::vector<Worker*>::iterator itc;
         callWorker(itc, gBuilding);
+    }
+    else
+    {
+        guiController->errorToMuchWorkers();
     }
     (*it)->setNeedWorker(false);
 }
