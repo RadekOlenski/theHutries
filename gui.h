@@ -93,13 +93,13 @@ public:
 
     //////////////////////////////// DRAWING FUNCTIONS /////////////////////////////////////////
 
-    void displayGUI();
+    void displayMainGUI();
 
-    void displayGUIBuildings();
+    void displayBuildingsGUI();
+
+    void displayHutriesGUI(int hutrieSize, int carrierSize, int workerSize, int warriorSize, int archerSize);
 
     void displayMenu();
-
-    void displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int warriorSize, int archerSize);
 
     /////////////////////////////////////ENDING ////////////////////////////////////////////////
 

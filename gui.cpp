@@ -105,7 +105,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
     hutrieButton.setActive(true);
 }
 
-void GUI::displayGUI()
+void GUI::displayMainGUI()
 {
     hutrieApplication->draw(guiFrame);
     hutrieApplication->draw(errorFrame);
@@ -127,7 +127,7 @@ void GUI::displayGUI()
 
 }
 
-void GUI::displayGUIBuildings()
+void GUI::displayBuildingsGUI()
 {
     hutrieApplication->draw(sawmill.button);
     hutrieApplication->draw(tSawmill.text);
@@ -168,7 +168,7 @@ void GUI::displayGUIBuildings()
 
 }
 
-void GUI::displayGUIHutries(int hutrieSize, int carrierSize, int workerSize, int warriorSize, int archerSize)
+void GUI::displayHutriesGUI(int hutrieSize, int carrierSize, int workerSize, int warriorSize, int archerSize)
 {
     std::ostringstream desc;
     desc << hutrieSize;
