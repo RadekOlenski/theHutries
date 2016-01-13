@@ -40,6 +40,7 @@ void Keyboard::chooseInteractionMode(sf::Event event)
             break;
         case sf::Keyboard::F2:
             modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
+            modelController->setChosenBuildingType(BuildingType::HUTRIESHALL);
             break;
         case sf::Keyboard::F3:
             modelController->setChosenInteractionMode(InteractionMode::INFOMODE);

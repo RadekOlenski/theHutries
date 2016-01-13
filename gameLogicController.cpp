@@ -250,6 +250,7 @@ void GameLogicController::handleWorkerCreation()
             guiController->errorNotEnoughGoods();
             hutriesHall->setTrainingWorkerFlag(false);
             hutriesHall->updateStatus();
+            return;
         }
         if (hutriesHall->getEnoughGoodsForCreation() && hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getWorkerTrainingTime())
         {
@@ -316,6 +317,7 @@ void GameLogicController::handleCarrierCreation()
                 guiController->errorNotEnoughGoods();
                 hutriesHall->setTrainingCarrierFlag(false);
                 hutriesHall->updateStatus();
+                return;
         }
         if (hutriesHall->getEnoughGoodsForCreation() && hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
         {
@@ -393,6 +395,7 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
             guiController->errorNotEnoughGoods();
             barracks->setTrainingWarriorFlag(false);
             barracks->updateStatus();
+            return;
         }
         if (barracks->getEnoughGoodsForCreation() && barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getWarriorTrainingTime())
         {
@@ -458,6 +461,7 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
             guiController->errorNotEnoughGoods();
             barracks->setTrainingArcherFlag(false);
             barracks->updateStatus();
+            return;
         }
         if (barracks->getEnoughGoodsForCreation() && barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getArcherTrainingTime())
         {

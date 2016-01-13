@@ -144,42 +144,43 @@ void GUIController::handleGUIButtonsActions()
         modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
         modelController->setChosenBuildingType(BuildingType::HUTRIESHALL);
         Sound::click();
+        return;
     }
     if (gui->sawmill.checkBounds() && gui->sawmill.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::SAWMILL);
         Sound::click();
-//        return;
+        return;
     }
     if (gui->stonecutter.checkBounds() && gui->stonecutter.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
         Sound::click();
-//        return;
+        return;
     }
     if (gui->barracks.checkBounds() && gui->barracks.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::BARRACKS);
         Sound::click();
-//        return;
+        return;
     }
     if (gui->residence.checkBounds() && gui->residence.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::RESIDENCE);
         Sound::click();
-//        return;
+        return;
     }
     if (gui->goldmine.checkBounds() && gui->goldmine.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::GOLDMINE);
         Sound::click();
-//        return;
+        return;
     }
     if (gui->farm.checkBounds() && gui->farm.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::FARM);
         Sound::click();
-//        return;
+        return;
     }
 
     updateBuildingsHighlight();
