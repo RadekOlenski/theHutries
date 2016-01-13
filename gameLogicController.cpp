@@ -233,22 +233,22 @@ void GameLogicController::handleWorkerCreation()
 {
     if (hutriesHall->getTrainingWorkerFlag())
     {
-        if (hutriesHall->getFirstCheckFlag())
+        Goods worldGoods = world->availableGoods;
+        if (worldGoods - GameBalance::workerCost >= 0)
         {
-            Goods worldGoods = world->availableGoods;
-            if (worldGoods - GameBalance::workerCost >= 0)
-            {
+             if (hutriesHall->getFirstCheckFlag())
+             {
                 world->availableGoods = world->availableGoods - GameBalance::workerCost;
                 guiController->updateGoodsNumber();
                 world->availableSlots--;
-            }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-                hutriesHall->setTrainingWorkerFlag(false);
-                hutriesHall->updateStatus();
-            }
-            hutriesHall->setFirstCheckFlag(false);
+                hutriesHall->setFirstCheckFlag(false);
+             }
+        }
+        else
+        {
+            guiController->errorNotEnoughGoods();
+            hutriesHall->setTrainingWorkerFlag(false);
+            hutriesHall->updateStatus();
         }
         if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getWorkerTrainingTime())
         {
@@ -296,22 +296,23 @@ void GameLogicController::handleCarrierCreation()
 {
     if (hutriesHall->getTrainingCarrierFlag())
     {
-        if (hutriesHall->getFirstCheckFlag())
+
+        Goods worldGoods = world->availableGoods;
+        if (worldGoods - GameBalance::carrierCost >= 0)
         {
-            Goods worldGoods = world->availableGoods;
-            if (worldGoods - GameBalance::carrierCost >= 0)
+            if (hutriesHall->getFirstCheckFlag())
             {
                 world->availableGoods = world->availableGoods - GameBalance::carrierCost;
                 guiController->updateGoodsNumber();
                 world->availableSlots--;
+                hutriesHall->setFirstCheckFlag(false);
             }
-            else
-            {
+        }
+        else
+        {
                 guiController->errorNotEnoughGoods();
                 hutriesHall->setTrainingCarrierFlag(false);
                 hutriesHall->updateStatus();
-            }
-            hutriesHall->setFirstCheckFlag(false);
         }
         if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
         {
@@ -371,22 +372,22 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
 {
     if (barracks->getTrainingWarriorFlag())
     {
-        if (barracks->getFirstCheckFlag())
+        Goods worldGoods = world->availableGoods;
+        if (worldGoods - GameBalance::warriorCost >= 0)
         {
-            Goods worldGoods = world->availableGoods;
-            if (worldGoods - GameBalance::warriorCost >= 0)
+            if (barracks->getFirstCheckFlag())
             {
                 world->availableGoods = world->availableGoods - GameBalance::warriorCost;
                 guiController->updateGoodsNumber();
                 world->availableSlots--;
+                barracks->setFirstCheckFlag(false);
             }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-                barracks->setTrainingWarriorFlag(false);
-                barracks->updateStatus();
-            }
-            barracks->setFirstCheckFlag(false);
+        }
+        else
+        {
+            guiController->errorNotEnoughGoods();
+            barracks->setTrainingWarriorFlag(false);
+            barracks->updateStatus();
         }
         if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getWarriorTrainingTime())
         {
@@ -434,22 +435,22 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
 {
     if (barracks->getTrainingArcherFlag())
     {
-        if (barracks->getFirstCheckFlag())
+        Goods worldGoods = world->availableGoods;
+        if (worldGoods - GameBalance::archerCost >= 0)
         {
-            Goods worldGoods = world->availableGoods;
-            if (worldGoods - GameBalance::archerCost >= 0)
+            if (barracks->getFirstCheckFlag())
             {
-                world->availableGoods = world->availableGoods - GameBalance::archerCost;
-                guiController->updateGoodsNumber();
-                world->availableSlots--;
-            }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-                barracks->setTrainingArcherFlag(false);
-                barracks->updateStatus();
-            }
+            world->availableGoods = world->availableGoods - GameBalance::archerCost;
+            guiController->updateGoodsNumber();
+            world->availableSlots--;
             barracks->setFirstCheckFlag(false);
+            }
+        }
+        else
+        {
+            guiController->errorNotEnoughGoods();
+            barracks->setTrainingArcherFlag(false);
+            barracks->updateStatus();
         }
         if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getArcherTrainingTime())
         {

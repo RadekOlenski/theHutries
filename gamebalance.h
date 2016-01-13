@@ -25,8 +25,8 @@ public:
 
     //////////////////////////////////  GOODS   ///////////////////////////////////////////////////
 
-    const static unsigned int startingWood = 10;
-    const static unsigned int startingStone = 10;
+    const static unsigned int startingWood = 100;
+    const static unsigned int startingStone = 100;
     const static unsigned int startingFood = 10;
     const static unsigned int startingGold = 10;
 
