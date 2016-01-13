@@ -533,26 +533,26 @@ void GUIController::setBuildingsCosts()
 
 void GUIController::showEmptyUnits(bool mark)
 {
-    std::vector<Unit*>::iterator it;
-    sf::Color emptyColor(0, 255, 0, 30);
-    sf::Color fullColor(255, 0, 0, 30);
-    if (!mark)
-    {
-        emptyColor = sf::Color::Transparent;
-        fullColor = sf::Color::Transparent;
-    }
-
-    for (it = world->units.begin(); it != world->units.end(); ++it)
-    {
-        if (((*it)->isEmpty()))
-        {
-            (*it)->field.setFillColor(emptyColor);
-        }
-        else
-        {
-             (*it)->field.setFillColor(fullColor);
-        }
-    }
+//    std::vector<Unit*>::iterator it;
+//    sf::Color emptyColor(0, 255, 0, 30);
+//    sf::Color fullColor(255, 0, 0, 30);
+//    if (!mark)
+//    {
+//        emptyColor = sf::Color::Transparent;
+//        fullColor = sf::Color::Transparent;
+//    }
+//
+//    for (it = world->units.begin(); it != world->units.end(); ++it)
+//    {
+//        if (((*it)->isEmpty()))
+//        {
+//            (*it)->field.setFillColor(emptyColor);
+//        }
+//        else
+//        {
+//             (*it)->field.setFillColor(fullColor);
+//        }
+//    }
 }
 
 //=================================================================================

@@ -29,6 +29,7 @@ Barracks::Barracks(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
     trainingArcher = false;
     firstCheck = true;
     buildingConstructed = false;
+    enoughGoodsForCreation = false;
     leftTrainingTime = 0;
     leftConstructionTime = 0;
 

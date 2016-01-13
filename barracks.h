@@ -60,6 +60,10 @@ public:
 
     void setBuildingConstructedFlag(bool buildingConstructed) { this->buildingConstructed = buildingConstructed; };
 
+    void setEnoughGoodsForCreation(bool enoughGoodsForCreation) { this->enoughGoodsForCreation = enoughGoodsForCreation; };
+
+    bool getEnoughGoodsForCreation() { return enoughGoodsForCreation; };
+
     float getConstructionTime() { return constructionTime; };
 
     sf::Clock trainingClock;
@@ -83,6 +87,7 @@ private:
     bool trainingArcher;
     bool firstCheck;
     bool buildingConstructed;
+    bool enoughGoodsForCreation;
 
     const int warriorTrainingTime = GameBalance::warriorTrainingTime;
     const int archerTrainingTime = GameBalance::archerTrainingTime;

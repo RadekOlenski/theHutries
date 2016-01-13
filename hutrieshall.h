@@ -58,6 +58,10 @@ public:
 
     bool getFirstCheckFlag() { return firstCheck; };
 
+    void setEnoughGoodsForCreation(bool enoughGoodsForCreation) { this->enoughGoodsForCreation = enoughGoodsForCreation; };
+
+    bool getEnoughGoodsForCreation() { return enoughGoodsForCreation; };
+
 private:
 
     unsigned int getAvailableWorkers();
@@ -79,6 +83,8 @@ private:
     bool trainingWorker;
 
     bool trainingCarrier;
+    bool enoughGoodsForCreation;
+
     const int workerTrainingTime = GameBalance::workerTrainingTime;
 
     const int carrierTrainingTime = GameBalance::carrierTrainingTime;

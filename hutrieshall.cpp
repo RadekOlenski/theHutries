@@ -38,6 +38,7 @@ HutriesHall::HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std:
     trainingCarrier = false;
 
     firstCheck = true;
+    enoughGoodsForCreation = false;
     leftTrainingTime = 0;
     doorIndex = 6;
 

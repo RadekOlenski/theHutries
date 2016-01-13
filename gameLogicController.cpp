@@ -242,20 +242,22 @@ void GameLogicController::handleWorkerCreation()
                 guiController->updateGoodsNumber();
                 world->availableSlots--;
                 hutriesHall->setFirstCheckFlag(false);
+                hutriesHall->setEnoughGoodsForCreation(true);
              }
         }
-        else
+        else if (!hutriesHall->getEnoughGoodsForCreation())
         {
             guiController->errorNotEnoughGoods();
             hutriesHall->setTrainingWorkerFlag(false);
             hutriesHall->updateStatus();
         }
-        if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getWorkerTrainingTime())
+        if (hutriesHall->getEnoughGoodsForCreation() && hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getWorkerTrainingTime())
         {
+            hutriesHall->setEnoughGoodsForCreation(false);
+            hutriesHall->setTrainingWorkerFlag(false);
             std::string objectType = "worker";
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, unitIndex);
-            hutriesHall->setTrainingWorkerFlag(false);
             hutriesHall->updateStatus();
             hutriesHall->setFirstCheckFlag(true);
         }
@@ -306,20 +308,22 @@ void GameLogicController::handleCarrierCreation()
                 guiController->updateGoodsNumber();
                 world->availableSlots--;
                 hutriesHall->setFirstCheckFlag(false);
+                hutriesHall->setEnoughGoodsForCreation(true);
             }
         }
-        else
+        else if (!hutriesHall->getEnoughGoodsForCreation())
         {
                 guiController->errorNotEnoughGoods();
                 hutriesHall->setTrainingCarrierFlag(false);
                 hutriesHall->updateStatus();
         }
-        if (hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
+        if (hutriesHall->getEnoughGoodsForCreation() && hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
         {
+            hutriesHall->setEnoughGoodsForCreation(false);
+            hutriesHall->setTrainingCarrierFlag(false);
             std::string objectType = "carrier";
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, unitIndex);
-            hutriesHall->setTrainingCarrierFlag(false);
             hutriesHall->updateStatus();
             hutriesHall->setFirstCheckFlag(true);
         }
@@ -381,19 +385,21 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
                 guiController->updateGoodsNumber();
                 world->availableSlots--;
                 barracks->setFirstCheckFlag(false);
+                barracks->setEnoughGoodsForCreation(true);
             }
         }
-        else
+        else if (!barracks->getEnoughGoodsForCreation())
         {
             guiController->errorNotEnoughGoods();
             barracks->setTrainingWarriorFlag(false);
             barracks->updateStatus();
         }
-        if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getWarriorTrainingTime())
+        if (barracks->getEnoughGoodsForCreation() && barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getWarriorTrainingTime())
         {
+            barracks->setEnoughGoodsForCreation(false);
+            barracks->setTrainingWarriorFlag(false);
             std::string objectType = "warrior";
             createHutrie(objectType, unitIndex);
-            barracks->setTrainingWarriorFlag(false);
             barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
         }
@@ -444,19 +450,21 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
             guiController->updateGoodsNumber();
             world->availableSlots--;
             barracks->setFirstCheckFlag(false);
+            barracks->setEnoughGoodsForCreation(true);
             }
         }
-        else
+        else if(!barracks->getEnoughGoodsForCreation())
         {
             guiController->errorNotEnoughGoods();
             barracks->setTrainingArcherFlag(false);
             barracks->updateStatus();
         }
-        if (barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getArcherTrainingTime())
+        if (barracks->getEnoughGoodsForCreation() && barracks->trainingClock.getElapsedTime().asSeconds() >= barracks->getArcherTrainingTime())
         {
+            barracks->setEnoughGoodsForCreation(false);
+            barracks->setTrainingArcherFlag(false);
             std::string objectType = "archer";
             createHutrie(objectType, unitIndex);
-            barracks->setTrainingArcherFlag(false);
             barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
         }
