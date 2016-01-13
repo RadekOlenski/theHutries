@@ -37,16 +37,20 @@ void Keyboard::chooseInteractionMode(sf::Event event)
     {
         case sf::Keyboard::F1:
             modelController->setChosenInteractionMode(InteractionMode::HUTRIEINFO);
+            guiController->showEmptyUnits(false);
             break;
         case sf::Keyboard::F2:
             modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
             modelController->setChosenBuildingType(BuildingType::HUTRIESHALL);
+            guiController->showEmptyUnits(false);
             break;
         case sf::Keyboard::F3:
             modelController->setChosenInteractionMode(InteractionMode::INFOMODE);
+            guiController->showEmptyUnits(false);
             break;
 //        case sf::Keyboard::F4:
 //            modelController->setChosenInteractionMode(InteractionMode::HUTRIEMODE);
+//            guiController->showEmptyUnits(false);
 //            break;
         default:
             break;
@@ -66,21 +70,27 @@ void Keyboard::chooseBuildingType(sf::Event event)
         {
             case sf::Keyboard::Num1:
                 modelController->setChosenBuildingType(BuildingType::SAWMILL);
+                guiController->showEmptyUnits(true);
                 break;
             case sf::Keyboard::Num2:
                 modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
+                guiController->showEmptyUnits(true);
                 break;
             case sf::Keyboard::Num4:
                 modelController->setChosenBuildingType(BuildingType::GOLDMINE);
+                guiController->showEmptyUnits(true);
                 break;
             case sf::Keyboard::Num3:
                 modelController->setChosenBuildingType(BuildingType::FARM);
+                guiController->showEmptyUnits(true);
                 break;
             case sf::Keyboard::Num5:
                 modelController->setChosenBuildingType(BuildingType::BARRACKS);
+                guiController->showEmptyUnits(true);
                 break;
             case sf::Keyboard::Num6:
                 modelController->setChosenBuildingType(BuildingType::RESIDENCE);
+                guiController->showEmptyUnits(true);
                 break;
             default:
                 break;

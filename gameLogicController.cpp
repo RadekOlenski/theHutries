@@ -805,3 +805,15 @@ void GameLogicController::createGoldmine(std::vector<Unit*> usedUnits)
     guiController->errorMustBuildOnMountain();
 
 }
+
+void GameLogicController::updateBuildingGrid()
+{
+     if (modelController->getChosenInteractionMode() == 2 && modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL)
+    {
+        guiController->showEmptyUnits();
+    }
+    else
+    {
+       guiController->showEmptyUnits(false);
+    }
+}

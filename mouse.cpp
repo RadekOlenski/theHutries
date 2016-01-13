@@ -25,11 +25,13 @@ void Mouse::leftClickActions()
     {
         int applicationWidth = modelController->getApplicationWidth();
         int applicationHeight = modelController->getApplicationHeight();
+
         if( modelController->getChosenInteractionMode() == 0)
             {
                 gameLogicController->handleMenuButtonsAction();
                 if (!modelController->getReadyForGame()) return;
             }
+
         if (sf::Mouse::getPosition(*hutrieApplication).x < applicationWidth &&
             sf::Mouse::getPosition(*hutrieApplication).y > 64 &&
             sf::Mouse::getPosition(*hutrieApplication).y <
@@ -44,6 +46,7 @@ void Mouse::leftClickActions()
             return;
         }
         gameLogicController->handleGUIButtonsAction();
+        gameLogicController->updateBuildingGrid();                                   //przy kliknieciu sprawdza czy siatka pokazujaca wolne pola powinna byc wyswietlana
     }
 }
 
@@ -63,7 +66,6 @@ void Mouse::handleClickOnMap()
             {
                 gameLogicController->handleBuildingCreation();
 
-
                 break;
             }
 //            case InteractionMode::HUTRIEMODE:     //poruszanie Hutrim
@@ -78,6 +80,8 @@ void Mouse::handleClickOnMap()
     else
 ////////////////////////////EMPHASIZE UNIT WITH MAPOBJECT///////////////////////////////////////////////////////////////////////////////////
     {
+        modelController->setChosenInteractionMode(InteractionMode::INFOMODE);
+        gameLogicController->updateBuildingGrid();                                   //przy kliknieciu sprawdza czy siatka pokazujaca wolne pola powinna byc wyswietlana
         gameLogicController->highlightUnits();
 
     }

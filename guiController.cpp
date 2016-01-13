@@ -144,43 +144,49 @@ void GUIController::handleGUIButtonsActions()
         modelController->setChosenInteractionMode(InteractionMode::BUILDMODE);
         modelController->setChosenBuildingType(BuildingType::HUTRIESHALL);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->sawmill.checkBounds() && gui->sawmill.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::SAWMILL);
+        showEmptyUnits(true);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->stonecutter.checkBounds() && gui->stonecutter.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::STONECUTTERHUT);
+        showEmptyUnits(true);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->barracks.checkBounds() && gui->barracks.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::BARRACKS);
+        showEmptyUnits(true);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->residence.checkBounds() && gui->residence.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::RESIDENCE);
+        showEmptyUnits(true);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->goldmine.checkBounds() && gui->goldmine.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::GOLDMINE);
+        showEmptyUnits(true);
         Sound::click();
-        return;
+//        return;
     }
     if (gui->farm.checkBounds() && gui->farm.isActive())
     {
         modelController->setChosenBuildingType(BuildingType::FARM);
+        showEmptyUnits(true);
         Sound::click();
-        return;
+//        return;
     }
 
     updateBuildingsHighlight();
@@ -281,12 +287,10 @@ void GUIController::setCursorSprite()
     if (modelController->getChosenInteractionMode() == 2 && modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL)
     {
         cursor.setTexture(cursorHammerTexture);
-        showEmptyUnits();
     }
     else
     {
        cursor.setTexture(cursorTexture);
-       showEmptyUnits(false);
     }
 }
 
@@ -534,26 +538,26 @@ void GUIController::setBuildingsCosts()
 
 void GUIController::showEmptyUnits(bool mark)
 {
-//    std::vector<Unit*>::iterator it;
-//    sf::Color emptyColor(0, 255, 0, 30);
-//    sf::Color fullColor(255, 0, 0, 30);
-//    if (!mark)
-//    {
-//        emptyColor = sf::Color::Transparent;
-//        fullColor = sf::Color::Transparent;
-//    }
-//
-//    for (it = world->units.begin(); it != world->units.end(); ++it)
-//    {
-//        if (((*it)->isEmpty()))
-//        {
-//            (*it)->field.setFillColor(emptyColor);
-//        }
-//        else
-//        {
-//             (*it)->field.setFillColor(fullColor);
-//        }
-//    }
+    std::vector<Unit*>::iterator it;
+    sf::Color emptyColor(0, 255, 0, 30);
+    sf::Color fullColor(255, 0, 0, 30);
+    if (!mark)
+    {
+        emptyColor = sf::Color::Transparent;
+        fullColor = sf::Color::Transparent;
+    }
+
+    for (it = world->units.begin(); it != world->units.end(); ++it)
+    {
+        if (((*it)->isEmpty()))
+        {
+            (*it)->field.setFillColor(emptyColor);
+        }
+        else
+        {
+             (*it)->field.setFillColor(fullColor);
+        }
+    }
 }
 
 //=================================================================================

@@ -89,6 +89,8 @@ public:
 
     void handleMenuButtonsAction();
 
+    void updateBuildingGrid();
+
 private:
 
     World* world;
