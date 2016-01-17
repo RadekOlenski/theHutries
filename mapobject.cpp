@@ -60,7 +60,7 @@ void MapObject::occupyUnits()
 void MapObject::highlightUnits(bool fillColor)
 {
     std::vector<Unit*>::iterator it;
-    sf::Color color(0, 255, 0, 30);
+    sf::Color color(0, 255, 0, 50);
     if (!fillColor) color = sf::Color::Transparent;
     for (it = objectUnits.begin(); it != objectUnits.end(); ++it)
     {

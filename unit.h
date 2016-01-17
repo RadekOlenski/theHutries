@@ -47,6 +47,7 @@ private:
 
 //    bool emptiness;
     unsigned int type;
+    bool forestChecked, rocksChecked, mountainChecked;
     MapObject* mapObject;
     std::vector<Hutrie*> dwellers;
     int index;

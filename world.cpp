@@ -62,8 +62,8 @@ void World::createHutriesHall()
 
 void World::createEnvironment()
 {
-    createForest();
     createMountains();
+    createForest();
     createRocks();
 }
 
@@ -120,19 +120,20 @@ void World::increaseAvailableSlots(int addedSlotsNumber)
 
 void World::markUnitsAround(int unitIndex, std::string environmentType)
 {
-    int tempIndex, a = -2, b = 4;
+    int tempIndex, a = -2;
+    int b = (environmentType == "mountains") ? 3:4;         //bo gory sa 2x2 a reszta 3x2 pola
     switch (unitIndex % horizontalUnitsCounter)
     {
-    case 13:    //horizontalUnitsCounter - 3
-        b = 2;
+    case 13:    //horizontalUnitsCounter - 3                //zeby nie wyszlo z planszy na prawo
+        b -= 2;
         break;
-    case 12:    //horizontalUnitsCounter - 4
-        b = 3;
+    case 12:    //horizontalUnitsCounter - 4                //zeby nie wyszlo z planszy na prawo
+        b -= (environmentType == "mountains") ? 0:1;
         break;
-    case 0:
+    case 0:                                                 //zeby nie wyszlo z planszy na lewo
         a = 0;
         break;
-    case 1:
+    case 1:                                                 //zeby nie wyszlo z planszy na lewo
         a = -1;
         break;
     };
@@ -157,7 +158,7 @@ void World::createForest()
     int trees = 0;
     try
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)                 //ilosc drzew na mapie
         {
             int d = 0;
             do
@@ -190,7 +191,7 @@ void World::createMountains()
     int unitIndex;
     try
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)              //ilosc gor na mapie
         {
             int d = 0;
             do
@@ -221,7 +222,7 @@ void World::createRocks()
     int unitIndex;
     try
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)              //ilosc skal na mapie
         {
             int d = 0;
             do

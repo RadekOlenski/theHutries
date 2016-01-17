@@ -3,7 +3,6 @@
 #include "game.h"
 
 bool fullscreenEnable();
-void losowanie();
 int main()
 {
     srand((unsigned int) time(0));
@@ -16,22 +15,22 @@ int main()
     float x = 1366, y = 768;
 
     bool fullscreen;
-    std::cout << "Minimal supported resolution is 1366x768. \nChanging to lower on your own risk." << std::endl;
-    do
-    {
-        std::cout << "Type resolution of your screen:" << std::endl << "x: ";
-        std::cin >> x;
-        std::cout << "y: ";
-        std::cin >> y;
-    }
-    while (x <= 0 || y <=0);
+//    std::cout << "Minimal supported resolution is 1366x768. \nChanging to lower on your own risk." << std::endl;
+//    do
+//    {
+//        std::cout << "Type resolution of your screen:" << std::endl << "x: ";
+//        std::cin >> x;
+//        std::cout << "y: ";
+//        std::cin >> y;
+//    }
+//    while (x <= 0 || y <=0);
 
     float horizontalScreenZoom = x / 1280;
     float verticalScreenZoom = y / 768;
 
 /////////////////////////// CREATING AND STARTING GAME ////////////////////////////////////////////////////////
 
-    Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom, fullscreenEnable());
+    Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom, true);// fullscreenEnable());
 //    if (game.menu())
 //    {
         game.play();
