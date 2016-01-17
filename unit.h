@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include <vector>
+#include <string>
 
 #include "mapobject.h"
 #include "hutrie.h"
@@ -20,9 +21,9 @@ public:
 
     MapObject* getMapObject() { return this->mapObject; }
 
-    bool isEmpty() { return emptiness; }
+//    bool isEmpty() { return emptiness; }
 
-    void setEmpty(bool emptiness) { this->emptiness = emptiness; }
+//    void setEmpty(bool emptiness) { this->emptiness = emptiness; }
 
     Unit(sf::Vector2f position, int index);
 
@@ -36,9 +37,16 @@ public:
 
     int getIndex() { return index; }
 
+    void setType(unsigned int type) {this->type = type;};
+
+    unsigned int getType() {return type;};
+
+    void assignType(std::string environmentType);
+
 private:
 
-    bool emptiness;
+//    bool emptiness;
+    unsigned int type;
     MapObject* mapObject;
     std::vector<Hutrie*> dwellers;
     int index;

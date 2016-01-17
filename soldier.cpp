@@ -1,5 +1,6 @@
 #include "unit.h"
 #include "soldier.h"
+#include "unittype.h"
 
 
 Soldier::Soldier(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame,
@@ -31,7 +32,7 @@ void Soldier::moveHutrie()
         {
             unitNumber = (unsigned int) (rand() % 160);
         }
-        while (!(unitsForMoving.at(unitNumber)->isEmpty()));
+        while (unitsForMoving.at(unitNumber)->getType() == UnitType::FULL);
         toDirection(unitsForMoving.at(unitNumber)->field.getPosition().x,
                     unitsForMoving.at(unitNumber)->field.getPosition().y);
         sf::sleep(sf::seconds(rand() % 6));

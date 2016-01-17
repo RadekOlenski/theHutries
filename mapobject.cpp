@@ -1,5 +1,6 @@
 #include "mapobject.h"
 #include "unit.h"
+#include "unittype.h"
 
 MapObject::MapObject(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
         : title(1024 + 40, 170, 30),
@@ -48,7 +49,8 @@ void MapObject::occupyUnits()
     std::vector<Unit*>::iterator it;
     for (it = objectUnits.begin(); it != objectUnits.end(); ++it)
     {
-        (*it)->setEmpty(false);
+//        (*it)->setEmpty(false);
+        (*it)->setType(UnitType::FULL);
         (*it)->setMapObject(this);
     }
 }

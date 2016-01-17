@@ -5,6 +5,7 @@
 #include "buildingType.h"
 #include "interactionMode.h"
 #include "gamebalance.h"
+#include "unittype.h"
 
 GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelController* modelController, World* world, GUI* gui)
         : titleText(1024 + 20, 40, 45),
@@ -327,7 +328,7 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
     for (it = world->units.begin(); it != world->units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie
         // - druga petla zeby ruszajacy sie Hutrie byli rysowani nad zielona kratka a nie pod
     {
-        if (!((*it)->isEmpty()))
+        if ((*it)->getType() == UnitType::FULL)
         {
             drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
             if ((*it)->hutriesNumber() > 0)
@@ -540,16 +541,70 @@ void GUIController::showEmptyUnits(bool mark)
 {
     std::vector<Unit*>::iterator it;
     sf::Color emptyColor(0, 255, 0, 30);
-    sf::Color fullColor(255, 0, 0, 30);
+    sf::Color fullColor(255, 0, 0, 50);
+    sf::Color forestColor(sf::Color::Black);
     if (!mark)
     {
         emptyColor = sf::Color::Transparent;
         fullColor = sf::Color::Transparent;
+        forestColor = sf::Color::Transparent;
     }
-
-    for (it = world->units.begin(); it != world->units.end(); ++it)
+    if (modelController->getChosenBuildingType() == BuildingType::SAWMILL)
     {
-        if (((*it)->isEmpty()))
+         for (it = world->units.begin(); it != world->units.end(); ++it)
+        {
+            if ((*it)->getType() == UnitType::NEARFOREST ||
+                (*it)->getType() == UnitType::NEARFOREST + UnitType::NEARMOUNTAIN ||
+                (*it)->getType() == UnitType::NEARFOREST + UnitType::NEARROCKS ||
+                (*it)->getType() == UnitType::NEARFOREST + UnitType::NEARROCKS + UnitType::NEARMOUNTAIN )
+            {
+                (*it)->field.setFillColor(emptyColor);
+            }
+            else
+            {
+                (*it)->field.setFillColor(fullColor);
+            }
+        }
+    }
+    else if (modelController->getChosenBuildingType() == BuildingType::STONECUTTERHUT)
+    {
+         for (it = world->units.begin(); it != world->units.end(); ++it)
+        {
+            if ((*it)->getType() == UnitType::NEARROCKS ||
+                (*it)->getType() == UnitType::NEARROCKS + UnitType::NEARMOUNTAIN ||
+                (*it)->getType() == UnitType::NEARROCKS + UnitType::NEARFOREST ||
+                (*it)->getType() == UnitType::NEARROCKS + UnitType::NEARFOREST + UnitType::NEARMOUNTAIN )
+            {
+                (*it)->field.setFillColor(emptyColor);
+            }
+            else
+            {
+                (*it)->field.setFillColor(fullColor);
+            }
+        }
+    }
+    else if (modelController->getChosenBuildingType() == BuildingType::GOLDMINE)
+    {
+         for (it = world->units.begin(); it != world->units.end(); ++it)
+        {
+            if ((*it)->getType() == UnitType::NEARMOUNTAIN ||
+                (*it)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARROCKS ||
+                (*it)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARFOREST ||
+                (*it)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARFOREST + UnitType::NEARROCKS )
+            {
+                (*it)->field.setFillColor(emptyColor);
+            }
+            else
+            {
+                (*it)->field.setFillColor(fullColor);
+            }
+        }
+    }
+    else
+    {
+        for (it = world->units.begin(); it != world->units.end(); ++it)
+    {
+        if ((*it)->getType() != UnitType::FULL)
         {
             (*it)->field.setFillColor(emptyColor);
         }
@@ -557,6 +612,7 @@ void GUIController::showEmptyUnits(bool mark)
         {
              (*it)->field.setFillColor(fullColor);
         }
+    }
     }
 }
 

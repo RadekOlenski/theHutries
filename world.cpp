@@ -6,6 +6,7 @@
 #include "forest.h"
 #include "mountain.h"
 #include "rocks.h"
+#include "unittype.h"
 
 World::World(sf::RenderWindow* hutrieApplication, int applicationWidth, int applicationHeight, int unitRectangleSize)
         : lastClickedUnit(NULL)
@@ -88,7 +89,7 @@ bool World::isFieldEmpty(std::vector<Unit*> &usedUnits)
     std::vector<Unit*>::iterator it;
     for (it = usedUnits.begin(); it != usedUnits.end(); ++it)
     {
-        if (!((*it)->isEmpty())) return false;
+        if ((*it)->getType() == UnitType::FULL) return false;
     }
     return true;
 }
@@ -117,6 +118,38 @@ void World::increaseAvailableSlots(int addedSlotsNumber)
     std::cout << "dostepne miejsca:" << this->availableSlots << std::endl;
 }
 
+void World::markUnitsAround(int unitIndex, std::string environmentType)
+{
+    int tempIndex, a = -2, b = 4;
+    switch (unitIndex % horizontalUnitsCounter)
+    {
+    case 13:    //horizontalUnitsCounter - 3
+        b = 2;
+        break;
+    case 12:    //horizontalUnitsCounter - 4
+        b = 3;
+        break;
+    case 0:
+        a = 0;
+        break;
+    case 1:
+        a = -1;
+        break;
+    };
+
+    for (int i = - 2 ; i < 4 ; i++)
+    {
+        for (int j = a; j <= b; j++)
+        {
+           tempIndex = unitIndex + (i * horizontalUnitsCounter) + j;
+            if ( tempIndex >=0 && tempIndex <= units.size() - 1 && units.at(tempIndex)->getType() !=  UnitType::FULL)
+            {
+               units.at(tempIndex)->assignType(environmentType);
+            }
+        }
+    }
+}
+
 void World::createForest()
 {
     std::vector<Unit*> usedUnits;
@@ -138,6 +171,7 @@ void World::createForest()
             }
             while (!(isFieldEmpty(usedUnits)));
             environment.push_back(new Forest(hutrieApplication, usedUnits, Textures::forest));
+            markUnitsAround(unitIndex, "forest");
             this->forestsIndex.push_back(this->environment.size() - 1);
             trees = i;
             std::cout << "Las nr " << i << ", prob postawienia: " << d << std::endl;
@@ -170,6 +204,7 @@ void World::createMountains()
             }
             while (!(isFieldEmpty(usedUnits)));
             environment.push_back(new Mountain(hutrieApplication, usedUnits, Textures::mountain));
+            markUnitsAround(unitIndex, "mountains");
             this->mountainsIndex.push_back(this->environment.size() - 1);
             std::cout << "Gory nr " << i << ", prob postawienia: " << d << std::endl;
         }
@@ -200,6 +235,7 @@ void World::createRocks()
             }
             while (!(isFieldEmpty(usedUnits)));
             environment.push_back(new Rocks(hutrieApplication, usedUnits, Textures::rocks));
+            markUnitsAround(unitIndex, "rocks");
             this->rocksIndex.push_back(this->environment.size() - 1);
             std::cout << "Skaly nr " << i << ", prob postawienia: " << d << std::endl;
         }

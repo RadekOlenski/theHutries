@@ -69,7 +69,8 @@ protected:
     sf::Music sound;
     bool highlight;
 
-    virtual void occupyUnits();
+//    virtual void occupyUnits();
+    void occupyUnits();
 };
 
 #endif // MAPOBJECT_H

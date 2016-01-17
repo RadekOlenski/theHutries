@@ -11,6 +11,7 @@
 #include "gameLogicController.h"
 #include "interactionMode.h"
 #include "sound.h"
+#include "unittype.h"
 
 GameLogicController::GameLogicController(World* world, sf::RenderWindow* hutrieApplication,
                                          ModelController* modelController, GUIController* guiController)
@@ -171,7 +172,8 @@ void GameLogicController::findSelectedUnit()
 
 bool GameLogicController::isUnitEmpty()
 {
-    return world->units.at(modelController->getSelectedUnitIndex())->isEmpty();
+    if ( world->units.at(modelController->getSelectedUnitIndex())->getType() == UnitType::FULL ) return false;
+    else return true;
 }
 
 void GameLogicController::deactivateChosenModeFlag()

@@ -3,7 +3,7 @@
 #include "game.h"
 
 bool fullscreenEnable();
-
+void losowanie();
 int main()
 {
     srand((unsigned int) time(0));
@@ -32,13 +32,12 @@ int main()
 /////////////////////////// CREATING AND STARTING GAME ////////////////////////////////////////////////////////
 
     Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom, fullscreenEnable());
-    if (game.menu())
-    {
+//    if (game.menu())
+//    {
         game.play();
         bool result = game.getResult();
         game.gameOver(result);
-    }
-
+//    }
 /////////////////////////// ENDING ////////////////////////////////////////////////////////////////////////////
     return 0;
 }

@@ -66,6 +66,8 @@ private:
 
     void createHutriesHall();
 
+    void markUnitsAround(int unitIndex, std::string environmentType);
+
     int horizontalUnitsCounter;
     int verticalUnitsCounter;
     sf::RenderWindow* hutrieApplication;
