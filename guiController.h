@@ -92,6 +92,8 @@ public:
 
     void showEmptyUnits(bool mark = true);
 
+    void attachBuildingToCursor (sf::Vector2f worldPos);
+
     //------------------------------------------ ERRORS ----------------------------------//
 
     void errorNoCarriers();
@@ -140,6 +142,8 @@ private:
     sf::RectangleShape background;
     sf::Texture backgroundTexture;
     sf::Sprite cursor;
+    sf::Sprite buildingToCursor;
+    sf::Texture buildingToCursorTexture;
     sf::Texture cursorTexture;
     sf::Texture cursorHammerTexture;
 

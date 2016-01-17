@@ -279,6 +279,7 @@ void GUIController::drawApplication()
     drawMapObjects(it);
     drawToApplication(gui->timeLeft.text);
     setCursorSprite();
+    drawToApplication(buildingToCursor);
     drawToApplication(cursor);
     displayApplication();
 }
@@ -367,6 +368,11 @@ void GUIController::createCursor()
     cursorTexture.loadFromFile(Textures::cursor);
     cursorHammerTexture.loadFromFile(Textures::hammerCursor);
     cursor.setTexture(cursorTexture);
+    buildingToCursorTexture.loadFromFile(Textures::sawmillBasic);
+    buildingToCursor.setTexture(buildingToCursorTexture);
+    sf::Color color (0,150,0,150);
+    buildingToCursor.setColor(color);
+    buildingToCursor.setScale(0.4,0.4);
 }
 
 void GUIController::prepareToDisplay()
@@ -407,6 +413,43 @@ void GUIController::setCursorPosition()
     pixelPos.y = (int) (pixelPos.y * modelController->getVerticalScreenZoom());
     sf::Vector2f worldPos = hutrieApplication->mapPixelToCoords(pixelPos);
     cursor.setPosition(worldPos);
+    attachBuildingToCursor(worldPos);
+    buildingToCursor.setPosition(worldPos);
+}
+
+void GUIController::attachBuildingToCursor (sf::Vector2f worldPos)
+{
+    if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE)
+    {
+        switch(modelController->getChosenBuildingType())
+        {
+        case BuildingType::SAWMILL:
+            buildingToCursorTexture.loadFromFile(Textures::sawmillBasic);
+            break;
+        case BuildingType::STONECUTTERHUT:
+            buildingToCursorTexture.loadFromFile(Textures::stonecutterHutBasic);
+            break;
+        case BuildingType::FARM:
+            buildingToCursorTexture.loadFromFile(Textures::farmBasic);
+            break;
+        case BuildingType::GOLDMINE:
+            buildingToCursorTexture.loadFromFile(Textures::goldmineBasic);
+            break;
+        case BuildingType::BARRACKS:
+            buildingToCursorTexture.loadFromFile(Textures::barracksBasic);
+            break;
+        case BuildingType::RESIDENCE:
+            buildingToCursorTexture.loadFromFile(Textures::residenceBasic);
+            break;
+        default:
+            buildingToCursorTexture.loadFromFile(Textures::carrierEmpty);
+            break;
+        };
+    }
+    else
+    {
+        buildingToCursorTexture.loadFromFile(Textures::carrierEmpty);
+    }
 }
 
 void GUIController::launchTitleThread()
