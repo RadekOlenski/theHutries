@@ -43,6 +43,10 @@ public:
 
     void setReadyForGame(bool readyForGame) {this->readyForGame = readyForGame;}
 
+    bool getBackToMenu() {return backToMenu;};
+
+    void setBackToMenu(bool backToMenu) {this->backToMenu = backToMenu;}
+
 private:
 
     int chosenInteractionMode;
@@ -62,6 +66,8 @@ private:
     float verticalScreenZoom;
 
     bool readyForGame;
+
+    bool backToMenu;
 };
 
 

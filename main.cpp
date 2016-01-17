@@ -30,13 +30,14 @@ int main()
 
 /////////////////////////// CREATING AND STARTING GAME ////////////////////////////////////////////////////////
 
-    Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom, true);// fullscreenEnable());
-//    if (game.menu())
-//    {
-        game.play();
-        bool result = game.getResult();
-        game.gameOver(result);
-//    }
+        Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom, false);// fullscreenEnable());
+        if (game.menu())
+        {
+            game.play();
+            bool result = game.getResult();
+            game.gameOver(result);
+        }
+
 /////////////////////////// ENDING ////////////////////////////////////////////////////////////////////////////
     return 0;
 }

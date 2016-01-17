@@ -48,6 +48,10 @@ public:
 
     void setReadyForGame(bool readyForGame) {gameModel->setReadyForGame(readyForGame);}
 
+    bool getBackToMenu() {return gameModel->getBackToMenu();};
+
+    void setBackToMenu(bool backToMenu) {gameModel->setBackToMenu(backToMenu);}
+
 private:
 
     GameModel* gameModel;

@@ -6,6 +6,7 @@ ModelController::ModelController()
     GameModel* gameModel = new GameModel();
     this->gameModel = gameModel;
     setReadyForGame(false);
+    setBackToMenu(false);
 }
 
 void ModelController::setChosenInteractionMode(int chosenInteractionMode)

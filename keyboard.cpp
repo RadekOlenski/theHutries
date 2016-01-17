@@ -103,5 +103,6 @@ void Keyboard::chooseBuildingType(sf::Event event)
 void Keyboard::closeGame(sf::Event event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        hutrieApplication->close();
+//        hutrieApplication->close();
+          modelController->setBackToMenu(true);
 }

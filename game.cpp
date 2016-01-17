@@ -6,6 +6,7 @@
 #include "gameLogicController.h"
 #include "game.h"
 #include "sound.h"
+#include "icon.h"
 
 //=================================================================================
 //                              CONSTRUCTOR
@@ -41,6 +42,8 @@ Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZo
 
     hutrieApplication.setFramerateLimit(60);
 
+    hutrieApplication.setIcon(tH_icon.width, tH_icon.height, tH_icon.pixel_data);
+
     guiController->createBackground();
     guiController->createCursor();
     guiController->updateGoodsNumber();
@@ -61,7 +64,7 @@ void Game::play()
     changeBackgroundMusic(Sound::musicPath);
     deadline.restart();
     modelController->setChosenInteractionMode(3);
-    while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime)
+    while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime && !modelController->getBackToMenu())
     {
         handleActions();
         drawApplication();
@@ -148,15 +151,19 @@ void Game::gameOver(bool win)
         music.openFromFile(Sound::loseSound);
         music.setVolume(100);
     }
-    music.play();
 
+    music.play();
     bool next = false;
+    sf::Event event;
+
     while (hutrieApplication.isOpen())
     {
-        sf::Event event;
         while (hutrieApplication.pollEvent(event))
         {
-            keyboard->closeGame(event);
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+            {
+                return;
+            }
         }
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
@@ -184,6 +191,10 @@ bool Game::menu()
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
             {
                 return true;
+            }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+            {
+                return false;
             }
         }
         if (guiController->getIntroFlag())
