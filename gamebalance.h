@@ -25,10 +25,10 @@ public:
 
     //////////////////////////////////  GOODS   ///////////////////////////////////////////////////
 
-    const static unsigned int startingWood = 10;
-    const static unsigned int startingStone = 10;
-    const static unsigned int startingFood = 10;
-    const static unsigned int startingGold = 10;
+    static unsigned int startingWood;
+    static unsigned int startingStone;
+    static unsigned int startingFood;
+    static unsigned int startingGold;
 
     //////////////////////////////////  BUILDINGS ////////////////////////////////////////////
 

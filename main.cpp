@@ -35,7 +35,7 @@ int main()
 /////////////////////////// CREATING AND STARTING GAME ////////////////////////////////////////////////////////
 
     Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom,
-              false);// fullscreenEnable());
+              fullscreenEnable());// fullscreenEnable());
     ShowWindow(hWnd, SW_HIDE);
 
     if (game.menu())
@@ -61,6 +61,33 @@ bool fullscreenEnable()
     return (bool) answer.find_first_not_of("yY");
 }
 
+void setHard()
+{
+    GameBalance::gameTime = 5 * 60;
+    GameBalance::startingFood = 10;
+    GameBalance::startingWood = 10;
+    GameBalance::startingStone = 10;
+    GameBalance::startingGold = 0;
+}
+
+void setNormal()
+{
+    GameBalance::gameTime = 10 * 60;
+    GameBalance::startingFood = 15;
+    GameBalance::startingWood = 15;
+    GameBalance::startingStone = 15;
+    GameBalance::startingGold = 15;
+}
+
+void setEasy()
+{
+    GameBalance::gameTime = 15 * 60;
+    GameBalance::startingFood = 20;
+    GameBalance::startingWood = 20;
+    GameBalance::startingStone = 20;
+    GameBalance::startingGold = 20;
+}
+
 void setDifficulty()
 {
     int difficult;
@@ -76,15 +103,16 @@ void setDifficulty()
     switch(difficult)
     {
         case 1:
-            GameBalance::gameTime = 15 * 60;
+            setEasy();
             break;
         case 2:
-            GameBalance::gameTime = 10 * 60;
+            setNormal();
             break;
         case 3:
-            GameBalance::gameTime = 5 * 60;
+            setHard();
             break;
         default:
             break;
     }
 }
+
