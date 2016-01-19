@@ -25,8 +25,8 @@ public:
 
     //////////////////////////////////  GOODS   ///////////////////////////////////////////////////
 
-    const static unsigned int startingWood = 100;
-    const static unsigned int startingStone = 100;
+    const static unsigned int startingWood = 10;
+    const static unsigned int startingStone = 10;
     const static unsigned int startingFood = 10;
     const static unsigned int startingGold = 10;
 
@@ -60,7 +60,7 @@ public:
 
     //////////////////////////////////  CLOCKS    /////////////////////////////////////////////////
 
-    const static int gameTime =  5 * 60;
+    static int gameTime;
 
     /////////////////////////////////   FINAL RESULT    ///////////////////////////////////////////
 

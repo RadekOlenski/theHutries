@@ -1,5 +1,7 @@
 #include "gamebalance.h"
 
+int GameBalance::gameTime = 0;
+
 Goods GameBalance::sawmillCost(3, 3);
 Goods GameBalance::stonecutterhutCost(3, 3);
 Goods GameBalance::barracksCost(3, 5);

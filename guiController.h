@@ -94,6 +94,10 @@ public:
 
     void attachBuildingToCursor (sf::Vector2f worldPos);
 
+    bool getVisibleGridFlag() { return visibleGrid; };
+
+    void setVisibleGridFlag(bool visibleGrid) { this->visibleGrid = visibleGrid; };
+
     //------------------------------------------ ERRORS ----------------------------------//
 
     void errorNoCarriers();
@@ -126,8 +130,6 @@ public:
 
     void errorToMuchWorkers();
 
-    void countScreenZoomValues();
-
 private:
     void getView();
 
@@ -155,7 +157,7 @@ private:
     sf::Thread bigTitleThread;
     sf::Thread quoteThread;
 
-
+    bool visibleGrid;
     bool firstIteration;
     bool displayHutriesHall;
     bool introFlag;

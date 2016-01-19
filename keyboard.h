@@ -23,6 +23,8 @@ private:
 
     void chooseBuildingType(sf::Event event);
 
+    void otherKeyActions(sf::Event event);
+
     sf::RenderWindow* hutrieApplication;
     ModelController* modelController;
     GUIController* guiController;

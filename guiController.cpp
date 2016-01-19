@@ -20,6 +20,7 @@ GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelControlle
     this->modelController = modelController;
     this->world = world;
     this->gui = gui;
+    visibleGrid = false;
     firstIteration = true;
     introFlag = false;
     displayHutriesHall = false;
@@ -318,9 +319,21 @@ void GUIController::displayElementsOfGUI()
 
 void GUIController::drawGrid(std::vector<Unit*>::iterator it)
 {
+    if(visibleGrid or (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE
+                       && modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL))
+    {
+        for (it = world->units.begin(); it != world->units.end(); ++it)
+        {
+            if((*it)->getType() == UnitType::FULL && (*it)->getMapObject()->isHighlighted())
+                continue;
+            else
+                drawToApplication((*it)->field);
+        }
+    }
     for (it = world->units.begin(); it != world->units.end(); ++it)
     {
-        drawToApplication((*it)->field);
+        if((*it)->getType() == UnitType::FULL && (*it)->getMapObject()->isHighlighted())
+            drawToApplication((*it)->field);
     }
 }
 

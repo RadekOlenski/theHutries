@@ -23,6 +23,8 @@ void Keyboard::actionsLoop()
 
         chooseBuildingType(event);
 
+        otherKeyActions(event);
+
         closeGame(event);
     }
 }
@@ -97,6 +99,22 @@ void Keyboard::chooseBuildingType(sf::Event event)
         }
         guiController->updateBuildingsHighlight();
         Sound::click();
+    }
+}
+
+void Keyboard::otherKeyActions(sf::Event event)
+{
+    if (event.type != sf::Event::KeyPressed)
+    {
+        return;
+    }
+    switch (event.key.code)
+    {
+        case sf::Keyboard::G:
+            guiController->setVisibleGridFlag(!guiController->getVisibleGridFlag());
+            break;
+        default:
+            break;
     }
 }
 
