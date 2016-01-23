@@ -519,12 +519,22 @@ void GUIController::displayMenu()
 std::string GUIController::getEndingStats()
 {
     std::ostringstream stats;
-    stats << "You have built " << world->buildings.size() << " buildings." << std::endl
-    << "You had " << world->hutries.size() << " hutries including: " << std::endl
-    << world->carriers.size() << " carriers" << std::endl
-    << world->workers.size() << " workers" << std::endl
-    << world->warriors.size() << " warriors" << std::endl
-    << world->archers.size() << " archers" << std::endl
+    stats << "Buildings built: " << world->buildings.size() << "\t\t\t\tProduction:" << std::endl
+    << "Hutries created: ";
+    if (world->hutries.size() > 0 && world->hutries.size() < 10) stats << "0";
+    stats << world->hutries.size()         << "\t\t\t\t Wood: " << world->generalGoods.getWood()<< std::endl
+    << "Carriers created: ";
+    if (world->carriers.size() > 0 && world->carriers.size() < 10) stats << "0";
+    stats << world->carriers.size()       << "\t\t\t\tStone: " << world->generalGoods.getStone()<< std::endl
+    << "Workers created: " ;
+    if (world->workers.size() > 0 && world->workers.size() < 10) stats << "0";
+    stats << world->workers.size()         << "\t\t\t\tFood: " << world->generalGoods.getFood()<< std::endl
+    << "Warriors created: " ;
+    if (world->warriors.size() > 0 && world->warriors.size() < 10) stats << "0";
+    stats << world->warriors.size()       << "\t\t\t   Gold: " << world->generalGoods.getGold()<< std::endl
+    << "Archers created: " ;
+    if (world->archers.size() > 0 && world->archers.size() < 10) stats << "0";
+    stats << world->archers.size()         << std::endl
     << "\t\t\t\t\t\t\t\t\t\t\tPress ESC to exit";
     return stats.str();
 }

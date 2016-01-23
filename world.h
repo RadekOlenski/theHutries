@@ -39,6 +39,7 @@ public:
     std::vector<unsigned int> rocksIndex;
     std::vector<unsigned int> mountainsIndex;
     Goods availableGoods;
+    Goods generalGoods;
     int availableSlots;
     Unit* lastClickedUnit;
 

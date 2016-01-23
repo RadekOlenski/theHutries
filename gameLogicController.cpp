@@ -678,6 +678,7 @@ void GameLogicController::handleCarrierReturn()
         else if ((*itc)->haveReturned())
         {
             world->availableGoods = world->availableGoods + (*itc)->myLuggage;
+            world->generalGoods = world->generalGoods + (*itc)->myLuggage;
             hutriesHall->updateStatus();
             (*itc)->myLuggage.setProduct(5);
             guiController->updateGoodsNumber();

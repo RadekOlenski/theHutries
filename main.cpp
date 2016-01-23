@@ -8,7 +8,7 @@ void setDifficulty();
 
 int main()
 {
-    HWND hWnd = GetConsoleWindow();
+    //HWND hWnd = GetConsoleWindow();
     SetConsoleTitle("The Hutries");
 
     srand((unsigned int) time(0));
@@ -36,7 +36,7 @@ int main()
 
     Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom,
               fullscreenEnable());// fullscreenEnable());
-    ShowWindow(hWnd, SW_HIDE);
+    //ShowWindow(hWnd, SW_HIDE);
 
     if (game.menu())
     {
