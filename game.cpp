@@ -78,6 +78,8 @@ void Game::handleActions()
 
     mouse->leftClickActions();
 
+    mouse->rightClickActions();
+
     gameLogicController->constructBuilding();
 
     keyboard->actionsLoop();
@@ -93,6 +95,8 @@ void Game::handleActions()
     gameLogicController->handleCarrierReturn();
 
     gameLogicController->handleGoodsProduction();
+
+    guiController->handleErrorsVisiblity();
 
     updateClock();
 }

@@ -484,17 +484,26 @@ void GUIController::displayGameOver(bool win, bool next)
 {
     if (next)
     {
-       gui->endingStats.text.setString(getEndingStats());
+       gui->endingBuildingsStats.text.setString(getEndingBuildingsStats());
+       gui->endingHutriesStats.text.setString(getEndingHutriesStats());
+       gui->endingProductionStats.text.setString(getEndingProductionStats());
     }
     else if (win)
     {
-        gui->endingStats.text.setString(GameBalance::winString);
+        gui->endingBuildingsStats.text.setString(GameBalance::winString);
     }
     setCursorPosition();
     prepareToDisplay();
     displayGUI();
     drawToApplication(background);
-    drawToApplication(gui->endingStats.text);
+    drawToApplication(gui->endingBuildingsStats.text);
+    if (next)
+    {
+        gui->endingBuildingsStats.text.setPosition(110,280);
+        drawToApplication(gui->endingHutriesStats.text);
+        drawToApplication(gui->endingProductionStats.text);
+        next = false;
+    }
     drawToApplication(titleText.text);
     gui->displayEndingText(win);
     drawToApplication(cursor);
@@ -516,26 +525,38 @@ void GUIController::displayMenu()
     displayApplication();
 }
 
-std::string GUIController::getEndingStats()
+std::string GUIController::getEndingBuildingsStats()
 {
     std::ostringstream stats;
-    stats << "Buildings built: " << world->buildings.size() << "\t\t\t\tProduction:" << std::endl
-    << "Hutries created: ";
-    if (world->hutries.size() > 0 && world->hutries.size() < 10) stats << "0";
-    stats << world->hutries.size()         << "\t\t\t\t Wood: " << world->generalGoods.getWood()<< std::endl
-    << "Carriers created: ";
-    if (world->carriers.size() > 0 && world->carriers.size() < 10) stats << "0";
-    stats << world->carriers.size()       << "\t\t\t\tStone: " << world->generalGoods.getStone()<< std::endl
-    << "Workers created: " ;
-    if (world->workers.size() > 0 && world->workers.size() < 10) stats << "0";
-    stats << world->workers.size()         << "\t\t\t\tFood: " << world->generalGoods.getFood()<< std::endl
-    << "Warriors created: " ;
-    if (world->warriors.size() > 0 && world->warriors.size() < 10) stats << "0";
-    stats << world->warriors.size()       << "\t\t\t   Gold: " << world->generalGoods.getGold()<< std::endl
-    << "Archers created: " ;
-    if (world->archers.size() > 0 && world->archers.size() < 10) stats << "0";
-    stats << world->archers.size()         << std::endl
-    << "\t\t\t\t\t\t\t\t\t\t\tPress ESC to exit";
+    stats << "Buildings:" << std::endl
+          << "General: " << world->buildings.size() << std::endl
+          << "Goods Buildings: " << world->goodsBuildingIndex.size() << std::endl
+          << "Barracks: "  << world->barracksIndex.size() << std::endl
+          << "Residence: " <<  ( world->hutries.size() + world->availableSlots - GameBalance::startingHutrieSlots) / GameBalance::hutrieSlotsAddition << std::endl
+          << "\n\n\t\t\t\t\t\t\t\t\t\t\t\tPress ESC to exit";
+    return stats.str();
+}
+std::string GUIController::getEndingHutriesStats()
+{
+    std::ostringstream stats;
+    stats << "Hutries:"   << std::endl
+          << "General: "  << world->hutries.size()  << std::endl
+          << "Carriers: " << world->carriers.size() << std::endl
+          << "Workers: "  << world->workers.size()  << std::endl
+          << "Warriors: " << world->warriors.size() << std::endl
+          << "Archers: "  << world->archers.size();
+    return stats.str();
+}
+
+std::string GUIController::getEndingProductionStats()
+{
+    std::ostringstream stats;
+    stats << "Production:" << std::endl
+          << "General: " << world->generalGoods.getWood() + world->generalGoods.getStone() + world->generalGoods.getFood() + world->generalGoods.getGold() << std::endl
+          << "Wood: " << world->generalGoods.getWood()<< std::endl
+          << "Stone: " << world->generalGoods.getStone()<< std::endl
+          << "Food: " << world->generalGoods.getFood()<< std::endl
+          << "Gold: " << world->generalGoods.getGold();
     return stats.str();
 }
 
@@ -686,9 +707,18 @@ void GUIController::showEmptyUnits(bool mark)
 //                              ERRORS
 //=================================================================================
 
+void GUIController::handleErrorsVisiblity()
+{
+    if (errorsVisiblityClock.getElapsedTime().asSeconds() > 4)
+    {
+        gui->errorInfo.text.setString("Message Box:");
+    }
+}
+
 void GUIController::errorNoCarriers()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString(
             "Error: No available carriers!\nEveryone is busy! \nCreate carrier in HutriesHall \nor build residence");
 }
@@ -696,12 +726,14 @@ void GUIController::errorNoCarriers()
 void GUIController::errorNoSlots()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        No more slots! \n       Build residence!");
 }
 
 void GUIController::errorNoWorkers()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString(
             "Error: No available workers! \nEveryone is busy! \nCreate worker in HutriesHall\nor build residence");
 }
@@ -710,72 +742,84 @@ void GUIController::errorNoWorkers()
 void GUIController::errorUnitOccupied()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        Unit not empty.\n        Choose another one");
 }
 
 void GUIController::errorOutOfMap()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        Building out of map.\n        Choose another place");
 }
 
 void GUIController::errorAlreadyCreatingArcher()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        You are currently \n        creating Archer!");
 }
 
 void GUIController::errorAlreadyCreatingWarrior()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        You are currently \n        creating Warrior!");
 }
 
 void GUIController::errorAlreadyCreatingWorker()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        You are currently \n        creating Worker!");
 }
 
 void GUIController::errorAlreadyCreatingCarrier()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        You are currently \n        creating Carrier!");
 }
 
 void GUIController::errorNoProductsToCarry()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Carrier: No products to carry!");
 }
 
 void GUIController::errorNotEnoughGoods()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Goods: \n        Not enough goods \n        for building!");
 }
 
 void GUIController::errorMustBuildNearForest()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        You have to build \n        sawmill near forest!");
 }
 
 void GUIController::errorMustBuildNearRocks()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        You have to build \n       Stonecutter Hut\n       near rocks!");
 }
 
 void GUIController::errorMustBuildOnMountain()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        You have to build \n       goldmine on mountain!");
 }
 
 void GUIController::errorToMuchWorkers()
 {
     Sound::error();
+    errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        Too much workers!");
 }
 

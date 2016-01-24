@@ -15,6 +15,8 @@ public:
     static const int INFOMODE = 3;
 
 //    static const int HUTRIEMODE = 4;
+
+    static const int NEUTRALMODE = 5;
 };
 
 

@@ -50,6 +50,18 @@ void Mouse::leftClickActions()
     }
 }
 
+void Mouse::rightClickActions()
+{
+    if (mouseLock->getIsLocked())
+    {
+        return;
+    }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+    {
+        modelController->setChosenInteractionMode(InteractionMode::NEUTRALMODE);
+    }
+}
+
 
 void Mouse::updateMouseLock()
 {

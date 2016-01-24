@@ -48,8 +48,6 @@ public:
 
     void displayIntro();
 
-    void displayGameOver(bool win);
-
     void displayMenu();
 
     void prepareToDisplay();
@@ -84,7 +82,11 @@ public:
 
     bool getReadyForGame() { return readyForGame; };
 
-    std::string getEndingStats();
+    std::string getEndingBuildingsStats();
+
+    std::string getEndingHutriesStats();
+
+    std::string getEndingProductionStats();
 
     void highlightClock(bool highlight);
 
@@ -99,6 +101,8 @@ public:
     void setVisibleGridFlag(bool visibleGrid) { this->visibleGrid = visibleGrid; };
 
     //------------------------------------------ ERRORS ----------------------------------//
+
+    void handleErrorsVisiblity();
 
     void errorNoCarriers();
 
@@ -156,6 +160,8 @@ private:
     sf::Thread titleThread;
     sf::Thread bigTitleThread;
     sf::Thread quoteThread;
+
+    sf::Clock errorsVisiblityClock;
 
     bool visibleGrid;
     bool firstIteration;
