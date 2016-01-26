@@ -117,6 +117,8 @@ public:
 
     void updateClock(int time);
 
+    void highlightTargetButton();
+
     //------------------------------------------ ERRORS ----------------------------------//
 
     void handleErrorsVisiblity();

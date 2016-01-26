@@ -108,6 +108,8 @@ void Game::handleActions()
 
     guiController->setCursorPosition();
 
+    guiController->highlightTargetButton();
+
     gameLogicController->deactivateChosenModeFlag();
 
     gameLogicController->handleHutriesCreation();
@@ -210,6 +212,7 @@ void Game::menu()
     {
         mouse->updateMouseLock();
         mouse->leftClickActions();
+        guiController->highlightTargetButton();
         while (hutrieApplication->pollEvent(event))
         {
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
@@ -247,6 +250,7 @@ void Game::pauseMenu()
     guiController->setPauseButtonsFlags(true);
     while (hutrieApplication->isOpen() && modelController->getPauseGame())
     {
+        guiController->highlightTargetButton();
         guiController->captureScreen();
         guiController->displayPauseMenu();
         mouse->updateMouseLock();
@@ -269,6 +273,7 @@ void Game::exitWindow()
     modelController->setChosenInteractionMode(10);
     while (hutrieApplication->isOpen() && modelController->getExitWindow())
     {
+        guiController->highlightTargetButton();
         guiController->displayExitWindow();
         mouse->updateMouseLock();
         mouse->leftClickActions();

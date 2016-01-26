@@ -803,6 +803,49 @@ void GUIController::updateClock(int time)
     gui->timeLeft.text.setString(newTime.str());
 }
 
+void GUIController::highlightTargetButton()
+{
+    if(gui->playButton.checkBounds())
+        gui->playText.highlight();
+    else gui->playText.endHighlight();
+
+    if(gui->howToPlayButton.checkBounds())
+        gui->howToPlayText.highlight();
+    else gui->howToPlayText.endHighlight();
+
+    if(gui->aboutButton.checkBounds())
+        gui->aboutText.highlight();
+    else gui->aboutText.endHighlight();
+
+    if(gui->exitButton.checkBounds())
+        gui->exitText.highlight();
+    else gui->exitText.endHighlight();
+
+    if(gui->exitNoButton.checkBounds())
+        gui->exitNoText.highlight();
+    else gui->exitNoText.endHighlight();
+
+    if(gui->exitYesButton.checkBounds())
+        gui->exitYesText.highlight();
+    else gui->exitYesText.endHighlight();
+
+    if(gui->resumeButton.checkBounds())
+        gui->resumeText.highlight();
+    else gui->resumeText.endHighlight();
+
+    if(gui->settingsButton.checkBounds())
+        gui->settingsText.highlight();
+    else gui->settingsText.endHighlight();
+
+    if(gui->helpButton.checkBounds())
+        gui->helpText.highlight();
+    else gui->helpText.endHighlight();
+
+    if(gui->mainMenuButton.checkBounds())
+        gui->mainMenuText.highlight();
+    else gui->mainMenuText.endHighlight();
+}
+
 //=================================================================================
 //                              ERRORS
 //=================================================================================

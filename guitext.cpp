@@ -1,6 +1,7 @@
 #include "guitext.h"
 
 GUIText::GUIText(int positionX, int positionY, int characterSize, std::string displayedText, sf::Color color)
+    : highlightColor(90, 47, 8)
 {
     font.loadFromFile("fonts/prince_valiant.ttf");
     text.setFont(font);
@@ -8,6 +9,7 @@ GUIText::GUIText(int positionX, int positionY, int characterSize, std::string di
     text.setCharacterSize((unsigned int) characterSize);
     text.setPosition(positionX, positionY);
     text.setColor(color);
+
 }
 
 void GUIText::display()
@@ -34,4 +36,14 @@ void GUIText::animation()
     }
     sf::sleep(sf::seconds(8));
 
+}
+
+void GUIText::highlight()
+{
+    text.setColor(highlightColor);
+}
+
+void GUIText::endHighlight()
+{
+    text.setColor(sf::Color::Black);
 }

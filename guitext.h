@@ -14,9 +14,15 @@ public:
     sf::Text text;
     sf::Font font;
 
+    sf::Color highlightColor;
+
     void display();
 
     void animation();
+
+    void highlight();
+
+    void endHighlight();
 };
 
 #endif // GUITEXT_H
