@@ -415,6 +415,7 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
                 drawToApplication((*it)->getMapObject()->description.text);
                 drawToApplication((*it)->getMapObject()->descriptionFrame.button);
                 (*it)->getMapObject()->showButtons();
+                (*it)->getMapObject()->highlightButton();
             }
             else (*it)->getMapObject()->deactivateButtons();
         }
@@ -844,6 +845,31 @@ void GUIController::highlightTargetButton()
     if(gui->mainMenuButton.checkBounds())
         gui->mainMenuText.highlight();
     else gui->mainMenuText.endHighlight();
+
+    if(gui->sawmill.checkBounds())
+        gui->tSawmill.highlight();
+    else gui->tSawmill.endHighlight();
+
+    if(gui->stonecutter.checkBounds())
+        gui->tStonecutter.highlight();
+    else gui->tStonecutter.endHighlight();
+
+    if(gui->goldmine.checkBounds())
+        gui->tGoldmine.highlight();
+    else gui->tGoldmine.endHighlight();
+
+    if(gui->residence.checkBounds())
+        gui->tResidence.highlight();
+    else gui->tResidence.endHighlight();
+
+    if(gui->farm.checkBounds())
+        gui->tFarm.highlight();
+    else gui->tFarm.endHighlight();
+
+    if(gui->barracks.checkBounds())
+        gui->tBarracks.highlight();
+    else gui->tBarracks.endHighlight();
+
 }
 
 //=================================================================================

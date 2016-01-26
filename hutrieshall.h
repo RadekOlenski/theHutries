@@ -58,6 +58,8 @@ public:
 
     bool getEnoughGoodsForCreation() { return enoughGoodsForCreation; };
 
+    void highlightButton();
+
 private:
 
     unsigned int getAvailableWorkers();

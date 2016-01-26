@@ -135,3 +135,14 @@ void Barracks::setConstructedBuildingSound()
         sound.play();
     }
 }
+
+void Barracks::highlightButton()
+{
+    if (createWarriorButton.checkBounds())
+        textWarrior.highlight();
+    else textWarrior.endHighlight();
+
+    if (createArcherButton.checkBounds())
+        textArcher.highlight();
+    else textArcher.endHighlight();
+}

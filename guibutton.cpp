@@ -46,4 +46,3 @@ bool GUIButton::checkBounds()
                   && buttonPosition.y + buttonSize.y >= mousePosition.y;
     return result;
 }
-

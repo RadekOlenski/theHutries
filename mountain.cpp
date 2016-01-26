@@ -21,6 +21,6 @@ Mountain::Mountain(sf::RenderWindow* hutrieApplication, const std::vector<Unit*>
 void Mountain::updateStatus()
 {
     std::ostringstream desc;
-    desc << "\n\nYou can build goldmine \n next to the mountain";
+    desc << "\n\nYou can build goldmine \n on the mountain";
     description.text.setString(desc.str());
 }

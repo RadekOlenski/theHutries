@@ -132,3 +132,13 @@ void HutriesHall::getHutriesCosts()
     tfoodCarrier.text.setString(desc1.str());
 }
 
+void HutriesHall::highlightButton()
+{
+    if (createWorkerButton.checkBounds())
+        tWorker.highlight();
+    else tWorker.endHighlight();
+
+    if (createCarrierButton.checkBounds())
+        tCarrier.highlight();
+    else tCarrier.endHighlight();
+}
