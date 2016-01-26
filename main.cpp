@@ -1,7 +1,8 @@
+#include <windows.h>
 #include <ctime>
 #include <string>
-#include <windows.h>
 #include "game.h"
+
 
 bool fullscreenEnable();
 void setDifficulty();
@@ -35,14 +36,21 @@ int main()
 /////////////////////////// CREATING AND STARTING GAME ////////////////////////////////////////////////////////
 
     Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom,
-              fullscreenEnable());// fullscreenEnable());
+              false);// fullscreenEnable());
     //ShowWindow(hWnd, SW_HIDE);
 
-    if (game.menu())
+    while (!GameBalance::exitFlag)
     {
-        game.play();
-        bool result = game.getResult();
-        game.gameOver(result);
+            game.constructAll();
+            std::cout<<"Jestem tu"<<std::endl;
+            game.menu();
+            if(GameBalance::exitFlag)
+                return 0;
+            game.play();
+            bool result = game.getResult();
+            game.gameOver(result);
+            game.destructAll();
+            std::cout<<"Petla Skonczona"<<std::endl;
     }
 
 /////////////////////////// ENDING ////////////////////////////////////////////////////////////////////////////

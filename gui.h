@@ -12,6 +12,7 @@ public:
 
     GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width = 256);
 
+    ~GUI();
     /////////////////////////////// MENU    ///////////////////////////////////////////////////
 
     GUIText startingText;
@@ -30,6 +31,17 @@ public:
     GUIText endingBuildingsStats;
     GUIText endingHutriesStats;
     GUIText endingProductionStats;
+
+    /////////////////////////////// PAUSE MENU ///////////////////////////////////////////////////
+
+    GUIText resumeText;
+    GUIButton resumeButton;
+    GUIText settingsText;
+    GUIButton settingsButton;
+    GUIText helpText;
+    GUIButton helpButton;
+    GUIText mainMenuText;
+    GUIButton mainMenuButton;
 
     ////////////////////////////// BASIC TOOLS ////////////////////////////////////////////////
 
@@ -104,22 +116,31 @@ public:
 
     void displayMenu();
 
+    void displayPauseMenu();
+
     /////////////////////////////////////ENDING ////////////////////////////////////////////////
 
     void displayEndingText(bool win);
 
+    void resetDrawsCounter();
+
+    sf::RectangleShape capturedScreen;
+
 private:
+    int drawsCounter;
 
     //////////////////////////// GENERAL //////////////////////////////////////////////////////
 
+
     sf::RenderWindow* hutrieApplication;
 
-
     ////////////////////////////// GRAPHICS ///////////////////////////////////////////////////
-
     sf::RectangleShape guiFrame;
+    sf::RectangleShape pauseFrame;
     sf::RectangleShape errorFrame;
     sf::Texture texture;
+    sf::RectangleShape screenBlackout;
+    sf::Color blackoutColor;
 
     /////////////////////////////// DOWN BAR //////////////////////////////////////////////////
 

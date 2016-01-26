@@ -1,5 +1,6 @@
 #include "gamebalance.h"
 
+bool GameBalance::exitFlag = false;
 int GameBalance::gameTime = 0;
 unsigned int GameBalance::startingWood = 0;
 unsigned int GameBalance::startingStone = 0;
@@ -27,8 +28,15 @@ const float GameBalance::barracksConstructionTime = 2;
 const float GameBalance::residenceConstructionTime = 2;
 const float GameBalance::sawmillConstructionTime = 2;
 const float GameBalance::stonecutterHutConstructionTime = 2;
-const float GameBalance::farmConstructionTime = 2;
-const float GameBalance::goldmineConstructionTime = 2;
+const float GameBalance::farmConstructionTime = 5;
+const float GameBalance::goldmineConstructionTime = 5;
+
+//////////////////////////////////  TRAINING TIME    //////////////////////////////////////
+
+const float GameBalance::carrierTrainingTime = 5;
+const float GameBalance::workerTrainingTime = 5;
+const float GameBalance::archerTrainingTime = 3;
+const float GameBalance::warriorTrainingTime = 5;
 
 //////////////////////////////////  MENU STRINGS    ///////////////////////////////////////////
 

@@ -13,6 +13,22 @@ Goldmine::Goldmine(sf::RenderWindow* hutrieApplication, const std::vector<Unit*>
     buildingConstructed = false;
     leftConstructionTime = 0;
     doorIndex = 3;
+    constructionTime = GameBalance::goldmineConstructionTime;
+}
+
+void Goldmine::createProduct()
+{
+    myProducts.setProduct(4, 1);
+}
+
+void Goldmine::setConstructedBuildingSound()
+{
+    sound.pause();
+    sound.openFromFile(Sound::goldmine);
+    if (isHighlighted())
+    {
+        sound.play();
+    }
 }
 
 void Goldmine::updateStatus()
@@ -27,29 +43,7 @@ void Goldmine::updateStatus()
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " << leftConstructionTime << " sec.";
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.";
         description.text.setString(desc.str());
     }
 }
-
-void Goldmine::createProduct()
-{
-    myProducts.setProduct(4, 1);
-}
-
-void Goldmine::updateConstructionClock(int fullTime)
-{
-    leftConstructionTime = (unsigned int) (fullTime - constructionTimeClock.getElapsedTime().asSeconds());
-    if (leftConstructionTime < 0) leftConstructionTime = 0;
-}
-
-void Goldmine::setConstructedBuildingSound()
-{
-    sound.pause();
-    sound.openFromFile(Sound::goldmine);
-    if(isHighlighted())
-    {
-        sound.play();
-    }
-}
-

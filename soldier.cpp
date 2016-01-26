@@ -26,8 +26,12 @@ void Soldier::moveHutrie()
     srand(time(NULL));
     //toDirection(objectUnits.at(0)->field.getPosition().x, objectUnits.at(0)->field.getPosition().y );
     int unitNumber;
-    while(1)
+    while (1)
     {
+        if (pauseThread)
+        {
+            sf::sleep(sf::seconds(2));
+        };
         do
         {
             unitNumber = (unsigned int) (rand() % 160);

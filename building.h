@@ -48,7 +48,19 @@ public:
 
     virtual float getConstructionTime() { };
 
-    virtual void updateConstructionClock(int fullTime) { };
+    virtual void updateConstructionClock();
+
+    virtual void pauseConstructionClock();
+
+    virtual void resumeConstructionClock();
+
+    virtual void pauseTrainingClock();
+
+    virtual void resumeTrainingClock();
+
+    virtual void resetTrainingTime();
+
+    virtual void updateTrainingClock(float trainingTime);
 
     void setConstructedBuildingTexture();
 
@@ -56,19 +68,30 @@ public:
 
     void setDescriptionTexture();
 
-protected:
+    sf::Clock trainingClock;
 
+protected:
     int capacity;
     int doorIndex;
+    float constructionTime;
+    float leftConstructionTime;
+    bool buildingConstructed;
 
     std::vector<Carrier*> myCarriers;
 
     int checkHutries();
-
     bool needWorker;
-    bool needCarrier;
 
+    bool needCarrier;
     sf::Texture textureBasic;
+    sf::Clock constructionClock;
+
+    float workerTrainingTime;
+    float carrierTrainingTime;
+    float leftTrainingTime;
+
+    float archerTrainingTime;
+    float warriorTrainingTime;
 };
 
 #endif // BUILDING_H

@@ -17,7 +17,7 @@ public:
 
     void updateStatus();
 
-    float getElapsedConstructionTime() { return constructionTimeClock.getElapsedTime().asSeconds(); };
+    float getElapsedConstructionTime() { return constructionClock.getElapsedTime().asSeconds(); };
 
     bool getBuildingConstructedFlag() { return buildingConstructed; };
 
@@ -25,16 +25,11 @@ public:
 
     float getConstructionTime() { return constructionTime; };
 
-    void updateConstructionClock(int fullTime);
+    void updateConstructionClock();
 
     void setConstructedBuildingSound();
 
 private:
-
-    bool buildingConstructed;
-    unsigned int leftConstructionTime;
-    const float constructionTime = GameBalance::residenceConstructionTime;
-    sf::Clock constructionTimeClock;
     int* worldSlots;
 };
 

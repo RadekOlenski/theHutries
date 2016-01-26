@@ -32,7 +32,9 @@ Barracks::Barracks(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
     enoughGoodsForCreation = false;
     leftTrainingTime = 0;
     leftConstructionTime = 0;
-
+    constructionTime = GameBalance::barracksConstructionTime;
+    warriorTrainingTime = GameBalance::warriorTrainingTime;
+    archerTrainingTime = GameBalance::archerTrainingTime;
     setSoldiersCosts();
 }
 
@@ -41,14 +43,15 @@ void Barracks::updateStatus()
     if (buildingConstructed)
     {
         std::ostringstream desc;
-        desc << "Training finish in " << leftTrainingTime << " sec.\nWarriors during training: " << trainingWarrior <<
-        "\nArchers during training:: " << trainingArcher;
+        desc << "Training finish in " << ceil(leftTrainingTime)
+        << " sec.\nWarriors during training: " << trainingWarrior
+        << "\nArchers during training:: " << trainingArcher;
         description.text.setString(desc.str());
     }
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " << leftConstructionTime << " sec.";
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.";
         description.text.setString(desc.str());
     }
 }
@@ -121,18 +124,6 @@ void Barracks::setSoldiersCosts()
     std::ostringstream desc1;
     desc1 << GameBalance::archerCost.getGold();
     tGoldArcher.text.setString(desc1.str());
-}
-
-void Barracks::updateTrainingClock(int fullTime)
-{
-    leftTrainingTime = (unsigned int) (fullTime - trainingClock.getElapsedTime().asSeconds());
-    if (leftTrainingTime < 0) leftTrainingTime = 0;
-}
-
-void Barracks::updateConstructionClock(int fullTime)
-{
-    leftConstructionTime = (unsigned int) (fullTime - constructionTimeClock.getElapsedTime().asSeconds());
-    if (leftConstructionTime < 0) leftConstructionTime = 0;
 }
 
 void Barracks::setConstructedBuildingSound()

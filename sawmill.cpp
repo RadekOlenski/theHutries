@@ -14,36 +14,12 @@ Sawmill::Sawmill(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFr
     buildingConstructed = false;
     leftConstructionTime = 0;
     doorIndex = 2;
+    constructionTime = GameBalance::sawmillConstructionTime;
 }
 
 void Sawmill::createProduct()
 {
     myProducts.setProduct(1, 1);
-}
-
-void Sawmill::updateStatus()
-{
-    if (buildingConstructed)
-    {
-        std::ostringstream desc;
-        desc << "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
-        /*checkHutries() - myWorkers.size()*/myCarriers.size() << "\nProducts in store: " << myProducts.getWood() <<
-        "/" << productsCapacity;
-        description.text.setString(desc.str());
-    }
-    else
-    {
-        std::ostringstream desc;
-        desc << "Construction finish in " << leftConstructionTime << " sec.";
-        description.text.setString(desc.str());
-    }
-}
-
-
-void Sawmill::updateConstructionClock(int fullTime)
-{
-    leftConstructionTime = (unsigned int) (fullTime - constructionTimeClock.getElapsedTime().asSeconds());
-    if (leftConstructionTime < 0) leftConstructionTime = 0;
 }
 
 void Sawmill::setConstructedBuildingSound()
@@ -53,5 +29,22 @@ void Sawmill::setConstructedBuildingSound()
     if(isHighlighted())
     {
         sound.play();
+    }
+}
+
+void Sawmill::updateStatus()
+{
+    if (buildingConstructed)
+    {
+        std::ostringstream desc;
+        desc << "Workers: " << myWorkers.size() << "/" << capacity << "\nCarriers: " <<
+        myCarriers.size() << "\nProducts in store: " << myProducts.getWood() << "/" << productsCapacity;
+        description.text.setString(desc.str());
+    }
+    else
+    {
+        std::ostringstream desc;
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.";
+        description.text.setString(desc.str());
     }
 }

@@ -9,6 +9,8 @@ public:
 
     ModelController();
 
+    ~ModelController();
+
     void setChosenInteractionMode(int chosenInteractionMode);
 
     int getChosenInteractionMode();
@@ -51,6 +53,10 @@ public:
     bool getBackToMenu() {return gameModel->getBackToMenu();};
 
     void setBackToMenu(bool backToMenu) {gameModel->setBackToMenu(backToMenu);}
+
+    bool getPauseGame() {return gameModel->getPauseGame();};
+
+    void setPauseGame(bool pauseGame) {gameModel->setPauseGame(pauseGame);};
 
 private:
 

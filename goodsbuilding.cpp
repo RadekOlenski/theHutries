@@ -1,6 +1,7 @@
 #include "goodsbuilding.h"
 #include "sound.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -70,11 +71,12 @@ void GoodsBuilding::checkProduction()
     std::vector<Worker*>::iterator itw;
     for (itw = myWorkers.begin(); itw != myWorkers.end(); ++itw)
     {
-        if ((*itw)->productionClock.getElapsedTime().asSeconds() > GameBalance::productCraftingTime &&
-            productsCounter() < productsCapacity)
+        if ((*itw)->getProductionTime() > GameBalance::productCraftingTime
+            && productsCounter() < productsCapacity)
         {
             createProduct();
             Sound::notification();
+            (*itw)->resetProductionTime();
             (*itw)->productionClock.restart();
             this->updateStatus();
         }
@@ -118,4 +120,3 @@ unsigned int GoodsBuilding::productsCounter()
             return 0;
     };
 }
-

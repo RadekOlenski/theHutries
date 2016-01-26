@@ -89,7 +89,13 @@ public:
 
     void handleMenuButtonsAction();
 
+    void handlePauseButtonsAction();
+
     void updateBuildingGrid();
+
+    void pauseClocks();
+
+    void resumeClocks();
 
 private:
 

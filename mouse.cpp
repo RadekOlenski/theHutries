@@ -32,6 +32,12 @@ void Mouse::leftClickActions()
                 if (!modelController->getReadyForGame()) return;
             }
 
+        if( modelController->getPauseGame())
+        {
+            gameLogicController->handlePauseButtonsAction();
+            return;
+        }
+
         if (sf::Mouse::getPosition(*hutrieApplication).x < applicationWidth &&
             sf::Mouse::getPosition(*hutrieApplication).y > 64 &&
             sf::Mouse::getPosition(*hutrieApplication).y <

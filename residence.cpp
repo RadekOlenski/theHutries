@@ -11,6 +11,7 @@ Residence::Residence(sf::RenderWindow* hutrieApplication, std::vector<Unit*> uni
     buildingConstructed = false;
     leftConstructionTime = 0;
     doorIndex = 3;
+    constructionTime = GameBalance::residenceConstructionTime;
 }
 
 void Residence::updateStatus()
@@ -29,9 +30,9 @@ void Residence::updateStatus()
     }
 }
 
-void Residence::updateConstructionClock(int fullTime)
+void Residence::updateConstructionClock()
 {
-    leftConstructionTime = (unsigned int) (fullTime - constructionTimeClock.getElapsedTime().asSeconds());
+    leftConstructionTime = (unsigned int) (constructionTime - constructionClock.getElapsedTime().asSeconds());
     if (leftConstructionTime < 0) leftConstructionTime = 0;
 }
 

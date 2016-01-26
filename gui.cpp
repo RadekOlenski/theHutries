@@ -21,6 +21,19 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         endingBuildingsStats(150, 280, 36, GameBalance::loseString),
         endingHutriesStats(450, 270, 36, GameBalance::loseString),
         endingProductionStats(750, 280, 36, GameBalance::loseString),
+        //------------------ PAUSE MENU ---------------------------------//
+        pauseFrame(sf::Vector2f(350, 500)),
+        resumeText(550, 200, 50, "Resume"),
+        resumeButton(550, 208, hutrieApplication, 145, 45, false),
+        settingsText(550, 290, 50, "Settings"),
+        settingsButton(550, 298, hutrieApplication, 148, 45, false),
+        helpText(580, 380, 50, "Help"),
+        helpButton(580, 388, hutrieApplication, 90, 45, false),
+        mainMenuText(510, 470, 50, "Main Menu"),
+        mainMenuButton(510, 478, hutrieApplication, 230, 45, false),
+        screenBlackout(sf::Vector2f(1366, 768)),
+        capturedScreen(sf::Vector2f(1366, 768)),
+        blackoutColor(0, 0, 0, 180),
 
         guiFrame(sf::Vector2f(width, mapHeight)),
         errorFrame(sf::Vector2f(width, 128)),
@@ -97,8 +110,14 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
     this->hutrieApplication = hutrieApplication;
 
     guiFrame.setPosition(mapWidth, 0);
+    pauseFrame.setPosition(450, 134);
     texture.loadFromFile(Textures::guiTexture);
     guiFrame.setTexture(&texture);
+    pauseFrame.setTexture(&texture);
+
+    capturedScreen.setPosition(0, 0);
+    screenBlackout.setPosition(0, 0);
+    screenBlackout.setFillColor(blackoutColor);
 
     errorFrame.setPosition(mapWidth, mapHeight);
     texture.loadFromFile(Textures::guiTexture);
@@ -106,7 +125,14 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
     buildButton.setActive(true);
     hutrieButton.setActive(true);
+    drawsCounter = 0;
 }
+
+GUI::~GUI()
+{
+
+}
+
 
 void GUI::displayMainGUI()
 {
@@ -237,4 +263,26 @@ void GUI::displayMenu()
 
 }
 
+void GUI::displayPauseMenu()
+{
+    //hutrieApplication->draw(capturedScreen);
+    hutrieApplication->draw(screenBlackout);
+    if(drawsCounter <= 100)
+    {
+    }
+    hutrieApplication->draw(pauseFrame);
+    hutrieApplication->draw(resumeText.text);
+    hutrieApplication->draw(resumeButton.button);
+    hutrieApplication->draw(settingsText.text);
+    hutrieApplication->draw(settingsButton.button);
+    hutrieApplication->draw(helpText.text);
+    hutrieApplication->draw(helpButton.button);
+    hutrieApplication->draw(mainMenuText.text);
+    hutrieApplication->draw(mainMenuButton.button);
+    drawsCounter++;
+}
 
+void GUI::resetDrawsCounter()
+{
+    drawsCounter = 0;
+}

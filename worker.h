@@ -16,8 +16,20 @@ public:
     Worker(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame,
            std::string pathName = Textures::workerRight);
 
-    void moveHutrie();;;
+    void moveHutrie();
+
+    float getProductionTime();
+
+    void pauseProduction();
+
+    void resumeProduction();
+
+    void resetProductionTime();
+
     sf::Clock productionClock;
+private:
+    float productionTime;
+    float actualProductionTime;
 };
 
 #endif // WORKER_H

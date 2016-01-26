@@ -158,7 +158,7 @@ void GameLogicController::constructBuilding()
             }
             else
             {
-                (*it)->updateConstructionClock((int) (*it)->getConstructionTime());
+                (*it)->updateConstructionClock();
                 (*it)->updateStatus();
             }
         }
@@ -261,12 +261,13 @@ void GameLogicController::handleWorkerCreation()
             std::string objectType = "worker";
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, unitIndex);
+            hutriesHall->resetTrainingTime();
             hutriesHall->updateStatus();
             hutriesHall->setFirstCheckFlag(true);
         }
         else
         {
-            hutriesHall->updateClock(hutriesHall->getWorkerTrainingTime());
+            hutriesHall->updateTrainingClock(hutriesHall->getWorkerTrainingTime());
             hutriesHall->updateStatus();
         }
     }
@@ -301,7 +302,6 @@ void GameLogicController::handleCarrierCreation()
 {
     if (hutriesHall->getTrainingCarrierFlag())
     {
-
         Goods worldGoods = world->availableGoods;
         if (worldGoods - GameBalance::carrierCost >= 0)
         {
@@ -321,19 +321,21 @@ void GameLogicController::handleCarrierCreation()
                 hutriesHall->updateStatus();
                 return;
         }
-        if (hutriesHall->getEnoughGoodsForCreation() && hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
+        if (hutriesHall->getEnoughGoodsForCreation()
+            && hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
         {
             hutriesHall->setEnoughGoodsForCreation(false);
             hutriesHall->setTrainingCarrierFlag(false);
             std::string objectType = "carrier";
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, unitIndex);
+            hutriesHall->resetTrainingTime();
             hutriesHall->updateStatus();
             hutriesHall->setFirstCheckFlag(true);
         }
         else
         {
-            hutriesHall->updateClock(hutriesHall->getCarrierTrainingTime());
+            hutriesHall->updateTrainingClock(hutriesHall->getCarrierTrainingTime());
             hutriesHall->updateStatus();
         }
     }
@@ -405,6 +407,7 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
             barracks->setTrainingWarriorFlag(false);
             std::string objectType = "warrior";
             createHutrie(objectType, unitIndex);
+            barracks->resetTrainingTime();
             barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
         }
@@ -471,6 +474,7 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
             barracks->setTrainingArcherFlag(false);
             std::string objectType = "archer";
             createHutrie(objectType, unitIndex);
+            barracks->resetTrainingTime();
             barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
         }
@@ -562,6 +566,11 @@ void GameLogicController::handleGUIButtonsAction()
 void GameLogicController::handleMenuButtonsAction()
 {
     guiController->handleMenuButtonsActions();
+}
+
+void GameLogicController::handlePauseButtonsAction()
+{
+    guiController->handlePauseButtonsActions();
 }
 
 void GameLogicController::handleAssigningHutrie()
@@ -820,3 +829,66 @@ void GameLogicController::updateBuildingGrid()
        guiController->showEmptyUnits(false);
     }
 }
+
+void GameLogicController::pauseClocks()
+{
+    std::vector<Building*>::iterator it;
+    for(it = world->buildings.begin(); it != world->buildings.end(); ++it)
+    {
+        (*it)->pauseConstructionClock();
+        (*it)->pauseTrainingClock();
+        (*it)->soundPause();
+    }
+
+    std::vector<Worker*>::iterator itw;
+    for(itw = world->workers.begin(); itw != world->workers.end(); ++itw)
+    {
+        if((*itw)->isBusy())
+            (*itw)->pauseProduction();
+    }
+
+    std::vector<Hutrie*>::iterator ith;
+    for(ith = world->hutries.begin(); ith != world->hutries.end(); ++ith)
+    {
+        (*ith)->setPauseThread(true);
+    }
+
+    std::vector<Environment*>::iterator ite;
+    for(ite = world->environment.begin(); ite != world->environment.end(); ++ite)
+    {
+        (*ite)->soundPause();
+    }
+}
+
+void GameLogicController::resumeClocks()
+{
+    std::vector<Building*>::iterator it;
+    for(it = world->buildings.begin(); it != world->buildings.end(); ++it)
+    {
+        (*it)->resumeConstructionClock();
+        (*it)->resumeTrainingClock();
+        if((*it)->isHighlighted()) (*it)->soundPlay(true);
+    }
+
+    std::vector<Worker*>::iterator itw;
+    for(itw = world->workers.begin(); itw != world->workers.end(); ++itw)
+    {
+
+        if((*itw)->isBusy())
+            (*itw)->resumeProduction();
+    }
+
+    std::vector<Hutrie*>::iterator ith;
+    for(ith = world->hutries.begin(); ith != world->hutries.end(); ++ith)
+    {
+        (*ith)->setPauseThread(false);
+    }
+
+    std::vector<Environment*>::iterator ite;
+    for(ite = world->environment.begin(); ite != world->environment.end(); ++ite)
+    {
+        if((*ite)->isHighlighted()) (*ite)->soundPlay(true);
+    }
+}
+
+

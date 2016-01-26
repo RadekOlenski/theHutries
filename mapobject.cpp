@@ -1,4 +1,5 @@
 #include "mapobject.h"
+
 #include "unit.h"
 #include "unittype.h"
 
@@ -89,4 +90,9 @@ void MapObject::buttonAction() { }
 void MapObject::updateDescriptionTexture(sf::Texture texture)
 {
     descriptionFrame.setTexture(texture);
+}
+
+void MapObject::soundPause()
+{
+    sound.pause();
 }

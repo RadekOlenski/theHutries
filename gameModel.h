@@ -47,6 +47,10 @@ public:
 
     void setBackToMenu(bool backToMenu) {this->backToMenu = backToMenu;}
 
+    bool getPauseGame() {return pauseGame;};
+
+    void setPauseGame(bool pauseGame) {this->pauseGame = pauseGame;}
+
 private:
 
     int chosenInteractionMode;
@@ -68,6 +72,8 @@ private:
     bool readyForGame;
 
     bool backToMenu;
+
+    bool pauseGame;
 };
 
 

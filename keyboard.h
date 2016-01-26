@@ -15,6 +15,8 @@ public:
 
     void actionsLoop();
 
+    void pauseMenuActions();
+
     void closeGame(sf::Event event);
 
 private:

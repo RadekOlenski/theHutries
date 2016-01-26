@@ -3,6 +3,7 @@
 
 //#include "unit.h"
 #include "guitext.h"
+
 #include "guibutton.h"
 
 #include <SFML/Graphics.hpp>
@@ -53,6 +54,8 @@ public:
     void setSoundVolume(int volume) { sound.setVolume(volume); }
 
     void soundPlay(bool play = true);
+
+    void soundPause();
 
     /////////////////////// CONSTRUCTOR /////////////////////////////////
 

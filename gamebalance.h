@@ -40,14 +40,14 @@ public:
     const static int maxProductsInStore = 5;
     const static int maxWorkers = 3;
     const static int productCraftingTime = 15;
-    const static int carrierLading = 3;
+    const static int carrierLoading = 3;
 
     //////////////////////////////////  TRAINING    ///////////////////////////////////////////////
 
-    const static int carrierTrainingTime = 1;
-    const static int workerTrainingTime = 1;
-    const static int archerTrainingTime = 3;
-    const static int warriorTrainingTime = 5;
+    const static float carrierTrainingTime;
+    const static float workerTrainingTime;
+    const static float archerTrainingTime;
+    const static float warriorTrainingTime;
 
     //////////////////////////////////  CONSTRUCTION TIME    //////////////////////////////////////
 
@@ -83,6 +83,8 @@ public:
     static std::string quoteString;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    static bool exitFlag;
 };
 
 #endif // GAMEBALANCE_H

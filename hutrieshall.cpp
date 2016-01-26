@@ -41,14 +41,15 @@ HutriesHall::HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std:
     enoughGoodsForCreation = false;
     leftTrainingTime = 0;
     doorIndex = 6;
-
+    workerTrainingTime = GameBalance::workerTrainingTime;
+    carrierTrainingTime = GameBalance::carrierTrainingTime;
     getHutriesCosts();
 }
 
 void HutriesHall::updateStatus()
 {
     std::ostringstream desc;
-    desc << "Training finish in " << leftTrainingTime
+    desc << "Training finish in " << ceil(leftTrainingTime)
     << " sec.\nWorkers during training: " << trainingWorker
     << "\nCarriers during training: " << trainingCarrier
     << "\nAvailable Workers: " << getAvailableWorkers()
@@ -119,12 +120,6 @@ unsigned int HutriesHall::getAvailableCarriers()
         }
     }
     return carriersCounter;
-}
-
-void HutriesHall::updateClock(int trainingTime)
-{
-    leftTrainingTime = (unsigned int) (trainingTime - trainingClock.getElapsedTime().asSeconds());
-    if (leftTrainingTime < 0) leftTrainingTime = 0;
 }
 
 void HutriesHall::getHutriesCosts()

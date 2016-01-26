@@ -17,13 +17,21 @@ public:
 
     Game(int applicationWidth = 1024, int applicationHeight = 640, float horizontalScreenZoom = 0.7, float verticalScreenZoom = 0.7, bool fullscreen = true);
 
-    bool menu();
+    void menu();
+
+    void pauseMenu();
 
     void play();
 
     void gameOver(bool win);
 
     bool getResult();
+
+    void backToMenu();
+
+    void constructAll();
+
+    void destructAll();
 
 World world;
 private:
@@ -33,7 +41,6 @@ private:
 
     ////////////////LOGIC//////////////////////////
 
-
     int gameTime;
     sf::Clock deadline;
 
@@ -42,6 +49,13 @@ private:
     //////////GRAPHICS AND AUDIO//////////////////
     sf::Music music;
     GUI gui;
+
+    bool fullscreen;
+    int applicationWidth;
+    int applicationHeight;
+    float horizontalScreenZoom;
+    float verticalScreenZoom;
+
 
     /////////////FUNCTIONS////////////////////////
 

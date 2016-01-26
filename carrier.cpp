@@ -15,16 +15,24 @@ Carrier::Carrier(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFr
 
 void Carrier::moveHutrie()
 {
+    if(pauseThread)
+    {
+        sf::sleep(sf::seconds(0.7));
+    }
     busy = true;
     unsigned int door = (unsigned int) myBuilding->getDoorIndex();
     toDirection(objectUnits.at(door)->field.getPosition().x, objectUnits.at(door)->field.getPosition().y);
     sprite.setTexture(transTexture);
-    sf::sleep(sf::seconds(GameBalance::carrierLading));
+    sf::sleep(sf::seconds(GameBalance::carrierLoading));
     arrived = true;
 }
 
 void Carrier::comeBack()
 {
+    if(pauseThread)
+    {
+        sf::sleep(sf::seconds(0.7));
+    }
     arrived = false;
     toDirection(6 * 64, 7 * 64);
     busy = false;

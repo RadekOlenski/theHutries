@@ -17,14 +17,33 @@ Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZo
           gui(applicationWidth, applicationHeight, &hutrieApplication),
           world(&hutrieApplication, applicationWidth, applicationHeight)
 {
+    this->fullscreen = fullscreen;
+    this->applicationWidth = applicationWidth;
+    this->applicationHeight = applicationHeight;
+    this->horizontalScreenZoom = horizontalScreenZoom;
+    this->verticalScreenZoom = verticalScreenZoom;
+}
+
+
+void Game::constructAll()
+{
+    //world.createHutriesHall();
+    std::cout<<"PO HUTRIES HALL"<<std::endl;
+    //world.createEnvironment();
+    std::cout<<"PO ENVIRONMENT"<<std::endl;
     //-----------------------------CREATING BASIC APPLICATION OBJECTS---------------------------------------------//
     if (!fullscreen) hutrieApplication.create(sf::VideoMode::getDesktopMode(), "The Hutries");
     ModelController* modelController = new ModelController();
+    std::cout<<"PO MODEL"<<std::endl;
     GUIController* guiController = new GUIController(&hutrieApplication, modelController, &world, &gui);
+    std::cout<<"PO GUI"<<std::endl;
     GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController,
                                                                        guiController);
+    std::cout<<"PO LOGIC"<<std::endl;
     Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController, guiController);
+    std::cout<<"PO KEYBOARD"<<std::endl;
     Mouse* mouse = new Mouse(&hutrieApplication, modelController, gameLogicController);
+    std::cout<<"PO MOUSE"<<std::endl;
     //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES-----------------------------------------//
     this->modelController = modelController;
     this->guiController = guiController;
@@ -54,6 +73,22 @@ Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZo
     music.setLoop(true);
     changeMusicFlag = true;
 }
+
+
+void Game::destructAll()
+{
+    modelController->~ModelController();
+    std::cout<<"Model Controller"<<std::endl;
+    gameLogicController->~GameLogicController();
+    std::cout<<"Logic"<<std::endl;
+    keyboard->~Keyboard();
+    std::cout<<"Keyboard"<<std::endl;
+    mouse->~Mouse();
+    std::cout<<"Mouse"<<std::endl;
+    guiController->~GUIController();
+    std::cout<<"GUI Controller"<<std::endl;
+}
+
 //=================================================================================
 //                              MAIN GAME LOOP
 //=================================================================================
@@ -64,16 +99,30 @@ void Game::play()
     changeBackgroundMusic(Sound::musicPath);
     deadline.restart();
     modelController->setChosenInteractionMode(3);
-    while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime && !modelController->getBackToMenu())
+    std::cout<<"PRZED PeTLa"<<std::endl;
+    while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime /*&& !modelController->getBackToMenu()*/)
     {
         handleActions();
         drawApplication();
+        if(modelController->getBackToMenu())
+        {
+            backToMenu();
+            std::cout<<"wracam do main"<<std::endl;
+            return;
+        }
     }
     music.stop();
 }
 
 void Game::handleActions()
 {
+    if(modelController->getPauseGame())
+    {
+        pauseMenu();
+        if(modelController->getBackToMenu())
+            return;
+    }
+
     mouse->updateMouseLock();
 
     mouse->leftClickActions();
@@ -99,6 +148,7 @@ void Game::handleActions()
     guiController->handleErrorsVisiblity();
 
     updateClock();
+
 }
 
 void Game::changeBackgroundMusic(std::string musicPath)
@@ -115,6 +165,7 @@ void Game::changeBackgroundMusic(std::string musicPath)
 
 void Game::drawApplication()
 {
+    std::cout<<"PRZED RYSOWANIEM"<<std::endl;
     guiController->drawApplication();
 }
 
@@ -132,9 +183,9 @@ void Game::updateClock()
         changeBackgroundMusic(Sound::introMusic);
         changeMusicFlag = false;
     }
-    std::ostringstream newTime;
-    newTime << time / 60 << ":" << time % 60;
-    gui.timeLeft.text.setString(newTime.str());
+    /*std::ostringstream newTime;
+    newTime << time / 60 << ":" << time % 60;*/
+    guiController->updateClock(time);
 }
 
 bool Game::getResult()
@@ -177,7 +228,7 @@ void Game::gameOver(bool win)
     };
 }
 
-bool Game::menu()
+void Game::menu()
 {
     music.play();
     guiController->launchTitleThread();
@@ -194,11 +245,12 @@ bool Game::menu()
             keyboard->closeGame(event);
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
             {
-                return true;
+                return;
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
             {
-                return false;
+                GameBalance::exitFlag = true;
+                return;
             }
         }
         if (guiController->getIntroFlag())
@@ -214,5 +266,39 @@ bool Game::menu()
         }
         guiController->displayMenu();
     };
-    return true;
+    return;
 }
+
+
+void Game::pauseMenu()
+{
+    gameTime -= deadline.getElapsedTime().asSeconds();
+    gameLogicController->pauseClocks();
+    guiController->setPauseButtonsFlags(true);
+    while (hutrieApplication.isOpen() && modelController->getPauseGame())
+    {
+        guiController->captureScreen();
+        guiController->displayPauseMenu();
+        mouse->updateMouseLock();
+        mouse->leftClickActions();
+        keyboard->actionsLoop();
+        if(modelController->getBackToMenu())
+        {
+            return;
+        }
+    }
+    guiController->setPauseButtonsFlags(false);
+    deadline.restart();
+    gameLogicController->resumeClocks();
+    modelController->setPauseGame(false);
+}
+
+void Game::backToMenu()
+{
+    //bool result = getResult();
+    //gameOver(result);
+    world.~World();
+    std::cout << "Wyjebalem wszystko" << std::endl;
+    return;
+}
+

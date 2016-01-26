@@ -14,6 +14,7 @@ public:
 
     GUIController(sf::RenderWindow* hutrieApplication, ModelController* modelController, World* world, GUI* gui);
 
+    ~GUIController();
     //------------------------------------------ DRAW ----------------------------------//
 
     void drawApplication();
@@ -50,6 +51,8 @@ public:
 
     void displayMenu();
 
+    void displayPauseMenu();
+
     void prepareToDisplay();
 
     //------------------------------------------ BUTTONS ----------------------------------//
@@ -58,10 +61,13 @@ public:
 
     void handleMenuButtonsActions();
 
+    void handlePauseButtonsActions();
+
     void setBuildingButtonsFlags(bool buttonFlag);
 
     void setMenuButtonsFlags(bool buttonFlag);
 
+    void setPauseButtonsFlags(bool buttonFlag);
     //------------------------------------- LAUNCH TEXT THREADS --------------------------//
 
     void launchTitleThread();
@@ -100,6 +106,12 @@ public:
 
     void setVisibleGridFlag(bool visibleGrid) { this->visibleGrid = visibleGrid; };
 
+    void resetDrawsCounter();
+
+    void captureScreen();
+
+    void updateClock(int time);
+
     //------------------------------------------ ERRORS ----------------------------------//
 
     void handleErrorsVisiblity();
@@ -134,20 +146,20 @@ public:
 
     void errorToMuchWorkers();
 
+    sf::Sprite cursor;
 private:
+
     void getView();
 
     void updateHowToText();
-
     sf::RenderWindow* hutrieApplication;
-    ModelController* modelController;
 
+    ModelController* modelController;
     World* world;
     GUI* gui;
     sf::View fixed;
     sf::RectangleShape background;
     sf::Texture backgroundTexture;
-    sf::Sprite cursor;
     sf::Sprite buildingToCursor;
     sf::Texture buildingToCursorTexture;
     sf::Texture cursorTexture;

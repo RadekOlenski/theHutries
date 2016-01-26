@@ -14,6 +14,23 @@ Farm::Farm(sf::RenderWindow* hutrieApplication, const std::vector<Unit*> &unitsF
     buildingConstructed = false;
     leftConstructionTime = 0;
     doorIndex = 3;
+
+    constructionTime = GameBalance::farmConstructionTime;
+}
+
+void Farm::createProduct()
+{
+    myProducts.setProduct(3, 1);
+}
+
+void Farm::setConstructedBuildingSound()
+{
+    sound.pause();
+    sound.openFromFile(Sound::farm);
+    if (isHighlighted())
+    {
+        sound.play();
+    }
 }
 
 void Farm::updateStatus()
@@ -28,28 +45,7 @@ void Farm::updateStatus()
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " << leftConstructionTime << " sec.";
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.";
         description.text.setString(desc.str());
-    }
-}
-
-void Farm::createProduct()
-{
-    myProducts.setProduct(3, 1);
-}
-
-void Farm::updateConstructionClock(int fullTime)
-{
-    leftConstructionTime = (unsigned int) (fullTime - constructionTimeClock.getElapsedTime().asSeconds());
-    if (leftConstructionTime < 0) leftConstructionTime = 0;
-}
-
-void Farm::setConstructedBuildingSound()
-{
-    sound.pause();
-    sound.openFromFile(Sound::farm);
-    if(isHighlighted())
-    {
-        sound.play();
     }
 }

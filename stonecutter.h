@@ -17,7 +17,7 @@ public:
 
     void updateStatus();
 
-    float getElapsedConstructionTime() { return constructionTimeClock.getElapsedTime().asSeconds(); };
+    float getElapsedConstructionTime() { return constructionClock.getElapsedTime().asSeconds(); };
 
     bool getBuildingConstructedFlag() { return buildingConstructed; };
 
@@ -25,15 +25,7 @@ public:
 
     float getConstructionTime() { return constructionTime; };
 
-    void updateConstructionClock(int fullTime);
-
     void setConstructedBuildingSound();
-
-private:
-
-    unsigned int leftConstructionTime;
-    const float constructionTime = GameBalance::stonecutterHutConstructionTime;
-    sf::Clock constructionTimeClock;
 };
 
 #endif // STONECUTTER_H

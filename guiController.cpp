@@ -1,4 +1,5 @@
 #include <sstream>
+
 #include <iostream>
 #include "guiController.h"
 #include "sound.h"
@@ -28,6 +29,42 @@ GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelControlle
     lockArrows = true;
     chosenHowToText = 0;
     setBuildingsCosts();
+}
+
+GUIController::~GUIController()
+{
+    titleThread.terminate();
+    bigTitleThread.terminate();
+    quoteThread.terminate();
+    /*cursor.~Drawable();
+    std::cout<<"1"<<std::endl;
+    //fixed.;
+    background.~Drawable();
+    std::cout<<"2"<<std::endl;
+    backgroundTexture.~Texture();
+    std::cout<<"3"<<std::endl;
+    buildingToCursor.~Drawable();
+    std::cout<<"4"<<std::endl;
+    buildingToCursorTexture.~Texture();
+    std::cout<<"5"<<std::endl;
+    cursorTexture.~Texture();
+    std::cout<<"6"<<std::endl;
+    cursorHammerTexture.~Texture();
+    std::cout<<"7"<<std::endl;
+
+    titleText.~GUIText();
+    std::cout<<"8"<<std::endl;
+    bigTitleText.~GUIText();
+    std::cout<<"9"<<std::endl;
+    quote.~GUIText();
+    std::cout<<"10"<<std::endl;*/
+
+    /*titleThread.~Thread();
+    std::cout<<"11"<<std::endl;
+    bigTitleThread.~Thread();
+    std::cout<<"12"<<std::endl;
+    quoteThread.~Thread();
+    std::cout<<"13"<<std::endl;*/
 }
 
 void GUIController::displayIntro()
@@ -113,6 +150,24 @@ void GUIController::handleMenuButtonsActions()
         else gui->nextArrowButton.setActive(true);
         if (chosenHowToText == 0 ) gui->backArrowButton.setActive(false);
         else gui->backArrowButton.setActive(true);
+    }
+}
+
+void GUIController::handlePauseButtonsActions()
+{
+    if(gui->resumeButton.checkBounds() && gui->resumeButton.isActive())
+    {
+        modelController->setPauseGame(false);
+        Sound::click();
+        return;
+    }
+
+    if(gui->mainMenuButton.checkBounds() && gui->mainMenuButton.isActive())
+    {
+        modelController->setBackToMenu(true);
+        std::cout<<"DUPA";
+        Sound::click();
+        return;
     }
 }
 
@@ -265,6 +320,13 @@ void GUIController::setMenuButtonsFlags(bool buttonFlag)
     gui->exitButton.setActive(buttonFlag);
 }
 
+void GUIController::setPauseButtonsFlags(bool buttonFlag)
+{
+    gui->resumeButton.setActive(buttonFlag);
+    gui->settingsButton.setActive(buttonFlag);
+    gui->helpButton.setActive(buttonFlag);
+    gui->mainMenuButton.setActive(buttonFlag);
+}
 
 void GUIController::drawApplication()
 {
@@ -279,9 +341,9 @@ void GUIController::drawApplication()
     drawGrid(it);
     drawMapObjects(it);
     drawToApplication(gui->timeLeft.text);
-    setCursorSprite();
+        setCursorSprite();
     drawToApplication(buildingToCursor);
-    drawToApplication(cursor);
+        drawToApplication(cursor);
     displayApplication();
 }
 
@@ -306,7 +368,6 @@ void GUIController::getView()
         fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(), modelController->getVerticalScreenZoom()));
         firstIteration = false;
     }
-
 }
 
 void GUIController::displayElementsOfGUI()
@@ -427,7 +488,6 @@ void GUIController::setCursorPosition()
     sf::Vector2f worldPos = hutrieApplication->mapPixelToCoords(pixelPos);
     cursor.setPosition(worldPos);
     attachBuildingToCursor(worldPos);
-    buildingToCursor.setPosition(worldPos);
 }
 
 void GUIController::attachBuildingToCursor (sf::Vector2f worldPos)
@@ -463,6 +523,7 @@ void GUIController::attachBuildingToCursor (sf::Vector2f worldPos)
     {
         buildingToCursorTexture.loadFromFile(Textures::carrierEmpty);
     }
+    buildingToCursor.setPosition(worldPos);
 }
 
 void GUIController::launchTitleThread()
@@ -525,6 +586,31 @@ void GUIController::displayMenu()
     displayApplication();
 }
 
+void GUIController::displayPauseMenu()
+{
+    setCursorPosition();
+    getView();
+    setCursorSprite();
+    gui->displayPauseMenu();
+    createCursor();
+    drawToApplication(cursor);
+    displayApplication();
+}
+
+void GUIController::captureScreen()
+{
+    hutrieApplication->clear();
+    drawToApplication(background);
+    displayGUI();
+    displayElementsOfGUI();
+    drawToApplication(titleText.text);
+
+    std::vector<Unit*>::iterator it;
+    drawGrid(it);
+    drawMapObjects(it);
+    drawToApplication(gui->timeLeft.text);
+}
+
 std::string GUIController::getEndingBuildingsStats()
 {
     std::ostringstream stats;
@@ -536,6 +622,7 @@ std::string GUIController::getEndingBuildingsStats()
           << "\n\n\t\t\t\t\t\t\t\t\t\t\t\tPress ESC to exit";
     return stats.str();
 }
+
 std::string GUIController::getEndingHutriesStats()
 {
     std::ostringstream stats;
@@ -701,6 +788,19 @@ void GUIController::showEmptyUnits(bool mark)
         }
     }
     }
+}
+
+void GUIController::resetDrawsCounter()
+{
+    gui->resetDrawsCounter();
+}
+
+
+void GUIController::updateClock(int time)
+{
+    std::ostringstream newTime;
+    newTime << time / 60 << ":" << time % 60;
+    gui->timeLeft.text.setString(newTime.str());
 }
 
 //=================================================================================

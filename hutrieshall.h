@@ -44,13 +44,9 @@ public:
 
     void setTrainingWorkerFlag(bool trainingWorker) { this->trainingWorker = trainingWorker; };
 
-    int getWorkerTrainingTime() { return workerTrainingTime; };
+    float getWorkerTrainingTime() { return workerTrainingTime; };
 
-    int getCarrierTrainingTime() { return carrierTrainingTime; };
-
-    sf::Clock trainingClock;
-
-    void updateClock(int trainingTime);
+    float getCarrierTrainingTime() { return carrierTrainingTime; };
 
     void getHutriesCosts();
 
@@ -81,15 +77,8 @@ private:
     bool makeWorkerFlag;
     bool makeCarrierFlag;
     bool trainingWorker;
-
     bool trainingCarrier;
     bool enoughGoodsForCreation;
-
-    const int workerTrainingTime = GameBalance::workerTrainingTime;
-
-    const int carrierTrainingTime = GameBalance::carrierTrainingTime;
-
-    unsigned int leftTrainingTime;
 
     World* world;
 };

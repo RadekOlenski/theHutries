@@ -300,7 +300,7 @@ World::~World()
     std::cout << "Koniec Hutrie" << std::endl;
 
     std::vector<Building*>::iterator itbuildings;
-    for (itbuildings = buildings.begin(); itbuildings != buildings.end(); ++itbuildings)
+    for (itbuildings = buildings.begin() + 1; itbuildings != buildings.end(); ++itbuildings)
     {
         delete (*itbuildings);
     }

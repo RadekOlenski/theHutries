@@ -1,4 +1,5 @@
 #include "gameModel.h"
+
 #include "modelController.h"
 
 ModelController::ModelController()
@@ -7,6 +8,11 @@ ModelController::ModelController()
     this->gameModel = gameModel;
     setReadyForGame(false);
     setBackToMenu(false);
+}
+
+ModelController::~ModelController()
+{
+    gameModel->~GameModel();
 }
 
 void ModelController::setChosenInteractionMode(int chosenInteractionMode)

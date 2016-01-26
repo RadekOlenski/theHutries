@@ -1,5 +1,6 @@
 #include "building.h"
 #include "sound.h"
+#include "gamebalance.h"
 #include <sstream>
 
 Building::Building(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
@@ -60,3 +61,45 @@ void Building::setDescriptionTexture()
     this->updateDescriptionTexture(textureBasic);
 }
 
+void Building::pauseConstructionClock()
+{
+    constructionTime -= constructionClock.getElapsedTime().asSeconds();
+}
+
+void Building::resumeConstructionClock()
+{
+    constructionClock.restart();
+}
+
+void Building::pauseTrainingClock()
+{
+    workerTrainingTime -= trainingClock.getElapsedTime().asSeconds();
+    carrierTrainingTime -= trainingClock.getElapsedTime().asSeconds();
+    warriorTrainingTime -= trainingClock.getElapsedTime().asSeconds();
+    archerTrainingTime -= trainingClock.getElapsedTime().asSeconds();
+}
+
+void Building::resumeTrainingClock()
+{
+    trainingClock.restart();
+}
+
+void Building::resetTrainingTime()
+{
+    workerTrainingTime = GameBalance::workerTrainingTime;
+    carrierTrainingTime = GameBalance::carrierTrainingTime;
+    warriorTrainingTime = GameBalance::warriorTrainingTime;
+    archerTrainingTime = GameBalance::archerTrainingTime;
+}
+
+void Building::updateConstructionClock()
+{
+    leftConstructionTime = constructionTime - constructionClock.getElapsedTime().asSeconds();
+    if (leftConstructionTime <= 0.1) leftConstructionTime = 0;
+}
+
+void Building::updateTrainingClock(float trainingTime)
+{
+    leftTrainingTime = trainingTime - trainingClock.getElapsedTime().asSeconds();
+    if (leftTrainingTime <= 0.1) leftTrainingTime = 0;
+}

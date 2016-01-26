@@ -15,6 +15,22 @@ StoneCutter::StoneCutter(sf::RenderWindow* hutrieApplication, std::vector<Unit*>
     buildingConstructed = false;
     leftConstructionTime = 0;
     doorIndex = 2;
+    constructionTime = GameBalance::stonecutterHutConstructionTime;
+}
+
+void StoneCutter::createProduct()
+{
+    myProducts.setProduct(2, 1);
+}
+
+void StoneCutter::setConstructedBuildingSound()
+{
+    sound.pause();
+    sound.openFromFile(Sound::stonecutter);
+    if(isHighlighted())
+    {
+        sound.play();
+    }
 }
 
 void StoneCutter::updateStatus()
@@ -29,28 +45,7 @@ void StoneCutter::updateStatus()
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " << leftConstructionTime << " sec.";
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.";
         description.text.setString(desc.str());
-    }
-}
-
-void StoneCutter::createProduct()
-{
-    myProducts.setProduct(2, 1);
-}
-
-void StoneCutter::updateConstructionClock(int fullTime)
-{
-    leftConstructionTime = (unsigned int) (fullTime - constructionTimeClock.getElapsedTime().asSeconds());
-    if (leftConstructionTime < 0) leftConstructionTime = 0;
-}
-
-void StoneCutter::setConstructedBuildingSound()
-{
-    sound.pause();
-    sound.openFromFile(Sound::stonecutter);
-    if(isHighlighted())
-    {
-        sound.play();
     }
 }

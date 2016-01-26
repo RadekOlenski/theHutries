@@ -28,8 +28,8 @@ public:
 
     void setBusy(bool busy) { this->busy = busy; }
 
+    void setPauseThread(bool pauseThread) {this->pauseThread = pauseThread; };
 protected:
-
     sf::Texture upTexture;
     sf::Texture downTexture;
     sf::Texture leftTexture;
@@ -38,6 +38,7 @@ protected:
     void toDirection(float targetX, float targetY);
 
     bool busy;
+    bool pauseThread;
 };
 
 #endif // HUTRIE_H

@@ -32,9 +32,9 @@ public:
 
     void deactivateButtons();
 
-    int getWarriorTrainingTime() { return warriorTrainingTime; };
+    float getWarriorTrainingTime() { return warriorTrainingTime; };
 
-    int getArcherTrainingTime() { return archerTrainingTime; };
+    float getArcherTrainingTime() { return archerTrainingTime; };
 
     void setTrainingWarriorFlag(bool trainingWarrior) { this->trainingWarrior = trainingWarrior; };
 
@@ -50,11 +50,7 @@ public:
 
     void setSoldiersCosts();
 
-    void updateTrainingClock(int fullTime);
-
-    void updateConstructionClock(int fullTime);
-
-    float getElapsedConstructionTime() { return constructionTimeClock.getElapsedTime().asSeconds(); };
+    float getElapsedConstructionTime() { return constructionClock.getElapsedTime().asSeconds(); };
 
     bool getBuildingConstructedFlag() { return buildingConstructed; };
 
@@ -65,8 +61,6 @@ public:
     bool getEnoughGoodsForCreation() { return enoughGoodsForCreation; };
 
     float getConstructionTime() { return constructionTime; };
-
-    sf::Clock trainingClock;
 
     void setConstructedBuildingSound();
 
@@ -86,17 +80,7 @@ private:
     bool trainingWarrior;
     bool trainingArcher;
     bool firstCheck;
-    bool buildingConstructed;
     bool enoughGoodsForCreation;
-
-    const int warriorTrainingTime = GameBalance::warriorTrainingTime;
-    const int archerTrainingTime = GameBalance::archerTrainingTime;
-
-    unsigned int leftTrainingTime;
-    unsigned int leftConstructionTime;
-
-    const float constructionTime = GameBalance::barracksConstructionTime;
-    sf::Clock constructionTimeClock;
 };
 
 #endif // BARRACKS_H

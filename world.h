@@ -55,6 +55,10 @@ public:
 
     void increaseAvailableSlots(int addedSlotsNumber);
 
+    void createHutriesHall();
+
+    void createEnvironment();
+
 private:
 
     void createForest();
@@ -62,10 +66,6 @@ private:
     void createMountains();
 
     void createRocks();
-
-    void createEnvironment();
-
-    void createHutriesHall();
 
     void markUnitsAround(int unitIndex, std::string environmentType);
 

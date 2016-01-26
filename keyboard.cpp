@@ -14,6 +14,12 @@ void Keyboard::actionsLoop()
 {
     while (hutrieApplication->pollEvent(event))
     {
+        if(modelController->getPauseGame())
+        {
+            pauseMenuActions();
+            return;
+        }
+
         if (event.type == sf::Event::Closed)
         {
             hutrieApplication->close();
@@ -64,6 +70,7 @@ void Keyboard::chooseBuildingType(sf::Event event)
 {
     if (event.type != sf::Event::KeyPressed)
     {
+
         return;
     }
     if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE)
@@ -121,6 +128,18 @@ void Keyboard::otherKeyActions(sf::Event event)
 void Keyboard::closeGame(sf::Event event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-//        hutrieApplication->close();
-          modelController->setBackToMenu(true);
+    {
+        //  hutrieApplication->close();
+        modelController->setPauseGame(!modelController->getPauseGame());
+        guiController->resetDrawsCounter();
+    }
+}
+
+void Keyboard::pauseMenuActions()
+{
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+    {
+        modelController->setPauseGame(!modelController->getPauseGame());
+        guiController->resetDrawsCounter();
+    }
 }
