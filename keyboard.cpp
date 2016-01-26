@@ -131,7 +131,6 @@ void Keyboard::closeGame(sf::Event event)
     {
         //  hutrieApplication->close();
         modelController->setPauseGame(!modelController->getPauseGame());
-        guiController->resetDrawsCounter();
     }
 }
 
@@ -140,6 +139,5 @@ void Keyboard::pauseMenuActions()
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
     {
         modelController->setPauseGame(!modelController->getPauseGame());
-        guiController->resetDrawsCounter();
     }
 }

@@ -36,35 +36,6 @@ GUIController::~GUIController()
     titleThread.terminate();
     bigTitleThread.terminate();
     quoteThread.terminate();
-    /*cursor.~Drawable();
-    std::cout<<"1"<<std::endl;
-    //fixed.;
-    background.~Drawable();
-    std::cout<<"2"<<std::endl;
-    backgroundTexture.~Texture();
-    std::cout<<"3"<<std::endl;
-    buildingToCursor.~Drawable();
-    std::cout<<"4"<<std::endl;
-    buildingToCursorTexture.~Texture();
-    std::cout<<"5"<<std::endl;
-    cursorTexture.~Texture();
-    std::cout<<"6"<<std::endl;
-    cursorHammerTexture.~Texture();
-    std::cout<<"7"<<std::endl;
-
-    titleText.~GUIText();
-    std::cout<<"8"<<std::endl;
-    bigTitleText.~GUIText();
-    std::cout<<"9"<<std::endl;
-    quote.~GUIText();
-    std::cout<<"10"<<std::endl;*/
-
-    /*titleThread.~Thread();
-    std::cout<<"11"<<std::endl;
-    bigTitleThread.~Thread();
-    std::cout<<"12"<<std::endl;
-    quoteThread.~Thread();
-    std::cout<<"13"<<std::endl;*/
 }
 
 void GUIController::displayIntro()
@@ -118,7 +89,8 @@ void GUIController::handleMenuButtonsActions()
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
         Sound::click();
-        hutrieApplication->close();
+        GameBalance::exitFlag = true;
+        return;
     }
     if (gui->howToPlayButton.checkBounds())
     {
@@ -341,9 +313,9 @@ void GUIController::drawApplication()
     drawGrid(it);
     drawMapObjects(it);
     drawToApplication(gui->timeLeft.text);
-        setCursorSprite();
+    setCursorSprite();
     drawToApplication(buildingToCursor);
-        drawToApplication(cursor);
+    drawToApplication(cursor);
     displayApplication();
 }
 
@@ -431,7 +403,6 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
 void GUIController::createBackground()
 {
     background.setSize(sf::Vector2f(1024, 640 + 128));
-    //  backgroundTexture.loadFromFile( "sprites/background/background.jpg" );
     backgroundTexture.loadFromFile(Textures::background);
     background.setTexture(&backgroundTexture);
 }
@@ -592,7 +563,6 @@ void GUIController::displayPauseMenu()
     getView();
     setCursorSprite();
     gui->displayPauseMenu();
-    createCursor();
     drawToApplication(cursor);
     displayApplication();
 }
@@ -789,12 +759,6 @@ void GUIController::showEmptyUnits(bool mark)
     }
     }
 }
-
-void GUIController::resetDrawsCounter()
-{
-    gui->resetDrawsCounter();
-}
-
 
 void GUIController::updateClock(int time)
 {

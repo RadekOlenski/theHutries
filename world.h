@@ -59,6 +59,8 @@ public:
 
     void createEnvironment();
 
+    void destroyElementsOfWorld();
+
 private:
 
     void createForest();

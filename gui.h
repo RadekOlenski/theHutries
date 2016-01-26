@@ -12,7 +12,6 @@ public:
 
     GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width = 256);
 
-    ~GUI();
     /////////////////////////////// MENU    ///////////////////////////////////////////////////
 
     GUIText startingText;
@@ -122,15 +121,10 @@ public:
 
     void displayEndingText(bool win);
 
-    void resetDrawsCounter();
-
     sf::RectangleShape capturedScreen;
 
 private:
-    int drawsCounter;
-
     //////////////////////////// GENERAL //////////////////////////////////////////////////////
-
 
     sf::RenderWindow* hutrieApplication;
 

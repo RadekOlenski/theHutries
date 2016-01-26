@@ -106,8 +106,6 @@ public:
 
     void setVisibleGridFlag(bool visibleGrid) { this->visibleGrid = visibleGrid; };
 
-    void resetDrawsCounter();
-
     void captureScreen();
 
     void updateClock(int time);

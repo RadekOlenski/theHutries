@@ -11,12 +11,12 @@
 //=================================================================================
 //                              CONSTRUCTOR
 //=================================================================================
-Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZoom, float verticalScreenZoom, bool fullscreen)
+Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applicationHeight, float horizontalScreenZoom, float verticalScreenZoom, bool fullscreen)
         : gameTime(GameBalance::gameTime),
-          hutrieApplication(sf::VideoMode::getDesktopMode(), "The Hutries", sf::Style::Fullscreen),
-          gui(applicationWidth, applicationHeight, &hutrieApplication),
-          world(&hutrieApplication, applicationWidth, applicationHeight)
+          gui(applicationWidth, applicationHeight, hutrieApplication),
+          world(hutrieApplication, applicationWidth, applicationHeight)
 {
+    this->hutrieApplication = hutrieApplication;
     this->fullscreen = fullscreen;
     this->applicationWidth = applicationWidth;
     this->applicationHeight = applicationHeight;
@@ -27,23 +27,14 @@ Game::Game(int applicationWidth, int applicationHeight, float horizontalScreenZo
 
 void Game::constructAll()
 {
-    //world.createHutriesHall();
-    std::cout<<"PO HUTRIES HALL"<<std::endl;
-    //world.createEnvironment();
-    std::cout<<"PO ENVIRONMENT"<<std::endl;
     //-----------------------------CREATING BASIC APPLICATION OBJECTS---------------------------------------------//
-    if (!fullscreen) hutrieApplication.create(sf::VideoMode::getDesktopMode(), "The Hutries");
+    if (!fullscreen) hutrieApplication->create(sf::VideoMode::getDesktopMode(), "The Hutries");
     ModelController* modelController = new ModelController();
-    std::cout<<"PO MODEL"<<std::endl;
-    GUIController* guiController = new GUIController(&hutrieApplication, modelController, &world, &gui);
-    std::cout<<"PO GUI"<<std::endl;
-    GameLogicController* gameLogicController = new GameLogicController(&world, &hutrieApplication, modelController,
+    GUIController* guiController = new GUIController(hutrieApplication, modelController, &world, &gui);
+    GameLogicController* gameLogicController = new GameLogicController(&world, hutrieApplication, modelController,
                                                                        guiController);
-    std::cout<<"PO LOGIC"<<std::endl;
-    Keyboard* keyboard = new Keyboard(&hutrieApplication, modelController, guiController);
-    std::cout<<"PO KEYBOARD"<<std::endl;
-    Mouse* mouse = new Mouse(&hutrieApplication, modelController, gameLogicController);
-    std::cout<<"PO MOUSE"<<std::endl;
+    Keyboard* keyboard = new Keyboard(hutrieApplication, modelController, guiController);
+    Mouse* mouse = new Mouse(hutrieApplication, modelController, gameLogicController);
     //--------------------------------ASSIGN OBJECTS TO LOCAL VARIABLES-----------------------------------------//
     this->modelController = modelController;
     this->guiController = guiController;
@@ -59,9 +50,9 @@ void Game::constructAll()
 
     /////////////////////////// CREATING GAME WINDOW AND GUI //////////////////////////////////////////////////////
 
-    hutrieApplication.setFramerateLimit(60);
+    hutrieApplication->setFramerateLimit(60);
 
-    hutrieApplication.setIcon(tH_icon.width, tH_icon.height, tH_icon.pixel_data);
+    hutrieApplication->setIcon(tH_icon.width, tH_icon.height, tH_icon.pixel_data);
 
     guiController->createBackground();
     guiController->createCursor();
@@ -74,43 +65,24 @@ void Game::constructAll()
     changeMusicFlag = true;
 }
 
-
-void Game::destructAll()
-{
-    modelController->~ModelController();
-    std::cout<<"Model Controller"<<std::endl;
-    gameLogicController->~GameLogicController();
-    std::cout<<"Logic"<<std::endl;
-    keyboard->~Keyboard();
-    std::cout<<"Keyboard"<<std::endl;
-    mouse->~Mouse();
-    std::cout<<"Mouse"<<std::endl;
-    guiController->~GUIController();
-    std::cout<<"GUI Controller"<<std::endl;
-}
-
 //=================================================================================
 //                              MAIN GAME LOOP
 //=================================================================================
-
 
 void Game::play()
 {
     changeBackgroundMusic(Sound::musicPath);
     deadline.restart();
     modelController->setChosenInteractionMode(3);
-    std::cout<<"PRZED PeTLa"<<std::endl;
-    while (hutrieApplication.isOpen() && deadline.getElapsedTime().asSeconds() < gameTime /*&& !modelController->getBackToMenu()*/)
+    while (hutrieApplication->isOpen() && deadline.getElapsedTime().asSeconds() < gameTime /*&& !modelController->getBackToMenu()*/)
     {
         handleActions();
         drawApplication();
         if(modelController->getBackToMenu())
-        {
-            backToMenu();
-            std::cout<<"wracam do main"<<std::endl;
             return;
-        }
     }
+    bool result = getResult();
+    gameOver(result);
     music.stop();
 }
 
@@ -165,7 +137,6 @@ void Game::changeBackgroundMusic(std::string musicPath)
 
 void Game::drawApplication()
 {
-    std::cout<<"PRZED RYSOWANIEM"<<std::endl;
     guiController->drawApplication();
 }
 
@@ -183,8 +154,6 @@ void Game::updateClock()
         changeBackgroundMusic(Sound::introMusic);
         changeMusicFlag = false;
     }
-    /*std::ostringstream newTime;
-    newTime << time / 60 << ":" << time % 60;*/
     guiController->updateClock(time);
 }
 
@@ -211,9 +180,9 @@ void Game::gameOver(bool win)
     bool next = false;
     sf::Event event;
 
-    while (hutrieApplication.isOpen())
+    while (hutrieApplication->isOpen())
     {
-        while (hutrieApplication.pollEvent(event))
+        while (hutrieApplication->pollEvent(event))
         {
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
             {
@@ -236,11 +205,13 @@ void Game::menu()
     guiController->setMenuButtonsFlags(true);
     bool firstLoop = true;
     sf::Event event;
-    while (hutrieApplication.isOpen() && modelController->getChosenInteractionMode() == 0)
+    while (hutrieApplication->isOpen() && modelController->getChosenInteractionMode() == 0)
     {
         mouse->updateMouseLock();
         mouse->leftClickActions();
-        while (hutrieApplication.pollEvent(event))
+        if(GameBalance::exitFlag)
+            return;
+        while (hutrieApplication->pollEvent(event))
         {
             keyboard->closeGame(event);
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
@@ -269,13 +240,12 @@ void Game::menu()
     return;
 }
 
-
 void Game::pauseMenu()
 {
     gameTime -= deadline.getElapsedTime().asSeconds();
     gameLogicController->pauseClocks();
     guiController->setPauseButtonsFlags(true);
-    while (hutrieApplication.isOpen() && modelController->getPauseGame())
+    while (hutrieApplication->isOpen() && modelController->getPauseGame())
     {
         guiController->captureScreen();
         guiController->displayPauseMenu();
@@ -291,14 +261,5 @@ void Game::pauseMenu()
     deadline.restart();
     gameLogicController->resumeClocks();
     modelController->setPauseGame(false);
-}
-
-void Game::backToMenu()
-{
-    //bool result = getResult();
-    //gameOver(result);
-    world.~World();
-    std::cout << "Wyjebalem wszystko" << std::endl;
-    return;
 }
 

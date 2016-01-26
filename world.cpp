@@ -249,7 +249,11 @@ void World::createRocks()
 
 World::~World()
 {
+    destroyElementsOfWorld();
+}
 
+void World::destroyElementsOfWorld()
+{
     std::vector<Hutrie*>::iterator ithutries;
     for (ithutries = hutries.begin(); ithutries != hutries.end(); ++ithutries)
     {
@@ -259,7 +263,7 @@ World::~World()
 
     std::vector<Carrier*>::iterator itcarriers;
     for (itcarriers = carriers.begin(); itcarriers != carriers.end(); ++itcarriers) {
-    delete (*itcarriers);
+        delete (*itcarriers);
     }
     std::cout << "Koniec Carriers" << std::endl;
 
@@ -271,19 +275,19 @@ World::~World()
 
     std::vector<Warrior*>::iterator itwarriors;
     for (itwarriors = warriors.begin(); itwarriors != warriors.end(); ++itwarriors) {
-    delete (*itwarriors);
+        delete (*itwarriors);
     }
     std::cout << "Koniec Warriors" << std::endl;
 
     std::vector<Archer*>::iterator itarchers;
     for (itarchers = archers.begin(); itarchers != archers.end(); ++itarchers) {
-    delete (*itarchers);
+        delete (*itarchers);
     }
     std::cout << "Koniec Archers" << std::endl;
 
     std::vector<Worker*>::iterator itworkers;
     for (itworkers = workers.begin(); itworkers != workers.end(); ++itworkers) {
-    delete (*itworkers);
+        delete (*itworkers);
     }
     std::cout << "Koniec Workers" << std::endl;
 //
@@ -300,7 +304,7 @@ World::~World()
     std::cout << "Koniec Hutrie" << std::endl;
 
     std::vector<Building*>::iterator itbuildings;
-    for (itbuildings = buildings.begin() + 1; itbuildings != buildings.end(); ++itbuildings)
+    for (itbuildings = buildings.begin(); itbuildings != buildings.end(); ++itbuildings)
     {
         delete (*itbuildings);
     }
@@ -313,9 +317,9 @@ World::~World()
     }
     std::cout << "Koniec Enviroment" << std::endl;
 
-     std::vector<Unit*>::iterator itunits;
+    std::vector<Unit*>::iterator itunits;
     for (itunits = units.begin(); itunits != units.end(); ++itunits) {
-    delete (*itunits);
+        delete (*itunits);
     }
     std::cout << "Koniec Unit" << std::endl;
 

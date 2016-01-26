@@ -1,3 +1,4 @@
+#include <SFML/Graphics.hpp>
 #include <windows.h>
 #include <ctime>
 #include <string>
@@ -5,6 +6,7 @@
 
 
 bool fullscreenEnable();
+
 void setDifficulty();
 
 int main()
@@ -35,22 +37,26 @@ int main()
     float verticalScreenZoom = y / 768;
 /////////////////////////// CREATING AND STARTING GAME ////////////////////////////////////////////////////////
 
-    Game game(applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom,
-              false);// fullscreenEnable());
+    sf::RenderWindow hutrieApplication(sf::VideoMode::getDesktopMode(), "The Hutries", sf::Style::Fullscreen);
+
     //ShowWindow(hWnd, SW_HIDE);
 
     while (!GameBalance::exitFlag)
     {
-            game.constructAll();
-            std::cout<<"Jestem tu"<<std::endl;
-            game.menu();
-            if(GameBalance::exitFlag)
-                return 0;
-            game.play();
-            bool result = game.getResult();
-            game.gameOver(result);
-            game.destructAll();
-            std::cout<<"Petla Skonczona"<<std::endl;
+        Game game(&hutrieApplication, applicationWidth, applicationHeight, horizontalScreenZoom, verticalScreenZoom,
+                  true);// fullscreenEnable());
+        game.constructAll();
+        std::cout << "Jestem tu" << std::endl;
+        game.menu();
+        if (GameBalance::exitFlag)
+        {
+            hutrieApplication.close();
+            return 0;
+        }
+        game.play();
+        /*bool result = game.getResult();
+        game.gameOver(result);*/
+        std::cout << "Petla Skonczona" << std::endl;
     }
 
 /////////////////////////// ENDING ////////////////////////////////////////////////////////////////////////////
@@ -108,7 +114,7 @@ void setDifficulty()
         std::cin >> difficult;
     }
     while (difficult <= 0);
-    switch(difficult)
+    switch (difficult)
     {
         case 1:
             setEasy();

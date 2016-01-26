@@ -125,14 +125,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
     buildButton.setActive(true);
     hutrieButton.setActive(true);
-    drawsCounter = 0;
 }
-
-GUI::~GUI()
-{
-
-}
-
 
 void GUI::displayMainGUI()
 {
@@ -265,11 +258,7 @@ void GUI::displayMenu()
 
 void GUI::displayPauseMenu()
 {
-    //hutrieApplication->draw(capturedScreen);
     hutrieApplication->draw(screenBlackout);
-    if(drawsCounter <= 100)
-    {
-    }
     hutrieApplication->draw(pauseFrame);
     hutrieApplication->draw(resumeText.text);
     hutrieApplication->draw(resumeButton.button);
@@ -279,10 +268,5 @@ void GUI::displayPauseMenu()
     hutrieApplication->draw(helpButton.button);
     hutrieApplication->draw(mainMenuText.text);
     hutrieApplication->draw(mainMenuButton.button);
-    drawsCounter++;
 }
 
-void GUI::resetDrawsCounter()
-{
-    drawsCounter = 0;
-}

@@ -2,8 +2,6 @@
 #define GAME_H
 
 #include <SFML/Audio.hpp>
-
-
 #include <SFML/Graphics.hpp>
 #include "world.h"
 #include "gui.h"
@@ -11,11 +9,13 @@
 #include "gameLogicController.h"
 #include "mouse.h"
 
+
+
 class Game
 {
 public:
 
-    Game(int applicationWidth = 1024, int applicationHeight = 640, float horizontalScreenZoom = 0.7, float verticalScreenZoom = 0.7, bool fullscreen = true);
+    Game(sf::RenderWindow* hutrieApplication, int applicationWidth = 1024, int applicationHeight = 640, float horizontalScreenZoom = 0.7, float verticalScreenZoom = 0.7, bool fullscreen = true);
 
     void menu();
 
@@ -23,21 +23,17 @@ public:
 
     void play();
 
+    void constructAll();
+
+World world;
+
+private:
     void gameOver(bool win);
 
     bool getResult();
-
-    void backToMenu();
-
-    void constructAll();
-
-    void destructAll();
-
-World world;
-private:
     /////////////////WINDOW////////////////////////
 
-    sf::RenderWindow hutrieApplication;
+    sf::RenderWindow* hutrieApplication;
 
     ////////////////LOGIC//////////////////////////
 
@@ -56,7 +52,6 @@ private:
     float horizontalScreenZoom;
     float verticalScreenZoom;
 
-
     /////////////FUNCTIONS////////////////////////
 
     void handleActions();
@@ -73,6 +68,5 @@ private:
     Keyboard* keyboard;
     Mouse* mouse;
 };
-
 
 #endif // GAME_H
