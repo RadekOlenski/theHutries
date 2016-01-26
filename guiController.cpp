@@ -89,7 +89,7 @@ void GUIController::handleMenuButtonsActions()
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
         Sound::click();
-        GameBalance::exitFlag = true;
+        modelController->setExitWindow(true);
         return;
     }
     if (gui->howToPlayButton.checkBounds())
@@ -137,7 +137,6 @@ void GUIController::handlePauseButtonsActions()
     if(gui->mainMenuButton.checkBounds() && gui->mainMenuButton.isActive())
     {
         modelController->setBackToMenu(true);
-        std::cout<<"DUPA";
         Sound::click();
         return;
     }
@@ -227,6 +226,22 @@ void GUIController::handleGUIButtonsActions()
     }
 }
 
+void GUIController::handleExitButtonsActions()
+{
+    if(gui->exitYesButton.checkBounds() && gui->exitYesButton.isActive())
+    {
+        GameBalance::exitFlag = true;
+        modelController->setExitWindow(false);
+        return;
+    }
+    if(gui->exitNoButton.checkBounds() && gui->exitNoButton.isActive())
+    {
+        GameBalance::exitFlag = false;
+        modelController->setExitWindow(false);
+        return;
+    }
+}
+
 void GUIController::updateBuildingsHighlight()
 {
     gui->sawmill.button.setFillColor(sf::Color::White);
@@ -298,6 +313,12 @@ void GUIController::setPauseButtonsFlags(bool buttonFlag)
     gui->settingsButton.setActive(buttonFlag);
     gui->helpButton.setActive(buttonFlag);
     gui->mainMenuButton.setActive(buttonFlag);
+}
+
+void GUIController::setExitButtonsFlags(bool buttonFlag)
+{
+    gui->exitYesButton.setActive(buttonFlag);
+    gui->exitNoButton.setActive(buttonFlag);
 }
 
 void GUIController::drawApplication()
@@ -561,8 +582,8 @@ void GUIController::displayPauseMenu()
 {
     setCursorPosition();
     getView();
-    setCursorSprite();
     gui->displayPauseMenu();
+    cursor.setTexture(cursorTexture);
     drawToApplication(cursor);
     displayApplication();
 }
@@ -579,6 +600,21 @@ void GUIController::captureScreen()
     drawGrid(it);
     drawMapObjects(it);
     drawToApplication(gui->timeLeft.text);
+}
+
+void GUIController::displayExitWindow()
+{
+    hutrieApplication->clear();
+    drawToApplication(background);
+    gui->displayMenu();
+    drawToApplication(titleText.text);
+    drawToApplication(quote.text);
+    drawToApplication(bigTitleText.text);
+    setCursorPosition();
+    getView();
+    gui->displayExitWindow();
+    drawToApplication(cursor);
+    displayApplication();
 }
 
 std::string GUIController::getEndingBuildingsStats()
@@ -886,4 +922,3 @@ void GUIController::errorToMuchWorkers()
     errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        Too much workers!");
 }
-

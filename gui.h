@@ -42,6 +42,14 @@ public:
     GUIText mainMenuText;
     GUIButton mainMenuButton;
 
+    /////////////////////////////// EXIT WINDOW ///////////////////////////////////////////////////
+
+    GUIText exitQuestion;
+    GUIText exitYesText;
+    GUIButton exitYesButton;
+    GUIText exitNoText;
+    GUIButton exitNoButton;
+
     ////////////////////////////// BASIC TOOLS ////////////////////////////////////////////////
 
     GUIButton buildButton;
@@ -117,6 +125,8 @@ public:
 
     void displayPauseMenu();
 
+    void displayExitWindow();
+
     /////////////////////////////////////ENDING ////////////////////////////////////////////////
 
     void displayEndingText(bool win);
@@ -129,6 +139,7 @@ private:
     sf::RenderWindow* hutrieApplication;
 
     ////////////////////////////// GRAPHICS ///////////////////////////////////////////////////
+    sf::RectangleShape exitFrame;
     sf::RectangleShape guiFrame;
     sf::RectangleShape pauseFrame;
     sf::RectangleShape errorFrame;

@@ -55,6 +55,9 @@ public:
 
     void prepareToDisplay();
 
+    void displayExitWindow
+            ();
+
     //------------------------------------------ BUTTONS ----------------------------------//
 
     void handleGUIButtonsActions();
@@ -63,11 +66,15 @@ public:
 
     void handlePauseButtonsActions();
 
+    void handleExitButtonsActions();
+
     void setBuildingButtonsFlags(bool buttonFlag);
 
     void setMenuButtonsFlags(bool buttonFlag);
 
     void setPauseButtonsFlags(bool buttonFlag);
+
+    void setExitButtonsFlags(bool buttonFlag);
     //------------------------------------- LAUNCH TEXT THREADS --------------------------//
 
     void launchTitleThread();

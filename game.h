@@ -25,6 +25,8 @@ public:
 
     void constructAll();
 
+    void exitWindow();
+
 World world;
 
 private:

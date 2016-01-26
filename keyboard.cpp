@@ -2,6 +2,7 @@
 #include "interactionMode.h"
 #include "buildingType.h"
 #include "keyboard.h"
+#include "gamebalance.h"
 
 Keyboard::Keyboard(sf::RenderWindow* hutrieApplication, ModelController* modelController, GUIController* guiController)
 {
@@ -14,24 +15,16 @@ void Keyboard::actionsLoop()
 {
     while (hutrieApplication->pollEvent(event))
     {
-        if(modelController->getPauseGame())
+        pauseMenuActions(event);
+
+        if(!modelController->getPauseGame())
         {
-            pauseMenuActions();
-            return;
+            chooseInteractionMode(event);
+
+            chooseBuildingType(event);
+
+            otherKeyActions(event);
         }
-
-        if (event.type == sf::Event::Closed)
-        {
-            hutrieApplication->close();
-        }
-
-        chooseInteractionMode(event);
-
-        chooseBuildingType(event);
-
-        otherKeyActions(event);
-
-        closeGame(event);
     }
 }
 
@@ -129,15 +122,34 @@ void Keyboard::closeGame(sf::Event event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
     {
-        //  hutrieApplication->close();
-        modelController->setPauseGame(!modelController->getPauseGame());
+        modelController->setExitWindow(!modelController->getExitWindow());
     }
 }
 
-void Keyboard::pauseMenuActions()
+void Keyboard::pauseMenuActions(sf::Event event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
     {
         modelController->setPauseGame(!modelController->getPauseGame());
+    }
+}
+
+void Keyboard::handleExitWindowActions()
+{
+    while (hutrieApplication->pollEvent(event))
+    {
+        closeGame(event);
+
+        if(modelController->getExitWindow())
+            confirm(event);
+    }
+}
+
+void Keyboard::confirm(sf::Event event)
+{
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+    {
+        GameBalance::exitFlag = true;
+        modelController->setExitWindow(false);
     }
 }

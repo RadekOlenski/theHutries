@@ -38,6 +38,12 @@ void Mouse::leftClickActions()
             return;
         }
 
+        if(modelController->getExitWindow())
+        {
+            gameLogicController->handleExitButtonsAction();
+            return;
+        }
+
         if (sf::Mouse::getPosition(*hutrieApplication).x < applicationWidth &&
             sf::Mouse::getPosition(*hutrieApplication).y > 64 &&
             sf::Mouse::getPosition(*hutrieApplication).y <

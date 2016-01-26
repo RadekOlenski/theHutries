@@ -21,6 +21,15 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         endingBuildingsStats(150, 280, 36, GameBalance::loseString),
         endingHutriesStats(450, 270, 36, GameBalance::loseString),
         endingProductionStats(750, 280, 36, GameBalance::loseString),
+
+    //------------------ EXIT WINDOW ---------------------------------//
+        exitFrame(sf::Vector2f(700, 350)),
+        exitQuestion(330, 230, 50, "Are you sure you want to quit?"),
+        exitYesButton(430, 448, hutrieApplication, 90, 45, false),
+        exitYesText(430, 440, 50, "Yes"),
+        exitNoButton(750, 448, hutrieApplication, 60, 45, false),
+        exitNoText(750, 440, 50, "No"),
+
         //------------------ PAUSE MENU ---------------------------------//
         pauseFrame(sf::Vector2f(350, 500)),
         resumeText(550, 200, 50, "Resume"),
@@ -114,6 +123,8 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
     texture.loadFromFile(Textures::guiTexture);
     guiFrame.setTexture(&texture);
     pauseFrame.setTexture(&texture);
+    exitFrame.setPosition(280, 210);
+    exitFrame.setTexture(&texture);
 
     capturedScreen.setPosition(0, 0);
     screenBlackout.setPosition(0, 0);
@@ -270,3 +281,13 @@ void GUI::displayPauseMenu()
     hutrieApplication->draw(mainMenuButton.button);
 }
 
+void GUI::displayExitWindow()
+{
+    hutrieApplication->draw(screenBlackout);
+    hutrieApplication->draw(exitFrame);
+    hutrieApplication->draw(exitQuestion.text);
+    hutrieApplication->draw(exitYesButton.button);
+    hutrieApplication->draw(exitYesText.text);
+    hutrieApplication->draw(exitNoButton.button);
+    hutrieApplication->draw(exitNoText.text);
+}

@@ -15,11 +15,14 @@ public:
 
     void actionsLoop();
 
-    void pauseMenuActions();
-
     void closeGame(sf::Event event);
 
+    void handleExitWindowActions();
 private:
+
+    void confirm(sf::Event event);
+
+    void pauseMenuActions(sf::Event event);
 
     void chooseInteractionMode(sf::Event event);
 

@@ -91,6 +91,8 @@ public:
 
     void handlePauseButtonsAction();
 
+    void handleExitButtonsAction();
+
     void updateBuildingGrid();
 
     void pauseClocks();

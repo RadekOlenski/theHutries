@@ -58,6 +58,10 @@ public:
 
     void setPauseGame(bool pauseGame) {gameModel->setPauseGame(pauseGame);};
 
+    bool getExitWindow() {return gameModel->getExitWindow();};
+
+    void setExitWindow(bool exitWindow) {gameModel->setExitWindow(exitWindow);};
+
 private:
 
     GameModel* gameModel;

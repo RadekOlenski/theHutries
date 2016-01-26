@@ -892,3 +892,7 @@ void GameLogicController::resumeClocks()
 }
 
 
+void GameLogicController::handleExitButtonsAction()
+{
+    guiController->handleExitButtonsActions();
+}

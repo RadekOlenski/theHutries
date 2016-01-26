@@ -11,7 +11,8 @@
 //=================================================================================
 //                              CONSTRUCTOR
 //=================================================================================
-Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applicationHeight, float horizontalScreenZoom, float verticalScreenZoom, bool fullscreen)
+Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applicationHeight, float horizontalScreenZoom,
+           float verticalScreenZoom, bool fullscreen)
         : gameTime(GameBalance::gameTime),
           gui(applicationWidth, applicationHeight, hutrieApplication),
           world(hutrieApplication, applicationWidth, applicationHeight)
@@ -23,7 +24,6 @@ Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applic
     this->horizontalScreenZoom = horizontalScreenZoom;
     this->verticalScreenZoom = verticalScreenZoom;
 }
-
 
 void Game::constructAll()
 {
@@ -74,11 +74,12 @@ void Game::play()
     changeBackgroundMusic(Sound::musicPath);
     deadline.restart();
     modelController->setChosenInteractionMode(3);
-    while (hutrieApplication->isOpen() && deadline.getElapsedTime().asSeconds() < gameTime /*&& !modelController->getBackToMenu()*/)
+    while (hutrieApplication->isOpen() &&
+           deadline.getElapsedTime().asSeconds() < gameTime)
     {
         handleActions();
         drawApplication();
-        if(modelController->getBackToMenu())
+        if (modelController->getBackToMenu())
             return;
     }
     bool result = getResult();
@@ -88,10 +89,10 @@ void Game::play()
 
 void Game::handleActions()
 {
-    if(modelController->getPauseGame())
+    if (modelController->getPauseGame())
     {
         pauseMenu();
-        if(modelController->getBackToMenu())
+        if (modelController->getBackToMenu())
             return;
     }
 
@@ -120,7 +121,6 @@ void Game::handleActions()
     guiController->handleErrorsVisiblity();
 
     updateClock();
-
 }
 
 void Game::changeBackgroundMusic(std::string musicPath)
@@ -143,7 +143,7 @@ void Game::drawApplication()
 void Game::updateClock()
 {
     int time = (int) (gameTime - deadline.getElapsedTime().asSeconds());
-    if (time % 60 == 0  &&  time != 0)
+    if (time % 60 == 0 && time != 0)
     {
         Sound::reminderSound();
         guiController->highlightClock(true);
@@ -159,7 +159,8 @@ void Game::updateClock()
 
 bool Game::getResult()
 {
-    double result = world.archers.size() * GameBalance::archerQuotient + world.warriors.size() * GameBalance::warriorQuotient;
+    double result =
+            world.archers.size() * GameBalance::archerQuotient + world.warriors.size() * GameBalance::warriorQuotient;
     return result >= GameBalance::winResult;
 }
 
@@ -193,7 +194,7 @@ void Game::gameOver(bool win)
         {
             next = true;
         }
-        guiController->displayGameOver(win,next);
+        guiController->displayGameOver(win, next);
     };
 }
 
@@ -209,20 +210,15 @@ void Game::menu()
     {
         mouse->updateMouseLock();
         mouse->leftClickActions();
-        if(GameBalance::exitFlag)
-            return;
         while (hutrieApplication->pollEvent(event))
         {
-            keyboard->closeGame(event);
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
             {
-                return;
+                if(modelController->getExitWindow())
+                    GameBalance::exitFlag = true;
+                else return;
             }
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-            {
-                GameBalance::exitFlag = true;
-                return;
-            }
+            keyboard->closeGame(event);
         }
         if (guiController->getIntroFlag())
         {
@@ -236,6 +232,10 @@ void Game::menu()
             }
         }
         guiController->displayMenu();
+        if(modelController->getExitWindow())
+            exitWindow();
+        if(GameBalance::exitFlag)
+            return;
     };
     return;
 }
@@ -252,7 +252,7 @@ void Game::pauseMenu()
         mouse->updateMouseLock();
         mouse->leftClickActions();
         keyboard->actionsLoop();
-        if(modelController->getBackToMenu())
+        if (modelController->getBackToMenu())
         {
             return;
         }
@@ -263,3 +263,18 @@ void Game::pauseMenu()
     modelController->setPauseGame(false);
 }
 
+void Game::exitWindow()
+{
+    guiController->setExitButtonsFlags(true);
+    modelController->setChosenInteractionMode(10);
+    while (hutrieApplication->isOpen() && modelController->getExitWindow())
+    {
+        guiController->displayExitWindow();
+        mouse->updateMouseLock();
+        mouse->leftClickActions();
+        keyboard->handleExitWindowActions();
+    }
+    guiController->setExitButtonsFlags(false);
+    modelController->setExitWindow(false);
+    modelController->setChosenInteractionMode(0);
+}

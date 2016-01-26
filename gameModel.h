@@ -51,6 +51,10 @@ public:
 
     void setPauseGame(bool pauseGame) {this->pauseGame = pauseGame;}
 
+    bool getExitWindow() {return exitWindow;};
+
+    void setExitWindow(bool exitWindow) {this->exitWindow = exitWindow;}
+
 private:
 
     int chosenInteractionMode;
@@ -74,6 +78,8 @@ private:
     bool backToMenu;
 
     bool pauseGame;
+
+    bool exitWindow;
 };
 
 
