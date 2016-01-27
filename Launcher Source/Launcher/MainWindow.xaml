@@ -5,20 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Launcher"
         mc:Ignorable="d"
-        Title="The Hutries" Height="400" Width="400" Icon="icon.png" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" Cursor="Arrow">
+        Title="The Hutries" Height="400" Width="400" Icon="iconblack.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Cursor="Arrow" FontSize="16" FontFamily="Malgun Gothic">
     <Window.Effect>
         <DropShadowEffect BlurRadius="15" Direction="323" RenderingBias="Quality"/>
     </Window.Effect>
     <Grid>
-        <ComboBox x:Name="resolution" HorizontalAlignment="Left" Margin="121,151,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="resolution_SelectionChanged" Cursor="Hand">
+        <Grid.ContextMenu>
+            <ContextMenu/>
+        </Grid.ContextMenu>
+        <ComboBox x:Name="resolution" HorizontalAlignment="Left" Margin="121,161,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="resolution_SelectionChanged" Cursor="Hand">
             <ComboBoxItem Cursor="Hand">1360 x 768</ComboBoxItem>
             <ComboBoxItem Cursor="Hand">1366 x 768</ComboBoxItem>
             <ComboBoxItem Cursor="Hand">1920 x 1080</ComboBoxItem>
             <ComboBoxItem Cursor="Hand">1920 x 1200</ComboBoxItem>
             <ComboBoxItem Cursor="Hand">2560 x 1600</ComboBoxItem>
         </ComboBox>
-        <CheckBox x:Name="fullscreen" Content="Fullscreen" HorizontalAlignment="Left" Margin="142,197,0,0" VerticalAlignment="Top" Checked="fullscreen_Checked" Unchecked="fullscreen_Unchecked" Cursor="Hand"/>
-        <Label x:Name="resolutionLabel" Content="Choose display resolution:" HorizontalAlignment="Left" Margin="112,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.104,-0.626"/>
+        <CheckBox x:Name="fullscreen" Content="Fullscreen" HorizontalAlignment="Left" Margin="135,214,0,0" VerticalAlignment="Top" Checked="fullscreen_Checked" Unchecked="fullscreen_Unchecked" Cursor="Hand"/>
+        <Label x:Name="resolutionLabel" Content="Choose display resolution:" HorizontalAlignment="Left" Margin="86,114,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.104,-0.626"/>
         <Image x:Name="TitleBox" HorizontalAlignment="Left" Margin="10,10,0,262" Width="372" RenderTransformOrigin="1.825,0.743" Source="title.png" Stretch="Fill"/>
         <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="121,276,0,0" VerticalAlignment="Top" Width="120" FontSize = "30" Click="playButton_Click" Cursor="Hand"/>
 

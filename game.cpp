@@ -23,10 +23,7 @@ Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applic
     this->applicationHeight = applicationHeight;
     this->horizontalScreenZoom = horizontalScreenZoom;
     this->verticalScreenZoom = verticalScreenZoom;
-}
 
-void Game::constructAll()
-{
     //-----------------------------CREATING BASIC APPLICATION OBJECTS---------------------------------------------//
     if (!fullscreen) hutrieApplication->create(sf::VideoMode::getDesktopMode(), "The Hutries");
     ModelController* modelController = new ModelController();

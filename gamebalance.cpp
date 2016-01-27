@@ -1,11 +1,11 @@
 #include "gamebalance.h"
 
 bool GameBalance::exitFlag = false;
-int GameBalance::gameTime = 0;
-unsigned int GameBalance::startingWood = 0;
-unsigned int GameBalance::startingStone = 0;
-unsigned int GameBalance::startingFood = 0;
-unsigned int GameBalance::startingGold = 0;
+int GameBalance::gameTime = 5 * 60;
+unsigned int GameBalance::startingWood = 10;
+unsigned int GameBalance::startingStone = 10;
+unsigned int GameBalance::startingFood = 10;
+unsigned int GameBalance::startingGold = 10;
 
 Goods GameBalance::sawmillCost(3, 3);
 Goods GameBalance::stonecutterhutCost(3, 3);

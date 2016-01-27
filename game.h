@@ -23,8 +23,6 @@ public:
 
     void play();
 
-    void constructAll();
-
     void exitWindow();
 
 World world;
