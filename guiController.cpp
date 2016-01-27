@@ -38,9 +38,30 @@ GUIController::~GUIController()
     quoteThread.terminate();
 }
 
+void GUIController::chooseDifficulty()
+{
+    bigTitleText.text.setString("Difficulty:");
+//    gui->startingText.text.setPosition(200, 550);
+    gui->startingText.text.setString("");
+    gui->easyText.text.setString ("CARRIER:\n\n\n\nMax time\nMax goods");
+    gui->normalText.text.setString ("WORKER:\n\n\n\nNormal time\nNormal goods");
+    gui->hardText.text.setString ("WARRIOR:\n\n\n\nMin time\nMin goods\nNo gold");
+    setDifficultyButtonsFlags(true);
+}
+
+void GUIController::hideDifficultyTexts()
+{
+    bigTitleText.text.setString("The Hutries");
+    gui->easyText.text.setString("");
+    gui->normalText.text.setString("");
+    gui->hardText.text.setString("");
+}
+
 void GUIController::displayIntro()
 {
+    hideDifficultyTexts();
     gui->startingText.text.setString("");
+    quote.text.setString(GameBalance::quoteString);
     quote.animation();
     gui->skipText.text.setString("Press Space to skip");
     quote.text.setColor(sf::Color (0, 0, 0, 0));
@@ -69,16 +90,18 @@ void GUIController::handleMenuButtonsActions()
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
         quote.text.setStyle(sf::Text::Italic);
-        quote.text.setString(GameBalance::quoteString);
-        introFlag = true;
+        chooseDifficulty();
         Sound::click();
         return;
     }
     if (gui->aboutButton.checkBounds())
     {
         lockArrows = true;
+        hideDifficultyTexts();
+        setDifficultyButtonsFlags(false);
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
+        gui->startingText.text.setPosition(160, 320);
         gui->startingText.text.setString(GameBalance::aboutString);
         Sound::click();
         return;
@@ -86,6 +109,8 @@ void GUIController::handleMenuButtonsActions()
     if (gui->exitButton.checkBounds())
     {
         lockArrows = true;
+        hideDifficultyTexts();
+        setDifficultyButtonsFlags(false);
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
         Sound::click();
@@ -95,6 +120,9 @@ void GUIController::handleMenuButtonsActions()
     if (gui->howToPlayButton.checkBounds())
     {
         lockArrows = false;
+        hideDifficultyTexts();
+        setDifficultyButtonsFlags(false);
+        gui->startingText.text.setPosition(160, 320);
         gui->startingText.text.setCharacterSize(30);
         gui->startingText.text.setString(GameBalance::howToPlayString);
         chosenHowToText = 0;
@@ -116,12 +144,47 @@ void GUIController::handleMenuButtonsActions()
         updateHowToText();
         Sound::click();
     }
+
+    handleDifficultyButtonsActions();
+
     if (!lockArrows)
     {
         if (chosenHowToText == 2 ) gui->nextArrowButton.setActive(false);
         else gui->nextArrowButton.setActive(true);
         if (chosenHowToText == 0 ) gui->backArrowButton.setActive(false);
         else gui->backArrowButton.setActive(true);
+    }
+}
+
+void GUIController::handleDifficultyButtonsActions()
+{
+    lockArrows = true;
+    gui->nextArrowButton.setActive(false);
+    gui->backArrowButton.setActive(false);
+
+    if(gui->easyButton.checkBounds() && gui->easyButton.isActive())
+    {
+        setDifficultyButtonsFlags(false);
+        introFlag = true;
+        setDifficulty("EASY");
+        Sound::click();
+        return;
+    }
+    if(gui->normalButton.checkBounds() && gui->normalButton.isActive())
+    {
+        setDifficultyButtonsFlags(false);
+        introFlag = true;
+        setDifficulty("NORMAL");
+        Sound::click();
+        return;
+    }
+    if(gui->hardButton.checkBounds() && gui->hardButton.isActive())
+    {
+        setDifficultyButtonsFlags(false);
+        introFlag = true;
+        setDifficulty("HARD");
+        Sound::click();
+        return;
     }
 }
 
@@ -305,6 +368,13 @@ void GUIController::setMenuButtonsFlags(bool buttonFlag)
     gui->howToPlayButton.setActive(buttonFlag);
     gui->aboutButton.setActive(buttonFlag);
     gui->exitButton.setActive(buttonFlag);
+}
+
+void GUIController::setDifficultyButtonsFlags(bool buttonFlag)
+{
+    gui->easyButton.setActive(buttonFlag);
+    gui->normalButton.setActive(buttonFlag);
+    gui->hardButton.setActive(buttonFlag);
 }
 
 void GUIController::setPauseButtonsFlags(bool buttonFlag)
@@ -870,6 +940,53 @@ void GUIController::highlightTargetButton()
         gui->tBarracks.highlight();
     else gui->tBarracks.endHighlight();
 
+}
+
+//////////////////////////////////  DIFFICULTY  /////////////////////////////////////////////////
+
+void GUIController::setHard()
+{
+    GameBalance::gameTime = 5 * 60;
+    GameBalance::startingFood = 10;
+    GameBalance::startingWood = 10;
+    GameBalance::startingStone = 10;
+    GameBalance::startingGold = 0;
+}
+
+void GUIController::setNormal()
+{
+    GameBalance::gameTime = 10 * 60;
+    GameBalance::startingFood = 15;
+    GameBalance::startingWood = 15;
+    GameBalance::startingStone = 15;
+    GameBalance::startingGold = 15;
+}
+
+void GUIController::setEasy()
+{
+    GameBalance::gameTime = 15 * 60;
+    GameBalance::startingFood = 20;
+    GameBalance::startingWood = 20;
+    GameBalance::startingStone = 20;
+    GameBalance::startingGold = 20;
+}
+
+void GUIController::setDifficulty(std::string difficult)
+{
+    if (difficult == "EASY")
+    {
+       setEasy();
+    }
+    else if (difficult == "NORMAL")
+    {
+       setNormal();
+    }
+    else if (difficult == "HARD")
+    {
+       setHard();
+    }
+    world->setStartingGoods();
+    updateGoodsNumber();
 }
 
 //=================================================================================

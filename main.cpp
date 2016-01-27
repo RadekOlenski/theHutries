@@ -18,7 +18,7 @@ int main()
 
     //hutriesApp.info();
 
-    hutriesApp.setDifficulty();
+    //    hutriesApp.setDifficulty();
 
     //ShowWindow(hWnd, SW_HIDE);
 

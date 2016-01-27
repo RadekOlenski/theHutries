@@ -77,61 +77,6 @@ void TheHutriesApplication::readSettingsFromFile()
     }
 }
 
-void TheHutriesApplication::setHard()
-{
-    GameBalance::gameTime = 5 * 60;
-    GameBalance::startingFood = 10;
-    GameBalance::startingWood = 10;
-    GameBalance::startingStone = 10;
-    GameBalance::startingGold = 0;
-}
-
-void TheHutriesApplication::setNormal()
-{
-    GameBalance::gameTime = 10 * 60;
-    GameBalance::startingFood = 15;
-    GameBalance::startingWood = 15;
-    GameBalance::startingStone = 15;
-    GameBalance::startingGold = 15;
-}
-
-void TheHutriesApplication::setEasy()
-{
-    GameBalance::gameTime = 15 * 60;
-    GameBalance::startingFood = 20;
-    GameBalance::startingWood = 20;
-    GameBalance::startingStone = 20;
-    GameBalance::startingGold = 20;
-}
-
-void TheHutriesApplication::setDifficulty()
-{
-    int difficult;
-    std::cout << "Choose difficulty level." << std::endl;
-    do
-    {
-        std::cout << "1 - Hutrie Carrier (easy): " << std::endl;
-        std::cout << "2 - Hutrie Worker (normal): " << std::endl;
-        std::cout << "3 - Hutrie Warrior (hard): " << std::endl;
-        std::cin >> difficult;
-    }
-    while (difficult <= 0);
-    switch (difficult)
-    {
-        case 1:
-            setEasy();
-            break;
-        case 2:
-            setNormal();
-            break;
-        case 3:
-            setHard();
-            break;
-        default:
-            break;
-    }
-}
-
 void TheHutriesApplication::info()
 {
     std::cout << "Resolution string: " << resolution << std::endl;

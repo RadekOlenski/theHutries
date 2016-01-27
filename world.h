@@ -59,6 +59,8 @@ public:
 
     void createEnvironment();
 
+    void setStartingGoods();
+
     void destroyElementsOfWorld();
 
 private:

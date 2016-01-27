@@ -5,6 +5,8 @@
 
 GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int width) :
 
+    //------------------------MENU----------------------------------------//
+
         startingText(160, 320, 40, ""),
         skipText(830, 10, 25, ""),
         playButton(1024 + 60, 200, hutrieApplication, 130, 80, false),
@@ -18,11 +20,23 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         nextArrowButton(950, 650, hutrieApplication, Textures::arrow),
         backArrowButton(50 , 650, hutrieApplication, Textures::backArrow),
 
+    //-------------------DIFFICULTY LEVEL-----------------------------//
+
+        easyButton(150, 350, hutrieApplication, Textures::carrierRight),
+        normalButton(400, 350, hutrieApplication, Textures::workerRight),
+        hardButton(650, 350, hutrieApplication, Textures::warriorRight),
+        easyText (185, 320, 37, ""),
+        normalText (435, 320,37, ""),
+        hardText (685, 320, 37, ""),
+
+    //-------------------ENDING STATS-----------------------------//
+
         endingBuildingsStats(150, 280, 36, GameBalance::loseString),
         endingHutriesStats(450, 270, 36, GameBalance::loseString),
         endingProductionStats(750, 280, 36, GameBalance::loseString),
 
     //------------------ EXIT WINDOW ---------------------------------//
+
         exitFrame(sf::Vector2f(700, 350)),
         exitQuestion(330, 230, 50, "Are you sure you want to quit?"),
         exitYesButton(420, 445, hutrieApplication, 100, 55, false),
@@ -31,6 +45,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         exitNoText(750, 440, 50, "No"),
 
         //------------------ PAUSE MENU ---------------------------------//
+
         pauseFrame(sf::Vector2f(350, 500)),
         resumeText(550, 200, 50, "Resume"),
         resumeButton(545, 205, hutrieApplication, 155, 55, false),
@@ -44,12 +59,16 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         capturedScreen(sf::Vector2f(1366, 768)),
         blackoutColor(0, 0, 0, 180),
 
+        //---------------------BASIC GAME GUI-----------------------------------//
+
         guiFrame(sf::Vector2f(width, mapHeight)),
         errorFrame(sf::Vector2f(width, 128)),
         errorInfo(mapWidth + 20, mapHeight + 10, 20, "Message Box:"),
 
         buildButton(mapWidth + 60, 100, hutrieApplication, Textures::buildButton),
         hutrieButton(mapWidth + 140, 100, hutrieApplication, Textures::hutrieButton),
+
+    //-------------------------GOODS BAR----------------------------------------------//
 
         guiBar(0, mapHeight + 98 , hutrieApplication, Textures::guiBar, mapWidth, 30),
         timeLeft(20, mapHeight + 2 + 98, 20, "15:00", sf::Color::White),
@@ -61,6 +80,8 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         twood(280 + 192, mapHeight + 2 + 98, 20, "0", sf::Color::White),
         tstone(280 + 384, mapHeight + 2 + 98, 20, "0", sf::Color::White),
         tfood(280 + 576, mapHeight + 2 + 98, 20, "0", sf::Color::White),
+
+    //----------------------BUILDING MODE LIST----------------------------------------//
 
         sawmill(mapWidth + 30, 170, hutrieApplication, Textures::sawmillBasic, 90, 90),
         tSawmill(mapWidth + 40, 260, 20, "Sawmill"),
@@ -104,6 +125,8 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         stoneResidence(mapWidth + 80 + 120, 290 + 305, hutrieApplication, Textures::stone, 25, 25),
         tstoneResidence(mapWidth + 105 + 120, 290 + 305, 20, "3"),
 
+    //------------------------------HUTRIE INFO ------------------------------------------//
+
         allHutries(mapWidth + 30, 170, hutrieApplication, Textures::allHutries, 96, 96),
         tHutries(mapWidth + 150, 200, 30, "26"),
         allCarriers(mapWidth + 30, 260, hutrieApplication, Textures::carrierRight, 96, 96),
@@ -136,6 +159,10 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
     buildButton.setActive(true);
     hutrieButton.setActive(true);
+
+    easyButton.button.setSize(sf::Vector2f(200,200));
+    normalButton.button.setSize(sf::Vector2f(200,200));
+    hardButton.button.setSize(sf::Vector2f(200,200));
 }
 
 void GUI::displayMainGUI()
@@ -262,8 +289,14 @@ void GUI::displayMenu()
     hutrieApplication->draw(aboutText.text);
     hutrieApplication->draw(exitButton.button);
     hutrieApplication->draw(exitText.text);
+    hutrieApplication->draw(easyText.text);
+    hutrieApplication->draw(normalText.text);
+    hutrieApplication->draw(hardText.text);
     if (backArrowButton.isActive()) hutrieApplication->draw(backArrowButton.button);
     if (nextArrowButton.isActive())hutrieApplication->draw(nextArrowButton.button);
+    if (easyButton.isActive())hutrieApplication->draw(easyButton.button);
+    if (normalButton.isActive())hutrieApplication->draw(normalButton.button);
+    if (hardButton.isActive())hutrieApplication->draw(hardButton.button);
 
 }
 

@@ -12,11 +12,8 @@ World::World(sf::RenderWindow* hutrieApplication, int applicationWidth, int appl
         : lastClickedUnit(NULL)
 {
     this->hutrieApplication = hutrieApplication;
-    availableSlots = GameBalance::startingHutrieSlots;;                            //wartosc startowa bez zadnej rezydencji
-    availableGoods.setProduct(1, GameBalance::startingWood);                //poczatkowe wartosci surowcow
-    availableGoods.setProduct(2, GameBalance::startingStone);
-    availableGoods.setProduct(3, GameBalance::startingFood);
-    availableGoods.setProduct(4, GameBalance::startingGold);
+    availableSlots = GameBalance::startingHutrieSlots;                          //wartosc startowa bez zadnej rezydencji
+//    setStartingGoods();
 
     /////////////////////////// HOW MANY RECTANGLES IN X AND Y DIRECTION//////////////////////////////////////////////////////
 
@@ -49,6 +46,14 @@ World::World(sf::RenderWindow* hutrieApplication, int applicationWidth, int appl
 */
     createHutriesHall();
     createEnvironment();
+}
+
+void World::setStartingGoods()
+{
+    availableGoods.setProduct(1, GameBalance::startingWood);                //poczatkowe wartosci surowcow
+    availableGoods.setProduct(2, GameBalance::startingStone);
+    availableGoods.setProduct(3, GameBalance::startingFood);
+    availableGoods.setProduct(4, GameBalance::startingGold);
 }
 
 void World::createHutriesHall()

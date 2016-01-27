@@ -68,6 +68,7 @@ Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applic
 
 void Game::play()
 {
+    gameTime = GameBalance::gameTime;
     changeBackgroundMusic(Sound::musicPath);
     deadline.restart();
     modelController->setChosenInteractionMode(3);

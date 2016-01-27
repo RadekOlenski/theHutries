@@ -64,9 +64,13 @@ public:
 
     void handleMenuButtonsActions();
 
+    void handleDifficultyButtonsActions();
+
     void handlePauseButtonsActions();
 
     void handleExitButtonsActions();
+
+    void setDifficultyButtonsFlags(bool buttonFlag);
 
     void setBuildingButtonsFlags(bool buttonFlag);
 
@@ -119,6 +123,18 @@ public:
 
     void highlightTargetButton();
 
+    void chooseDifficulty();
+
+    //------------------------------------DIFFICULTY---------------------------------------//
+
+    void setDifficulty(std::string difficult);
+
+    void setEasy();
+
+    void setNormal();
+
+    void setHard();
+
     //------------------------------------------ ERRORS ----------------------------------//
 
     void handleErrorsVisiblity();
@@ -159,6 +175,9 @@ private:
     void getView();
 
     void updateHowToText();
+
+    void hideDifficultyTexts();
+
     sf::RenderWindow* hutrieApplication;
 
     ModelController* modelController;

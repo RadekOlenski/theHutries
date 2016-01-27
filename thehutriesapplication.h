@@ -16,7 +16,7 @@ class TheHutriesApplication
 
         void start();
 
-        void setDifficulty();
+//        void setDifficulty();
 
         void info();
 

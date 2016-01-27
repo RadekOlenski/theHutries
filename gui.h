@@ -31,6 +31,14 @@ public:
     GUIText endingHutriesStats;
     GUIText endingProductionStats;
 
+    GUIButton easyButton;
+    GUIButton normalButton;
+    GUIButton hardButton;
+
+    GUIText easyText;
+    GUIText normalText;
+    GUIText hardText;
+
     /////////////////////////////// PAUSE MENU ///////////////////////////////////////////////////
 
     GUIText resumeText;
