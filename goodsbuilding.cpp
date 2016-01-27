@@ -7,10 +7,10 @@ using namespace std;
 
 GoodsBuilding::GoodsBuilding(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame)
         : Building(hutrieApplication, unitsFromGame),
-          callWorker(1024 + 40, 500, hutrieApplication, 150, 45),
-          goodsReady(1024 + 40, 560, hutrieApplication, 150, 45),
-          assignWorker(1024 + 60, 510, 20, "Assign worker"),
-          goodReady(1024 + 70, 570, 20, "Good ready")
+          callWorker(1024 + 40, 500, hutrieApplication, 180, 45, false),
+          goodsReady(1024 + 40, 560, hutrieApplication, 150, 45, false),
+          assignWorker(1024 + 50, 500, 30, "Assign worker"),
+          goodReady(1024 + 50, 560, 30, "Good ready")
 {
     capacity = GameBalance::maxWorkers;
 }
@@ -26,7 +26,6 @@ void GoodsBuilding::showButtons()
         hutrieApplication->draw(assignWorker.text);
         hutrieApplication->draw(goodReady.text);
     }
-
 }
 
 void GoodsBuilding::deactivateButtons()
@@ -119,4 +118,15 @@ unsigned int GoodsBuilding::productsCounter()
         default:
             return 0;
     };
+}
+
+void GoodsBuilding::highlightButton()
+{
+    if(callWorker.checkBounds())
+        assignWorker.highlight();
+    else assignWorker.endHighlight();
+
+    if(goodsReady.checkBounds())
+        goodReady.highlight();
+    else goodReady.endHighlight();
 }

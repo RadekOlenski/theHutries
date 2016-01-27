@@ -65,6 +65,7 @@ public:
 
     void updateDescriptionTexture(sf::Texture texture);
 
+    virtual void highlightButton() {};
 
 protected:
 

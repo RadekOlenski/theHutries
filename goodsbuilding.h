@@ -39,6 +39,8 @@ public:
 
     unsigned int productsCounter();
 
+    void highlightButton();
+
 protected:
 
     void changeBuildingSprite();

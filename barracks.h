@@ -64,6 +64,8 @@ public:
 
     void setConstructedBuildingSound();
 
+    void highlightButton();
+
 private:
 
     GUIButton createWarriorButton;
