@@ -112,6 +112,7 @@ void Keyboard::otherKeyActions(sf::Event event)
     {
         case sf::Keyboard::G:
             guiController->setVisibleGridFlag(!guiController->getVisibleGridFlag());
+            guiController->setGridOutlineColor(guiController->getVisibleGridFlag());
             break;
         default:
             break;

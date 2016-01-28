@@ -33,11 +33,15 @@ public:
 
     void createBackground();
 
+     //------------------------------------------ CURSOR ----------------------------------//
+
     void createCursor();
 
     void setCursorSprite();
 
     void setCursorPosition();
+
+    void attachBuildingToCursor (sf::Vector2f worldPos);
 
     //------------------------------------------ DISPLAY ----------------------------------//
 
@@ -55,8 +59,7 @@ public:
 
     void prepareToDisplay();
 
-    void displayExitWindow
-            ();
+    void displayExitWindow();
 
     //------------------------------------------ BUTTONS ----------------------------------//
 
@@ -105,17 +108,19 @@ public:
 
     void showEmptyUnits(bool mark = true);
 
-    void attachBuildingToCursor (sf::Vector2f worldPos);
-
-    bool getVisibleGridFlag() { return visibleGrid; };
-
-    void setVisibleGridFlag(bool visibleGrid) { this->visibleGrid = visibleGrid; };
-
     void captureScreen();
 
     void updateClock(int time);
 
     void highlightTargetButton();
+
+    //------------------------------------GRID---------------------------------------//
+
+    void setGridOutlineColor(bool outlineColorFlag);
+
+    bool getVisibleGridFlag() { return visibleGrid; };
+
+    void setVisibleGridFlag(bool visibleGrid) { this->visibleGrid = visibleGrid; };
 
     //------------------------------------ENDING---------------------------------------//
 

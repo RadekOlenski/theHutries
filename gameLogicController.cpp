@@ -208,7 +208,10 @@ void GameLogicController::endHighlightUnit()
 {
     if (world->lastClickedUnit != NULL)
     {
-        world->lastClickedUnit->getMapObject()->highlightUnits(false);
+        if (modelController->getChosenInteractionMode() != InteractionMode::BUILDMODE)
+        {
+            world->lastClickedUnit->getMapObject()->highlightUnits(false);
+        }
         world->lastClickedUnit->getMapObject()->setHighlight(false);
         world->lastClickedUnit->getMapObject()->soundPlay(false);
     }
@@ -820,7 +823,7 @@ void GameLogicController::createGoldmine(std::vector<Unit*> usedUnits)
 
 void GameLogicController::updateBuildingGrid()
 {
-     if (modelController->getChosenInteractionMode() == 2 && modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL)
+     if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE && modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL)
     {
         guiController->showEmptyUnits();
     }

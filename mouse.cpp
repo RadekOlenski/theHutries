@@ -26,7 +26,7 @@ void Mouse::leftClickActions()
         int applicationWidth = modelController->getApplicationWidth();
         int applicationHeight = modelController->getApplicationHeight();
 
-        if( modelController->getChosenInteractionMode() == 0)
+        if( modelController->getChosenInteractionMode() == InteractionMode::MENUMODE)
             {
                 gameLogicController->handleMenuButtonsAction();
                 if (!modelController->getReadyForGame()) return;
@@ -44,12 +44,13 @@ void Mouse::leftClickActions()
             return;
         }
 
+        gameLogicController->endHighlightUnit();                            //zeby po kliknieciu gdzie indziej nie zostawala niepotrzebna ramka
+
         if (sf::Mouse::getPosition(*hutrieApplication).x < applicationWidth &&
             sf::Mouse::getPosition(*hutrieApplication).y > 64 &&
             sf::Mouse::getPosition(*hutrieApplication).y <
             applicationHeight + 64)         //jesli klikniecie w obrebie mapy
         {
-            gameLogicController->endHighlightUnit();
 
             gameLogicController->findSelectedUnit();
 

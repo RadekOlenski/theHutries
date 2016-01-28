@@ -443,6 +443,18 @@ void GUIController::displayElementsOfGUI()
                                world->warriors.size(), world->archers.size());
 }
 
+void GUIController::setGridOutlineColor(bool outlineColorFlag)
+{
+    sf::Color color(0, 255, 0, 60);
+    if (!outlineColorFlag) color = sf::Color::Transparent;
+    std::vector<Unit*>::iterator it;
+    for (it = world->units.begin(); it != world->units.end(); ++it)
+    {
+        (*it)->field.setOutlineColor(color);
+    }
+}
+
+
 void GUIController::drawGrid(std::vector<Unit*>::iterator it)
 {
     if (visibleGrid or (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE
@@ -817,12 +829,10 @@ void GUIController::showEmptyUnits(bool mark)
     std::vector<Unit*>::iterator it;
     sf::Color emptyColor(0, 255, 0, 30);
     sf::Color fullColor(255, 0, 0, 50);
-    sf::Color forestColor(sf::Color::Black);
     if (!mark)
     {
         emptyColor = sf::Color::Transparent;
         fullColor = sf::Color::Transparent;
-        forestColor = sf::Color::Transparent;
     }
     if (modelController->getChosenBuildingType() == BuildingType::SAWMILL)
     {
