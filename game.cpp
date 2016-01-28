@@ -80,7 +80,7 @@ void Game::play()
         if (modelController->getBackToMenu())
             return;
     }
-    bool result = getResult();
+    bool result = gameLogicController->getResult() >= GameBalance::winResult;;
     gameOver(result);
     music.stop();
 }
@@ -157,13 +157,6 @@ void Game::updateClock()
     guiController->updateClock(time);
 }
 
-bool Game::getResult()
-{
-    double result =
-            world.archers.size() * GameBalance::archerQuotient + world.warriors.size() * GameBalance::warriorQuotient;
-    return result >= GameBalance::winResult;
-}
-
 void Game::gameOver(bool win)
 {
     if (win)
@@ -180,6 +173,8 @@ void Game::gameOver(bool win)
     music.play();
     bool next = false;
     sf::Event event;
+
+    guiController->finalScore = gameLogicController->computeFinalScore();
 
     while (hutrieApplication->isOpen())
     {

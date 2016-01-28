@@ -336,9 +336,9 @@ void GUIController::highlightClock(bool highlight)
 {
     if (highlight)
     {
-        gui->timeLeft.text.setCharacterSize(600);
+        gui->timeLeft.text.setCharacterSize(100);
         gui->timeLeft.text.setColor(sf::Color::Black);
-        gui->timeLeft.text.setPosition(30,30);
+        gui->timeLeft.text.setPosition(30,590);
     }
     else
     {
@@ -601,6 +601,23 @@ void GUIController::launchQuoteThread()
     quoteThread.launch();
 }
 
+void GUIController::setEndingText(bool win, bool next)
+{
+    if (next)
+    {
+        gui->setEndingMessageString(finalScore);
+    }
+    else if (win)
+    {
+        gui->setEndingMessageString("You Win!!!");
+    }
+    else
+    {
+        gui->setEndingMessageString("You Lose!!!");
+    }
+
+}
+
 void GUIController::displayGameOver(bool win, bool next)
 {
     if (next)
@@ -611,6 +628,7 @@ void GUIController::displayGameOver(bool win, bool next)
     }
     else if (win)
     {
+        setEndingText(win, next);
         gui->endingBuildingsStats.text.setString(GameBalance::winString);
     }
     setCursorPosition();
@@ -620,13 +638,14 @@ void GUIController::displayGameOver(bool win, bool next)
     drawToApplication(gui->endingBuildingsStats.text);
     if (next)
     {
+        setEndingText(win, next);
         gui->endingBuildingsStats.text.setPosition(110,280);
         drawToApplication(gui->endingHutriesStats.text);
         drawToApplication(gui->endingProductionStats.text);
         next = false;
     }
     drawToApplication(titleText.text);
-    gui->displayEndingText(win);
+    gui->displayEndingText();
     drawToApplication(cursor);
     displayApplication();
 }
@@ -690,10 +709,11 @@ std::string GUIController::getEndingBuildingsStats()
     std::ostringstream stats;
     stats << "Buildings:" << std::endl
           << "General: " << world->buildings.size() << std::endl
+          << "Hutrie Hall: 1" << std::endl
           << "Goods Buildings: " << world->goodsBuildingIndex.size() << std::endl
           << "Barracks: "  << world->barracksIndex.size() << std::endl
           << "Residence: " <<  ( world->hutries.size() + world->availableSlots - GameBalance::startingHutrieSlots) / GameBalance::hutrieSlotsAddition << std::endl
-          << "\n\n\t\t\t\t\t\t\t\t\t\t\t\tPress ESC to exit";
+          << "\n\t\t\t\t\t\t\t\t\t\t\t\tPress ESC to exit";
     return stats.str();
 }
 

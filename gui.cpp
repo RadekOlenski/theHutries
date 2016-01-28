@@ -34,6 +34,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         endingBuildingsStats(150, 280, 36, GameBalance::loseString),
         endingHutriesStats(450, 270, 36, GameBalance::loseString),
         endingProductionStats(750, 280, 36, GameBalance::loseString),
+        endingMessage(300, 100, 90, "You Lose!!!"),
 
     //------------------ EXIT WINDOW ---------------------------------//
 
@@ -258,19 +259,14 @@ void GUI::displayHutriesGUI(int hutrieSize, int carrierSize, int workerSize, int
 
 }
 
-void GUI::displayEndingText(bool win)
+void GUI::setEndingMessageString(std::string text)
 {
-    if (win)
-    {
-        GUIText win(300, 100, 80, "You Win!!!");
-        hutrieApplication->draw(win.text);
-    }
-    else
-    {
-        GUIText lose(300, 100, 80, "You Lose!!!");
-        hutrieApplication->draw(lose.text);
-    }
+    endingMessage.text.setString(text);
+}
 
+void GUI::displayEndingText()
+{
+        hutrieApplication->draw(endingMessage.text);
 }
 
 void GUI::displayMenu()

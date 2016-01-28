@@ -896,3 +896,22 @@ void GameLogicController::handleExitButtonsAction()
 {
     guiController->handleExitButtonsActions();
 }
+
+double GameLogicController::getResult()
+{
+    double result =
+            world->archers.size() * GameBalance::archerQuotient + world->warriors.size() * GameBalance::warriorQuotient;
+    return result;
+}
+
+std::string GameLogicController::computeFinalScore()
+{
+    double finalScore = getResult() * 1000 +
+                        (world->buildings.size() * 100) +
+                        ( 50 * (world->carriers.size() + world->workers.size()) ) +
+                        ( 10 * (world->availableGoods.getWood() + world->availableGoods.getFood() + world->availableGoods.getStone() ));
+    std::ostringstream score;
+    score << "Score: " << finalScore;
+    return score.str();
+}
+

@@ -99,11 +99,6 @@ public:
 
     bool getReadyForGame() { return readyForGame; };
 
-    std::string getEndingBuildingsStats();
-
-    std::string getEndingHutriesStats();
-
-    std::string getEndingProductionStats();
 
     void highlightClock(bool highlight);
 
@@ -123,9 +118,21 @@ public:
 
     void highlightTargetButton();
 
-    void chooseDifficulty();
+    //------------------------------------ENDING---------------------------------------//
+
+    void setEndingText(bool win, bool next);
+
+    std::string getEndingBuildingsStats();
+
+    std::string getEndingHutriesStats();
+
+    std::string getEndingProductionStats();
+
+    std::string finalScore;
 
     //------------------------------------DIFFICULTY---------------------------------------//
+
+    void chooseDifficulty();
 
     void setDifficulty(std::string difficult);
 

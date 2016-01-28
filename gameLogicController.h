@@ -71,6 +71,10 @@ public:
 
     //------------------------------------------ OTHER ----------------------------------//
 
+    double getResult();
+
+    std::string computeFinalScore();
+
     void findSelectedUnit();
 
     bool isUnitEmpty();

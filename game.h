@@ -30,7 +30,6 @@ World world;
 private:
     void gameOver(bool win);
 
-    bool getResult();
     /////////////////WINDOW////////////////////////
 
     sf::RenderWindow* hutrieApplication;

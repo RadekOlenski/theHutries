@@ -137,7 +137,11 @@ public:
 
     /////////////////////////////////////ENDING ////////////////////////////////////////////////
 
-    void displayEndingText(bool win);
+    void displayEndingText();
+
+    void setEndingMessageString(std::string text);
+
+    GUIText endingMessage;
 
     sf::RectangleShape capturedScreen;
 
