@@ -158,10 +158,6 @@ void GUIController::handleMenuButtonsActions()
 
 void GUIController::handleDifficultyButtonsActions()
 {
-    lockArrows = true;
-    gui->nextArrowButton.setActive(false);
-    gui->backArrowButton.setActive(false);
-
     if(gui->easyButton.checkBounds() && gui->easyButton.isActive())
     {
         setDifficultyButtonsFlags(false);
@@ -485,7 +481,8 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
                 drawToApplication((*it)->getMapObject()->description.text);
                 drawToApplication((*it)->getMapObject()->descriptionFrame.button);
                 (*it)->getMapObject()->showButtons();
-                (*it)->getMapObject()->highlightButton();
+                if(!modelController->getPauseGame())
+                    (*it)->getMapObject()->highlightButton();
             }
             else (*it)->getMapObject()->deactivateButtons();
         }
@@ -876,70 +873,142 @@ void GUIController::updateClock(int time)
 
 void GUIController::highlightTargetButton()
 {
-    if(gui->playButton.checkBounds())
-        gui->playText.highlight();
-    else gui->playText.endHighlight();
+    if(modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE
+            && !modelController->getPauseGame())
+    {
+        if(gui->sawmill.checkBounds())
+            gui->tSawmill.highlight();
+        else gui->tSawmill.endHighlight();
 
-    if(gui->howToPlayButton.checkBounds())
-        gui->howToPlayText.highlight();
-    else gui->howToPlayText.endHighlight();
+        if(gui->sawmill.checkBounds())
+            gui->tstoneSawmill.highlight();
+        else gui->tstoneSawmill.endHighlight();
 
-    if(gui->aboutButton.checkBounds())
-        gui->aboutText.highlight();
-    else gui->aboutText.endHighlight();
+        if(gui->sawmill.checkBounds())
+            gui->twoodSawmill.highlight();
+        else gui->twoodSawmill.endHighlight();
 
-    if(gui->exitButton.checkBounds())
-        gui->exitText.highlight();
-    else gui->exitText.endHighlight();
+        if(gui->stonecutter.checkBounds())
+            gui->tStonecutter.highlight();
+        else gui->tStonecutter.endHighlight();
 
-    if(gui->exitNoButton.checkBounds())
-        gui->exitNoText.highlight();
-    else gui->exitNoText.endHighlight();
+        if(gui->stonecutter.checkBounds())
+            gui->tstoneStonecutter.highlight();
+        else gui->tstoneStonecutter.endHighlight();
 
-    if(gui->exitYesButton.checkBounds())
-        gui->exitYesText.highlight();
-    else gui->exitYesText.endHighlight();
+        if(gui->stonecutter.checkBounds())
+            gui->twoodStonecutter.highlight();
+        else gui->twoodStonecutter.endHighlight();
 
-    if(gui->resumeButton.checkBounds())
-        gui->resumeText.highlight();
-    else gui->resumeText.endHighlight();
+        if(gui->goldmine.checkBounds())
+            gui->tGoldmine.highlight();
+        else gui->tGoldmine.endHighlight();
 
-    if(gui->settingsButton.checkBounds())
-        gui->settingsText.highlight();
-    else gui->settingsText.endHighlight();
+        if(gui->goldmine.checkBounds())
+            gui->tstoneGoldmine.highlight();
+        else gui->tstoneGoldmine.endHighlight();
 
-    if(gui->helpButton.checkBounds())
-        gui->helpText.highlight();
-    else gui->helpText.endHighlight();
+        if(gui->goldmine.checkBounds())
+            gui->twoodGoldmine.highlight();
+        else gui->twoodGoldmine.endHighlight();
 
-    if(gui->mainMenuButton.checkBounds())
-        gui->mainMenuText.highlight();
-    else gui->mainMenuText.endHighlight();
+        if(gui->residence.checkBounds())
+            gui->tResidence.highlight();
+        else gui->tResidence.endHighlight();
 
-    if(gui->sawmill.checkBounds())
-        gui->tSawmill.highlight();
-    else gui->tSawmill.endHighlight();
+        if(gui->residence.checkBounds())
+            gui->tstoneResidence.highlight();
+        else gui->tstoneResidence.endHighlight();
 
-    if(gui->stonecutter.checkBounds())
-        gui->tStonecutter.highlight();
-    else gui->tStonecutter.endHighlight();
+        if(gui->residence.checkBounds())
+            gui->twoodResidence.highlight();
+        else gui->twoodResidence.endHighlight();
 
-    if(gui->goldmine.checkBounds())
-        gui->tGoldmine.highlight();
-    else gui->tGoldmine.endHighlight();
+        if(gui->farm.checkBounds())
+            gui->tFarm.highlight();
+        else gui->tFarm.endHighlight();
 
-    if(gui->residence.checkBounds())
-        gui->tResidence.highlight();
-    else gui->tResidence.endHighlight();
+        if(gui->farm.checkBounds())
+            gui->tstoneFarm.highlight();
+        else gui->tstoneFarm.endHighlight();
 
-    if(gui->farm.checkBounds())
-        gui->tFarm.highlight();
-    else gui->tFarm.endHighlight();
+        if(gui->farm.checkBounds())
+            gui->twoodFarm.highlight();
+        else gui->twoodFarm.endHighlight();
 
-    if(gui->barracks.checkBounds())
-        gui->tBarracks.highlight();
-    else gui->tBarracks.endHighlight();
+        if(gui->barracks.checkBounds())
+            gui->tBarracks.highlight();
+        else gui->tBarracks.endHighlight();
 
+        if(gui->barracks.checkBounds())
+            gui->tstoneBarracks.highlight();
+        else gui->tstoneBarracks.endHighlight();
+
+        if(gui->barracks.checkBounds())
+            gui->twoodBarracks.highlight();
+        else gui->twoodBarracks.endHighlight();
+    }
+
+    if(modelController->getChosenInteractionMode() == InteractionMode::MENUMODE)
+    {
+        if(gui->playButton.checkBounds())
+            gui->playText.highlight();
+        else gui->playText.endHighlight();
+
+        if(gui->howToPlayButton.checkBounds())
+            gui->howToPlayText.highlight();
+        else gui->howToPlayText.endHighlight();
+
+        if(gui->aboutButton.checkBounds())
+            gui->aboutText.highlight();
+        else gui->aboutText.endHighlight();
+
+        if(gui->exitButton.checkBounds())
+            gui->exitText.highlight();
+        else gui->exitText.endHighlight();
+
+        if(gui->easyButton.checkBounds())
+            gui->easyText.highlight();
+        else gui->easyText.endHighlight();
+
+        if(gui->normalButton.checkBounds())
+            gui->normalText.highlight();
+        else gui->normalText.endHighlight();
+
+        if(gui->hardButton.checkBounds())
+            gui->hardText.highlight();
+        else gui->hardText.endHighlight();
+    }
+
+    if(modelController->getExitWindow())
+    {
+        if(gui->exitNoButton.checkBounds())
+            gui->exitNoText.highlight();
+        else gui->exitNoText.endHighlight();
+
+        if(gui->exitYesButton.checkBounds())
+            gui->exitYesText.highlight();
+        else gui->exitYesText.endHighlight();
+    }
+
+    if(modelController -> getPauseGame())
+    {
+        if(gui->resumeButton.checkBounds())
+            gui->resumeText.highlight();
+        else gui->resumeText.endHighlight();
+
+        if(gui->settingsButton.checkBounds())
+            gui->settingsText.highlight();
+        else gui->settingsText.endHighlight();
+
+        if(gui->helpButton.checkBounds())
+            gui->helpText.highlight();
+        else gui->helpText.endHighlight();
+
+        if(gui->mainMenuButton.checkBounds())
+            gui->mainMenuText.highlight();
+        else gui->mainMenuText.endHighlight();
+    }
 }
 
 //////////////////////////////////  DIFFICULTY  /////////////////////////////////////////////////

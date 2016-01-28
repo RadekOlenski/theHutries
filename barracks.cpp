@@ -142,7 +142,15 @@ void Barracks::highlightButton()
         textWarrior.highlight();
     else textWarrior.endHighlight();
 
+    if (createWarriorButton.checkBounds())
+        tGoldWarrior.highlight();
+    else tGoldWarrior.endHighlight();
+
     if (createArcherButton.checkBounds())
         textArcher.highlight();
     else textArcher.endHighlight();
+
+    if (createArcherButton.checkBounds())
+        tGoldArcher.highlight();
+    else tGoldArcher.endHighlight();
 }

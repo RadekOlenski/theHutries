@@ -138,7 +138,15 @@ void HutriesHall::highlightButton()
         tWorker.highlight();
     else tWorker.endHighlight();
 
+    if (createWorkerButton.checkBounds())
+        tfoodWorker.highlight();
+    else tfoodWorker.endHighlight();
+
     if (createCarrierButton.checkBounds())
         tCarrier.highlight();
     else tCarrier.endHighlight();
+
+    if (createCarrierButton.checkBounds())
+        tfoodCarrier.highlight();
+    else tfoodCarrier.endHighlight();
 }
