@@ -8,7 +8,8 @@
 #include "gamebalance.h"
 #include "unittype.h"
 
-GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelController* modelController, World* world, GUI* gui)
+GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelController* modelController, World* world,
+                             GUI* gui)
         : titleText(1024 + 20, 40, 45),
           bigTitleText(150, 100, 150, "The Hutries"),
           quote(500, 400, 30, ""),
@@ -28,6 +29,8 @@ GUIController::GUIController(sf::RenderWindow* hutrieApplication, ModelControlle
     readyForGame = false;
     lockArrows = true;
     chosenHowToText = 0;
+    animationCounter = 0;
+    frameCounter = 0;
     setBuildingsCosts();
 }
 
@@ -43,9 +46,9 @@ void GUIController::chooseDifficulty()
     bigTitleText.text.setString("Difficulty:");
 //    gui->startingText.text.setPosition(200, 550);
     gui->startingText.text.setString("");
-    gui->easyText.text.setString ("CARRIER:\n\n\n\nMax time\nMax goods");
-    gui->normalText.text.setString ("WORKER:\n\n\n\nNormal time\nNormal goods");
-    gui->hardText.text.setString ("WARRIOR:\n\n\n\nMin time\nMin goods\nNo gold");
+    gui->easyText.text.setString("CARRIER:\n\n\n\nMax time\nMax goods");
+    gui->normalText.text.setString("WORKER:\n\n\n\nNormal time\nNormal goods");
+    gui->hardText.text.setString("WARRIOR:\n\n\n\nMin time\nMin goods\nNo gold");
     setDifficultyButtonsFlags(true);
 }
 
@@ -64,7 +67,7 @@ void GUIController::displayIntro()
     quote.text.setString(GameBalance::quoteString);
     quote.animation();
     gui->skipText.text.setString("Press Space to skip");
-    quote.text.setColor(sf::Color (0, 0, 0, 0));
+    quote.text.setColor(sf::Color(0, 0, 0, 0));
     gui->startingText.text.setPosition(200, 300);
     gui->startingText.text.setString(GameBalance::historyString);
     sf::sleep(sf::seconds(5));
@@ -131,14 +134,14 @@ void GUIController::handleMenuButtonsActions()
         Sound::click();
         return;
     }
-    if (gui->nextArrowButton.checkBounds() && gui->nextArrowButton.isActive() )
+    if (gui->nextArrowButton.checkBounds() && gui->nextArrowButton.isActive())
     {
         chosenHowToText++;
         updateHowToText();
 
         Sound::click();
     }
-    if (gui->backArrowButton.checkBounds() && gui->backArrowButton.isActive() )
+    if (gui->backArrowButton.checkBounds() && gui->backArrowButton.isActive())
     {
         chosenHowToText--;
         updateHowToText();
@@ -149,16 +152,16 @@ void GUIController::handleMenuButtonsActions()
 
     if (!lockArrows)
     {
-        if (chosenHowToText == 2 ) gui->nextArrowButton.setActive(false);
+        if (chosenHowToText == 2) gui->nextArrowButton.setActive(false);
         else gui->nextArrowButton.setActive(true);
-        if (chosenHowToText == 0 ) gui->backArrowButton.setActive(false);
+        if (chosenHowToText == 0) gui->backArrowButton.setActive(false);
         else gui->backArrowButton.setActive(true);
     }
 }
 
 void GUIController::handleDifficultyButtonsActions()
 {
-    if(gui->easyButton.checkBounds() && gui->easyButton.isActive())
+    if (gui->easyButton.checkBounds() && gui->easyButton.isActive())
     {
         setDifficultyButtonsFlags(false);
         introFlag = true;
@@ -166,7 +169,7 @@ void GUIController::handleDifficultyButtonsActions()
         Sound::click();
         return;
     }
-    if(gui->normalButton.checkBounds() && gui->normalButton.isActive())
+    if (gui->normalButton.checkBounds() && gui->normalButton.isActive())
     {
         setDifficultyButtonsFlags(false);
         introFlag = true;
@@ -174,7 +177,7 @@ void GUIController::handleDifficultyButtonsActions()
         Sound::click();
         return;
     }
-    if(gui->hardButton.checkBounds() && gui->hardButton.isActive())
+    if (gui->hardButton.checkBounds() && gui->hardButton.isActive())
     {
         setDifficultyButtonsFlags(false);
         introFlag = true;
@@ -186,14 +189,14 @@ void GUIController::handleDifficultyButtonsActions()
 
 void GUIController::handlePauseButtonsActions()
 {
-    if(gui->resumeButton.checkBounds() && gui->resumeButton.isActive())
+    if (gui->resumeButton.checkBounds() && gui->resumeButton.isActive())
     {
         modelController->setPauseGame(false);
         Sound::click();
         return;
     }
 
-    if(gui->mainMenuButton.checkBounds() && gui->mainMenuButton.isActive())
+    if (gui->mainMenuButton.checkBounds() && gui->mainMenuButton.isActive())
     {
         modelController->setBackToMenu(true);
         Sound::click();
@@ -205,15 +208,15 @@ void GUIController::updateHowToText()
 {
     switch (chosenHowToText)
     {
-    case 0:
-      gui->startingText.text.setString(GameBalance::howToPlayString);
-      break;
-    case 1:
-      gui->startingText.text.setString(GameBalance::howToPlayString2);
-      break;
-    case 2:
-      gui->startingText.text.setString(GameBalance::howToPlayString3);
-      break;
+        case 0:
+            gui->startingText.text.setString(GameBalance::howToPlayString);
+            break;
+        case 1:
+            gui->startingText.text.setString(GameBalance::howToPlayString2);
+            break;
+        case 2:
+            gui->startingText.text.setString(GameBalance::howToPlayString3);
+            break;
     }
 }
 
@@ -287,13 +290,13 @@ void GUIController::handleGUIButtonsActions()
 
 void GUIController::handleExitButtonsActions()
 {
-    if(gui->exitYesButton.checkBounds() && gui->exitYesButton.isActive())
+    if (gui->exitYesButton.checkBounds() && gui->exitYesButton.isActive())
     {
         GameBalance::exitFlag = true;
         modelController->setExitWindow(false);
         return;
     }
-    if(gui->exitNoButton.checkBounds() && gui->exitNoButton.isActive())
+    if (gui->exitNoButton.checkBounds() && gui->exitNoButton.isActive())
     {
         GameBalance::exitFlag = false;
         modelController->setExitWindow(false);
@@ -310,41 +313,42 @@ void GUIController::updateBuildingsHighlight()
     gui->barracks.button.setFillColor(sf::Color::White);
     gui->residence.button.setFillColor(sf::Color::White);
 
-    switch(modelController->getChosenBuildingType())
+    switch (modelController->getChosenBuildingType())
     {
-    case 1:
-        gui->sawmill.button.setFillColor(sf::Color::Green);
-        break;
-    case 2:
-        gui->stonecutter.button.setFillColor(sf::Color::Green);
-        break;
-    case 3:
-        gui->goldmine.button.setFillColor(sf::Color::Green);
-        break;
-    case 4:
-        gui->farm.button.setFillColor(sf::Color::Green);
-        break;
-    case 5:
-        gui->barracks.button.setFillColor(sf::Color::Green);
-        break;
-    case 6:
-        gui->residence.button.setFillColor(sf::Color::Green);
-        break;
+        case 1:
+            gui->sawmill.button.setFillColor(sf::Color::Green);
+            break;
+        case 2:
+            gui->stonecutter.button.setFillColor(sf::Color::Green);
+            break;
+        case 3:
+            gui->goldmine.button.setFillColor(sf::Color::Green);
+            break;
+        case 4:
+            gui->farm.button.setFillColor(sf::Color::Green);
+            break;
+        case 5:
+            gui->barracks.button.setFillColor(sf::Color::Green);
+            break;
+        case 6:
+            gui->residence.button.setFillColor(sf::Color::Green);
+            break;
     }
 }
+
 void GUIController::highlightClock(bool highlight)
 {
     if (highlight)
     {
         gui->timeLeft.text.setCharacterSize(100);
         gui->timeLeft.text.setColor(sf::Color::Black);
-        gui->timeLeft.text.setPosition(30,590);
+        gui->timeLeft.text.setPosition(30, 590);
     }
     else
     {
         gui->timeLeft.text.setCharacterSize(20);
         gui->timeLeft.text.setColor(sf::Color::White);
-        gui->timeLeft.text.setPosition(20,640 + 2 + 98);
+        gui->timeLeft.text.setPosition(20, 640 + 2 + 98);
     }
 }
 
@@ -408,13 +412,14 @@ void GUIController::drawApplication()
 
 void GUIController::setCursorSprite()
 {
-    if (modelController->getChosenInteractionMode() == 2 && modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL)
+    if (modelController->getChosenInteractionMode() == 2 &&
+        modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL)
     {
         cursor.setTexture(cursorHammerTexture);
     }
     else
     {
-       cursor.setTexture(cursorTexture);
+        cursor.setTexture(cursorTexture);
     }
 }
 
@@ -424,7 +429,8 @@ void GUIController::getView()
     if (firstIteration)
     {
         //fixed.zoom(1.08);
-        fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(), modelController->getVerticalScreenZoom()));
+        fixed.setViewport(sf::FloatRect(0, 0, modelController->getHorizontalScreenZoom(),
+                                        modelController->getVerticalScreenZoom()));
         firstIteration = false;
     }
 }
@@ -439,12 +445,12 @@ void GUIController::displayElementsOfGUI()
 
 void GUIController::drawGrid(std::vector<Unit*>::iterator it)
 {
-    if(visibleGrid or (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE
-                       && modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL))
+    if (visibleGrid or (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE
+                        && modelController->getChosenBuildingType() != BuildingType::HUTRIESHALL))
     {
         for (it = world->units.begin(); it != world->units.end(); ++it)
         {
-            if((*it)->getType() == UnitType::FULL && (*it)->getMapObject()->isHighlighted())
+            if ((*it)->getType() == UnitType::FULL && (*it)->getMapObject()->isHighlighted())
                 continue;
             else
                 drawToApplication((*it)->field);
@@ -452,7 +458,7 @@ void GUIController::drawGrid(std::vector<Unit*>::iterator it)
     }
     for (it = world->units.begin(); it != world->units.end(); ++it)
     {
-        if((*it)->getType() == UnitType::FULL && (*it)->getMapObject()->isHighlighted())
+        if ((*it)->getType() == UnitType::FULL && (*it)->getMapObject()->isHighlighted())
             drawToApplication((*it)->field);
     }
 }
@@ -481,7 +487,7 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
                 drawToApplication((*it)->getMapObject()->description.text);
                 drawToApplication((*it)->getMapObject()->descriptionFrame.button);
                 (*it)->getMapObject()->showButtons();
-                if(!modelController->getPauseGame())
+                if (!modelController->getPauseGame())
                     (*it)->getMapObject()->highlightButton();
             }
             else (*it)->getMapObject()->deactivateButtons();
@@ -504,9 +510,9 @@ void GUIController::createCursor()
     cursor.setTexture(cursorTexture);
     buildingToCursorTexture.loadFromFile(Textures::sawmillBasic);
     buildingToCursor.setTexture(buildingToCursorTexture);
-    sf::Color color (0,150,0,150);
+    sf::Color color(0, 150, 0, 150);
     buildingToCursor.setColor(color);
-    buildingToCursor.setScale(0.4,0.4);
+    buildingToCursor.setScale(0.4, 0.4);
 }
 
 void GUIController::prepareToDisplay()
@@ -550,33 +556,33 @@ void GUIController::setCursorPosition()
     attachBuildingToCursor(worldPos);
 }
 
-void GUIController::attachBuildingToCursor (sf::Vector2f worldPos)
+void GUIController::attachBuildingToCursor(sf::Vector2f worldPos)
 {
     if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE)
     {
-        switch(modelController->getChosenBuildingType())
+        switch (modelController->getChosenBuildingType())
         {
-        case BuildingType::SAWMILL:
-            buildingToCursorTexture.loadFromFile(Textures::sawmillBasic);
-            break;
-        case BuildingType::STONECUTTERHUT:
-            buildingToCursorTexture.loadFromFile(Textures::stonecutterHutBasic);
-            break;
-        case BuildingType::FARM:
-            buildingToCursorTexture.loadFromFile(Textures::farmBasic);
-            break;
-        case BuildingType::GOLDMINE:
-            buildingToCursorTexture.loadFromFile(Textures::goldmineBasic);
-            break;
-        case BuildingType::BARRACKS:
-            buildingToCursorTexture.loadFromFile(Textures::barracksBasic);
-            break;
-        case BuildingType::RESIDENCE:
-            buildingToCursorTexture.loadFromFile(Textures::residenceBasic);
-            break;
-        default:
-            buildingToCursorTexture.loadFromFile(Textures::carrierEmpty);
-            break;
+            case BuildingType::SAWMILL:
+                buildingToCursorTexture.loadFromFile(Textures::sawmillBasic);
+                break;
+            case BuildingType::STONECUTTERHUT:
+                buildingToCursorTexture.loadFromFile(Textures::stonecutterHutBasic);
+                break;
+            case BuildingType::FARM:
+                buildingToCursorTexture.loadFromFile(Textures::farmBasic);
+                break;
+            case BuildingType::GOLDMINE:
+                buildingToCursorTexture.loadFromFile(Textures::goldmineBasic);
+                break;
+            case BuildingType::BARRACKS:
+                buildingToCursorTexture.loadFromFile(Textures::barracksBasic);
+                break;
+            case BuildingType::RESIDENCE:
+                buildingToCursorTexture.loadFromFile(Textures::residenceBasic);
+                break;
+            default:
+                buildingToCursorTexture.loadFromFile(Textures::carrierEmpty);
+                break;
         };
     }
     else
@@ -622,9 +628,9 @@ void GUIController::displayGameOver(bool win, bool next)
 {
     if (next)
     {
-       gui->endingBuildingsStats.text.setString(getEndingBuildingsStats());
-       gui->endingHutriesStats.text.setString(getEndingHutriesStats());
-       gui->endingProductionStats.text.setString(getEndingProductionStats());
+        gui->endingBuildingsStats.text.setString(getEndingBuildingsStats());
+        gui->endingHutriesStats.text.setString(getEndingHutriesStats());
+        gui->endingProductionStats.text.setString(getEndingProductionStats());
     }
     else if (win)
     {
@@ -639,7 +645,7 @@ void GUIController::displayGameOver(bool win, bool next)
     if (next)
     {
         setEndingText(win, next);
-        gui->endingBuildingsStats.text.setPosition(110,280);
+        gui->endingBuildingsStats.text.setPosition(110, 280);
         drawToApplication(gui->endingHutriesStats.text);
         drawToApplication(gui->endingProductionStats.text);
         next = false;
@@ -720,12 +726,12 @@ std::string GUIController::getEndingBuildingsStats()
 std::string GUIController::getEndingHutriesStats()
 {
     std::ostringstream stats;
-    stats << "Hutries:"   << std::endl
-          << "General: "  << world->hutries.size()  << std::endl
-          << "Carriers: " << world->carriers.size() << std::endl
-          << "Workers: "  << world->workers.size()  << std::endl
-          << "Warriors: " << world->warriors.size() << std::endl
-          << "Archers: "  << world->archers.size();
+    stats << "Hutries:" << std::endl
+    << "General: " << world->hutries.size() << std::endl
+    << "Carriers: " << world->carriers.size() << std::endl
+    << "Workers: " << world->workers.size() << std::endl
+    << "Warriors: " << world->warriors.size() << std::endl
+    << "Archers: " << world->archers.size();
     return stats.str();
 }
 
@@ -733,11 +739,12 @@ std::string GUIController::getEndingProductionStats()
 {
     std::ostringstream stats;
     stats << "Production:" << std::endl
-          << "General: " << world->generalGoods.getWood() + world->generalGoods.getStone() + world->generalGoods.getFood() + world->generalGoods.getGold() << std::endl
-          << "Wood: " << world->generalGoods.getWood()<< std::endl
-          << "Stone: " << world->generalGoods.getStone()<< std::endl
-          << "Food: " << world->generalGoods.getFood()<< std::endl
-          << "Gold: " << world->generalGoods.getGold();
+    << "General: " << world->generalGoods.getWood() + world->generalGoods.getStone() + world->generalGoods.getFood() +
+                      world->generalGoods.getGold() << std::endl
+    << "Wood: " << world->generalGoods.getWood() << std::endl
+    << "Stone: " << world->generalGoods.getStone() << std::endl
+    << "Food: " << world->generalGoods.getFood() << std::endl
+    << "Gold: " << world->generalGoods.getGold();
     return stats.str();
 }
 
@@ -819,12 +826,12 @@ void GUIController::showEmptyUnits(bool mark)
     }
     if (modelController->getChosenBuildingType() == BuildingType::SAWMILL)
     {
-         for (it = world->units.begin(); it != world->units.end(); ++it)
+        for (it = world->units.begin(); it != world->units.end(); ++it)
         {
             if ((*it)->getType() == UnitType::NEARFOREST ||
                 (*it)->getType() == UnitType::NEARFOREST + UnitType::NEARMOUNTAIN ||
                 (*it)->getType() == UnitType::NEARFOREST + UnitType::NEARROCKS ||
-                (*it)->getType() == UnitType::NEARFOREST + UnitType::NEARROCKS + UnitType::NEARMOUNTAIN )
+                (*it)->getType() == UnitType::NEARFOREST + UnitType::NEARROCKS + UnitType::NEARMOUNTAIN)
             {
                 (*it)->field.setFillColor(emptyColor);
             }
@@ -836,12 +843,12 @@ void GUIController::showEmptyUnits(bool mark)
     }
     else if (modelController->getChosenBuildingType() == BuildingType::STONECUTTERHUT)
     {
-         for (it = world->units.begin(); it != world->units.end(); ++it)
+        for (it = world->units.begin(); it != world->units.end(); ++it)
         {
             if ((*it)->getType() == UnitType::NEARROCKS ||
                 (*it)->getType() == UnitType::NEARROCKS + UnitType::NEARMOUNTAIN ||
                 (*it)->getType() == UnitType::NEARROCKS + UnitType::NEARFOREST ||
-                (*it)->getType() == UnitType::NEARROCKS + UnitType::NEARFOREST + UnitType::NEARMOUNTAIN )
+                (*it)->getType() == UnitType::NEARROCKS + UnitType::NEARFOREST + UnitType::NEARMOUNTAIN)
             {
                 (*it)->field.setFillColor(emptyColor);
             }
@@ -853,12 +860,12 @@ void GUIController::showEmptyUnits(bool mark)
     }
     else if (modelController->getChosenBuildingType() == BuildingType::GOLDMINE)
     {
-         for (it = world->units.begin(); it != world->units.end(); ++it)
+        for (it = world->units.begin(); it != world->units.end(); ++it)
         {
             if ((*it)->getType() == UnitType::NEARMOUNTAIN ||
                 (*it)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARROCKS ||
                 (*it)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARFOREST ||
-                (*it)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARFOREST + UnitType::NEARROCKS )
+                (*it)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARFOREST + UnitType::NEARROCKS)
             {
                 (*it)->field.setFillColor(emptyColor);
             }
@@ -871,16 +878,16 @@ void GUIController::showEmptyUnits(bool mark)
     else
     {
         for (it = world->units.begin(); it != world->units.end(); ++it)
-    {
-        if ((*it)->getType() != UnitType::FULL)
         {
-            (*it)->field.setFillColor(emptyColor);
+            if ((*it)->getType() != UnitType::FULL)
+            {
+                (*it)->field.setFillColor(emptyColor);
+            }
+            else
+            {
+                (*it)->field.setFillColor(fullColor);
+            }
         }
-        else
-        {
-             (*it)->field.setFillColor(fullColor);
-        }
-    }
     }
 }
 
@@ -893,139 +900,153 @@ void GUIController::updateClock(int time)
 
 void GUIController::highlightTargetButton()
 {
-    if(modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE
-            && !modelController->getPauseGame())
+    if (modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE
+        && !modelController->getPauseGame())
     {
-        if(gui->sawmill.checkBounds())
+        if (gui->sawmill.checkBounds())
             gui->tSawmill.highlight();
         else gui->tSawmill.endHighlight();
 
-        if(gui->sawmill.checkBounds())
+        if (gui->sawmill.checkBounds())
             gui->tstoneSawmill.highlight();
         else gui->tstoneSawmill.endHighlight();
 
-        if(gui->sawmill.checkBounds())
+        if (gui->sawmill.checkBounds())
             gui->twoodSawmill.highlight();
         else gui->twoodSawmill.endHighlight();
 
-        if(gui->stonecutter.checkBounds())
+        if (gui->stonecutter.checkBounds())
             gui->tStonecutter.highlight();
         else gui->tStonecutter.endHighlight();
 
-        if(gui->stonecutter.checkBounds())
+        if (gui->stonecutter.checkBounds())
             gui->tstoneStonecutter.highlight();
         else gui->tstoneStonecutter.endHighlight();
 
-        if(gui->stonecutter.checkBounds())
+        if (gui->stonecutter.checkBounds())
             gui->twoodStonecutter.highlight();
         else gui->twoodStonecutter.endHighlight();
 
-        if(gui->goldmine.checkBounds())
+        if (gui->goldmine.checkBounds())
             gui->tGoldmine.highlight();
         else gui->tGoldmine.endHighlight();
 
-        if(gui->goldmine.checkBounds())
+        if (gui->goldmine.checkBounds())
             gui->tstoneGoldmine.highlight();
         else gui->tstoneGoldmine.endHighlight();
 
-        if(gui->goldmine.checkBounds())
+        if (gui->goldmine.checkBounds())
             gui->twoodGoldmine.highlight();
         else gui->twoodGoldmine.endHighlight();
 
-        if(gui->residence.checkBounds())
+        if (gui->residence.checkBounds())
             gui->tResidence.highlight();
         else gui->tResidence.endHighlight();
 
-        if(gui->residence.checkBounds())
+        if (gui->residence.checkBounds())
             gui->tstoneResidence.highlight();
         else gui->tstoneResidence.endHighlight();
 
-        if(gui->residence.checkBounds())
+        if (gui->residence.checkBounds())
             gui->twoodResidence.highlight();
         else gui->twoodResidence.endHighlight();
 
-        if(gui->farm.checkBounds())
+        if (gui->farm.checkBounds())
             gui->tFarm.highlight();
         else gui->tFarm.endHighlight();
 
-        if(gui->farm.checkBounds())
+        if (gui->farm.checkBounds())
             gui->tstoneFarm.highlight();
         else gui->tstoneFarm.endHighlight();
 
-        if(gui->farm.checkBounds())
+        if (gui->farm.checkBounds())
             gui->twoodFarm.highlight();
         else gui->twoodFarm.endHighlight();
 
-        if(gui->barracks.checkBounds())
+        if (gui->barracks.checkBounds())
             gui->tBarracks.highlight();
         else gui->tBarracks.endHighlight();
 
-        if(gui->barracks.checkBounds())
+        if (gui->barracks.checkBounds())
             gui->tstoneBarracks.highlight();
         else gui->tstoneBarracks.endHighlight();
 
-        if(gui->barracks.checkBounds())
+        if (gui->barracks.checkBounds())
             gui->twoodBarracks.highlight();
         else gui->twoodBarracks.endHighlight();
     }
 
-    if(modelController->getChosenInteractionMode() == InteractionMode::MENUMODE)
+    if (modelController->getChosenInteractionMode() == InteractionMode::MENUMODE)
     {
-        if(gui->playButton.checkBounds())
+        if (gui->playButton.checkBounds())
             gui->playText.highlight();
         else gui->playText.endHighlight();
 
-        if(gui->howToPlayButton.checkBounds())
+        if (gui->howToPlayButton.checkBounds())
             gui->howToPlayText.highlight();
         else gui->howToPlayText.endHighlight();
 
-        if(gui->aboutButton.checkBounds())
+        if (gui->aboutButton.checkBounds())
             gui->aboutText.highlight();
         else gui->aboutText.endHighlight();
 
-        if(gui->exitButton.checkBounds())
+        if (gui->exitButton.checkBounds())
             gui->exitText.highlight();
         else gui->exitText.endHighlight();
 
-        if(gui->easyButton.checkBounds())
+        if (gui->easyButton.checkBounds())
             gui->easyText.highlight();
-        else gui->easyText.endHighlight();
+        else
+        {
+            gui->easyText.endHighlight();
+            gui->easyButton.changeTexture(Textures::carrierMoveRight1);
+        }
 
-        if(gui->normalButton.checkBounds())
+        if (gui->normalButton.checkBounds())
             gui->normalText.highlight();
-        else gui->normalText.endHighlight();
+        else
+        {
+            gui->normalText.endHighlight();
+            gui->normalButton.changeTexture(Textures::workerMoveRight1);
+        }
 
-        if(gui->hardButton.checkBounds())
+        if (gui->hardButton.checkBounds())
             gui->hardText.highlight();
-        else gui->hardText.endHighlight();
+        else
+        {
+            gui->hardText.endHighlight();
+            gui->hardButton.changeTexture(Textures::warriorMoveRight1);
+        }
+
+        changeDifficultyButtonSprite();
     }
 
-    if(modelController->getExitWindow())
+    if (modelController->getExitWindow())
     {
-        if(gui->exitNoButton.checkBounds())
+        if (gui->exitNoButton.checkBounds())
             gui->exitNoText.highlight();
         else gui->exitNoText.endHighlight();
 
-        if(gui->exitYesButton.checkBounds())
+        if (gui->exitYesButton.checkBounds())
             gui->exitYesText.highlight();
         else gui->exitYesText.endHighlight();
     }
 
-    if(modelController -> getPauseGame())
+    if (modelController->getPauseGame())
     {
-        if(gui->resumeButton.checkBounds())
+        if (gui->resumeButton.checkBounds())
             gui->resumeText.highlight();
         else gui->resumeText.endHighlight();
 
-        if(gui->settingsButton.checkBounds())
+        if (gui->settingsButton.checkBounds())
             gui->settingsText.highlight();
         else gui->settingsText.endHighlight();
 
-        if(gui->helpButton.checkBounds())
+        if (gui->helpButton.checkBounds())
             gui->helpText.highlight();
         else gui->helpText.endHighlight();
 
-        if(gui->mainMenuButton.checkBounds())
+        if (gui->mainMenuButton.checkBounds())
             gui->mainMenuText.highlight();
         else gui->mainMenuText.endHighlight();
     }
@@ -1064,15 +1085,15 @@ void GUIController::setDifficulty(std::string difficult)
 {
     if (difficult == "EASY")
     {
-       setEasy();
+        setEasy();
     }
     else if (difficult == "NORMAL")
     {
-       setNormal();
+        setNormal();
     }
     else if (difficult == "HARD")
     {
-       setHard();
+        setHard();
     }
     world->setStartingGoods();
     updateGoodsNumber();
@@ -1196,4 +1217,150 @@ void GUIController::errorToMuchWorkers()
     Sound::error();
     errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        Too much workers!");
+}
+
+void GUIController::changeDifficultyButtonSprite()
+{
+    if (frameCounter == 0)
+    {
+        if (gui->easyButton.checkBounds())
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    gui->easyButton.changeTexture(Textures::carrierMoveRight1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    gui->easyButton.changeTexture(Textures::carrierMoveRight2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    gui->easyButton.changeTexture(Textures::carrierMoveRight3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    gui->easyButton.changeTexture(Textures::carrierMoveRight4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    gui->easyButton.changeTexture(Textures::carrierMoveRight5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    gui->easyButton.changeTexture(Textures::carrierMoveRight6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    gui->easyButton.changeTexture(Textures::carrierMoveRight7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    gui->easyButton.changeTexture(Textures::carrierMoveRight8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        else if (gui->normalButton.checkBounds())
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    gui->normalButton.changeTexture(Textures::workerMoveRight1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    gui->normalButton.changeTexture(Textures::workerMoveRight2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    gui->normalButton.changeTexture(Textures::workerMoveRight3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    gui->normalButton.changeTexture(Textures::workerMoveRight4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    gui->normalButton.changeTexture(Textures::workerMoveRight5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    gui->normalButton.changeTexture(Textures::workerMoveRight6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    gui->normalButton.changeTexture(Textures::workerMoveRight7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    gui->normalButton.changeTexture(Textures::workerMoveRight8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        else if (gui->hardButton.checkBounds())
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight8);
+                    animationCounter++;
+                    break;
+                case 8:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight9);
+                    animationCounter++;
+                    break;
+                case 9:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight10);
+                    animationCounter++;
+                    break;
+                case 10:
+                    gui->hardButton.changeTexture(Textures::warriorMoveRight11);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        else animationCounter = 0;
+    }
+    frameCounter++;
+    if(frameCounter > 3)
+        frameCounter = 0;
 }

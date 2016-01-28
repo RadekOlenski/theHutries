@@ -59,6 +59,42 @@ public:
     static std::string carrierRight;
     static std::string carrierEmpty;
 
+    //---------------------------- CARRIER ------------------------//
+
+    static std::string carrierMoveRight1;
+    static std::string carrierMoveRight2;
+    static std::string carrierMoveRight3;
+    static std::string carrierMoveRight4;
+    static std::string carrierMoveRight5;
+    static std::string carrierMoveRight6;
+    static std::string carrierMoveRight7;
+    static std::string carrierMoveRight8;
+
+    //---------------------------- WORKER ------------------------//
+
+    static std::string workerMoveRight1;
+    static std::string workerMoveRight2;
+    static std::string workerMoveRight3;
+    static std::string workerMoveRight4;
+    static std::string workerMoveRight5;
+    static std::string workerMoveRight6;
+    static std::string workerMoveRight7;
+    static std::string workerMoveRight8;
+
+    //---------------------------- WARRIOR ------------------------//
+
+    static std::string warriorMoveRight1;
+    static std::string warriorMoveRight2;
+    static std::string warriorMoveRight3;
+    static std::string warriorMoveRight4;
+    static std::string warriorMoveRight5;
+    static std::string warriorMoveRight6;
+    static std::string warriorMoveRight7;
+    static std::string warriorMoveRight8;
+    static std::string warriorMoveRight9;
+    static std::string warriorMoveRight10;
+    static std::string warriorMoveRight11;
+
     //---------------------------- GOODS ------------------------//
 
     static std::string gold;

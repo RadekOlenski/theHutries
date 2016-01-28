@@ -99,7 +99,6 @@ public:
 
     bool getReadyForGame() { return readyForGame; };
 
-
     void highlightClock(bool highlight);
 
     void updateBuildingsHighlight();
@@ -133,6 +132,8 @@ public:
     //------------------------------------DIFFICULTY---------------------------------------//
 
     void chooseDifficulty();
+
+    void changeDifficultyButtonSprite();
 
     void setDifficulty(std::string difficult);
 
@@ -215,6 +216,9 @@ private:
     bool readyForGame;
     bool lockArrows;
     unsigned int chosenHowToText;
+
+    int animationCounter;
+    int frameCounter;
 };
 
 

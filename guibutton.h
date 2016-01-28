@@ -25,6 +25,9 @@ public:
 
     void setTexture(sf::Texture texture) { this->texture = texture; };
 
+    sf::Texture getTexture() { return texture; };
+
+    void changeTexture(std::string path);
 private:
 
     sf::RenderWindow* hutrieApplication;

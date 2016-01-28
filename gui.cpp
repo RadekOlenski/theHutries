@@ -22,7 +22,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
     //-------------------DIFFICULTY LEVEL-----------------------------//
 
-        easyButton(150, 350, hutrieApplication, Textures::carrierRight),
+        easyButton(150, 350, hutrieApplication, Textures::carrierMoveRight1),
         normalButton(400, 350, hutrieApplication, Textures::workerRight),
         hardButton(650, 350, hutrieApplication, Textures::warriorRight),
         easyText (185, 320, 37, ""),
@@ -293,7 +293,6 @@ void GUI::displayMenu()
     if (easyButton.isActive())hutrieApplication->draw(easyButton.button);
     if (normalButton.isActive())hutrieApplication->draw(normalButton.button);
     if (hardButton.isActive())hutrieApplication->draw(hardButton.button);
-
 }
 
 void GUI::displayPauseMenu()

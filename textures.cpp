@@ -52,6 +52,42 @@ std::string Textures::carrierLeft = "sprites/carrier/left.png";
 std::string Textures::carrierRight = "sprites/carrier/right.png";
 std::string Textures::carrierEmpty = "sprites/carrier/empty.png";
 
+//---------------------------- CARRIER ------------------------//
+
+std::string Textures::carrierMoveRight1 = "sprites/carrier/move_right_1.png";
+std::string Textures::carrierMoveRight2 = "sprites/carrier/move_right_2.png";
+std::string Textures::carrierMoveRight3 = "sprites/carrier/move_right_3.png";
+std::string Textures::carrierMoveRight4 = "sprites/carrier/move_right_4.png";
+std::string Textures::carrierMoveRight5 = "sprites/carrier/move_right_5.png";
+std::string Textures::carrierMoveRight6 = "sprites/carrier/move_right_6.png";
+std::string Textures::carrierMoveRight7 = "sprites/carrier/move_right_7.png";
+std::string Textures::carrierMoveRight8 = "sprites/carrier/move_right_8.png";
+
+//---------------------------- WORKER ------------------------//
+
+std::string Textures::workerMoveRight1 = "sprites/worker/move_right_1.png";
+std::string Textures::workerMoveRight2 = "sprites/worker/move_right_2.png";
+std::string Textures::workerMoveRight3 = "sprites/worker/move_right_3.png";
+std::string Textures::workerMoveRight4 = "sprites/worker/move_right_4.png";
+std::string Textures::workerMoveRight5 = "sprites/worker/move_right_5.png";
+std::string Textures::workerMoveRight6 = "sprites/worker/move_right_6.png";
+std::string Textures::workerMoveRight7 = "sprites/worker/move_right_7.png";
+std::string Textures::workerMoveRight8 = "sprites/worker/move_right_8.png";
+
+//---------------------------- WARRIOR ------------------------//
+
+std::string Textures::warriorMoveRight1 = "sprites/warrior/move_right_1.png";
+std::string Textures::warriorMoveRight2 = "sprites/warrior/move_right_2.png";
+std::string Textures::warriorMoveRight3 = "sprites/warrior/move_right_3.png";
+std::string Textures::warriorMoveRight4 = "sprites/warrior/move_right_4.png";
+std::string Textures::warriorMoveRight5 = "sprites/warrior/move_right_5.png";
+std::string Textures::warriorMoveRight6 = "sprites/warrior/move_right_6.png";
+std::string Textures::warriorMoveRight7 = "sprites/warrior/move_right_7.png";
+std::string Textures::warriorMoveRight8 = "sprites/warrior/move_right_8.png";
+std::string Textures::warriorMoveRight9 = "sprites/warrior/move_right_9.png";
+std::string Textures::warriorMoveRight10 = "sprites/warrior/move_right_10.png";
+std::string Textures::warriorMoveRight11 = "sprites/warrior/move_right_11.png";
+
 //---------------------------- GOODS ------------------------//
 
 std::string Textures::gold = "sprites/goods/gold.png";

@@ -46,3 +46,9 @@ bool GUIButton::checkBounds()
                   && buttonPosition.y + buttonSize.y >= mousePosition.y;
     return result;
 }
+
+void GUIButton::changeTexture(std::string path)
+{
+    texture.loadFromFile(path);
+    button.setTexture(&texture);
+}
