@@ -16,10 +16,6 @@ class TheHutriesApplication
 
         void start();
 
-//        void setDifficulty();
-
-        void info();
-
     private:
 
         sf::RenderWindow hutrieApplication;

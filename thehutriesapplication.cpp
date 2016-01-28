@@ -76,13 +76,3 @@ void TheHutriesApplication::readSettingsFromFile()
         settingsFile.close();
     }
 }
-
-void TheHutriesApplication::info()
-{
-    std::cout << "Resolution string: " << resolution << std::endl;
-    std::cout << "Display Mode string: " << displayMode << std::endl;
-    std::cout << "X: " << getXResolution() << std::endl;
-    std::cout << "Y: " << getYResolution() << std::endl;
-    std::cout << "HorizontalScreenZoom: " << horizontalScreenZoom << std::endl;
-    std::cout << "VerticalScreenZoom: " << verticalScreenZoom << std::endl;
-}

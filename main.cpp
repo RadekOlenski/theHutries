@@ -16,10 +16,6 @@ int main()
 
     hutriesApp.adjustResolution();
 
-    //hutriesApp.info();
-
-    //    hutriesApp.setDifficulty();
-
     //ShowWindow(hWnd, SW_HIDE);
 
     hutriesApp.start();

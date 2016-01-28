@@ -2,7 +2,6 @@
 
 using namespace std;
 
-static sf::Music reminderMusic;
 sf::Sound Sound::sound = sound;
 sf::SoundBuffer Sound::soundBuffer = soundBuffer;
 const string Sound::errorPath = "audio/error.flac";
@@ -72,10 +71,3 @@ void Sound::notification()
     sound.play();
 }
 
-void Sound::reminderSound()
-{
-    Sound::setSoundBuffer();
-    soundBuffer.loadFromFile(reminder);
-    sound.setVolume(100);
-    sound.play();
-}

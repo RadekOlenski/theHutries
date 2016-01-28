@@ -42,6 +42,7 @@ public:
     static const std::string introMusic;
     static const std::string menuMusic;
     static const std::string construction;
+    static const std::string reminder;
 
 private:
 
@@ -52,7 +53,6 @@ private:
     static const std::string tingPath;
     static const std::string notificationPath;
     static const std::string purchaseSoundPath;
-    static const std::string reminder;
 };
 
 

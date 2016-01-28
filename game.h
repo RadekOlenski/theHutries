@@ -38,11 +38,12 @@ private:
 
     int gameTime;
     sf::Clock deadline;
-
+    bool highligthedClockFlag;
     void updateClock();
 
     //////////GRAPHICS AND AUDIO//////////////////
     sf::Music music;
+    sf::Music reminderSound;
     GUI gui;
 
     bool fullscreen;

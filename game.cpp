@@ -60,6 +60,11 @@ Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applic
     if (!music.openFromFile(Sound::menuMusic)) std::cout << "Loading music failed" << std::endl;
     music.setLoop(true);
     changeMusicFlag = true;
+
+    /////////////////////////// REMINDER SOUND //////////////////////////////////////////////////////
+
+    if (!reminderSound.openFromFile(Sound::reminder)) std::cout << "Loading music failed" << std::endl;
+    highligthedClockFlag = true;
 }
 
 //=================================================================================
@@ -68,7 +73,7 @@ Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applic
 
 void Game::play()
 {
-    gameTime = GameBalance::gameTime;
+    gameTime = 65;//GameBalance::gameTime;
     changeBackgroundMusic(Sound::musicPath);
     deadline.restart();
     modelController->setChosenInteractionMode(3);
@@ -143,15 +148,21 @@ void Game::drawApplication()
 void Game::updateClock()
 {
     int time = (int) (gameTime - deadline.getElapsedTime().asSeconds());
-    if (time % 60 == 0 && time != 0)
+    if (time % 60 == 0 && highligthedClockFlag && time != 0)
     {
-        Sound::reminderSound();
+        reminderSound.play();
         guiController->highlightClock(true);
+        highligthedClockFlag = false;
     }
-    if (time % 60 == 56) guiController->highlightClock(false);
+    if (time % 60 == 56)
+    {
+        guiController->highlightClock(false);
+        highligthedClockFlag = true;
+    }
     if (changeMusicFlag && time == 28)
     {
-        changeBackgroundMusic(Sound::introMusic);
+        music.openFromFile(Sound::introMusic);
+        music.play();
         changeMusicFlag = false;
     }
     guiController->updateClock(time);
@@ -208,7 +219,7 @@ void Game::menu()
         guiController->highlightTargetButton();
         while (hutrieApplication->pollEvent(event))
         {
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space && guiController->getIntroFlag())
             {
                 if(modelController->getExitWindow())
                     GameBalance::exitFlag = true;
