@@ -208,6 +208,10 @@ void GameLogicController::endHighlightUnit()
 {
     if (world->lastClickedUnit != NULL)
     {
+        if (modelController->getChosenInteractionMode() == InteractionMode::INFOMODE && sf::Mouse::getPosition(*hutrieApplication).x > 1024)
+        {
+            return;
+        }
         if (modelController->getChosenInteractionMode() != InteractionMode::BUILDMODE)
         {
             world->lastClickedUnit->getMapObject()->highlightUnits(false);
