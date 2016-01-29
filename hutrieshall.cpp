@@ -41,6 +41,8 @@ HutriesHall::HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std:
     enoughGoodsForCreation = false;
     leftTrainingTime = 0;
     doorIndex = 6;
+    frameCounter = 0;
+    animationCounter = 0;
     workerTrainingTime = GameBalance::workerTrainingTime;
     carrierTrainingTime = GameBalance::carrierTrainingTime;
     getHutriesCosts();
@@ -138,15 +140,73 @@ void HutriesHall::highlightButton()
         tWorker.highlight();
     else tWorker.endHighlight();
 
+
     if (createWorkerButton.checkBounds())
         tfoodWorker.highlight();
     else tfoodWorker.endHighlight();
 
     if (createCarrierButton.checkBounds())
         tCarrier.highlight();
-    else tCarrier.endHighlight();
+    else
+    {
+        tCarrier.endHighlight();
+        createCarrierButton.changeTexture(Textures::carrierMoveDown1);
+    }
 
     if (createCarrierButton.checkBounds())
         tfoodCarrier.highlight();
     else tfoodCarrier.endHighlight();
+
+    animateButton();
+}
+
+void HutriesHall::animateButton()
+{
+    if (frameCounter == 0)
+    {
+        if (createCarrierButton.checkBounds())
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    createCarrierButton.changeTexture(Textures::carrierMoveDown1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    createCarrierButton.changeTexture(Textures::carrierMoveDown2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    createCarrierButton.changeTexture(Textures::carrierMoveDown3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    createCarrierButton.changeTexture(Textures::carrierMoveDown4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    createCarrierButton.changeTexture(Textures::carrierMoveDown5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    createCarrierButton.changeTexture(Textures::carrierMoveDown6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    createCarrierButton.changeTexture(Textures::carrierMoveDown7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    createCarrierButton.changeTexture(Textures::carrierMoveDown8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else animationCounter = 0;
+    }
+    frameCounter++;
+    if(frameCounter > 25)
+        frameCounter = 0;
 }

@@ -500,7 +500,10 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
                 drawToApplication((*it)->getMapObject()->descriptionFrame.button);
                 (*it)->getMapObject()->showButtons();
                 if (!modelController->getPauseGame())
+                {
                     (*it)->getMapObject()->highlightButton();
+                }
+
             }
             else (*it)->getMapObject()->deactivateButtons();
         }

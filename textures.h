@@ -70,6 +70,32 @@ public:
     static std::string carrierMoveRight7;
     static std::string carrierMoveRight8;
 
+    static std::string carrierMoveLeft1;
+    static std::string carrierMoveLeft2;
+    static std::string carrierMoveLeft3;
+    static std::string carrierMoveLeft4;
+    static std::string carrierMoveLeft5;
+    static std::string carrierMoveLeft6;
+    static std::string carrierMoveLeft7;
+    static std::string carrierMoveLeft8;
+
+    static std::string carrierMoveDown1;
+    static std::string carrierMoveDown2;
+    static std::string carrierMoveDown3;
+    static std::string carrierMoveDown4;
+    static std::string carrierMoveDown5;
+    static std::string carrierMoveDown6;
+    static std::string carrierMoveDown7;
+    static std::string carrierMoveDown8;
+
+    static std::string carrierMoveUp1;
+    static std::string carrierMoveUp2;
+    static std::string carrierMoveUp3;
+    static std::string carrierMoveUp4;
+    static std::string carrierMoveUp5;
+    static std::string carrierMoveUp6;
+    static std::string carrierMoveUp7;
+    static std::string carrierMoveUp8;
     //---------------------------- WORKER ------------------------//
 
     static std::string workerMoveRight1;

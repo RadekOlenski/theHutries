@@ -63,6 +63,32 @@ std::string Textures::carrierMoveRight6 = "sprites/carrier/move_right_6.png";
 std::string Textures::carrierMoveRight7 = "sprites/carrier/move_right_7.png";
 std::string Textures::carrierMoveRight8 = "sprites/carrier/move_right_8.png";
 
+std::string Textures::carrierMoveLeft1 = "sprites/carrier/move_left_1.png";
+std::string Textures::carrierMoveLeft2 = "sprites/carrier/move_left_2.png";
+std::string Textures::carrierMoveLeft3 = "sprites/carrier/move_left_3.png";
+std::string Textures::carrierMoveLeft4 = "sprites/carrier/move_left_4.png";
+std::string Textures::carrierMoveLeft5 = "sprites/carrier/move_left_5.png";
+std::string Textures::carrierMoveLeft6 = "sprites/carrier/move_left_6.png";
+std::string Textures::carrierMoveLeft7 = "sprites/carrier/move_left_7.png";
+std::string Textures::carrierMoveLeft8 = "sprites/carrier/move_left_8.png";
+
+std::string Textures::carrierMoveDown1 = "sprites/carrier/move_down_1.png";
+std::string Textures::carrierMoveDown2 = "sprites/carrier/move_down_2.png";
+std::string Textures::carrierMoveDown3 = "sprites/carrier/move_down_3.png";
+std::string Textures::carrierMoveDown4 = "sprites/carrier/move_down_4.png";
+std::string Textures::carrierMoveDown5 = "sprites/carrier/move_down_5.png";
+std::string Textures::carrierMoveDown6 = "sprites/carrier/move_down_6.png";
+std::string Textures::carrierMoveDown7 = "sprites/carrier/move_down_7.png";
+std::string Textures::carrierMoveDown8 = "sprites/carrier/move_down_8.png";
+
+std::string Textures::carrierMoveUp1 = "sprites/carrier/move_up_1.png";
+std::string Textures::carrierMoveUp2 = "sprites/carrier/move_up_2.png";
+std::string Textures::carrierMoveUp3 = "sprites/carrier/move_up_3.png";
+std::string Textures::carrierMoveUp4 = "sprites/carrier/move_up_4.png";
+std::string Textures::carrierMoveUp5 = "sprites/carrier/move_up_5.png";
+std::string Textures::carrierMoveUp6 = "sprites/carrier/move_up_6.png";
+std::string Textures::carrierMoveUp7 = "sprites/carrier/move_up_7.png";
+std::string Textures::carrierMoveUp8 = "sprites/carrier/move_up_8.png";
 //---------------------------- WORKER ------------------------//
 
 std::string Textures::workerMoveRight1 = "sprites/worker/move_right_1.png";

@@ -60,11 +60,17 @@ public:
 
     void highlightButton();
 
+    void animateButton();
+
 private:
 
     unsigned int getAvailableWorkers();
 
     unsigned int getAvailableCarriers();
+
+    int animationCounter;
+
+    int frameCounter;
 
     GUIButton createWorkerButton;
     GUIText tWorker;
