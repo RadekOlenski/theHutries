@@ -719,9 +719,28 @@ void GameLogicController::handleGoodsProduction()
 
 void GameLogicController::createSawmill(std::vector<Unit*> usedUnits)
 {
-    std::vector<unsigned int>::iterator it;
-    int selectedUnit = modelController->getSelectedUnitIndex();
-    for (it = world->forestsIndex.begin(); it < world->forestsIndex.end(); ++it)
+    //std::vector<unsigned int>::iterator it;
+    unsigned int selectedUnit = modelController->getSelectedUnitIndex();
+    bool nearForest = (world->units.at(selectedUnit)->getType() == UnitType::NEARFOREST
+                       or world->units.at(selectedUnit)->getType() == UnitType::NEARFOREST + UnitType::NEARMOUNTAIN
+                       or world->units.at(selectedUnit)->getType() == UnitType::NEARFOREST + UnitType::NEARROCKS
+                       or world->units.at(selectedUnit)->getType() == UnitType::NEARFOREST + UnitType::NEARMOUNTAIN + UnitType::NEARROCKS);
+
+    bool nearestForest = (world->units.at(selectedUnit + 17)->getType() == UnitType::NEARFOREST
+                       or world->units.at(selectedUnit + 17)->getType() == UnitType::NEARFOREST + UnitType::NEARMOUNTAIN
+                       or world->units.at(selectedUnit + 17)->getType() == UnitType::NEARFOREST + UnitType::NEARROCKS
+                       or world->units.at(selectedUnit + 17)->getType() == UnitType::NEARFOREST + UnitType::NEARMOUNTAIN + UnitType::NEARROCKS);
+
+    if(nearForest && nearestForest)
+    {
+        world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits));
+        world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+        world->availableGoods = world->availableGoods - GameBalance::sawmillCost;
+        guiController->updateGoodsNumber();
+        Sound::ting();
+        return;
+    }
+    /*for (it = world->forestsIndex.begin(); it < world->forestsIndex.end(); ++it)
     {
         for (int forestUnit = 0; forestUnit < 6; forestUnit++)
         {
@@ -748,15 +767,34 @@ void GameLogicController::createSawmill(std::vector<Unit*> usedUnits)
                 }
             }
         }
-    }
+    }*/
     guiController->errorMustBuildNearForest();
 }
 
 void GameLogicController::createStonecutterHut(std::vector<Unit*> usedUnits)
 {
-    std::vector<unsigned int>::iterator it;
-    int selectedUnit = modelController->getSelectedUnitIndex();
-    for (it = world->rocksIndex.begin(); it < world->rocksIndex.end(); ++it)
+    //std::vector<unsigned int>::iterator it;
+    unsigned int selectedUnit = modelController->getSelectedUnitIndex();
+    bool nearRocks = (world->units.at(selectedUnit)->getType() == UnitType::NEARROCKS
+                       or world->units.at(selectedUnit)->getType() == UnitType::NEARROCKS + UnitType::NEARMOUNTAIN
+                       or world->units.at(selectedUnit)->getType() == UnitType::NEARROCKS + UnitType::NEARFOREST
+                       or world->units.at(selectedUnit)->getType() == UnitType::NEARROCKS + UnitType::NEARMOUNTAIN + UnitType::NEARFOREST);
+
+    bool nearestRocks = (world->units.at(selectedUnit + 17)->getType() == UnitType::NEARROCKS
+                          or world->units.at(selectedUnit + 17)->getType() == UnitType::NEARROCKS + UnitType::NEARMOUNTAIN
+                          or world->units.at(selectedUnit + 17)->getType() == UnitType::NEARROCKS + UnitType::NEARFOREST
+                          or world->units.at(selectedUnit + 17)->getType() == UnitType::NEARROCKS + UnitType::NEARMOUNTAIN + UnitType::NEARFOREST);
+
+    if(nearRocks && nearestRocks)
+    {
+        world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits));
+        world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+        world->availableGoods = world->availableGoods - GameBalance::stonecutterhutCost;
+        guiController->updateGoodsNumber();
+        Sound::ting();
+        return;
+    }
+    /*for (it = world->rocksIndex.begin(); it < world->rocksIndex.end(); ++it)
     {
         for (int rocksUnit = 0; rocksUnit < 6; rocksUnit++)
         {
@@ -783,15 +821,34 @@ void GameLogicController::createStonecutterHut(std::vector<Unit*> usedUnits)
                 }
             }
         }
-    }
+    }*/
     guiController->errorMustBuildNearRocks();
 }
 
 void GameLogicController::createGoldmine(std::vector<Unit*> usedUnits)
 {
-    std::vector<unsigned int>::iterator it;
-    int selectedUnit = modelController->getSelectedUnitIndex();
-    for (it = world->mountainsIndex.begin(); it < world->mountainsIndex.end(); ++it)
+    //std::vector<unsigned int>::iterator it;
+    unsigned int selectedUnit = modelController->getSelectedUnitIndex();
+    bool nearMountain = (world->units.at(selectedUnit)->getType() == UnitType::NEARMOUNTAIN
+                      or world->units.at(selectedUnit)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARROCKS
+                      or world->units.at(selectedUnit)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARFOREST
+                      or world->units.at(selectedUnit)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARROCKS + UnitType::NEARFOREST);
+
+    bool nearestMountain = (world->units.at(selectedUnit + 17)->getType() == UnitType::NEARMOUNTAIN
+                         or world->units.at(selectedUnit + 17)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARROCKS
+                         or world->units.at(selectedUnit + 17)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARFOREST
+                         or world->units.at(selectedUnit + 17)->getType() == UnitType::NEARMOUNTAIN + UnitType::NEARROCKS + UnitType::NEARFOREST);
+
+    if(nearMountain && nearestMountain)
+    {
+        world->buildings.push_back(new Goldmine(hutrieApplication, usedUnits));
+        world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+        world->availableGoods = world->availableGoods - GameBalance::goldmineCost;
+        guiController->updateGoodsNumber();
+        Sound::ting();
+        return;
+    }
+    /*for (it = world->mountainsIndex.begin(); it < world->mountainsIndex.end(); ++it)
     {
         for (int mountainUnit = 0; mountainUnit < 4; mountainUnit++)
         {
@@ -820,9 +877,8 @@ void GameLogicController::createGoldmine(std::vector<Unit*> usedUnits)
                 }
             }
         }
-    }
+    }*/
     guiController->errorMustBuildOnMountain();
-
 }
 
 void GameLogicController::updateBuildingGrid()
