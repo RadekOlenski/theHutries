@@ -281,9 +281,10 @@ void GUIController::handleGUIButtonsActions()
 
     updateBuildingsHighlight();
 
-    if (world->lastClickedUnit)
+    if (world->lastClickedUnit && modelController->getChosenInteractionMode() == InteractionMode::INFOMODE)
     {
         world->lastClickedUnit->getMapObject()->buttonAction();
+        world->lastClickedUnit->getMapObject()->constructionButtonAction();
         return;
     }
 }
@@ -477,6 +478,7 @@ void GUIController::drawGrid(std::vector<Unit*>::iterator it)
 
 void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
 {
+    std::cout << "Przed rysowaniem" << std::endl;
     for (it = world->units.begin(); it != world->units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie
         // - druga petla zeby ruszajacy sie Hutrie byli rysowani nad zielona kratka a nie pod
     {
@@ -499,6 +501,7 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
                 drawToApplication((*it)->getMapObject()->description.text);
                 drawToApplication((*it)->getMapObject()->descriptionFrame.button);
                 (*it)->getMapObject()->showButtons();
+                (*it)->getMapObject()->showConstructionButtons();
                 if (!modelController->getPauseGame())
                 {
                     (*it)->getMapObject()->highlightButton();
@@ -508,6 +511,7 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
             else (*it)->getMapObject()->deactivateButtons();
         }
     }
+    std::cout << "Po rysowaniu" << std::endl;
 }
 
 void GUIController::createBackground()
@@ -1230,6 +1234,13 @@ void GUIController::errorToMuchWorkers()
     Sound::error();
     errorsVisiblityClock.restart();
     gui->errorInfo.text.setString("Error: \n        Too much workers!");
+}
+
+void GUIController::errorTooMuchGoods()
+{
+    Sound::error();
+    errorsVisiblityClock.restart();
+    gui->errorInfo.text.setString("Error: \n        Too much goods!");
 }
 
 void GUIController::changeDifficultyButtonSprite()

@@ -37,6 +37,8 @@ HutriesHall::HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std:
     trainingWorker = false;
     trainingCarrier = false;
 
+    buildingConstructed = true;
+
     firstCheck = true;
     enoughGoodsForCreation = false;
     leftTrainingTime = 0;
@@ -46,6 +48,8 @@ HutriesHall::HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std:
     workerTrainingTime = GameBalance::workerTrainingTime;
     carrierTrainingTime = GameBalance::carrierTrainingTime;
     getHutriesCosts();
+
+    deactivateConstructionButtons();
 }
 
 void HutriesHall::updateStatus()

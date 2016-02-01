@@ -15,6 +15,7 @@ Sawmill::Sawmill(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFr
     leftConstructionTime = 0;
     doorIndex = 2;
     constructionTime = GameBalance::sawmillConstructionTime;
+    requiredForConstructionGoods = GameBalance::sawmillCost;
 }
 
 void Sawmill::createProduct()
@@ -44,7 +45,9 @@ void Sawmill::updateStatus()
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.";
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.\n\n"
+             << "\tWood: " << constructionGoods.getWood() << "/" << GameBalance::sawmillCost.getWood()
+             << "\n\tStone: " << constructionGoods.getStone() << "/" << GameBalance::sawmillCost.getStone();
         description.text.setString(desc.str());
     }
 }

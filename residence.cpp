@@ -12,6 +12,7 @@ Residence::Residence(sf::RenderWindow* hutrieApplication, std::vector<Unit*> uni
     leftConstructionTime = 0;
     doorIndex = 3;
     constructionTime = GameBalance::residenceConstructionTime;
+        requiredForConstructionGoods = GameBalance::residenceCost;
 }
 
 void Residence::updateStatus()
@@ -25,7 +26,9 @@ void Residence::updateStatus()
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " << leftConstructionTime << " sec.";
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.\n\n"
+             << "\tWood: " << constructionGoods.getWood() << "/" << GameBalance::residenceCost.getWood()
+             << "\n\tStone: " << constructionGoods.getStone() << "/" << GameBalance::residenceCost.getStone();
         description.text.setString(desc.str());
     }
 }

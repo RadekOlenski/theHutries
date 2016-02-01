@@ -9,6 +9,7 @@
 #include "unit.h"
 #include "carrier.h"
 #include "textures.h"
+#include "goods.h"
 
 class Carrier;
 
@@ -27,6 +28,14 @@ public:
     bool getNeedCarrierFlag() { return needCarrier; }
 
     void setNeedCarrier(bool need) { needCarrier = need; }
+
+    bool getNeedConstructionWood() { return needContructionWood; }
+
+    void setNeedConstructionWood(bool need) { needContructionWood = need; }
+
+    bool getNeedConstructionStone() { return needContructionStone; }
+
+    void setNeedConstructionStone(bool need) { needContructionStone = need; }
 
     int getCapacity() { return capacity; }
 
@@ -70,7 +79,22 @@ public:
 
     sf::Clock trainingClock;
 
+    Goods constructionGoods;
+
+    void showConstructionButtons();
+
+    void deactivateConstructionButtons();
+
+    Goods getRequiredForConstructionGoods() { return requiredForConstructionGoods; };
+
+    void constructionButtonAction();
+
+    bool takeGoodsForConstruction(Goods * luggage );
+
+    void restartConstructionClock();
+
 protected:
+
     int capacity;
     int doorIndex;
     float constructionTime;
@@ -84,7 +108,7 @@ protected:
 
     bool needCarrier;
     sf::Texture textureBasic;
-    sf::Clock constructionClock;
+
 
     float workerTrainingTime;
     float carrierTrainingTime;
@@ -92,6 +116,19 @@ protected:
 
     float archerTrainingTime;
     float warriorTrainingTime;
+
+    //--------------------------------CONSTRUCTION----------------------------------//
+
+    Goods requiredForConstructionGoods;
+
+    GUIButton bringWoodButton;
+    GUIButton bringStoneButton;
+    GUIText bringWoodText;
+    GUIText bringStoneText;
+
+    sf::Clock constructionClock;
+    bool needContructionWood;
+    bool needContructionStone;
 };
 
 #endif // BUILDING_H

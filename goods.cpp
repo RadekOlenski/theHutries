@@ -67,6 +67,17 @@ bool Goods::operator>=(int number)
             );
 }
 
+bool Goods::operator==(Goods goods)
+{
+    return
+            (
+                    this->wood == goods.wood &&
+                    this->stone == goods.stone &&
+                    this->food == goods.food &&
+                    this->gold == goods.gold
+            );
+}
+
 bool Goods::isEmpty()
 {
     return wood == 0 && stone == 0 && food == 0 && gold == 0;

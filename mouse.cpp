@@ -72,6 +72,7 @@ void Mouse::rightClickActions()
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
     {
         modelController->setChosenInteractionMode(InteractionMode::NEUTRALMODE);
+        gameLogicController->updateBuildingGrid();
     }
 }
 

@@ -182,6 +182,8 @@ public:
 
     void errorToMuchWorkers();
 
+    void errorTooMuchGoods();
+
     sf::Sprite cursor;
 private:
 

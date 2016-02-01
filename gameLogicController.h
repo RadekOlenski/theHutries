@@ -61,6 +61,12 @@ public:
 
     void needCarrier(std::vector<Building*>::iterator it);
 
+    void needConstructionWood(std::vector<Building*>::iterator it);
+
+    void needConstructionStone(std::vector<Building*>::iterator it);
+
+    void loadGoodsForCarrier(std::vector<Carrier*>::iterator &itc, std::vector<Building*>::iterator it);
+
     void callCarrier(std::vector<Carrier*>::iterator itc, std::vector<Building*>::iterator it);
 
     void needWorker(std::vector<Building*>::iterator it);

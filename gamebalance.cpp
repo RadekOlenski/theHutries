@@ -24,16 +24,16 @@ const double GameBalance::winResult = 6;
 
 //////////////////////////////////  CONSTRUCTION TIME    //////////////////////////////////////
 
-const float GameBalance::barracksConstructionTime = 2;
-const float GameBalance::residenceConstructionTime = 2;
-const float GameBalance::sawmillConstructionTime = 2;
-const float GameBalance::stonecutterHutConstructionTime = 2;
+const float GameBalance::barracksConstructionTime = 5;
+const float GameBalance::residenceConstructionTime = 5;
+const float GameBalance::sawmillConstructionTime = 5;
+const float GameBalance::stonecutterHutConstructionTime = 5;
 const float GameBalance::farmConstructionTime = 5;
 const float GameBalance::goldmineConstructionTime = 5;
 
 //////////////////////////////////  TRAINING TIME    //////////////////////////////////////
 
-const float GameBalance::carrierTrainingTime = 5;
+const float GameBalance::carrierTrainingTime = 3;
 const float GameBalance::workerTrainingTime = 5;
 const float GameBalance::archerTrainingTime = 3;
 const float GameBalance::warriorTrainingTime = 5;

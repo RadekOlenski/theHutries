@@ -2,14 +2,21 @@
 #include "sound.h"
 #include "gamebalance.h"
 #include <sstream>
+#include <iostream>
 
 Building::Building(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
-        : MapObject(hutrieApplication, unitsFromGame, pathName)
+        : MapObject(hutrieApplication, unitsFromGame, pathName),
+          bringWoodButton(1024 + 40, 500, hutrieApplication, 180, 45, false),
+          bringStoneButton(1024 + 40, 560, hutrieApplication, 150, 45, false),
+          bringWoodText(1024 + 50, 500, 30, "Bring wood"),
+          bringStoneText(1024 + 50, 560, 30, "Bring stone")
 {
     sound.openFromFile(Sound::construction);
     sound.setVolume(50);
     needCarrier = false;
     needWorker = false;
+    needContructionStone = false;
+    needContructionWood = false;
 }
 
 void Building::placeOnMap()
@@ -103,3 +110,54 @@ void Building::updateTrainingClock(float trainingTime)
     leftTrainingTime = trainingTime - trainingClock.getElapsedTime().asSeconds();
     if (leftTrainingTime <= 0.1) leftTrainingTime = 0;
 }
+
+void Building::showConstructionButtons()
+{
+    if (!buildingConstructed)
+    {
+        bringStoneButton.setActive(true);
+        bringWoodButton.setActive(true);
+        hutrieApplication->draw(bringStoneButton.button);
+        hutrieApplication->draw(bringWoodButton.button);
+        hutrieApplication->draw(bringWoodText.text);
+        hutrieApplication->draw(bringStoneText.text);
+    }
+}
+
+void Building::deactivateConstructionButtons()
+{
+    bringStoneButton.setActive(false);
+    bringWoodButton.setActive(false);
+}
+
+void Building::constructionButtonAction()
+{
+    if (bringStoneButton.checkBounds() && bringStoneButton.isActive())
+    {
+         std::cout << "Need Stone!" << std::endl;
+         needContructionStone = true;
+    }
+    if (bringWoodButton.checkBounds() && bringWoodButton.isActive())
+    {
+          std::cout << "Need Wood!" << std::endl;
+          needContructionWood = true;
+    }
+}
+
+bool Building::takeGoodsForConstruction(Goods* luggage)
+{
+    if (luggage->whichProduct() == 1 && constructionGoods.getWood() >= requiredForConstructionGoods.getWood()) return false;
+    if (luggage->whichProduct() == 2 && constructionGoods.getStone() >= requiredForConstructionGoods.getStone()) return false;
+    constructionGoods.setProduct(luggage->whichProduct(), 1);
+    luggage->setProduct(luggage->whichProduct(), -1);
+    updateStatus();
+    return true;
+}
+
+void Building::restartConstructionClock()
+{
+    constructionClock.restart();
+}
+
+
+

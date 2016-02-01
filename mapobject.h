@@ -31,6 +31,10 @@ public:
 
     virtual void buttonAction();
 
+    virtual void constructionButtonAction();
+
+    virtual void showConstructionButtons();
+
     GUIText title;
     GUIText description;
     GUIButton descriptionFrame;

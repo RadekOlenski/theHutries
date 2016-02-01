@@ -14,6 +14,7 @@ Goldmine::Goldmine(sf::RenderWindow* hutrieApplication, const std::vector<Unit*>
     leftConstructionTime = 0;
     doorIndex = 3;
     constructionTime = GameBalance::goldmineConstructionTime;
+        requiredForConstructionGoods = GameBalance::goldmineCost;
 }
 
 void Goldmine::createProduct()
@@ -43,7 +44,9 @@ void Goldmine::updateStatus()
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.";
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.\n\n"
+             << "\tWood: " << constructionGoods.getWood() << "/" << GameBalance::goldmineCost.getWood()
+             << "\n\tStone: " << constructionGoods.getStone() << "/" << GameBalance::goldmineCost.getStone();
         description.text.setString(desc.str());
     }
 }

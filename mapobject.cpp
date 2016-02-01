@@ -83,9 +83,13 @@ int MapObject::getUnitIndex(int index)
 
 void MapObject::showButtons() { }
 
+void MapObject::showConstructionButtons() { }
+
 void MapObject::deactivateButtons() { }
 
 void MapObject::buttonAction() { }
+
+void MapObject::constructionButtonAction() { }
 
 void MapObject::updateDescriptionTexture(sf::Texture texture)
 {

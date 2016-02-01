@@ -36,6 +36,8 @@ Barracks::Barracks(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
     warriorTrainingTime = GameBalance::warriorTrainingTime;
     archerTrainingTime = GameBalance::archerTrainingTime;
     setSoldiersCosts();
+    requiredForConstructionGoods = GameBalance::barracksCost;
+    doorIndex = 3;
 }
 
 void Barracks::updateStatus()
@@ -51,7 +53,9 @@ void Barracks::updateStatus()
     else
     {
         std::ostringstream desc;
-        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.";
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.\n\n"
+             << "\tWood: " << constructionGoods.getWood() << "/" << GameBalance::barracksCost.getWood()
+             << "\n\tStone: " << constructionGoods.getStone() << "/" << GameBalance::barracksCost.getStone();
         description.text.setString(desc.str());
     }
 }

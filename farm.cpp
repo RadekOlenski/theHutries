@@ -16,6 +16,8 @@ Farm::Farm(sf::RenderWindow* hutrieApplication, const std::vector<Unit*> &unitsF
     doorIndex = 3;
 
     constructionTime = GameBalance::farmConstructionTime;
+
+    requiredForConstructionGoods = GameBalance::farmCost;
 }
 
 void Farm::createProduct()
@@ -44,8 +46,10 @@ void Farm::updateStatus()
     }
     else
     {
-        std::ostringstream desc;
-        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.";
+       std::ostringstream desc;
+        desc << "Construction finish in " << ceil(leftConstructionTime) << " sec.\n\n"
+             << "\tWood: " << constructionGoods.getWood() << "/" << GameBalance::farmCost.getWood()
+             << "\n\tStone: " << constructionGoods.getStone() << "/" << GameBalance::farmCost.getStone();
         description.text.setString(desc.str());
     }
 }

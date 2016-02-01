@@ -60,81 +60,35 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
     switch (modelController->getChosenBuildingType())                                                                      //przekazuje wszystkie 4 unity do buldingu gdzie zostaja umieszczone w vectorze
     {
         case BuildingType::SAWMILL:
-            if (worldGoods - GameBalance::sawmillCost >= 0)
-            {
-                createSawmill(usedUnits);
-            }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-            }
+            createSawmill(usedUnits);
             break;
+
         case BuildingType::STONECUTTERHUT:
-            if (worldGoods - GameBalance::stonecutterhutCost >= 0)
-            {
-                createStonecutterHut(usedUnits);
-            }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-            }
+            createStonecutterHut(usedUnits);
             break;
+
         case BuildingType::BARRACKS:
-            if (worldGoods - GameBalance::barracksCost >= 0)
-            {
                 world->buildings.push_back(new Barracks(hutrieApplication, usedUnits));
                 world->barracksIndex.push_back(world->buildings.size() - 1);
-                world->availableGoods = world->availableGoods - GameBalance::barracksCost;
-                guiController->updateGoodsNumber();
                 Sound::ting();
-            }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-            }
             break;
+
         case BuildingType::RESIDENCE:
-        {
-            if (worldGoods - GameBalance::residenceCost >= 0)
-            {
-                world->increaseAvailableSlots(GameBalance::hutrieSlotsAddition);
-                world->buildings.push_back(new Residence(hutrieApplication, usedUnits,
-                                                         &(world->availableSlots)));
-                world->availableGoods = world->availableGoods - GameBalance::residenceCost;
-                guiController->updateGoodsNumber();
-                Sound::ting();
-            }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-            }
+            world->increaseAvailableSlots(GameBalance::hutrieSlotsAddition);
+            world->buildings.push_back(new Residence(hutrieApplication, usedUnits, &(world->availableSlots)));
+            Sound::ting();
             break;
-        }
+
         case BuildingType::GOLDMINE:
-            if (worldGoods - GameBalance::goldmineCost >= 0)
-            {
-                createGoldmine(usedUnits);
-            }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-            }
+            createGoldmine(usedUnits);
             break;
+
         case BuildingType::FARM:
-            if (worldGoods - GameBalance::farmCost >= 0)
-            {
-                world->buildings.push_back(
-                        new Farm(hutrieApplication, usedUnits));
-                world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
-                world->availableGoods = world->availableGoods - GameBalance::farmCost;
-                guiController->updateGoodsNumber();
-                Sound::ting();
-            }
-            else
-            {
-                guiController->errorNotEnoughGoods();
-            }
+            world->buildings.push_back( new Farm(hutrieApplication, usedUnits));
+            world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
+            Sound::ting();
             break;
+
         default:
             break;
     }
@@ -146,7 +100,7 @@ void GameLogicController::constructBuilding()
     std::vector<Building*>::iterator it;
     for (it = world->buildings.begin() + 1; it != world->buildings.end(); ++it)
     {
-        if (!(*it)->getBuildingConstructedFlag())
+        if (!(*it)->getBuildingConstructedFlag() && (*it)->constructionGoods == (*it)->getRequiredForConstructionGoods() )
         {
             if ((*it)->getElapsedConstructionTime() >= (*it)->getConstructionTime())
             {
@@ -155,11 +109,14 @@ void GameLogicController::constructBuilding()
                 (*it)->setDescriptionTexture();
                 (*it)->setConstructedBuildingSound();
                 (*it)->updateStatus();
+                (*it)->deactivateConstructionButtons();
+                std:: cout << "Buduje!" << std::endl;
             }
             else
             {
                 (*it)->updateConstructionClock();
                 (*it)->updateStatus();
+                std::cout << "Budowa trwa" << std::endl;
             }
         }
     }
@@ -585,7 +542,7 @@ void GameLogicController::handleAssigningHutrie()
     std::vector<Building*>::iterator it;
     for (it = world->buildings.begin(); it != world->buildings.end(); ++it)
     {
-        if ((*it)->getNeedCarrierFlag())
+        if ((*it)->getNeedCarrierFlag() )
         {
             needCarrier(it);
         }
@@ -593,7 +550,29 @@ void GameLogicController::handleAssigningHutrie()
         {
             needWorker(it);
         }
+        if ((*it)->getNeedConstructionWood())
+        {
+            needConstructionWood(it);
+        }
+        if ((*it)->getNeedConstructionStone())
+        {
+            needConstructionStone(it);
+        }
     }
+}
+
+void GameLogicController::needConstructionWood(std::vector<Building*>::iterator it)
+{
+    std::vector<Carrier*>::iterator itc;
+    callCarrier(itc, it);
+    (*it)->setNeedConstructionWood(false);
+}
+
+void GameLogicController::needConstructionStone(std::vector<Building*>::iterator it)
+{
+    std::vector<Carrier*>::iterator itc;
+    callCarrier(itc, it);
+    (*it)->setNeedConstructionStone(false);
 }
 
 void GameLogicController::needCarrier(std::vector<Building*>::iterator it)
@@ -603,6 +582,41 @@ void GameLogicController::needCarrier(std::vector<Building*>::iterator it)
     (*it)->setNeedCarrier(false);
 }
 
+void GameLogicController::loadGoodsForCarrier(std::vector<Carrier*>::iterator &itc, std::vector<Building*>::iterator it)
+{
+    if ((*it)->getNeedConstructionWood())
+    {
+        if (world->availableGoods.getWood() > 0)
+        {
+            std::cout << "Wysylam tragarza z drewnem" << std::endl;
+            (*it)->setNeedConstructionWood(false);
+            world->availableGoods.setProduct(1,-1);
+            (*itc)->myLuggage.setProduct(1,1);
+            guiController->updateGoodsNumber();
+        }
+        else
+        {
+            guiController->errorNotEnoughGoods();
+        }
+
+    }
+    if ((*it)->getNeedConstructionStone())
+    {
+        if (world->availableGoods.getStone() > 0)
+        {
+            std::cout << "Wysylam tragarza z kamieniem" << std::endl;
+            (*it)->setNeedConstructionStone(false);
+            world->availableGoods.setProduct(2,-1);
+            (*itc)->myLuggage.setProduct(2,1);
+            guiController->updateGoodsNumber();
+        }
+        else
+        {
+            guiController->errorNotEnoughGoods();
+        }
+    }
+}
+
 void GameLogicController::callCarrier(std::vector<Carrier*>::iterator itc, std::vector<Building*>::iterator it)
 {
     for (itc = world->carriers.begin(); itc != world->carriers.end(); ++itc)
@@ -610,6 +624,8 @@ void GameLogicController::callCarrier(std::vector<Carrier*>::iterator itc, std::
         if (!((*itc)->isBusy()))
         {
             std::cout << "Nie jestem zajety! Ruszam po zasoby!" << std::endl;
+            loadGoodsForCarrier(itc,it);
+            std::cout << "Moje drewno: " << (*itc)->myLuggage.getWood() << " moje kamiory: " << (*itc)->myLuggage.getStone() << std::endl;
             unsigned int carrierIndex = (unsigned int) std::distance(world->carriers.begin(), itc);
             world->carriers.at(carrierIndex)->reconnectUnits((*it)->getObjectUnits());
             world->carriers.at(carrierIndex)->hutrieThread.launch();          //tworzy watek w ktorym porusza sie Hutrie
@@ -617,6 +633,7 @@ void GameLogicController::callCarrier(std::vector<Carrier*>::iterator itc, std::
             (*it)->addCarrier(world->carriers.at(carrierIndex));
             world->carriers.at(carrierIndex)->setBuilding(*it);
             (*it)->updateStatus();
+            std::cout << "Wychodze" ;
             break;
         }
     }
@@ -674,22 +691,36 @@ void GameLogicController::handleCarrierReturn()
     {
         if ((*itc)->haveArrived())
         {
-            GoodsBuilding* gBuilding = dynamic_cast<GoodsBuilding*>((*itc)->getBuilding());
-            if (!(gBuilding->myProducts.isEmpty()))
+            if ((*itc)->myLuggage.isEmpty())
             {
-                gBuilding->giveProduct(&((*itc)->myLuggage));
-                gBuilding->updateStatus();
+                GoodsBuilding* gBuilding = dynamic_cast<GoodsBuilding*>((*itc)->getBuilding());
+                if (!(gBuilding->myProducts.isEmpty()))
+                {
+                    gBuilding->giveProduct(&((*itc)->myLuggage));
+                    gBuilding->updateStatus();
+                }
+                else
+                {
+                    guiController->errorNoProductsToCarry();
+                }
             }
             else
             {
-                guiController->errorNoProductsToCarry();
+                std::cout << "Przed ifem" << std::endl;
+                if ( !((*itc)->getBuilding()->takeGoodsForConstruction(&((*itc)->myLuggage))) )
+                {
+                    guiController->errorTooMuchGoods();
+                }
+                (*itc)->getBuilding()->restartConstructionClock();
+                (*itc)->getBuilding()->updateStatus();
+                std::cout << "Po ifie" << std::endl;
             }
             std::cout << "Czas wracac do domu" << std::endl;
+            (*itc)->getBuilding()->removeCarrier();
+            (*itc)->getBuilding()->updateStatus();
             (*itc)->setBuilding(hutriesHall);
             (*itc)->reconnectUnits(hutriesHall->getObjectUnits());
             (*itc)->carrierThread.launch();
-            gBuilding->removeCarrier();
-            gBuilding->updateStatus();
         }
         else if ((*itc)->haveReturned())
         {
@@ -735,8 +766,6 @@ void GameLogicController::createSawmill(std::vector<Unit*> usedUnits)
     {
         world->buildings.push_back(new Sawmill(hutrieApplication, usedUnits));
         world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
-        world->availableGoods = world->availableGoods - GameBalance::sawmillCost;
-        guiController->updateGoodsNumber();
         Sound::ting();
         return;
     }
@@ -789,8 +818,6 @@ void GameLogicController::createStonecutterHut(std::vector<Unit*> usedUnits)
     {
         world->buildings.push_back(new StoneCutter(hutrieApplication, usedUnits));
         world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
-        world->availableGoods = world->availableGoods - GameBalance::stonecutterhutCost;
-        guiController->updateGoodsNumber();
         Sound::ting();
         return;
     }
@@ -843,8 +870,6 @@ void GameLogicController::createGoldmine(std::vector<Unit*> usedUnits)
     {
         world->buildings.push_back(new Goldmine(hutrieApplication, usedUnits));
         world->goodsBuildingIndex.push_back(world->buildings.size() - 1);
-        world->availableGoods = world->availableGoods - GameBalance::goldmineCost;
-        guiController->updateGoodsNumber();
         Sound::ting();
         return;
     }

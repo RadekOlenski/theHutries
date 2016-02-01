@@ -28,6 +28,8 @@ public:
 
     bool operator>=(int number);
 
+    bool operator==(Goods goods);
+
     unsigned int whichProduct();
 
 private:
