@@ -36,13 +36,17 @@ public:
 
     void setMakeCarrierFlag(bool make) { this->makeCarrierFlag = make; };
 
-    bool getTrainingWorkerFlag() { return trainingWorker; };
+    unsigned int getTrainingWorkerCounter() { return trainingWorker; };
 
-    bool getTrainingCarrierFlag() { return trainingCarrier; };
+    unsigned int getTrainingCarrierCounter() { return trainingCarrier; };
 
-    void setTrainingCarrierFlag(bool trainingCarrier) { this->trainingCarrier = trainingCarrier; };
+    void decreaseTrainingCarrierCounter( ) { this->trainingCarrier--; };
 
-    void setTrainingWorkerFlag(bool trainingWorker) { this->trainingWorker = trainingWorker; };
+    void decreaseTrainingWorkerCounter( ) { this->trainingWorker--; };
+
+    void increaseTrainingCarrierCounter( ) { this->trainingCarrier++; };
+
+    void increaseTrainingWorkerCounter( ) { this->trainingWorker++; };
 
     float getWorkerTrainingTime() { return workerTrainingTime; };
 
@@ -84,8 +88,8 @@ private:
     bool firstCheck;
     bool makeWorkerFlag;
     bool makeCarrierFlag;
-    bool trainingWorker;
-    bool trainingCarrier;
+    unsigned int trainingWorker;
+    unsigned int trainingCarrier;
     bool enoughGoodsForCreation;
 
     World* world;

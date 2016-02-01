@@ -1194,6 +1194,13 @@ void GUIController::errorAlreadyCreatingCarrier()
     gui->errorInfo.text.setString("Error: \n        You are currently \n        creating Carrier!");
 }
 
+void GUIController::errorOverflowHutriesHallQueue()
+{
+    Sound::error();
+    errorsVisiblityClock.restart();
+    gui->errorInfo.text.setString("Error: \n        Too much Hutries \n        during training!");
+}
+
 void GUIController::errorNoProductsToCarry()
 {
     Sound::error();

@@ -49,6 +49,9 @@ public:
     const static float archerTrainingTime;
     const static float warriorTrainingTime;
 
+    const static int carrierQueue = 3;
+    const static int workerQueue = 3;
+
     //////////////////////////////////  CONSTRUCTION TIME    //////////////////////////////////////
 
     const static float barracksConstructionTime;

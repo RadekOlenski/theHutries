@@ -4,4 +4,4 @@ Display resolution:
 
 Display Mode:
 
-windowed
+fullscreen

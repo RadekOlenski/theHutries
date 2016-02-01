@@ -170,6 +170,8 @@ public:
 
     void errorAlreadyCreatingWorker();
 
+    void errorOverflowHutriesHallQueue();
+
     void errorNoProductsToCarry();
 
     void errorNotEnoughGoods();

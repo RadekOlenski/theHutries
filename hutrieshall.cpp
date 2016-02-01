@@ -34,8 +34,8 @@ HutriesHall::HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std:
     makeWorkerFlag = false;
     makeCarrierFlag = false;
 
-    trainingWorker = false;
-    trainingCarrier = false;
+    trainingWorker = 0;
+    trainingCarrier = 0;
 
     buildingConstructed = true;
 
