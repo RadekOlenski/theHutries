@@ -45,6 +45,10 @@ public:
     GUIButton buildingsButton;
     GUIButton hutriesTypesButton;
     GUIButton resourcesButton;
+    GUIText mechanicsText;
+    GUIText buildingsText;
+    GUIText hutriesTypesText;
+    GUIText resourcesText;
 
     /////////////////////////////// PAUSE MENU ///////////////////////////////////////////////////
 
@@ -56,6 +60,16 @@ public:
     GUIButton helpButton;
     GUIText mainMenuText;
     GUIButton mainMenuButton;
+    GUIButton backToHelpButton;
+    GUIText backToHelpText;
+
+    GUIButton helpSawmill;
+    GUIButton helpStonecutter;
+    GUIButton helpFarm;
+    GUIButton helpGoldmine;
+    GUIButton helpBarracks;
+    GUIButton helpResidence;
+    GUIButton helpHutriesHall;
 
     /////////////////////////////// EXIT WINDOW ///////////////////////////////////////////////////
 

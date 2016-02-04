@@ -75,6 +75,12 @@ public:
 
     void handleExitButtonsActions();
 
+    void handleHowToPlayButtonsActions();
+
+    void activateHowToPlayButtons(bool active);
+
+    void turnOffHelp();
+
     void setDifficultyButtonsFlags(bool buttonFlag);
 
     void setBuildingButtonsFlags(bool buttonFlag);

@@ -42,11 +42,13 @@ const float GameBalance::warriorTrainingTime = 5;
 
     std::string GameBalance::aboutString ( "Created by: Marcin Jozwik\n              Radoslaw Olenski\n      Year: 2016\n   Version: 1.0.1.0");
     std::string GameBalance::quoteString("\"Now, to disbelieve truth brings death,\nas to believe, life; and again,\nto believe the lie and to disbelieve\nthe truth hutries to destruction.\"\nThe Sacred Writings \nof Clement of Alexandria");
-    std::string GameBalance::historyString ("You are Hutron the Great.\nChief of tribe called Hutries.\nYour peaceful life has been disturbed\nby dragon attack. You village no longer exists.");
+    std::string GameBalance::historyString ("You are Hutron I the Great.\nChief of tribe called Hutries.\nYour peaceful life has been disturbed\nby dragon attack. You village no longer exists.");
     std::string GameBalance::historyString2 ("You escape with a few Hutries.\nBut you're not safe. \nGather your men! \nDragon will be back.");
     std::string GameBalance::historyString3 ("Just enter your castle and prepare to fight!\nTrain as many soldiers as possible!");
-    std::string GameBalance::howToPlayString ("Hello there!\nThis tutorial will guide you through basic mechanics, description of\nall types of buildings, hutries and resources and usage of them.\n\n\n\n\n\tMechanics\t\tBuildings\t\tHutries\t\tResources");
-    std::string GameBalance::howToPlayString2 ("To create new building use the Hammer Icon at upper right corner,\nchoose building from the list and empty field on a map. \nIf you have enough goods, building will start.\n\nTo create new workers and carriers use buttons connected with \nHutries Hall. This action requires food.\nIn case of warriors and archers use Barracks and gold.");
-    std::string GameBalance::howToPlayString3  ("Buildings: \nGoodsbuildings create goods: wood, stone, food, and gold. You need \nworker to start production and, when product is ready, carrier \nto transport it to Hutries Hall. Building must be near goods deposit.\n\nResidence creates space for more Hutries in your village.\n\nBarracks allows you to create soldiers : warriors and archers. ");
+    std::string GameBalance::howToPlayString ("Hello there!\n\nThis tutorial will guide you through basic mechanics, description of\nall types of buildings, hutries and resources and usage of them.");
+    std::string GameBalance::howToPlayMechanicsString ("Mechanics");
+    std::string GameBalance::howToPlayBuildingsString  ("\t\t\t\t\tBuildings:\nHutries Hall:\nA heart of the village. All available\ngoods are stored here. You can also train workers and carriers \nby clicking on the building.\nGoods Buildings:\ncreate goods: wood, stone, food, and gold. You need worker to \nstart production and, when product is ready, carrier to \ntransport it to Hutries Hall. They must be near goods deposit.\nBarracks:\n allows you to create soldiers : warriors and archers.\nResidence:\n creates space for more Hutries in your village.");
+    std::string GameBalance::howToPlayHutriesString ("Hutries");
+    std::string GameBalance::howToPlayResourcesString  ("Resources");
     std::string GameBalance::loseString("Your troops fought bravely, \nbut they could not withstand attack.\nThe Dragon was too powerful...\nThere is no hope for you.\nThe Hutries Tribe has gone.\nForever...");
     std::string GameBalance::winString ("When the Dragon attacked, you wasn't suprised. \nPerfectly trained troops \nproved that nobody should cross Hutries path.\n It,s a big day in Hutries history. \nA new beginning. ");

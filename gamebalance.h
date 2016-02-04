@@ -78,8 +78,10 @@ public:
 
     static std::string aboutString;
     static std::string howToPlayString;
-    static std::string howToPlayString2;
-    static std::string howToPlayString3;
+    static std::string howToPlayMechanicsString;
+    static std::string howToPlayBuildingsString;
+    static std::string howToPlayHutriesString;
+    static std::string howToPlayResourcesString;
     static std::string historyString;
     static std::string historyString2;
     static std::string historyString3;

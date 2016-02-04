@@ -17,14 +17,30 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         aboutText(1024 + 70, 510, 50, "About"),
         exitButton(mapWidth, mapHeight, hutrieApplication, width, 128, false),
         exitText(1024 + 90, mapHeight + 30, 50, "Exit"),
-        nextArrowButton(950, 650, hutrieApplication, Textures::arrow),
-        backArrowButton(50 , 650, hutrieApplication, Textures::backArrow),
+
     //------------------------HOW TO PLAY------------------------------//
 
-        mechanicsButton(220, 500, hutrieApplication, Textures::buildButton, 80, 80),
-        buildingsButton(400, 500, hutrieApplication, Textures::hutriesHall, 130, 130),
-        hutriesTypesButton(600, 500, hutrieApplication, Textures::allHutries, 110, 110),
-        resourcesButton(780, 520, hutrieApplication, Textures::gold, 80, 80),
+        mechanicsButton(160, 400, hutrieApplication, Textures::buildButton, 90, 90),
+        mechanicsText  (130, 540, 35, "Mechanics"),
+        buildingsButton(320, 340, hutrieApplication, Textures::hutriesHall, 195, 195),
+        buildingsText  (350, 540, 35, "Buildings"),
+        hutriesTypesButton(570, 400, hutrieApplication, Textures::allHutries, 130, 130),
+        hutriesTypesText  (590, 540, 35, "Hutries"),
+        resourcesButton(780, 420, hutrieApplication, Textures::gold, 100, 100),
+        resourcesText  (770, 540, 35, "Resources"),
+        nextArrowButton(950, 640, hutrieApplication, Textures::arrow),
+        backArrowButton(50 , 640, hutrieApplication, Textures::backArrow),
+        backToHelpButton(475,630,hutrieApplication,100,70, false),
+        backToHelpText  (480, 635, 50, "Back"),
+
+        helpHutriesHall(50, 10, hutrieApplication, Textures::hutriesHall, 200, 200),
+        helpSawmill(50, 210, hutrieApplication, Textures::sawmillBasic, 100, 100),
+        helpStonecutter(50 + 90, 210, hutrieApplication, Textures::stonecutterHutBasic, 100, 100),
+        helpFarm(50, 210 +90, hutrieApplication, Textures::farmGUI, 100, 100),
+        helpGoldmine(50 + 90, 210 + 90, hutrieApplication, Textures::goldmineGUI, 100,100),
+        helpBarracks(100, 400, hutrieApplication, Textures::barracksBasic, 110, 110),
+        helpResidence(100, 500, hutrieApplication, Textures::residenceBasic, 110, 110),
+
 
     //-------------------DIFFICULTY LEVEL-----------------------------//
 
@@ -166,6 +182,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
     buildButton.setActive(true);
     hutrieButton.setActive(true);
+    backToHelpButton.setActive(false);
 
     easyButton.button.setSize(sf::Vector2f(200,200));
     normalButton.button.setSize(sf::Vector2f(200,200));
