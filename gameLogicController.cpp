@@ -207,7 +207,7 @@ void GameLogicController::handleWorkerCreation()
         }
         if (hutriesHall->getTrainingCarrierCounter() > 0)
         {
-            guiController->errorAlreadyCreatingWorker();
+            guiController->errorAlreadyCreatingCarrier();
             return;
         }
         if (world->availableSlots == 0)
@@ -264,7 +264,7 @@ void GameLogicController::handleCarrierCreation()
         }
         if (hutriesHall->getTrainingWorkerCounter() > 0)
         {
-            guiController->errorAlreadyCreatingCarrier();
+            guiController->errorAlreadyCreatingWorker();
             return;
         }
         if (world->availableSlots == 0)

@@ -55,6 +55,8 @@ public:
 
     void displayMenu();
 
+    void displayHowToPlay();
+
     void displayPauseMenu();
 
     void prepareToDisplay();
@@ -222,6 +224,7 @@ private:
     bool firstIteration;
     bool displayHutriesHall;
     bool introFlag;
+    bool howToPlayFlag;
     bool readyForGame;
     bool lockArrows;
     unsigned int chosenHowToText;

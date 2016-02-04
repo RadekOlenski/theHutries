@@ -39,6 +39,13 @@ public:
     GUIText normalText;
     GUIText hardText;
 
+    //////////////////////////////////////HOW TO PLAY////////////////////////////////////////////
+
+    GUIButton mechanicsButton;
+    GUIButton buildingsButton;
+    GUIButton hutriesTypesButton;
+    GUIButton resourcesButton;
+
     /////////////////////////////// PAUSE MENU ///////////////////////////////////////////////////
 
     GUIText resumeText;

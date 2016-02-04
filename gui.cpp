@@ -19,6 +19,12 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         exitText(1024 + 90, mapHeight + 30, 50, "Exit"),
         nextArrowButton(950, 650, hutrieApplication, Textures::arrow),
         backArrowButton(50 , 650, hutrieApplication, Textures::backArrow),
+    //------------------------HOW TO PLAY------------------------------//
+
+        mechanicsButton(220, 500, hutrieApplication, Textures::buildButton, 80, 80),
+        buildingsButton(400, 500, hutrieApplication, Textures::hutriesHall, 130, 130),
+        hutriesTypesButton(600, 500, hutrieApplication, Textures::allHutries, 110, 110),
+        resourcesButton(780, 520, hutrieApplication, Textures::gold, 80, 80),
 
     //-------------------DIFFICULTY LEVEL-----------------------------//
 

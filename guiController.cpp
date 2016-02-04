@@ -92,6 +92,7 @@ void GUIController::handleMenuButtonsActions()
         lockArrows = true;
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
+        bigTitleText.text.setColor(sf::Color::Black);
         quote.text.setStyle(sf::Text::Italic);
         chooseDifficulty();
         Sound::click();
@@ -104,6 +105,7 @@ void GUIController::handleMenuButtonsActions()
         setDifficultyButtonsFlags(false);
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
+        bigTitleText.text.setColor(sf::Color::Black);
         gui->startingText.text.setPosition(160, 320);
         gui->startingText.text.setString(GameBalance::aboutString);
         Sound::click();
@@ -116,6 +118,7 @@ void GUIController::handleMenuButtonsActions()
         setDifficultyButtonsFlags(false);
         gui->nextArrowButton.setActive(false);
         gui->backArrowButton.setActive(false);
+        bigTitleText.text.setColor(sf::Color::Black);
         Sound::click();
         modelController->setExitWindow(true);
         return;
@@ -125,11 +128,17 @@ void GUIController::handleMenuButtonsActions()
         lockArrows = false;
         hideDifficultyTexts();
         setDifficultyButtonsFlags(false);
-        gui->startingText.text.setPosition(160, 320);
+        bigTitleThread.terminate();
+        bigTitleText.text.setColor(sf::Color::Transparent);
+        gui->startingText.text.setPosition(160, 100);
         gui->startingText.text.setCharacterSize(30);
         gui->startingText.text.setString(GameBalance::howToPlayString);
         chosenHowToText = 0;
         gui->nextArrowButton.setActive(true);
+        gui->buildingsButton.setActive(true);
+        gui->hutriesTypesButton.setActive(true);
+        gui->resourcesButton.setActive(true);
+        gui->mechanicsButton.setActive(true);
         updateHowToText();
         Sound::click();
         return;
@@ -478,7 +487,6 @@ void GUIController::drawGrid(std::vector<Unit*>::iterator it)
 
 void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
 {
-    std::cout << "Przed rysowaniem" << std::endl;
     for (it = world->units.begin(); it != world->units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie
         // - druga petla zeby ruszajacy sie Hutrie byli rysowani nad zielona kratka a nie pod
     {
@@ -511,7 +519,6 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
             else (*it)->getMapObject()->deactivateButtons();
         }
     }
-    std::cout << "Po rysowaniu" << std::endl;
 }
 
 void GUIController::createBackground()
@@ -675,6 +682,14 @@ void GUIController::displayGameOver(bool win, bool next)
     displayApplication();
 }
 
+void GUIController::displayHowToPlay()
+{
+   if ( gui->mechanicsButton.isActive() ) drawToApplication( gui->mechanicsButton.button );
+   if ( gui->buildingsButton.isActive() ) drawToApplication( gui->buildingsButton.button );
+   if ( gui->resourcesButton.isActive() ) drawToApplication( gui->resourcesButton.button );
+   if ( gui->hutriesTypesButton.isActive() ) drawToApplication( gui->hutriesTypesButton.button );
+}
+
 void GUIController::displayMenu()
 {
     setCursorPosition();
@@ -685,6 +700,7 @@ void GUIController::displayMenu()
     drawToApplication(titleText.text);
     drawToApplication(quote.text);
     drawToApplication(bigTitleText.text);
+    displayHowToPlay();
     if (displayHutriesHall) drawHutriesHall();
     if (!introFlag) drawToApplication(cursor);
     displayApplication();
@@ -1003,6 +1019,14 @@ void GUIController::highlightTargetButton()
             gui->howToPlayText.highlight();
         else gui->howToPlayText.endHighlight();
 
+        if (gui->backArrowButton.checkBounds())
+            gui->backArrowButton.button.setFillColor(sf::Color(0,0,0,200));
+        else gui->backArrowButton.button.setFillColor(sf::Color::White);
+
+        if (gui->nextArrowButton.checkBounds())
+            gui->nextArrowButton.button.setFillColor(sf::Color(0,0,0,200));
+        else gui->nextArrowButton.button.setFillColor(sf::Color::White);
+
         if (gui->aboutButton.checkBounds())
             gui->aboutText.highlight();
         else gui->aboutText.endHighlight();
@@ -1133,7 +1157,7 @@ void GUIController::errorNoCarriers()
     Sound::error();
     errorsVisiblityClock.restart();
     gui->errorInfo.text.setString(
-            "Error: No available carriers!\nEveryone is busy! \nCreate carrier in HutriesHall \nor build residence");
+            "Error: \nNo available carriers!\nCreate carrier in HutriesHall");
 }
 
 void GUIController::errorNoSlots()
@@ -1148,7 +1172,7 @@ void GUIController::errorNoWorkers()
     Sound::error();
     errorsVisiblityClock.restart();
     gui->errorInfo.text.setString(
-            "Error: No available workers! \nEveryone is busy! \nCreate worker in HutriesHall\nor build residence");
+            "Error: \nNo available workers! \nCreate worker in HutriesHall");
 }
 
 
