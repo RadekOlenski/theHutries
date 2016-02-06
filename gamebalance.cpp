@@ -33,8 +33,8 @@ const float GameBalance::goldmineConstructionTime = 5;
 
 //////////////////////////////////  TRAINING TIME    //////////////////////////////////////
 
-const float GameBalance::carrierTrainingTime = 3;
-const float GameBalance::workerTrainingTime = 5;
+const float GameBalance::carrierTrainingTime = 0.2;//3;
+const float GameBalance::workerTrainingTime = 0.2;//5;
 const float GameBalance::archerTrainingTime = 3;
 const float GameBalance::warriorTrainingTime = 5;
 

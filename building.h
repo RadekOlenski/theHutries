@@ -10,6 +10,7 @@
 #include "carrier.h"
 #include "textures.h"
 #include "goods.h"
+#include "worker.h"
 
 class Carrier;
 
@@ -71,7 +72,7 @@ public:
 
     virtual void updateTrainingClock(float trainingTime);
 
-    void setConstructedBuildingTexture();
+    /*virtual*/ void setConstructedBuildingTexture();
 
     virtual void setConstructedBuildingSound() { };
 
@@ -93,6 +94,14 @@ public:
 
     void restartConstructionClock();
 
+    void addWorker(Worker* worker);
+
+    Worker* getWorker();
+
+    int getWorkersSize();
+
+    bool checkWorkersWorkingFlag ();
+
 protected:
 
     int capacity;
@@ -102,6 +111,7 @@ protected:
     bool buildingConstructed;
 
     std::vector<Carrier*> myCarriers;
+    std::vector<Worker*> myWorkers;
 
     int checkHutries();
     bool needWorker;
@@ -123,8 +133,11 @@ protected:
 
     GUIButton bringWoodButton;
     GUIButton bringStoneButton;
+    GUIButton constructButton;
     GUIText bringWoodText;
     GUIText bringStoneText;
+    GUIText constructText;
+
 
     sf::Clock constructionClock;
     bool needContructionWood;

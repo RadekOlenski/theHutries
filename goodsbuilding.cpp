@@ -48,29 +48,12 @@ void GoodsBuilding::buttonAction()
     }
 }
 
-void GoodsBuilding::addWorker(Worker* worker)
-{
-    myWorkers.push_back(worker);
-}
-
-Worker* GoodsBuilding::getWorker()
-{
-    Worker* tempWorker = myWorkers.back();
-    myWorkers.pop_back();
-    return tempWorker;
-}
-
-int GoodsBuilding::getWorkersSize()
-{
-    return myWorkers.size();
-}
-
 void GoodsBuilding::checkProduction()
 {
-    std::vector<Worker*>::iterator itw;
-    for (itw = myWorkers.begin(); itw != myWorkers.end(); ++itw)
+//    std::vector<Worker*>::iterator itw;
+    for ( auto itw = myWorkers.begin(); itw != myWorkers.end(); ++itw)
     {
-        if ((*itw)->getProductionTime() > GameBalance::productCraftingTime
+        if ((*itw)->getWorkingFlag() && (*itw)->getProductionTime() > GameBalance::productCraftingTime
             && productsCounter() < productsCapacity)
         {
             createProduct();
@@ -85,14 +68,18 @@ void GoodsBuilding::checkProduction()
 
 void GoodsBuilding::changeBuildingSprite()
 {
-    if (myProducts.getWood() > 0
+    if (buildingConstructed)
+    {
+       if (myProducts.getWood() > 0
         || myProducts.getFood() > 0
         || myProducts.getGold() > 0
         || myProducts.getStone() > 0)
-    {
-        sprite.setTexture(textureWithProduct);
+        {
+            sprite.setTexture(textureWithProduct);
+        }
+        else sprite.setTexture(textureBasic);
     }
-    else sprite.setTexture(textureBasic);
+
 }
 
 void GoodsBuilding::giveProduct(Goods* luggage)

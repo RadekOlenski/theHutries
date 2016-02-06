@@ -9,7 +9,10 @@ Building::Building(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
           bringWoodButton(1024 + 40, 500, hutrieApplication, 180, 45, false),
           bringStoneButton(1024 + 40, 560, hutrieApplication, 150, 45, false),
           bringWoodText(1024 + 50, 500, 30, "Bring wood"),
-          bringStoneText(1024 + 50, 560, 30, "Bring stone")
+          bringStoneText(1024 + 50, 560, 30, "Bring stone"),
+          constructButton(1024 + 50, 510, hutrieApplication, 150, 60, false),
+          constructText(1024 + 80, 510, 45, "Build!")
+
 {
     sound.openFromFile(Sound::construction);
     sound.setVolume(50);
@@ -17,6 +20,8 @@ Building::Building(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
     needWorker = false;
     needContructionStone = false;
     needContructionWood = false;
+    bringStoneButton.setActive(true);
+    bringWoodButton.setActive(true);
 }
 
 void Building::placeOnMap()
@@ -115,12 +120,22 @@ void Building::showConstructionButtons()
 {
     if (!buildingConstructed)
     {
-        bringStoneButton.setActive(true);
-        bringWoodButton.setActive(true);
-        hutrieApplication->draw(bringStoneButton.button);
-        hutrieApplication->draw(bringWoodButton.button);
-        hutrieApplication->draw(bringWoodText.text);
-        hutrieApplication->draw(bringStoneText.text);
+//        bringStoneButton.setActive(true);
+//        bringWoodButton.setActive(true);
+        if (bringStoneButton.isActive() && bringWoodButton.isActive())
+        {
+            hutrieApplication->draw(bringStoneButton.button);
+            hutrieApplication->draw(bringWoodButton.button);
+            hutrieApplication->draw(bringWoodText.text);
+            hutrieApplication->draw(bringStoneText.text);
+        }
+        else
+        {
+            constructButton.setActive(true);
+            hutrieApplication->draw(constructButton.button);
+            hutrieApplication->draw(constructText.text);
+        }
+
     }
 }
 
@@ -142,6 +157,11 @@ void Building::constructionButtonAction()
           std::cout << "Need Wood!" << std::endl;
           needContructionWood = true;
     }
+    if (constructButton.checkBounds() && constructButton.isActive())
+    {
+        std::cout << "I need worker!!!!";
+        needWorker = true;
+    }
 }
 
 bool Building::takeGoodsForConstruction(Goods* luggage)
@@ -157,6 +177,35 @@ bool Building::takeGoodsForConstruction(Goods* luggage)
 void Building::restartConstructionClock()
 {
     constructionClock.restart();
+}
+
+void Building::addWorker(Worker* worker)
+{
+    myWorkers.push_back(worker);
+}
+
+Worker* Building::getWorker()
+{
+    Worker* tempWorker = myWorkers.back();
+    myWorkers.pop_back();
+    return tempWorker;
+}
+
+int Building::getWorkersSize()
+{
+    return myWorkers.size();
+}
+
+bool Building::checkWorkersWorkingFlag()
+{
+    if ( myWorkers.size() > 0 )
+    {
+        for( auto it = myWorkers.begin(); it != myWorkers.end(); ++it )
+        {
+            if ((*it)->getWorkingFlag()) return true;
+        }
+    }
+    return false;
 }
 
 

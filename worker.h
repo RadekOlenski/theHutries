@@ -27,9 +27,12 @@ public:
     void resetProductionTime();
 
     sf::Clock productionClock;
+
+    bool getWorkingFlag() {return workingFlag;}
 private:
     float productionTime;
     float actualProductionTime;
+    bool workingFlag;
 };
 
 #endif // WORKER_H

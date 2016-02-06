@@ -71,7 +71,7 @@ public:
 
     void needWorker(std::vector<Building*>::iterator it);
 
-    void callWorker(std::vector<Worker*>::iterator itc, GoodsBuilding* gBuilding);
+    void callWorker(std::vector<Worker*>::iterator itc, std::vector<Building*>::iterator it);
 
     void handleCarrierReturn();
 

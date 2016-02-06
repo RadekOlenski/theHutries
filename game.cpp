@@ -7,6 +7,7 @@
 #include "game.h"
 #include "sound.h"
 #include "icon.h"
+#include "interactionMode.h"
 
 //=================================================================================
 //                              CONSTRUCTOR
@@ -73,10 +74,7 @@ Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applic
 
 void Game::play()
 {
-    gameTime = GameBalance::gameTime;
-    changeBackgroundMusic(Sound::musicPath);
-    deadline.restart();
-    modelController->setChosenInteractionMode(3);
+    prepareToPlay();
     while (hutrieApplication->isOpen() &&
            deadline.getElapsedTime().asSeconds() < gameTime)
     {
@@ -88,6 +86,18 @@ void Game::play()
     bool result = gameLogicController->getResult() >= GameBalance::winResult;;
     gameOver(result);
     music.stop();
+}
+
+void Game::prepareToPlay()
+{
+    gameTime = GameBalance::gameTime;
+    changeBackgroundMusic(Sound::musicPath);
+    deadline.restart();
+    modelController->setChosenInteractionMode(InteractionMode::NEUTRALMODE);
+    guiController->setVisibleGridFlag(!guiController->getVisibleGridFlag());
+    guiController->setGridOutlineColor(guiController->getVisibleGridFlag());
+    guiController->setVisibleGridFlag(!guiController->getVisibleGridFlag());
+    guiController->setGridOutlineColor(guiController->getVisibleGridFlag());
 }
 
 void Game::handleActions()

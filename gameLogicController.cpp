@@ -74,7 +74,7 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
             break;
 
         case BuildingType::RESIDENCE:
-            world->increaseAvailableSlots(GameBalance::hutrieSlotsAddition);
+//            world->increaseAvailableSlots(GameBalance::hutrieSlotsAddition);
             world->buildings.push_back(new Residence(hutrieApplication, usedUnits, &(world->availableSlots)));
             Sound::ting();
             break;
@@ -97,27 +97,31 @@ void GameLogicController::createBuilding(std::vector<Unit*> usedUnits)
 
 void GameLogicController::constructBuilding()
 {
-    std::vector<Building*>::iterator it;
-    for (it = world->buildings.begin() + 1; it != world->buildings.end(); ++it)
+//    std::vector<Building*>::iterator it;
+    for ( auto it = world->buildings.begin() + 1; it != world->buildings.end(); ++it)
     {
         if (!(*it)->getBuildingConstructedFlag() && (*it)->constructionGoods == (*it)->getRequiredForConstructionGoods() )
         {
-            if ((*it)->getElapsedConstructionTime() >= (*it)->getConstructionTime())
+            (*it)->deactivateConstructionButtons();
+            if ( (*it)->checkWorkersWorkingFlag() )
             {
-                (*it)->setBuildingConstructedFlag(true);
-                (*it)->setConstructedBuildingTexture();
-                (*it)->setDescriptionTexture();
-                (*it)->setConstructedBuildingSound();
-                (*it)->updateStatus();
-                (*it)->deactivateConstructionButtons();
-                std:: cout << "Buduje!" << std::endl;
+                if ((*it)->getElapsedConstructionTime() >= (*it)->getConstructionTime())
+                {
+                    (*it)->setBuildingConstructedFlag(true);
+                    (*it)->setConstructedBuildingTexture();
+                    (*it)->setDescriptionTexture();
+                    (*it)->setConstructedBuildingSound();
+                    (*it)->updateStatus();
+                    std:: cout << "Buduje!" << std::endl;
+                }
+                else
+                {
+                    (*it)->updateConstructionClock();
+                    (*it)->updateStatus();
+                    std::cout << "Budowa trwa" << std::endl;
+                }
             }
-            else
-            {
-                (*it)->updateConstructionClock();
-                (*it)->updateStatus();
-                std::cout << "Budowa trwa" << std::endl;
-            }
+            else  (*it)->restartConstructionClock();
         }
     }
 }
@@ -624,12 +628,11 @@ void GameLogicController::callCarrier(std::vector<Carrier*>::iterator itc, std::
 
 void GameLogicController::needWorker(std::vector<Building*>::iterator it)
 {
-    GoodsBuilding* gBuilding = dynamic_cast<GoodsBuilding*>( *it );
-    if (gBuilding->getWorkersSize() <
-        (*it)->getCapacity())       //jesli aktualna ilosc w budynku mniejsza od pojemnosci
+//    GoodsBuilding* gBuilding = dynamic_cast<GoodsBuilding*>( *it );
+    if ((*it)->getWorkersSize() < (*it)->getCapacity())       //jesli aktualna ilosc w budynku mniejsza od pojemnosci
     {
         std::vector<Worker*>::iterator itc;
-        callWorker(itc, gBuilding);
+        callWorker(itc, it);
     }
     else
     {
@@ -638,7 +641,7 @@ void GameLogicController::needWorker(std::vector<Building*>::iterator it)
     (*it)->setNeedWorker(false);
 }
 
-void GameLogicController::callWorker(std::vector<Worker*>::iterator itc, GoodsBuilding* gBuilding)
+void GameLogicController::callWorker(std::vector<Worker*>::iterator itc, std::vector<Building*>::iterator it)
 {
     for (itc = world->workers.begin(); itc != world->workers.end(); ++itc)
     {
@@ -647,13 +650,13 @@ void GameLogicController::callWorker(std::vector<Worker*>::iterator itc, GoodsBu
             (*itc)->setBusy(true);
             std::cout << "Nie jestem zajety! Ruszam do pracy!" << std::endl;
             unsigned int workerIndex = (unsigned int) std::distance(world->workers.begin(), itc);
-            world->workers.at(workerIndex)->reconnectUnits(gBuilding->getObjectUnits());
+            world->workers.at(workerIndex)->reconnectUnits((*it)->getObjectUnits());
             world->workers.at(
                     workerIndex)->hutrieThread.launch();             //uruchamia watek w ktorym porusza sie Hutrie
             //world->units.at(unitIndex)->addHutrie(world->workers.at(workerIndex));
             (*itc)->productionClock.restart();
-            gBuilding->addWorker(world->workers.at(workerIndex));
-            gBuilding->updateStatus();
+            (*it)->addWorker(world->workers.at(workerIndex));
+            (*it)->updateStatus();
             break;
         }
     }
@@ -685,14 +688,11 @@ void GameLogicController::handleCarrierReturn()
             }
             else
             {
-                std::cout << "Przed ifem" << std::endl;
                 if ( !((*itc)->getBuilding()->takeGoodsForConstruction(&((*itc)->myLuggage))) )
                 {
                     guiController->errorTooMuchGoods();
                 }
-                (*itc)->getBuilding()->restartConstructionClock();
                 (*itc)->getBuilding()->updateStatus();
-                std::cout << "Po ifie" << std::endl;
             }
             std::cout << "Czas wracac do domu" << std::endl;
             (*itc)->getBuilding()->removeCarrier();

@@ -121,9 +121,6 @@ void GUIController::handleMenuButtonsActions()
         setDifficultyButtonsFlags(false);
         bigTitleThread.terminate();
         bigTitleText.text.setColor(sf::Color::Transparent);
-        gui->startingText.text.setPosition(120, 130);
-        gui->startingText.text.setCharacterSize(30);
-        gui->startingText.text.setString(GameBalance::howToPlayString);
         chosenHowToText = 1;
         gui->nextArrowButton.setActive(true);
         updateHowToText();
@@ -260,6 +257,8 @@ void GUIController::updateHowToText()
     switch (chosenHowToText)
     {
         case 1:
+            gui->startingText.text.setPosition(120, 130);
+            gui->startingText.text.setCharacterSize(30);
             gui->startingText.text.setString(GameBalance::howToPlayString);
             activateHowToPlayButtons(true);
             break;
@@ -512,8 +511,8 @@ void GUIController::setGridOutlineColor(bool outlineColorFlag)
 {
     sf::Color color(0, 255, 0, 60);
     if (!outlineColorFlag) color = sf::Color::Transparent;
-    std::vector<Unit*>::iterator it;
-    for (it = world->units.begin(); it != world->units.end(); ++it)
+   // std::vector<Unit*>::iterator it;
+    for (auto it = world->units.begin(); it != world->units.end(); ++it)
     {
         (*it)->field.setOutlineColor(color);
     }

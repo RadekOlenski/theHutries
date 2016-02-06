@@ -29,6 +29,8 @@ public:
 
     void setConstructedBuildingSound();
 
+//    void setConstructedBuildingTexture();
+
 private:
     int* worldSlots;
 };

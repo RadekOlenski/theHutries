@@ -54,6 +54,8 @@ private:
 
     /////////////FUNCTIONS////////////////////////
 
+    void prepareToPlay();
+
     void handleActions();
 
     void drawApplication();

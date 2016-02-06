@@ -12,6 +12,7 @@ Worker::Worker(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFrom
     sprite.setTexture(transTexture);
     productionTime = 0;
     actualProductionTime = 0;
+    workingFlag = false;
 }
 
 void Worker::moveHutrie()
@@ -25,6 +26,7 @@ void Worker::moveHutrie()
     toDirection(objectUnits.at(2)->field.getPosition().x, objectUnits.at(2)->field.getPosition().y);
     sprite.setTexture(transTexture);
     productionClock.restart();
+    workingFlag = true;
 }
 
 float Worker::getProductionTime()

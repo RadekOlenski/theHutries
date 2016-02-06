@@ -11,8 +11,10 @@ Residence::Residence(sf::RenderWindow* hutrieApplication, std::vector<Unit*> uni
     buildingConstructed = false;
     leftConstructionTime = 0;
     doorIndex = 3;
+    capacity = 1;
     constructionTime = GameBalance::residenceConstructionTime;
-        requiredForConstructionGoods = GameBalance::residenceCost;
+    requiredForConstructionGoods = GameBalance::residenceCost;
+    constructButton.setActive(false);
 }
 
 void Residence::updateStatus()

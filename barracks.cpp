@@ -38,6 +38,8 @@ Barracks::Barracks(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
     setSoldiersCosts();
     requiredForConstructionGoods = GameBalance::barracksCost;
     doorIndex = 3;
+    capacity = 1;
+    constructButton.setActive(false);
 }
 
 void Barracks::updateStatus()
