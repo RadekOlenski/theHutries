@@ -107,6 +107,7 @@ void GameLogicController::constructBuilding()
             {
                 if ((*it)->getElapsedConstructionTime() >= (*it)->getConstructionTime())
                 {
+                    if ((*it)->getRequiredForConstructionGoods()== GameBalance::residenceCost) world->increaseAvailableSlots(GameBalance::hutrieSlotsAddition);
                     (*it)->setBuildingConstructedFlag(true);
                     (*it)->setConstructedBuildingTexture();
                     (*it)->setDescriptionTexture();

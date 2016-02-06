@@ -98,6 +98,8 @@ public:
 
     void launchQuoteThread();
 
+    void terminateQuoteThread();
+
     void displayGameOver(bool win,  bool next);
 
     //------------------------------------------ OTHER ----------------------------------//

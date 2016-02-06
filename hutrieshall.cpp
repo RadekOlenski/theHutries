@@ -50,6 +50,7 @@ HutriesHall::HutriesHall(sf::RenderWindow* hutrieApplication, World* world, std:
     getHutriesCosts();
 
     deactivateConstructionButtons();
+    constructButton.setActive(false);
 }
 
 void HutriesHall::updateStatus()

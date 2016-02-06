@@ -92,12 +92,13 @@ void Game::prepareToPlay()
 {
     gameTime = GameBalance::gameTime;
     changeBackgroundMusic(Sound::musicPath);
-    deadline.restart();
     modelController->setChosenInteractionMode(InteractionMode::NEUTRALMODE);
     guiController->setVisibleGridFlag(!guiController->getVisibleGridFlag());
     guiController->setGridOutlineColor(guiController->getVisibleGridFlag());
     guiController->setVisibleGridFlag(!guiController->getVisibleGridFlag());
     guiController->setGridOutlineColor(guiController->getVisibleGridFlag());
+    guiController->terminateQuoteThread();
+    deadline.restart();
 }
 
 void Game::handleActions()

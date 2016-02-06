@@ -687,6 +687,11 @@ void GUIController::launchQuoteThread()
     quoteThread.launch();
 }
 
+void GUIController::terminateQuoteThread()
+{
+    quoteThread.terminate();
+}
+
 void GUIController::setEndingText(bool win, bool next)
 {
     if (next)
