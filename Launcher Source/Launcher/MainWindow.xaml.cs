@@ -30,20 +30,17 @@ namespace Launcher
 
         private void resolution_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            chosenResolution = (resolution.SelectedItem as ComboBoxItem).Content.ToString();
-            //MessageBox.Show(chosenResolution);  
+            chosenResolution = (resolution.SelectedItem as ComboBoxItem).Content.ToString(); 
         }
 
         private void fullscreen_Checked(object sender, RoutedEventArgs e)
         {
             chosenMode = "fullscreen";
-            //MessageBox.Show(chosenMode);
         }
 
         private void fullscreen_Unchecked(object sender, RoutedEventArgs e)
         {
             chosenMode = "windowed";
-            //MessageBox.Show(chosenMode);
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
@@ -56,7 +53,6 @@ namespace Launcher
             file.Close();
             Process theHutries = new Process();
             theHutries.StartInfo.FileName = "theHutries.exe";
-            //theHutries.StartInfo.Arguments = "mytextfile.txt";
             theHutries.Start();
 
         }

@@ -90,6 +90,9 @@ public:
     void setPauseButtonsFlags(bool buttonFlag);
 
     void setExitButtonsFlags(bool buttonFlag);
+
+    void setHelpBuildingsFlags (bool buttonFlag);
+
     //------------------------------------- LAUNCH TEXT THREADS --------------------------//
 
     void launchTitleThread();

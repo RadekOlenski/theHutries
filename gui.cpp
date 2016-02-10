@@ -20,6 +20,8 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
     //------------------------HOW TO PLAY------------------------------//
 
+        helpTitleText  (400, 50, 40, ""),
+
         mechanicsButton(160, 400, hutrieApplication, Textures::buildButton, 90, 90),
         mechanicsText  (130, 540, 35, "Mechanics"),
         buildingsButton(320, 340, hutrieApplication, Textures::hutriesHall, 195, 195),
@@ -33,13 +35,25 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         backToHelpButton(475,630,hutrieApplication,100,70, false),
         backToHelpText  (480, 635, 50, "Back"),
 
-        helpHutriesHall(50, 10, hutrieApplication, Textures::hutriesHall, 200, 200),
-        helpSawmill(50, 210, hutrieApplication, Textures::sawmillBasic, 100, 100),
-        helpStonecutter(50 + 90, 210, hutrieApplication, Textures::stonecutterHutBasic, 100, 100),
-        helpFarm(50, 210 +90, hutrieApplication, Textures::farmGUI, 100, 100),
-        helpGoldmine(50 + 90, 210 + 90, hutrieApplication, Textures::goldmineGUI, 100,100),
-        helpBarracks(100, 400, hutrieApplication, Textures::barracksBasic, 110, 110),
-        helpResidence(100, 500, hutrieApplication, Textures::residenceBasic, 110, 110),
+        helpHutriesHall(150, 160, hutrieApplication, Textures::hutriesHall, 200, 200),
+        helpHutriesHallText(160, 360, 35, "Hutries Hall"),
+        helpBarracks(430, 210, hutrieApplication, Textures::barracksBasic, 140, 140),
+        helpBarracksText(440, 360, 35, "Barracks"),
+        helpResidence(680, 210, hutrieApplication, Textures::residenceBasic, 140, 140),
+        helpResidenceText(690, 360, 35, "Residence"),
+        helpSawmill(50, 430, hutrieApplication, Textures::sawmillBasic, 130, 130),
+        helpSawmillText(60, 560, 35, "Sawmill"),
+        helpStonecutter(300, 430, hutrieApplication, Textures::stonecutterHutBasic, 130, 130),
+        helpStonecutterText(270, 560, 35, "Stonecutter Hut"),
+        helpFarm(550, 430, hutrieApplication, Textures::farmGUI, 130, 130),
+        helpFarmText(570, 560, 35, "Farm"),
+        helpGoldmine(800, 430, hutrieApplication, Textures::goldmineGUI, 130,130),
+        helpGoldmineText(810, 560, 35, "Goldmine"),
+
+        helpGold (150,150 + 35, hutrieApplication, Textures::gold, 100, 100),
+        helpWood (100,310, hutrieApplication, Textures::wood, 100, 100),
+        helpStone (200,310, hutrieApplication, Textures::stone, 100, 100),
+        helpFood (150,440, hutrieApplication, Textures::food, 100, 100),
 
 
     //-------------------DIFFICULTY LEVEL-----------------------------//

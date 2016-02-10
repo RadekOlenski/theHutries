@@ -41,6 +41,8 @@ public:
 
     //////////////////////////////////////HOW TO PLAY////////////////////////////////////////////
 
+    GUIText helpTitleText;
+
     GUIButton mechanicsButton;
     GUIButton buildingsButton;
     GUIButton hutriesTypesButton;
@@ -49,6 +51,26 @@ public:
     GUIText buildingsText;
     GUIText hutriesTypesText;
     GUIText resourcesText;
+
+    GUIButton helpSawmill;
+    GUIButton helpStonecutter;
+    GUIButton helpFarm;
+    GUIButton helpGoldmine;
+    GUIButton helpBarracks;
+    GUIButton helpResidence;
+    GUIButton helpHutriesHall;
+    GUIText helpHutriesHallText;
+    GUIText helpBarracksText;
+    GUIText helpResidenceText;
+    GUIText helpSawmillText;
+    GUIText helpStonecutterText;
+    GUIText helpFarmText;
+    GUIText helpGoldmineText;
+
+    GUIButton helpGold;
+    GUIButton helpWood;
+    GUIButton helpStone;
+    GUIButton helpFood;
 
     /////////////////////////////// PAUSE MENU ///////////////////////////////////////////////////
 
@@ -62,14 +84,6 @@ public:
     GUIButton mainMenuButton;
     GUIButton backToHelpButton;
     GUIText backToHelpText;
-
-    GUIButton helpSawmill;
-    GUIButton helpStonecutter;
-    GUIButton helpFarm;
-    GUIButton helpGoldmine;
-    GUIButton helpBarracks;
-    GUIButton helpResidence;
-    GUIButton helpHutriesHall;
 
     /////////////////////////////// EXIT WINDOW ///////////////////////////////////////////////////
 

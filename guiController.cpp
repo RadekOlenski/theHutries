@@ -157,11 +157,13 @@ void GUIController::turnOffHelp()
 {
     chosenHowToText = 0;
     activateHowToPlayButtons(false);
+    setHelpBuildingsFlags(false);
     lockArrows = true;
     gui->nextArrowButton.setActive(false);
     gui->backArrowButton.setActive(false);
     gui->backToHelpButton.setActive(false);
     bigTitleText.text.setColor(sf::Color::Black);
+    gui->helpTitleText.text.setString ("");
 }
 
 void GUIController::handleHowToPlayButtonsActions()
@@ -257,27 +259,45 @@ void GUIController::updateHowToText()
     switch (chosenHowToText)
     {
         case 1:
+            gui->helpTitleText.text.setString ("");
+            gui->helpTitleText.text.setPosition(400, 50);
             gui->startingText.text.setPosition(120, 130);
             gui->startingText.text.setCharacterSize(30);
             gui->startingText.text.setString(GameBalance::howToPlayString);
             activateHowToPlayButtons(true);
+            setHelpBuildingsFlags(false);
             break;
         case 2:
+            gui->helpTitleText.text.setString ("Mechanics:");
+            gui->helpTitleText.text.setPosition(400, 50);
+            gui->startingText.text.setPosition(120, 130);
             gui->startingText.text.setString(GameBalance::howToPlayMechanicsString);
             activateHowToPlayButtons(false);
+            setHelpBuildingsFlags(false);
             break;
         case 3:
-            gui->startingText.text.setPosition(300, 20);
+            gui->helpTitleText.text.setString ("Buildings:");
+            gui->helpTitleText.text.setPosition(400, 50);
+            gui->startingText.text.setPosition(250, 110);
             gui->startingText.text.setString(GameBalance::howToPlayBuildingsString);
             activateHowToPlayButtons(false);
+            setHelpBuildingsFlags(true);
             break;
         case 4:
+            gui->helpTitleText.text.setString ("Hutries:");
+            gui->helpTitleText.text.setPosition(400, 50);
+            gui->startingText.text.setPosition(120, 130);
             gui->startingText.text.setString(GameBalance::howToPlayHutriesString);
             activateHowToPlayButtons(false);
+            setHelpBuildingsFlags(false);
             break;
         case 5:
+            gui->helpTitleText.text.setString ("Resources:");
+            gui->helpTitleText.text.setPosition(130, 45);
+            gui->startingText.text.setPosition(350, 130);
             gui->startingText.text.setString(GameBalance::howToPlayResourcesString);
             activateHowToPlayButtons(false);
+            setHelpBuildingsFlags(false);
             break;
 
     }
@@ -447,6 +467,17 @@ void GUIController::setPauseButtonsFlags(bool buttonFlag)
     gui->settingsButton.setActive(buttonFlag);
     gui->helpButton.setActive(buttonFlag);
     gui->mainMenuButton.setActive(buttonFlag);
+}
+
+void GUIController::setHelpBuildingsFlags (bool buttonFlag)
+{
+    gui->helpHutriesHall.setActive(buttonFlag);
+    gui->helpBarracks.setActive(buttonFlag);
+    gui->helpResidence.setActive(buttonFlag);
+    gui->helpSawmill.setActive(buttonFlag);
+    gui->helpStonecutter.setActive(buttonFlag);
+    gui->helpFarm.setActive(buttonFlag);
+    gui->helpGoldmine.setActive(buttonFlag);
 }
 
 void GUIController::setExitButtonsFlags(bool buttonFlag)
@@ -743,6 +774,8 @@ void GUIController::displayGameOver(bool win, bool next)
 
 void GUIController::displayHowToPlay()
 {
+   drawToApplication( gui->helpTitleText.text );
+
    if  (gui->backToHelpButton.isActive())
    {
        drawToApplication( gui->backToHelpButton.button );
@@ -769,7 +802,21 @@ void GUIController::displayHowToPlay()
        drawToApplication( gui->helpBarracks.button );
        drawToApplication( gui->helpResidence.button );
        drawToApplication( gui->helpHutriesHall.button );
+       drawToApplication( gui->helpHutriesHallText.text );
+       drawToApplication( gui->helpBarracksText.text );
+       drawToApplication( gui->helpResidenceText.text );
+       drawToApplication( gui->helpSawmillText.text );
+       drawToApplication( gui->helpStonecutterText.text );
+       drawToApplication( gui->helpFarmText.text );
+       drawToApplication( gui->helpGoldmineText.text );
        return;
+   }
+   if   (chosenHowToText == 5)
+   {
+       drawToApplication( gui->helpGold.button);
+       drawToApplication( gui->helpWood.button);
+       drawToApplication( gui->helpStone.button);
+       drawToApplication( gui->helpFood.button);
    }
 
 
@@ -785,7 +832,7 @@ void GUIController::displayMenu()
     drawToApplication(titleText.text);
     drawToApplication(quote.text);
     drawToApplication(bigTitleText.text);
-    displayHowToPlay();
+    if (howToPlayFlag) displayHowToPlay();
     if (displayHutriesHall) drawHutriesHall();
     if (!introFlag) drawToApplication(cursor);
     displayApplication();
@@ -1096,6 +1143,69 @@ void GUIController::highlightTargetButton()
 
     if (modelController->getChosenInteractionMode() == InteractionMode::MENUMODE)
     {
+        if (howToPlayFlag)
+        {
+            if (gui->backArrowButton.checkBounds())
+                gui->backArrowButton.button.setFillColor(sf::Color(0,0,0,200));
+            else gui->backArrowButton.button.setFillColor(sf::Color::White);
+
+            if (gui->nextArrowButton.checkBounds())
+                gui->nextArrowButton.button.setFillColor(sf::Color(0,0,0,200));
+            else gui->nextArrowButton.button.setFillColor(sf::Color::White);
+
+            if (gui->mechanicsButton.checkBounds())
+                gui->mechanicsText.highlight();
+            else gui->mechanicsText.endHighlight();
+
+            if (gui->buildingsButton.checkBounds())
+                gui->buildingsText.highlight();
+            else gui->buildingsText.endHighlight();
+
+            if (gui->hutriesTypesButton.checkBounds())
+                gui->hutriesTypesText.highlight();
+            else gui->hutriesTypesText.endHighlight();
+
+            if (gui->resourcesButton.checkBounds())
+                gui->resourcesText.highlight();
+            else gui->resourcesText.endHighlight();
+
+            if (gui->backToHelpButton.checkBounds())
+                gui->backToHelpText.highlight();
+            else gui->backToHelpText.endHighlight();
+
+            if (chosenHowToText == 3)
+            {
+                if (gui->helpHutriesHall.checkBounds())
+                    gui->helpHutriesHallText.highlight();
+                else gui->helpHutriesHallText.endHighlight();
+
+                if (gui->helpBarracks.checkBounds())
+                    gui->helpBarracksText.highlight();
+                else gui->helpBarracksText.endHighlight();
+
+                if (gui->helpResidence.checkBounds())
+                    gui->helpResidenceText.highlight();
+                else gui->helpResidenceText.endHighlight();
+
+                if (gui->helpSawmill.checkBounds())
+                    gui->helpSawmillText.highlight();
+                else gui->helpSawmillText.endHighlight();
+
+                if (gui->helpStonecutter.checkBounds())
+                    gui->helpStonecutterText.highlight();
+                else gui->helpStonecutterText.endHighlight();
+
+                if (gui->helpFarm.checkBounds())
+                    gui->helpFarmText.highlight();
+                else gui->helpFarmText.endHighlight();
+
+                 if (gui->helpGoldmine.checkBounds())
+                    gui->helpGoldmineText.highlight();
+                else gui->helpGoldmineText.endHighlight();
+
+            }
+        }
+
         if (gui->playButton.checkBounds())
             gui->playText.highlight();
         else gui->playText.endHighlight();
@@ -1103,34 +1213,6 @@ void GUIController::highlightTargetButton()
         if (gui->howToPlayButton.checkBounds())
             gui->howToPlayText.highlight();
         else gui->howToPlayText.endHighlight();
-
-        if (gui->backArrowButton.checkBounds())
-            gui->backArrowButton.button.setFillColor(sf::Color(0,0,0,200));
-        else gui->backArrowButton.button.setFillColor(sf::Color::White);
-
-        if (gui->nextArrowButton.checkBounds())
-            gui->nextArrowButton.button.setFillColor(sf::Color(0,0,0,200));
-        else gui->nextArrowButton.button.setFillColor(sf::Color::White);
-
-        if (gui->mechanicsButton.checkBounds())
-            gui->mechanicsText.highlight();
-        else gui->mechanicsText.endHighlight();
-
-        if (gui->buildingsButton.checkBounds())
-            gui->buildingsText.highlight();
-        else gui->buildingsText.endHighlight();
-
-        if (gui->hutriesTypesButton.checkBounds())
-            gui->hutriesTypesText.highlight();
-        else gui->hutriesTypesText.endHighlight();
-
-        if (gui->resourcesButton.checkBounds())
-            gui->resourcesText.highlight();
-        else gui->resourcesText.endHighlight();
-
-        if (gui->backToHelpButton.checkBounds())
-            gui->backToHelpText.highlight();
-        else gui->backToHelpText.endHighlight();
 
         if (gui->aboutButton.checkBounds())
             gui->aboutText.highlight();
