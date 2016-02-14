@@ -34,12 +34,20 @@ public:
 
     void setBuilding(Building* newBuilding) { myBuilding = newBuilding; };
 
+    void animateTextureDown();
+
+    void animateTextureUp();
+
+    void animateTextureRight();
+
+    void animateTextureLeft();
+
+    //void toDirection(float targetX, float targetY);
 private:
 
     Building* myBuilding;
     bool arrived;
     bool returned;
-
 };
 
 #endif // CARRIER_H

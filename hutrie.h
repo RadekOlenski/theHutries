@@ -29,6 +29,17 @@ public:
     void setBusy(bool busy) { this->busy = busy; }
 
     void setPauseThread(bool pauseThread) {this->pauseThread = pauseThread; };
+
+    virtual void animateTextureDown() {};
+
+    virtual void animateTextureUp() {};
+
+    virtual void animateTextureRight() {};
+
+    virtual void animateTextureLeft() {};
+
+    void changeTexture(std::string path);
+
 protected:
     sf::Texture upTexture;
     sf::Texture downTexture;
@@ -39,6 +50,9 @@ protected:
 
     bool busy;
     bool pauseThread;
+
+    int frameCounter;
+    int animationCounter;
 };
 
 #endif // HUTRIE_H

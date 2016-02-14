@@ -155,7 +155,7 @@ void HutriesHall::highlightButton()
     else
     {
         tCarrier.endHighlight();
-        createCarrierButton.changeTexture(Textures::carrierMoveDown1);
+        createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown1);
     }
 
     if (createCarrierButton.checkBounds())
@@ -174,35 +174,35 @@ void HutriesHall::animateButton()
             switch (animationCounter)
             {
                 case 0:
-                    createCarrierButton.changeTexture(Textures::carrierMoveDown1);
+                    createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown1);
                     animationCounter++;
                     break;
                 case 1:
-                    createCarrierButton.changeTexture(Textures::carrierMoveDown2);
+                    createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown2);
                     animationCounter++;
                     break;
                 case 2:
-                    createCarrierButton.changeTexture(Textures::carrierMoveDown3);
+                    createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown3);
                     animationCounter++;
                     break;
                 case 3:
-                    createCarrierButton.changeTexture(Textures::carrierMoveDown4);
+                    createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown4);
                     animationCounter++;
                     break;
                 case 4:
-                    createCarrierButton.changeTexture(Textures::carrierMoveDown5);
+                    createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown5);
                     animationCounter++;
                     break;
                 case 5:
-                    createCarrierButton.changeTexture(Textures::carrierMoveDown6);
+                    createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown6);
                     animationCounter++;
                     break;
                 case 6:
-                    createCarrierButton.changeTexture(Textures::carrierMoveDown7);
+                    createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown7);
                     animationCounter++;
                     break;
                 case 7:
-                    createCarrierButton.changeTexture(Textures::carrierMoveDown8);
+                    createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown8);
                     animationCounter = 0;
                     break;
                 default:

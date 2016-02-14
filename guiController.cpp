@@ -1227,7 +1227,7 @@ void GUIController::highlightTargetButton()
         else
         {
             gui->easyText.endHighlight();
-            gui->easyButton.changeTexture(Textures::carrierMoveRight1);
+            gui->easyButton.changeTexture(Textures::carrierEmptyMoveRight1);
         }
 
         if (gui->normalButton.checkBounds())
@@ -1470,35 +1470,35 @@ void GUIController::changeDifficultyButtonSprite()
             switch (animationCounter)
             {
                 case 0:
-                    gui->easyButton.changeTexture(Textures::carrierMoveRight1);
+                    gui->easyButton.changeTexture(Textures::carrierEmptyMoveRight1);
                     animationCounter++;
                     break;
                 case 1:
-                    gui->easyButton.changeTexture(Textures::carrierMoveRight2);
+                    gui->easyButton.changeTexture(Textures::carrierEmptyMoveRight2);
                     animationCounter++;
                     break;
                 case 2:
-                    gui->easyButton.changeTexture(Textures::carrierMoveRight3);
+                    gui->easyButton.changeTexture(Textures::carrierEmptyMoveRight3);
                     animationCounter++;
                     break;
                 case 3:
-                    gui->easyButton.changeTexture(Textures::carrierMoveRight4);
+                    gui->easyButton.changeTexture(Textures::carrierEmptyMoveRight4);
                     animationCounter++;
                     break;
                 case 4:
-                    gui->easyButton.changeTexture(Textures::carrierMoveRight5);
+                    gui->easyButton.changeTexture(Textures::carrierEmptyMoveRight5);
                     animationCounter++;
                     break;
                 case 5:
-                    gui->easyButton.changeTexture(Textures::carrierMoveRight6);
+                    gui->easyButton.changeTexture(Textures::carrierEmptyMoveRight6);
                     animationCounter++;
                     break;
                 case 6:
-                    gui->easyButton.changeTexture(Textures::carrierMoveRight7);
+                    gui->easyButton.changeTexture(Textures::carrierEmptyMoveRight7);
                     animationCounter++;
                     break;
                 case 7:
-                    gui->easyButton.changeTexture(Textures::carrierMoveRight8);
+                    gui->easyButton.changeTexture(Textures::carrierEmptyMoveRight8);
                     animationCounter = 0;
                     break;
                 default:

@@ -61,41 +61,41 @@ public:
 
     //---------------------------- CARRIER ------------------------//
 
-    static std::string carrierMoveRight1;
-    static std::string carrierMoveRight2;
-    static std::string carrierMoveRight3;
-    static std::string carrierMoveRight4;
-    static std::string carrierMoveRight5;
-    static std::string carrierMoveRight6;
-    static std::string carrierMoveRight7;
-    static std::string carrierMoveRight8;
+    static std::string carrierEmptyMoveRight1;
+    static std::string carrierEmptyMoveRight2;
+    static std::string carrierEmptyMoveRight3;
+    static std::string carrierEmptyMoveRight4;
+    static std::string carrierEmptyMoveRight5;
+    static std::string carrierEmptyMoveRight6;
+    static std::string carrierEmptyMoveRight7;
+    static std::string carrierEmptyMoveRight8;
 
-    static std::string carrierMoveLeft1;
-    static std::string carrierMoveLeft2;
-    static std::string carrierMoveLeft3;
-    static std::string carrierMoveLeft4;
-    static std::string carrierMoveLeft5;
-    static std::string carrierMoveLeft6;
-    static std::string carrierMoveLeft7;
-    static std::string carrierMoveLeft8;
+    static std::string carrierEmptyMoveLeft1;
+    static std::string carrierEmptyMoveLeft2;
+    static std::string carrierEmptyMoveLeft3;
+    static std::string carrierEmptyMoveLeft4;
+    static std::string carrierEmptyMoveLeft5;
+    static std::string carrierEmptyMoveLeft6;
+    static std::string carrierEmptyMoveLeft7;
+    static std::string carrierEmptyMoveLeft8;
 
-    static std::string carrierMoveDown1;
-    static std::string carrierMoveDown2;
-    static std::string carrierMoveDown3;
-    static std::string carrierMoveDown4;
-    static std::string carrierMoveDown5;
-    static std::string carrierMoveDown6;
-    static std::string carrierMoveDown7;
-    static std::string carrierMoveDown8;
+    static std::string carrierEmptyMoveDown1;
+    static std::string carrierEmptyMoveDown2;
+    static std::string carrierEmptyMoveDown3;
+    static std::string carrierEmptyMoveDown4;
+    static std::string carrierEmptyMoveDown5;
+    static std::string carrierEmptyMoveDown6;
+    static std::string carrierEmptyMoveDown7;
+    static std::string carrierEmptyMoveDown8;
 
-    static std::string carrierMoveUp1;
-    static std::string carrierMoveUp2;
-    static std::string carrierMoveUp3;
-    static std::string carrierMoveUp4;
-    static std::string carrierMoveUp5;
-    static std::string carrierMoveUp6;
-    static std::string carrierMoveUp7;
-    static std::string carrierMoveUp8;
+    static std::string carrierEmptyMoveUp1;
+    static std::string carrierEmptyMoveUp2;
+    static std::string carrierEmptyMoveUp3;
+    static std::string carrierEmptyMoveUp4;
+    static std::string carrierEmptyMoveUp5;
+    static std::string carrierEmptyMoveUp6;
+    static std::string carrierEmptyMoveUp7;
+    static std::string carrierEmptyMoveUp8;
     //---------------------------- WORKER ------------------------//
 
     static std::string workerMoveRight1;

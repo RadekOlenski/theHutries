@@ -25,6 +25,9 @@ Hutrie::Hutrie(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFrom
 
     busy = false;
     pauseThread = false;
+
+    frameCounter = 0;
+    animationCounter = 0;
 }
 
 ///////////////////////////MOVING TO SPECIFIC MOUSE DIRECTION/////////////////////////////////////////////////////////////////////////////////////
@@ -39,9 +42,10 @@ void Hutrie::toDirection(float targetX, float targetY)
             sf::sleep(sf::seconds(2));
         };
         sprite.move(0, 1);
-        sprite.setTexture(downTexture);
+        animateTextureDown();
         sf::sleep(sf::milliseconds(5));
     };
+    animationCounter = 0;
 
     while (sprite.getPosition().x < targetX)
     {
@@ -49,10 +53,11 @@ void Hutrie::toDirection(float targetX, float targetY)
         {
             sf::sleep(sf::seconds(2));
         };
-        sprite.setTexture(texture);
+        animateTextureRight();
         sprite.move(1, 0);
         sf::sleep(sf::milliseconds(5));
     };
+    animationCounter = 0;
 
     while (sprite.getPosition().y > targetY)
     {
@@ -60,10 +65,11 @@ void Hutrie::toDirection(float targetX, float targetY)
         {
             sf::sleep(sf::seconds(2));
         };
-        sprite.setTexture(upTexture);
+        animateTextureUp();
         sprite.move(0, -1);
         sf::sleep(sf::milliseconds(5));
     };
+    animationCounter = 0;
 
     while (sprite.getPosition().x > targetX)
     {
@@ -71,10 +77,11 @@ void Hutrie::toDirection(float targetX, float targetY)
         {
             sf::sleep(sf::seconds(2));
         };
-        sprite.setTexture(leftTexture);
+        animateTextureLeft();
         sprite.move(-1, 0);
         sf::sleep(sf::milliseconds(5));
     };
+    animationCounter = 0;
 }
 
 void Hutrie::updateStatus()
@@ -84,3 +91,8 @@ void Hutrie::updateStatus()
     description.text.setString(desc.str());
 }
 
+void Hutrie::changeTexture(std::string path)
+{
+    downTexture.loadFromFile(path);
+    sprite.setTexture(downTexture);
+}

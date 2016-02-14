@@ -58,7 +58,7 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
     //-------------------DIFFICULTY LEVEL-----------------------------//
 
-        easyButton(150, 350, hutrieApplication, Textures::carrierMoveRight1),
+        easyButton(150, 350, hutrieApplication, Textures::carrierEmptyMoveRight1),
         normalButton(400, 350, hutrieApplication, Textures::workerRight),
         hardButton(650, 350, hutrieApplication, Textures::warriorRight),
         easyText (185, 320, 37, ""),
