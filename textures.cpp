@@ -100,6 +100,35 @@ std::string Textures::workerMoveRight6 = "sprites/worker/move_right_6.png";
 std::string Textures::workerMoveRight7 = "sprites/worker/move_right_7.png";
 std::string Textures::workerMoveRight8 = "sprites/worker/move_right_8.png";
 
+std::string Textures::workerMoveUp1 = "sprites/worker/move_up_1.png";
+std::string Textures::workerMoveUp2 = "sprites/worker/move_up_2.png";
+std::string Textures::workerMoveUp3 = "sprites/worker/move_up_3.png";
+std::string Textures::workerMoveUp4 = "sprites/worker/move_up_4.png";
+std::string Textures::workerMoveUp5 = "sprites/worker/move_up_5.png";
+std::string Textures::workerMoveUp6 = "sprites/worker/move_up_6.png";
+std::string Textures::workerMoveUp7 = "sprites/worker/move_up_7.png";
+std::string Textures::workerMoveUp8 = "sprites/worker/move_up_8.png";
+
+std::string Textures::workerMoveLeft1 = "sprites/worker/move_left_1.png";
+std::string Textures::workerMoveLeft2 = "sprites/worker/move_left_2.png";
+std::string Textures::workerMoveLeft3 = "sprites/worker/move_left_3.png";
+std::string Textures::workerMoveLeft4 = "sprites/worker/move_left_4.png";
+std::string Textures::workerMoveLeft5 = "sprites/worker/move_left_5.png";
+std::string Textures::workerMoveLeft6 = "sprites/worker/move_left_6.png";
+std::string Textures::workerMoveLeft7 = "sprites/worker/move_left_7.png";
+std::string Textures::workerMoveLeft8 = "sprites/worker/move_left_8.png";
+std::string Textures::workerMoveLeft9 = "sprites/worker/move_left_8.png";
+
+std::string Textures::workerMoveDown1 = "sprites/worker/move_down_1.png";
+std::string Textures::workerMoveDown2 = "sprites/worker/move_down_2.png";
+std::string Textures::workerMoveDown3 = "sprites/worker/move_down_3.png";
+std::string Textures::workerMoveDown4 = "sprites/worker/move_down_4.png";
+std::string Textures::workerMoveDown5 = "sprites/worker/move_down_5.png";
+std::string Textures::workerMoveDown6 = "sprites/worker/move_down_6.png";
+std::string Textures::workerMoveDown7 = "sprites/worker/move_down_7.png";
+std::string Textures::workerMoveDown8 = "sprites/worker/move_down_8.png";
+std::string Textures::workerMoveDown9 = "sprites/worker/move_down_8.png";
+
 //---------------------------- WARRIOR ------------------------//
 
 std::string Textures::warriorMoveRight1 = "sprites/warrior/move_right_1.png";

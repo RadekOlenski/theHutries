@@ -127,7 +127,7 @@ void Carrier::animateTextureUp()
                     break;
                 case 6:
                     this->changeTexture(Textures::carrierEmptyMoveUp7);
-                    animationCounter++;
+                    animationCounter = 0;
                     break;
                 default:
                     break;
