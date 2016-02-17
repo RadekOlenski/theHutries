@@ -29,6 +29,15 @@ public:
     sf::Clock productionClock;
 
     bool getWorkingFlag() {return workingFlag;}
+
+    void animateTextureUp();
+
+    void animateTextureDown();
+
+    void animateTextureLeft();
+
+    void animateTextureRight();
+
 private:
     float productionTime;
     float actualProductionTime;

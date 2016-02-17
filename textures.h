@@ -107,6 +107,35 @@ public:
     static std::string workerMoveRight7;
     static std::string workerMoveRight8;
 
+    static std::string workerMoveUp1;
+    static std::string workerMoveUp2;
+    static std::string workerMoveUp3;
+    static std::string workerMoveUp4;
+    static std::string workerMoveUp5;
+    static std::string workerMoveUp6;
+    static std::string workerMoveUp7;
+    static std::string workerMoveUp8;
+
+    static std::string workerMoveLeft1;
+    static std::string workerMoveLeft2;
+    static std::string workerMoveLeft3;
+    static std::string workerMoveLeft4;
+    static std::string workerMoveLeft5;
+    static std::string workerMoveLeft6;
+    static std::string workerMoveLeft7;
+    static std::string workerMoveLeft8;
+    static std::string workerMoveLeft9;
+
+    static std::string workerMoveDown1;
+    static std::string workerMoveDown2;
+    static std::string workerMoveDown3;
+    static std::string workerMoveDown4;
+    static std::string workerMoveDown5;
+    static std::string workerMoveDown6;
+    static std::string workerMoveDown7;
+    static std::string workerMoveDown8;
+    static std::string workerMoveDown9;
+
     //---------------------------- WARRIOR ------------------------//
 
     static std::string warriorMoveRight1;
