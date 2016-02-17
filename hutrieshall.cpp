@@ -143,8 +143,11 @@ void HutriesHall::highlightButton()
 {
     if (createWorkerButton.checkBounds())
         tWorker.highlight();
-    else tWorker.endHighlight();
-
+    else
+    {
+        tWorker.endHighlight();
+        createWorkerButton.changeTexture(Textures::workerMoveDown1);
+    }
 
     if (createWorkerButton.checkBounds())
         tfoodWorker.highlight();
@@ -203,6 +206,46 @@ void HutriesHall::animateButton()
                     break;
                 case 7:
                     createCarrierButton.changeTexture(Textures::carrierEmptyMoveDown8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (createWorkerButton.checkBounds())
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    createWorkerButton.changeTexture(Textures::workerMoveDown1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    createWorkerButton.changeTexture(Textures::workerMoveDown2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    createWorkerButton.changeTexture(Textures::workerMoveDown3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    createWorkerButton.changeTexture(Textures::workerMoveDown4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    createWorkerButton.changeTexture(Textures::workerMoveDown5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    createWorkerButton.changeTexture(Textures::workerMoveDown6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    createWorkerButton.changeTexture(Textures::workerMoveDown7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    createWorkerButton.changeTexture(Textures::workerMoveDown8);
                     animationCounter = 0;
                     break;
                 default:
