@@ -14,7 +14,6 @@ Residence::Residence(sf::RenderWindow* hutrieApplication, std::vector<Unit*> uni
     capacity = 1;
     constructionTime = GameBalance::residenceConstructionTime;
     requiredForConstructionGoods = GameBalance::residenceCost;
-    constructButton.setActive(false);
 }
 
 void Residence::updateStatus()

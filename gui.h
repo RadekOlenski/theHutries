@@ -67,6 +67,9 @@ public:
     GUIText helpFarmText;
     GUIText helpGoldmineText;
 
+    GUIButton helpBuildingDescription;
+    GUIButton helpHutriesHallDescription;
+
     GUIButton helpGold;
     GUIButton helpWood;
     GUIButton helpStone;

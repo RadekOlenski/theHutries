@@ -50,6 +50,9 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         helpGoldmine(800, 430, hutrieApplication, Textures::goldmineGUI, 130,130),
         helpGoldmineText(810, 560, 35, "Goldmine"),
 
+        helpBuildingDescription(200, 300, hutrieApplication, Textures::sawmillBasic, 200, 200),
+        helpHutriesHallDescription(150, 250, hutrieApplication, Textures::hutriesHall, 300, 300),
+
         helpGold (150,150 + 35, hutrieApplication, Textures::gold, 100, 100),
         helpWood (100,310, hutrieApplication, Textures::wood, 100, 100),
         helpStone (200,310, hutrieApplication, Textures::stone, 100, 100),

@@ -22,6 +22,7 @@ Building::Building(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
     needContructionWood = false;
     bringStoneButton.setActive(true);
     bringWoodButton.setActive(true);
+    constructButton.setActive(false);
 }
 
 void Building::placeOnMap()

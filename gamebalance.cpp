@@ -45,10 +45,19 @@ const float GameBalance::warriorTrainingTime = 5;
     std::string GameBalance::historyString ("You are Hutron I the Great.\nChief of tribe called Hutries.\nYour peaceful life has been disturbed\nby dragon attack. You village no longer exists.");
     std::string GameBalance::historyString2 ("You escape with a few Hutries.\nBut you're not safe. \nGather your men! \nDragon will be back.");
     std::string GameBalance::historyString3 ("Just enter your castle and prepare to fight!\nTrain as many soldiers as possible!");
+
     std::string GameBalance::howToPlayString ("Hello there!\n\nThis tutorial will guide you through basic mechanics, description of\nall types of buildings, hutries and resources and usage of them.");
     std::string GameBalance::howToPlayMechanicsString ("Mechanics");
     std::string GameBalance::howToPlayBuildingsString  ("Click on building to see more information.");
-    std::string GameBalance::howToPlayHutriesString ("Hutries");
+    std::string GameBalance::howToPlayHutriesHallString  ("A heart of the village. \nAll available goods are stored here. \nYou can also train workers and carriers \nby clicking on the building.");
+    std::string GameBalance::howToPlayBarracksString  ("Train archers and warriors");
+    std::string GameBalance::howToPlayResidenceString  ("You can train limited number of \nHutries in your village. Residence \nallows you to expand it. \nYou start with 10 Hutries and \nevery built residence gives 10 extra places.\nThese places can be occupied by any Hutrie:\ncarrier, worker, soldier or archer.");
+    std::string GameBalance::howToPlaySawmillString  ("Creates wood for buildings' construction.");
+    std::string GameBalance::howToPlayStonecutterHutString  ("Creates stone for buildings' construction.");
+    std::string GameBalance::howToPlayFarmString  ("Creates food for workers and carriers.");
+    std::string GameBalance::howToPlayGoldmineString  ("Creates gold for soldiers' training.");
+    std::string GameBalance::howToPlayHutriesString ("Hutries are dwellers of your village. \nThere are 4 professions to choose for them:\n\n\t\tCarrier\n\n\t\tWorker\n\n\t\tWarrior\n\n\t\tArcher");
     std::string GameBalance::howToPlayResourcesString  ("   Necessary for:\t\t\t\t\tCreated in:\n\n\t  Soldiers\t\t\t\t\t\tGoldmine\n\n\n\t  Buildings\t\t\t\tSawmill, Stonecutter Hut\n\n\nCarriers & Workers\t\t\t\t\tFarm");
+
     std::string GameBalance::loseString("Your troops fought bravely, \nbut they could not withstand attack.\nThe Dragon was too powerful...\nThere is no hope for you.\nThe Hutries Tribe has gone.\nForever...");
     std::string GameBalance::winString ("When the Dragon attacked, you wasn't surprised. \nPerfectly trained troops \nproved that nobody should cross Hutries path.\n It,s a big day in Hutries history. \nA new beginning. ");

@@ -80,6 +80,13 @@ public:
     static std::string howToPlayString;
     static std::string howToPlayMechanicsString;
     static std::string howToPlayBuildingsString;
+    static std::string howToPlayHutriesHallString;
+    static std::string howToPlayBarracksString;
+    static std::string howToPlayResidenceString;
+    static std::string howToPlaySawmillString;
+    static std::string howToPlayStonecutterHutString;
+    static std::string howToPlayFarmString;
+    static std::string howToPlayGoldmineString;
     static std::string howToPlayHutriesString;
     static std::string howToPlayResourcesString;
     static std::string historyString;

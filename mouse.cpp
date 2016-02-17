@@ -84,25 +84,14 @@ void Mouse::updateMouseLock()
 
 void Mouse::handleClickOnMap()
 {
-    if (gameLogicController->isUnitEmpty())                                                 //jesli unit jest wolny, bez zadnego mapobjectu
-    {
-        switch (modelController->getChosenInteractionMode()) //BUTTONS F1,F2,F3 OR GUIBUTTONS
+//    if (gameLogicController->isUnitEmpty())                                                 //jesli unit jest wolny, bez zadnego mapobjectu
+//    {
+        if( modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE)
         {
-            case InteractionMode::BUILDMODE:   //postawienie budynku                                                                                                                                   //BUILDING zajmuje 4 pola na mapie!
-            {
-                gameLogicController->handleBuildingCreation();
-
-                break;
-            }
-//            case InteractionMode::HUTRIEMODE:     //poruszanie Hutrim
-//            {
-//                gameLogicController->handleHutrieMoving();
-//                break;
-//            }
-            default:
-                break;
-        };
-    }
+            gameLogicController->handleBuildingCreation();
+            return;
+        }
+//    }
     else
 ////////////////////////////EMPHASIZE UNIT WITH MAPOBJECT///////////////////////////////////////////////////////////////////////////////////
     {
