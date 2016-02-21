@@ -685,7 +685,6 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
     {
         if ((*it)->getType() == UnitType::FULL)
         {
-            drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
             if ((*it)->hutriesNumber() > 0)
             {
                 for (int i = 0; i < (*it)->hutriesNumber(); i++)             //jesli w wektorze jest jakis hutri
@@ -693,6 +692,7 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
                     drawToApplication((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
                 }
             }
+            drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
 
             if ((*it)->getMapObject()->isHighlighted()
                 && modelController->getChosenInteractionMode() ==

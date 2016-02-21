@@ -4,7 +4,4 @@ Archer::Archer(sf::RenderWindow* hutrieApplication, const std::vector<Unit*> &un
                const std::vector<Unit*> &unitsForMoving, std::string pathName)
         : Soldier(hutrieApplication, unitsFromGame, unitsForMoving, pathName)
 {
-    upTexture.loadFromFile(Textures::archerUp);
-    downTexture.loadFromFile(Textures::archerDown);
-    leftTexture.loadFromFile(Textures::archerLeft);
 }

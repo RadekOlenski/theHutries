@@ -9,10 +9,6 @@ Soldier::Soldier(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFr
 {
     title.text.setString("Warrior:");
 
-    upTexture.loadFromFile(Textures::warriorUp);
-    downTexture.loadFromFile(Textures::warriorDown);
-    leftTexture.loadFromFile(Textures::warriorLeft);
-
     std::vector<Unit*>::iterator it;
     for (it = unitsForMoving.begin(); it != unitsForMoving.end(); ++it)
     {

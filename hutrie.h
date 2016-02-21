@@ -41,10 +41,8 @@ public:
     void changeTexture(std::string path);
 
 protected:
-    sf::Texture upTexture;
-    sf::Texture downTexture;
-    sf::Texture leftTexture;
-    sf::Texture transTexture;
+    sf::Texture currentTexture;
+    sf::Texture transparentTexture;
 
     void toDirection(float targetX, float targetY);
 

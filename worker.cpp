@@ -5,11 +5,7 @@ Worker::Worker(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFrom
         : Hutrie(hutrieApplication, unitsFromGame, pathName)
 {
     title.text.setString("Worker:");
-
-    upTexture.loadFromFile(Textures::workerUp);
-    downTexture.loadFromFile(Textures::workerDown);
-    leftTexture.loadFromFile(Textures::workerLeft);
-    sprite.setTexture(transTexture);
+    sprite.setTexture(transparentTexture);
     productionTime = 0;
     actualProductionTime = 0;
     workingFlag = false;
@@ -24,7 +20,7 @@ void Worker::moveHutrie()
     busy = true;
     productionClock.restart();
     toDirection(objectUnits.at(2)->field.getPosition().x, objectUnits.at(2)->field.getPosition().y);
-    sprite.setTexture(transTexture);
+    sprite.setTexture(transparentTexture);
     productionClock.restart();
     workingFlag = true;
 }
@@ -97,7 +93,6 @@ void Worker::animateTextureDown()
                 break;
         }
     }
-
     frameCounter++;
     if (frameCounter > 5)
         frameCounter = 0;

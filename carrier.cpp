@@ -6,11 +6,8 @@
 Carrier::Carrier(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
         : Hutrie(hutrieApplication, unitsFromGame, pathName), carrierThread(&Carrier::comeBack, this)
 {
-    upTexture.loadFromFile(Textures::carrierUp);
-    downTexture.loadFromFile(Textures::carrierDown);
-    leftTexture.loadFromFile(Textures::carrierLeft);
     arrived = false;
-    sprite.setTexture(transTexture);
+    sprite.setTexture(transparentTexture);
 }
 
 void Carrier::moveHutrie()
@@ -22,7 +19,7 @@ void Carrier::moveHutrie()
     busy = true;
     unsigned int door = (unsigned int) myBuilding->getDoorIndex();
     toDirection(objectUnits.at(door)->field.getPosition().x, objectUnits.at(door)->field.getPosition().y);
-    sprite.setTexture(transTexture);
+    sprite.setTexture(transparentTexture);
     sf::sleep(sf::seconds(GameBalance::carrierLoading));
     arrived = true;
 }
@@ -37,7 +34,7 @@ void Carrier::comeBack()
     toDirection(6 * 64, 7 * 64);
     busy = false;
     returned = true;
-    sprite.setTexture(transTexture);
+    sprite.setTexture(transparentTexture);
 }
 
 void Carrier::animateTextureDown()
@@ -84,8 +81,42 @@ void Carrier::animateTextureDown()
                     break;
             }
         }
-        else this->changeTexture(Textures::carrierDown);
-
+        else if(myLuggage.getWood() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierWoodMoveDown1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierWoodMoveDown2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierWoodMoveDown3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierWoodMoveDown4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierWoodMoveDown5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierWoodMoveDown6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierWoodMoveDown7);
+                    animationCounter =0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     frameCounter++;
@@ -133,7 +164,42 @@ void Carrier::animateTextureUp()
                     break;
             }
         }
-        else this->changeTexture(Textures::carrierUp);
+        else if(myLuggage.getWood() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierWoodMoveUp1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierWoodMoveUp2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierWoodMoveUp3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierWoodMoveUp4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierWoodMoveUp5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierWoodMoveUp6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierWoodMoveUp7);
+                    animationCounter =0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     frameCounter++;
@@ -185,8 +251,43 @@ void Carrier::animateTextureRight()
                     break;
             }
         }
+        else if(myLuggage.getWood() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierWoodMoveRight1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierWoodMoveRight2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierWoodMoveRight3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierWoodMoveRight4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierWoodMoveRight5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierWoodMoveRight6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierWoodMoveRight7);
+                    animationCounter =0;
+                    break;
+                default:
+                    break;
+            }
+        }
         else this->changeTexture(Textures::carrierRight);
-
     }
 
     frameCounter++;
@@ -238,8 +339,42 @@ void Carrier::animateTextureLeft()
                     break;
             }
         }
-        else this->changeTexture(Textures::carrierLeft);
-
+        else if(myLuggage.getWood() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierWoodMoveLeft1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierWoodMoveLeft2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierWoodMoveLeft3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierWoodMoveLeft4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierWoodMoveLeft5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierWoodMoveLeft6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierWoodMoveLeft7);
+                    animationCounter =0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     frameCounter++;

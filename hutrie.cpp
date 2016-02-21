@@ -18,7 +18,7 @@ Hutrie::Hutrie(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFrom
     sprite.setPosition(6 * 64, 7 * 64);
     sprite.setScale(0.64, 0.64);
 
-    transTexture.loadFromFile(Textures::carrierEmpty);
+    transparentTexture.loadFromFile(Textures::carrierEmpty);
 
     sound.openFromFile(Sound::hutrie);
     sound.setVolume(100);
@@ -93,6 +93,6 @@ void Hutrie::updateStatus()
 
 void Hutrie::changeTexture(std::string path)
 {
-    downTexture.loadFromFile(path);
-    sprite.setTexture(downTexture);
+    currentTexture.loadFromFile(path);
+    sprite.setTexture(currentTexture);
 }

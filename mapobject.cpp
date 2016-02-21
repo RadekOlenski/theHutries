@@ -69,7 +69,6 @@ void MapObject::highlightUnits(bool fillColor)
     }
 }
 
-
 void MapObject::soundPlay(bool play)
 {
     if (play) sound.play();
