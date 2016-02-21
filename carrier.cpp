@@ -111,7 +111,51 @@ void Carrier::animateTextureDown()
                     break;
                 case 6:
                     this->changeTexture(Textures::carrierWoodMoveDown7);
-                    animationCounter =0;
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierWoodMoveDown8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(myLuggage.getStone() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierStoneMoveDown1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierStoneMoveDown2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierStoneMoveDown3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierStoneMoveDown4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierStoneMoveDown5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierStoneMoveDown6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierStoneMoveDown7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierStoneMoveDown8);
+                    animationCounter = 0;
                     break;
                 default:
                     break;
@@ -194,7 +238,51 @@ void Carrier::animateTextureUp()
                     break;
                 case 6:
                     this->changeTexture(Textures::carrierWoodMoveUp7);
-                    animationCounter =0;
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierWoodMoveUp8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(myLuggage.getStone() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierStoneMoveUp1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierStoneMoveUp2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierStoneMoveUp3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierStoneMoveUp4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierStoneMoveUp5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierStoneMoveUp6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierStoneMoveUp7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierStoneMoveUp8);
+                    animationCounter = 0;
                     break;
                 default:
                     break;
@@ -281,13 +369,56 @@ void Carrier::animateTextureRight()
                     break;
                 case 6:
                     this->changeTexture(Textures::carrierWoodMoveRight7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierWoodMoveRight8);
                     animationCounter =0;
                     break;
                 default:
                     break;
             }
         }
-        else this->changeTexture(Textures::carrierRight);
+        else if(myLuggage.getStone() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierStoneMoveRight1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierStoneMoveRight2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierStoneMoveRight3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierStoneMoveRight4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierStoneMoveRight5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierStoneMoveRight6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierStoneMoveRight7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierStoneMoveRight8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     frameCounter++;
@@ -369,7 +500,51 @@ void Carrier::animateTextureLeft()
                     break;
                 case 6:
                     this->changeTexture(Textures::carrierWoodMoveLeft7);
-                    animationCounter =0;
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierWoodMoveLeft8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(myLuggage.getStone() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierStoneMoveLeft1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierStoneMoveLeft2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierStoneMoveLeft3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierStoneMoveLeft4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierStoneMoveLeft5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierStoneMoveLeft6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierStoneMoveLeft7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierStoneMoveLeft8);
+                    animationCounter = 0;
                     break;
                 default:
                     break;

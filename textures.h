@@ -105,6 +105,7 @@ public:
     static std::string carrierWoodMoveRight5;
     static std::string carrierWoodMoveRight6;
     static std::string carrierWoodMoveRight7;
+    static std::string carrierWoodMoveRight8;
 
     static std::string carrierWoodMoveLeft1;
     static std::string carrierWoodMoveLeft2;
@@ -113,6 +114,7 @@ public:
     static std::string carrierWoodMoveLeft5;
     static std::string carrierWoodMoveLeft6;
     static std::string carrierWoodMoveLeft7;
+    static std::string carrierWoodMoveLeft8;
 
     static std::string carrierWoodMoveDown1;
     static std::string carrierWoodMoveDown2;
@@ -121,6 +123,7 @@ public:
     static std::string carrierWoodMoveDown5;
     static std::string carrierWoodMoveDown6;
     static std::string carrierWoodMoveDown7;
+    static std::string carrierWoodMoveDown8;
 
     static std::string carrierWoodMoveUp1;
     static std::string carrierWoodMoveUp2;
@@ -129,6 +132,45 @@ public:
     static std::string carrierWoodMoveUp5;
     static std::string carrierWoodMoveUp6;
     static std::string carrierWoodMoveUp7;
+    static std::string carrierWoodMoveUp8;
+
+    //---------------------------- CARRIER STONE ------------------------//
+
+    static std::string carrierStoneMoveRight1;
+    static std::string carrierStoneMoveRight2;
+    static std::string carrierStoneMoveRight3;
+    static std::string carrierStoneMoveRight4;
+    static std::string carrierStoneMoveRight5;
+    static std::string carrierStoneMoveRight6;
+    static std::string carrierStoneMoveRight7;
+    static std::string carrierStoneMoveRight8;
+
+    static std::string carrierStoneMoveLeft1;
+    static std::string carrierStoneMoveLeft2;
+    static std::string carrierStoneMoveLeft3;
+    static std::string carrierStoneMoveLeft4;
+    static std::string carrierStoneMoveLeft5;
+    static std::string carrierStoneMoveLeft6;
+    static std::string carrierStoneMoveLeft7;
+    static std::string carrierStoneMoveLeft8;
+
+    static std::string carrierStoneMoveDown1;
+    static std::string carrierStoneMoveDown2;
+    static std::string carrierStoneMoveDown3;
+    static std::string carrierStoneMoveDown4;
+    static std::string carrierStoneMoveDown5;
+    static std::string carrierStoneMoveDown6;
+    static std::string carrierStoneMoveDown7;
+    static std::string carrierStoneMoveDown8;
+
+    static std::string carrierStoneMoveUp1;
+    static std::string carrierStoneMoveUp2;
+    static std::string carrierStoneMoveUp3;
+    static std::string carrierStoneMoveUp4;
+    static std::string carrierStoneMoveUp5;
+    static std::string carrierStoneMoveUp6;
+    static std::string carrierStoneMoveUp7;
+    static std::string carrierStoneMoveUp8;
 
     //---------------------------- WORKER ------------------------//
 

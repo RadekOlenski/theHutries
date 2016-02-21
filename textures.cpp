@@ -98,6 +98,7 @@ std::string Textures::carrierWoodMoveRight4 = "sprites/carrier/wood_move_right_4
 std::string Textures::carrierWoodMoveRight5 = "sprites/carrier/wood_move_right_5.png";
 std::string Textures::carrierWoodMoveRight6 = "sprites/carrier/wood_move_right_6.png";
 std::string Textures::carrierWoodMoveRight7 = "sprites/carrier/wood_move_right_7.png";
+std::string Textures::carrierWoodMoveRight8 = "sprites/carrier/wood_move_right_8.png";
 
 std::string Textures::carrierWoodMoveLeft1 = "sprites/carrier/wood_move_left_1.png";
 std::string Textures::carrierWoodMoveLeft2 = "sprites/carrier/wood_move_left_2.png";
@@ -106,6 +107,7 @@ std::string Textures::carrierWoodMoveLeft4 = "sprites/carrier/wood_move_left_4.p
 std::string Textures::carrierWoodMoveLeft5 = "sprites/carrier/wood_move_left_5.png";
 std::string Textures::carrierWoodMoveLeft6 = "sprites/carrier/wood_move_left_6.png";
 std::string Textures::carrierWoodMoveLeft7 = "sprites/carrier/wood_move_left_7.png";
+std::string Textures::carrierWoodMoveLeft8 = "sprites/carrier/wood_move_left_8.png";
 
 std::string Textures::carrierWoodMoveDown1 = "sprites/carrier/wood_move_down_1.png";
 std::string Textures::carrierWoodMoveDown2 = "sprites/carrier/wood_move_down_2.png";
@@ -114,6 +116,7 @@ std::string Textures::carrierWoodMoveDown4 = "sprites/carrier/wood_move_down_4.p
 std::string Textures::carrierWoodMoveDown5 = "sprites/carrier/wood_move_down_5.png";
 std::string Textures::carrierWoodMoveDown6 = "sprites/carrier/wood_move_down_6.png";
 std::string Textures::carrierWoodMoveDown7 = "sprites/carrier/wood_move_down_7.png";
+std::string Textures::carrierWoodMoveDown8 = "sprites/carrier/wood_move_down_8.png";
 
 std::string Textures::carrierWoodMoveUp1 = "sprites/carrier/wood_move_up_1.png";
 std::string Textures::carrierWoodMoveUp2 = "sprites/carrier/wood_move_up_2.png";
@@ -122,6 +125,45 @@ std::string Textures::carrierWoodMoveUp4 = "sprites/carrier/wood_move_up_4.png";
 std::string Textures::carrierWoodMoveUp5 = "sprites/carrier/wood_move_up_5.png";
 std::string Textures::carrierWoodMoveUp6 = "sprites/carrier/wood_move_up_6.png";
 std::string Textures::carrierWoodMoveUp7 = "sprites/carrier/wood_move_up_7.png";
+std::string Textures::carrierWoodMoveUp8 = "sprites/carrier/wood_move_up_8.png";
+
+//---------------------------- CARRIER STONE ------------------------//
+
+std::string Textures::carrierStoneMoveRight1 = "sprites/carrier/stone_move_right_1.png";
+std::string Textures::carrierStoneMoveRight2 = "sprites/carrier/stone_move_right_2.png";
+std::string Textures::carrierStoneMoveRight3 = "sprites/carrier/stone_move_right_3.png";
+std::string Textures::carrierStoneMoveRight4 = "sprites/carrier/stone_move_right_4.png";
+std::string Textures::carrierStoneMoveRight5 = "sprites/carrier/stone_move_right_5.png";
+std::string Textures::carrierStoneMoveRight6 = "sprites/carrier/stone_move_right_6.png";
+std::string Textures::carrierStoneMoveRight7 = "sprites/carrier/stone_move_right_7.png";
+std::string Textures::carrierStoneMoveRight8 = "sprites/carrier/stone_move_right_8.png";
+
+std::string Textures::carrierStoneMoveLeft1 = "sprites/carrier/stone_move_left_1.png";
+std::string Textures::carrierStoneMoveLeft2 = "sprites/carrier/stone_move_left_2.png";
+std::string Textures::carrierStoneMoveLeft3 = "sprites/carrier/stone_move_left_3.png";
+std::string Textures::carrierStoneMoveLeft4 = "sprites/carrier/stone_move_left_4.png";
+std::string Textures::carrierStoneMoveLeft5 = "sprites/carrier/stone_move_left_5.png";
+std::string Textures::carrierStoneMoveLeft6 = "sprites/carrier/stone_move_left_6.png";
+std::string Textures::carrierStoneMoveLeft7 = "sprites/carrier/stone_move_left_7.png";
+std::string Textures::carrierStoneMoveLeft8 = "sprites/carrier/stone_move_left_8.png";
+
+std::string Textures::carrierStoneMoveDown1 = "sprites/carrier/stone_move_down_1.png";
+std::string Textures::carrierStoneMoveDown2 = "sprites/carrier/stone_move_down_2.png";
+std::string Textures::carrierStoneMoveDown3 = "sprites/carrier/stone_move_down_3.png";
+std::string Textures::carrierStoneMoveDown4 = "sprites/carrier/stone_move_down_4.png";
+std::string Textures::carrierStoneMoveDown5 = "sprites/carrier/stone_move_down_5.png";
+std::string Textures::carrierStoneMoveDown6 = "sprites/carrier/stone_move_down_6.png";
+std::string Textures::carrierStoneMoveDown7 = "sprites/carrier/stone_move_down_7.png";
+std::string Textures::carrierStoneMoveDown8 = "sprites/carrier/stone_move_down_8.png";
+
+std::string Textures::carrierStoneMoveUp1 = "sprites/carrier/stone_move_up_1.png";
+std::string Textures::carrierStoneMoveUp2 = "sprites/carrier/stone_move_up_2.png";
+std::string Textures::carrierStoneMoveUp3 = "sprites/carrier/stone_move_up_3.png";
+std::string Textures::carrierStoneMoveUp4 = "sprites/carrier/stone_move_up_4.png";
+std::string Textures::carrierStoneMoveUp5 = "sprites/carrier/stone_move_up_5.png";
+std::string Textures::carrierStoneMoveUp6 = "sprites/carrier/stone_move_up_6.png";
+std::string Textures::carrierStoneMoveUp7 = "sprites/carrier/stone_move_up_7.png";
+std::string Textures::carrierStoneMoveUp8 = "sprites/carrier/stone_move_up_8.png";
 
 //---------------------------- WORKER ------------------------//
 
