@@ -46,7 +46,7 @@ void Carrier::animateTextureDown()
             switch (animationCounter)
             {
                 case 0:
-                    this->changeTexture(Textures::carrierEmptyMoveDown1);
+                    this->changeTexture(Textures::carrierEmptyMoveLeft1);
                     animationCounter++;
                     break;
                 case 1:
@@ -86,7 +86,7 @@ void Carrier::animateTextureDown()
             switch (animationCounter)
             {
                 case 0:
-                    this->changeTexture(Textures::carrierWoodMoveDown1);
+                    this->changeTexture(Textures::carrierWoodMoveRight1);
                     animationCounter++;
                     break;
                 case 1:
@@ -155,6 +155,46 @@ void Carrier::animateTextureDown()
                     break;
                 case 7:
                     this->changeTexture(Textures::carrierStoneMoveDown8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(myLuggage.getFood() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierFoodMoveDown1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierFoodMoveDown2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierFoodMoveDown3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierFoodMoveDown4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierFoodMoveDown5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierFoodMoveDown6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierFoodMoveDown7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierFoodMoveDown8);
                     animationCounter = 0;
                     break;
                 default:
@@ -282,6 +322,46 @@ void Carrier::animateTextureUp()
                     break;
                 case 7:
                     this->changeTexture(Textures::carrierStoneMoveUp8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(myLuggage.getFood() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierFoodMoveUp1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierFoodMoveUp2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierFoodMoveUp3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierFoodMoveUp4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierFoodMoveUp5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierFoodMoveUp6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierFoodMoveUp7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierFoodMoveUp8);
                     animationCounter = 0;
                     break;
                 default:
@@ -419,6 +499,46 @@ void Carrier::animateTextureRight()
                     break;
             }
         }
+        else if(myLuggage.getFood() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierFoodMoveRight1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierFoodMoveRight2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierFoodMoveRight3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierFoodMoveRight4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierFoodMoveRight5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierFoodMoveRight6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierFoodMoveRight7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierFoodMoveRight8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     frameCounter++;
@@ -544,6 +664,46 @@ void Carrier::animateTextureLeft()
                     break;
                 case 7:
                     this->changeTexture(Textures::carrierStoneMoveLeft8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(myLuggage.getFood() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierFoodMoveLeft1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierFoodMoveLeft2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierFoodMoveLeft3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierFoodMoveLeft4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierFoodMoveLeft5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierFoodMoveLeft6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierFoodMoveLeft7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierFoodMoveLeft8);
                     animationCounter = 0;
                     break;
                 default:

@@ -172,6 +172,44 @@ public:
     static std::string carrierStoneMoveUp7;
     static std::string carrierStoneMoveUp8;
 
+    //---------------------------- CARRIER FOOD ------------------------//
+
+    static std::string carrierFoodMoveRight1;
+    static std::string carrierFoodMoveRight2;
+    static std::string carrierFoodMoveRight3;
+    static std::string carrierFoodMoveRight4;
+    static std::string carrierFoodMoveRight5;
+    static std::string carrierFoodMoveRight6;
+    static std::string carrierFoodMoveRight7;
+    static std::string carrierFoodMoveRight8;
+
+    static std::string carrierFoodMoveLeft1;
+    static std::string carrierFoodMoveLeft2;
+    static std::string carrierFoodMoveLeft3;
+    static std::string carrierFoodMoveLeft4;
+    static std::string carrierFoodMoveLeft5;
+    static std::string carrierFoodMoveLeft6;
+    static std::string carrierFoodMoveLeft7;
+    static std::string carrierFoodMoveLeft8;
+
+    static std::string carrierFoodMoveDown1;
+    static std::string carrierFoodMoveDown2;
+    static std::string carrierFoodMoveDown3;
+    static std::string carrierFoodMoveDown4;
+    static std::string carrierFoodMoveDown5;
+    static std::string carrierFoodMoveDown6;
+    static std::string carrierFoodMoveDown7;
+    static std::string carrierFoodMoveDown8;
+
+    static std::string carrierFoodMoveUp1;
+    static std::string carrierFoodMoveUp2;
+    static std::string carrierFoodMoveUp3;
+    static std::string carrierFoodMoveUp4;
+    static std::string carrierFoodMoveUp5;
+    static std::string carrierFoodMoveUp6;
+    static std::string carrierFoodMoveUp7;
+    static std::string carrierFoodMoveUp8;
+
     //---------------------------- WORKER ------------------------//
 
     static std::string workerMoveRight1;

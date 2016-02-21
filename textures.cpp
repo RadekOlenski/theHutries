@@ -165,6 +165,44 @@ std::string Textures::carrierStoneMoveUp6 = "sprites/carrier/stone_move_up_6.png
 std::string Textures::carrierStoneMoveUp7 = "sprites/carrier/stone_move_up_7.png";
 std::string Textures::carrierStoneMoveUp8 = "sprites/carrier/stone_move_up_8.png";
 
+//---------------------------- CARRIER FOOD ------------------------//
+
+std::string Textures::carrierFoodMoveRight1 = "sprites/carrier/food_move_right_1.png";
+std::string Textures::carrierFoodMoveRight2 = "sprites/carrier/food_move_right_2.png";
+std::string Textures::carrierFoodMoveRight3 = "sprites/carrier/food_move_right_3.png";
+std::string Textures::carrierFoodMoveRight4 = "sprites/carrier/food_move_right_4.png";
+std::string Textures::carrierFoodMoveRight5 = "sprites/carrier/food_move_right_5.png";
+std::string Textures::carrierFoodMoveRight6 = "sprites/carrier/food_move_right_6.png";
+std::string Textures::carrierFoodMoveRight7 = "sprites/carrier/food_move_right_7.png";
+std::string Textures::carrierFoodMoveRight8 = "sprites/carrier/food_move_right_8.png";
+
+std::string Textures::carrierFoodMoveLeft1 = "sprites/carrier/food_move_left_1.png";
+std::string Textures::carrierFoodMoveLeft2 = "sprites/carrier/food_move_left_2.png";
+std::string Textures::carrierFoodMoveLeft3 = "sprites/carrier/food_move_left_3.png";
+std::string Textures::carrierFoodMoveLeft4 = "sprites/carrier/food_move_left_4.png";
+std::string Textures::carrierFoodMoveLeft5 = "sprites/carrier/food_move_left_5.png";
+std::string Textures::carrierFoodMoveLeft6 = "sprites/carrier/food_move_left_6.png";
+std::string Textures::carrierFoodMoveLeft7 = "sprites/carrier/food_move_left_7.png";
+std::string Textures::carrierFoodMoveLeft8 = "sprites/carrier/food_move_left_8.png";
+
+std::string Textures::carrierFoodMoveDown1 = "sprites/carrier/food_move_down_1.png";
+std::string Textures::carrierFoodMoveDown2 = "sprites/carrier/food_move_down_2.png";
+std::string Textures::carrierFoodMoveDown3 = "sprites/carrier/food_move_down_3.png";
+std::string Textures::carrierFoodMoveDown4 = "sprites/carrier/food_move_down_4.png";
+std::string Textures::carrierFoodMoveDown5 = "sprites/carrier/food_move_down_5.png";
+std::string Textures::carrierFoodMoveDown6 = "sprites/carrier/food_move_down_6.png";
+std::string Textures::carrierFoodMoveDown7 = "sprites/carrier/food_move_down_7.png";
+std::string Textures::carrierFoodMoveDown8 = "sprites/carrier/food_move_down_8.png";
+
+std::string Textures::carrierFoodMoveUp1 = "sprites/carrier/food_move_up_1.png";
+std::string Textures::carrierFoodMoveUp2 = "sprites/carrier/food_move_up_2.png";
+std::string Textures::carrierFoodMoveUp3 = "sprites/carrier/food_move_up_3.png";
+std::string Textures::carrierFoodMoveUp4 = "sprites/carrier/food_move_up_4.png";
+std::string Textures::carrierFoodMoveUp5 = "sprites/carrier/food_move_up_5.png";
+std::string Textures::carrierFoodMoveUp6 = "sprites/carrier/food_move_up_6.png";
+std::string Textures::carrierFoodMoveUp7 = "sprites/carrier/food_move_up_7.png";
+std::string Textures::carrierFoodMoveUp8 = "sprites/carrier/food_move_up_8.png";
+
 //---------------------------- WORKER ------------------------//
 
 std::string Textures::workerMoveRight1 = "sprites/worker/move_right_1.png";
