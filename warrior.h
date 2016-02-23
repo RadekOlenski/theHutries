@@ -12,6 +12,11 @@ public:
     Warrior(sf::RenderWindow* hutrieApplication, const std::vector<Unit*> &unitsFromGame,
             const std::vector<Unit*> &unitsForMoving, std::string pathName = Textures::warriorRight);
 
+    void animateTextureUp();
+    void animateTextureDown();
+    void animateTextureLeft();
+    void animateTextureRight();
+
 };
 
 #endif //THEHUTRIES_WARRIOR_H

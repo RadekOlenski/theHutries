@@ -201,6 +201,46 @@ void Carrier::animateTextureDown()
                     break;
             }
         }
+        else if(myLuggage.getGold() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierGoldMoveDown1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierGoldMoveDown2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierGoldMoveDown3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierGoldMoveDown4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierGoldMoveDown5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierGoldMoveDown6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierGoldMoveDown7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierGoldMoveDown8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     frameCounter++;
@@ -362,6 +402,46 @@ void Carrier::animateTextureUp()
                     break;
                 case 7:
                     this->changeTexture(Textures::carrierFoodMoveUp8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(myLuggage.getGold() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierGoldMoveUp1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierGoldMoveUp2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierGoldMoveUp3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierGoldMoveUp4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierGoldMoveUp5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierGoldMoveUp6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierGoldMoveUp7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierGoldMoveUp8);
                     animationCounter = 0;
                     break;
                 default:
@@ -539,6 +619,46 @@ void Carrier::animateTextureRight()
                     break;
             }
         }
+        else if(myLuggage.getGold() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierGoldMoveRight1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierGoldMoveRight2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierGoldMoveRight3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierGoldMoveRight4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierGoldMoveRight5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierGoldMoveRight6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierGoldMoveRight7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierGoldMoveRight8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     frameCounter++;
@@ -704,6 +824,46 @@ void Carrier::animateTextureLeft()
                     break;
                 case 7:
                     this->changeTexture(Textures::carrierFoodMoveLeft8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(myLuggage.getGold() > 0)
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    this->changeTexture(Textures::carrierGoldMoveLeft1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    this->changeTexture(Textures::carrierGoldMoveLeft2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    this->changeTexture(Textures::carrierGoldMoveLeft3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    this->changeTexture(Textures::carrierGoldMoveLeft4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    this->changeTexture(Textures::carrierGoldMoveLeft5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    this->changeTexture(Textures::carrierGoldMoveLeft6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    this->changeTexture(Textures::carrierGoldMoveLeft7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    this->changeTexture(Textures::carrierGoldMoveLeft8);
                     animationCounter = 0;
                     break;
                 default:

@@ -210,6 +210,44 @@ public:
     static std::string carrierFoodMoveUp7;
     static std::string carrierFoodMoveUp8;
 
+    //---------------------------- CARRIER GOLD ------------------------//
+
+    static std::string carrierGoldMoveRight1;
+    static std::string carrierGoldMoveRight2;
+    static std::string carrierGoldMoveRight3;
+    static std::string carrierGoldMoveRight4;
+    static std::string carrierGoldMoveRight5;
+    static std::string carrierGoldMoveRight6;
+    static std::string carrierGoldMoveRight7;
+    static std::string carrierGoldMoveRight8;
+
+    static std::string carrierGoldMoveLeft1;
+    static std::string carrierGoldMoveLeft2;
+    static std::string carrierGoldMoveLeft3;
+    static std::string carrierGoldMoveLeft4;
+    static std::string carrierGoldMoveLeft5;
+    static std::string carrierGoldMoveLeft6;
+    static std::string carrierGoldMoveLeft7;
+    static std::string carrierGoldMoveLeft8;
+
+    static std::string carrierGoldMoveDown1;
+    static std::string carrierGoldMoveDown2;
+    static std::string carrierGoldMoveDown3;
+    static std::string carrierGoldMoveDown4;
+    static std::string carrierGoldMoveDown5;
+    static std::string carrierGoldMoveDown6;
+    static std::string carrierGoldMoveDown7;
+    static std::string carrierGoldMoveDown8;
+
+    static std::string carrierGoldMoveUp1;
+    static std::string carrierGoldMoveUp2;
+    static std::string carrierGoldMoveUp3;
+    static std::string carrierGoldMoveUp4;
+    static std::string carrierGoldMoveUp5;
+    static std::string carrierGoldMoveUp6;
+    static std::string carrierGoldMoveUp7;
+    static std::string carrierGoldMoveUp8;
+
     //---------------------------- WORKER ------------------------//
 
     static std::string workerMoveRight1;
@@ -263,7 +301,46 @@ public:
     static std::string warriorMoveRight9;
     static std::string warriorMoveRight10;
     static std::string warriorMoveRight11;
+    static std::string warriorMoveRight12;
 
+    static std::string warriorMoveLeft1;
+    static std::string warriorMoveLeft2;
+    static std::string warriorMoveLeft3;
+    static std::string warriorMoveLeft4;
+    static std::string warriorMoveLeft5;
+    static std::string warriorMoveLeft6;
+    static std::string warriorMoveLeft7;
+    static std::string warriorMoveLeft8;
+    static std::string warriorMoveLeft9;
+    static std::string warriorMoveLeft10;
+    static std::string warriorMoveLeft11;
+    static std::string warriorMoveLeft12;
+
+    static std::string warriorMoveUp1;
+    static std::string warriorMoveUp2;
+    static std::string warriorMoveUp3;
+    static std::string warriorMoveUp4;
+    static std::string warriorMoveUp5;
+    static std::string warriorMoveUp6;
+    static std::string warriorMoveUp7;
+    static std::string warriorMoveUp8;
+    static std::string warriorMoveUp9;
+    static std::string warriorMoveUp10;
+    static std::string warriorMoveUp11;
+    static std::string warriorMoveUp12;
+
+    static std::string warriorMoveDown1;
+    static std::string warriorMoveDown2;
+    static std::string warriorMoveDown3;
+    static std::string warriorMoveDown4;
+    static std::string warriorMoveDown5;
+    static std::string warriorMoveDown6;
+    static std::string warriorMoveDown7;
+    static std::string warriorMoveDown8;
+    static std::string warriorMoveDown9;
+    static std::string warriorMoveDown10;
+    static std::string warriorMoveDown11;
+    static std::string warriorMoveDown12;
     //---------------------------- GOODS ------------------------//
 
     static std::string gold;

@@ -203,6 +203,44 @@ std::string Textures::carrierFoodMoveUp6 = "sprites/carrier/food_move_up_6.png";
 std::string Textures::carrierFoodMoveUp7 = "sprites/carrier/food_move_up_7.png";
 std::string Textures::carrierFoodMoveUp8 = "sprites/carrier/food_move_up_8.png";
 
+//---------------------------- CARRIER GOLD ------------------------//
+
+std::string Textures::carrierGoldMoveRight1 = "sprites/carrier/gold_move_right_1.png";
+std::string Textures::carrierGoldMoveRight2 = "sprites/carrier/gold_move_right_2.png";
+std::string Textures::carrierGoldMoveRight3 = "sprites/carrier/gold_move_right_3.png";
+std::string Textures::carrierGoldMoveRight4 = "sprites/carrier/gold_move_right_4.png";
+std::string Textures::carrierGoldMoveRight5 = "sprites/carrier/gold_move_right_5.png";
+std::string Textures::carrierGoldMoveRight6 = "sprites/carrier/gold_move_right_6.png";
+std::string Textures::carrierGoldMoveRight7 = "sprites/carrier/gold_move_right_7.png";
+std::string Textures::carrierGoldMoveRight8 = "sprites/carrier/gold_move_right_8.png";
+
+std::string Textures::carrierGoldMoveLeft1 = "sprites/carrier/gold_move_left_1.png";
+std::string Textures::carrierGoldMoveLeft2 = "sprites/carrier/gold_move_left_2.png";
+std::string Textures::carrierGoldMoveLeft3 = "sprites/carrier/gold_move_left_3.png";
+std::string Textures::carrierGoldMoveLeft4 = "sprites/carrier/gold_move_left_4.png";
+std::string Textures::carrierGoldMoveLeft5 = "sprites/carrier/gold_move_left_5.png";
+std::string Textures::carrierGoldMoveLeft6 = "sprites/carrier/gold_move_left_6.png";
+std::string Textures::carrierGoldMoveLeft7 = "sprites/carrier/gold_move_left_7.png";
+std::string Textures::carrierGoldMoveLeft8 = "sprites/carrier/gold_move_left_8.png";
+
+std::string Textures::carrierGoldMoveDown1 = "sprites/carrier/gold_move_down_1.png";
+std::string Textures::carrierGoldMoveDown2 = "sprites/carrier/gold_move_down_2.png";
+std::string Textures::carrierGoldMoveDown3 = "sprites/carrier/gold_move_down_3.png";
+std::string Textures::carrierGoldMoveDown4 = "sprites/carrier/gold_move_down_4.png";
+std::string Textures::carrierGoldMoveDown5 = "sprites/carrier/gold_move_down_5.png";
+std::string Textures::carrierGoldMoveDown6 = "sprites/carrier/gold_move_down_6.png";
+std::string Textures::carrierGoldMoveDown7 = "sprites/carrier/gold_move_down_7.png";
+std::string Textures::carrierGoldMoveDown8 = "sprites/carrier/gold_move_down_8.png";
+
+std::string Textures::carrierGoldMoveUp1 = "sprites/carrier/gold_move_up_1.png";
+std::string Textures::carrierGoldMoveUp2 = "sprites/carrier/gold_move_up_2.png";
+std::string Textures::carrierGoldMoveUp3 = "sprites/carrier/gold_move_up_3.png";
+std::string Textures::carrierGoldMoveUp4 = "sprites/carrier/gold_move_up_4.png";
+std::string Textures::carrierGoldMoveUp5 = "sprites/carrier/gold_move_up_5.png";
+std::string Textures::carrierGoldMoveUp6 = "sprites/carrier/gold_move_up_6.png";
+std::string Textures::carrierGoldMoveUp7 = "sprites/carrier/gold_move_up_7.png";
+std::string Textures::carrierGoldMoveUp8 = "sprites/carrier/gold_move_up_8.png";
+
 //---------------------------- WORKER ------------------------//
 
 std::string Textures::workerMoveRight1 = "sprites/worker/move_right_1.png";
@@ -256,6 +294,46 @@ std::string Textures::warriorMoveRight8 = "sprites/warrior/move_right_8.png";
 std::string Textures::warriorMoveRight9 = "sprites/warrior/move_right_9.png";
 std::string Textures::warriorMoveRight10 = "sprites/warrior/move_right_10.png";
 std::string Textures::warriorMoveRight11 = "sprites/warrior/move_right_11.png";
+std::string Textures::warriorMoveRight12 = "sprites/warrior/move_right_12.png";
+
+std::string Textures::warriorMoveLeft1 = "sprites/warrior/move_left_1.png";
+std::string Textures::warriorMoveLeft2 = "sprites/warrior/move_left_2.png";
+std::string Textures::warriorMoveLeft3 = "sprites/warrior/move_left_3.png";
+std::string Textures::warriorMoveLeft4 = "sprites/warrior/move_left_4.png";
+std::string Textures::warriorMoveLeft5 = "sprites/warrior/move_left_5.png";
+std::string Textures::warriorMoveLeft6 = "sprites/warrior/move_left_6.png";
+std::string Textures::warriorMoveLeft7 = "sprites/warrior/move_left_7.png";
+std::string Textures::warriorMoveLeft8 = "sprites/warrior/move_left_8.png";
+std::string Textures::warriorMoveLeft9 = "sprites/warrior/move_left_9.png";
+std::string Textures::warriorMoveLeft10 = "sprites/warrior/move_left_10.png";
+std::string Textures::warriorMoveLeft11 = "sprites/warrior/move_left_11.png";
+std::string Textures::warriorMoveLeft12 = "sprites/warrior/move_left_12.png";
+
+std::string Textures::warriorMoveDown1 = "sprites/warrior/move_down_1.png";
+std::string Textures::warriorMoveDown2 = "sprites/warrior/move_down_2.png";
+std::string Textures::warriorMoveDown3 = "sprites/warrior/move_down_3.png";
+std::string Textures::warriorMoveDown4 = "sprites/warrior/move_down_4.png";
+std::string Textures::warriorMoveDown5 = "sprites/warrior/move_down_5.png";
+std::string Textures::warriorMoveDown6 = "sprites/warrior/move_down_6.png";
+std::string Textures::warriorMoveDown7 = "sprites/warrior/move_down_7.png";
+std::string Textures::warriorMoveDown8 = "sprites/warrior/move_down_8.png";
+std::string Textures::warriorMoveDown9 = "sprites/warrior/move_down_9.png";
+std::string Textures::warriorMoveDown10 = "sprites/warrior/move_down_10.png";
+std::string Textures::warriorMoveDown11 = "sprites/warrior/move_down_11.png";
+std::string Textures::warriorMoveDown12 = "sprites/warrior/move_down_12.png";
+
+std::string Textures::warriorMoveUp1 = "sprites/warrior/move_up_1.png";
+std::string Textures::warriorMoveUp2 = "sprites/warrior/move_up_2.png";
+std::string Textures::warriorMoveUp3 = "sprites/warrior/move_up_3.png";
+std::string Textures::warriorMoveUp4 = "sprites/warrior/move_up_4.png";
+std::string Textures::warriorMoveUp5 = "sprites/warrior/move_up_5.png";
+std::string Textures::warriorMoveUp6 = "sprites/warrior/move_up_6.png";
+std::string Textures::warriorMoveUp7 = "sprites/warrior/move_up_7.png";
+std::string Textures::warriorMoveUp8 = "sprites/warrior/move_up_8.png";
+std::string Textures::warriorMoveUp9 = "sprites/warrior/move_up_9.png";
+std::string Textures::warriorMoveUp10 = "sprites/warrior/move_up_10.png";
+std::string Textures::warriorMoveUp11 = "sprites/warrior/move_up_11.png";
+std::string Textures::warriorMoveUp12 = "sprites/warrior/move_up_12.png";
 
 //---------------------------- GOODS ------------------------//
 
