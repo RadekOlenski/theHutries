@@ -16,7 +16,7 @@ class Carrier : public Hutrie
 {
 public:
     Carrier(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame,
-            std::string pathName = Textures::carrierRight);
+            std::string pathName = Textures::carrierEmptyMoveRight1);
 
     void moveHutrie();
 

@@ -800,13 +800,13 @@ void GUIController::attachBuildingToCursor(sf::Vector2f worldPos)
                 buildingToCursorTexture.loadFromFile(Textures::residenceBasic);
                 break;
             default:
-                buildingToCursorTexture.loadFromFile(Textures::carrierEmpty);
+                buildingToCursorTexture.loadFromFile(Textures::carrierEmptyMoveDown1);
                 break;
         };
     }
     else
     {
-        buildingToCursorTexture.loadFromFile(Textures::carrierEmpty);
+        buildingToCursorTexture.loadFromFile(Textures::carrierEmptyMoveDown1);
     }
     buildingToCursor.setPosition(worldPos);
 }

@@ -10,12 +10,12 @@ Barracks::Barracks(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
 
           trainHutries(1024 + 65, 440, 25, "Train Hutries:"),
 
-          createArcherButton(1024 + 140, 470, hutrieApplication, Textures::archerDown, 90, 90),
+          createArcherButton(1024 + 140, 470, hutrieApplication, Textures::archerMoveDown1, 90, 90),
           textArcher(1024 + 160, 555, 20, "Archer"),
           goldArcher(1024 + 170, 585, hutrieApplication, Textures::gold, 25, 25),
           tGoldArcher(1024 + 195, 585, 20, "3"),
 
-          createWarriorButton(1024 + 30, 470, hutrieApplication, Textures::warriorDown, 90, 90),
+          createWarriorButton(1024 + 30, 470, hutrieApplication, Textures::warriorMoveDown1, 90, 90),
           textWarrior(1024 + 50, 555, 20, "Warrior"),
           goldWarrior(1024 + 60, 585, hutrieApplication, Textures::gold, 25, 25),
           tGoldWarrior(1024 + 85, 585, 20, "3")

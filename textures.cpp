@@ -28,30 +28,7 @@ std::string Textures::residenceBasic = "sprites/buildings/residence.png";
 
 std::string Textures::hutriesHall = "sprites/buildings/castle.png";
 
-
-//---------------------------- HUTRIES ------------------------//
-
-std::string Textures::archerDown = "sprites/archer/down.png";
-std::string Textures::archerUp = "sprites/archer/up.png";
-std::string Textures::archerLeft = "sprites/archer/left.png";
-std::string Textures::archerRight = "sprites/archer/right.png";
-
-std::string Textures::warriorDown = "sprites/warrior/down.png";
-std::string Textures::warriorUp = "sprites/warrior/up.png";
-std::string Textures::warriorLeft = "sprites/warrior/left.png";
-std::string Textures::warriorRight = "sprites/warrior/right.png";
-
-std::string Textures::workerDown = "sprites/worker/down.png";
-std::string Textures::workerUp = "sprites/worker/up.png";
-std::string Textures::workerLeft = "sprites/worker/left.png";
-std::string Textures::workerRight = "sprites/worker/right.png";
-
-std::string Textures::carrierDown = "sprites/carrier/down.png";
-std::string Textures::carrierUp = "sprites/carrier/up.png";
-std::string Textures::carrierLeft = "sprites/carrier/left.png";
-std::string Textures::carrierRight = "sprites/carrier/right.png";
-std::string Textures::carrierEmpty = "sprites/carrier/empty.png";
-
+std::string Textures::transparent = "sprites/carrier/transparent.png";
 //---------------------------- CARRIER EMPTY------------------------//
 
 std::string Textures::carrierEmptyMoveRight1 = "sprites/carrier/empty_move_right_1.png";
@@ -334,6 +311,44 @@ std::string Textures::warriorMoveUp9 = "sprites/warrior/move_up_9.png";
 std::string Textures::warriorMoveUp10 = "sprites/warrior/move_up_10.png";
 std::string Textures::warriorMoveUp11 = "sprites/warrior/move_up_11.png";
 std::string Textures::warriorMoveUp12 = "sprites/warrior/move_up_12.png";
+
+//---------------------------- ARCHER ------------------------//
+
+std::string Textures::archerMoveRight1 = "sprites/archer/move_right_1.png";
+std::string Textures::archerMoveRight2 = "sprites/archer/move_right_2.png";
+std::string Textures::archerMoveRight3 = "sprites/archer/move_right_3.png";
+std::string Textures::archerMoveRight4 = "sprites/archer/move_right_4.png";
+std::string Textures::archerMoveRight5 = "sprites/archer/move_right_5.png";
+std::string Textures::archerMoveRight6 = "sprites/archer/move_right_6.png";
+std::string Textures::archerMoveRight7 = "sprites/archer/move_right_7.png";
+std::string Textures::archerMoveRight8 = "sprites/archer/move_right_8.png";
+
+std::string Textures::archerMoveLeft1 = "sprites/archer/move_left_1.png";
+std::string Textures::archerMoveLeft2 = "sprites/archer/move_left_2.png";
+std::string Textures::archerMoveLeft3 = "sprites/archer/move_left_3.png";
+std::string Textures::archerMoveLeft4 = "sprites/archer/move_left_4.png";
+std::string Textures::archerMoveLeft5 = "sprites/archer/move_left_5.png";
+std::string Textures::archerMoveLeft6 = "sprites/archer/move_left_6.png";
+std::string Textures::archerMoveLeft7 = "sprites/archer/move_left_7.png";
+std::string Textures::archerMoveLeft8 = "sprites/archer/move_left_8.png";
+
+std::string Textures::archerMoveDown1 = "sprites/archer/move_down_1.png";
+std::string Textures::archerMoveDown2 = "sprites/archer/move_down_2.png";
+std::string Textures::archerMoveDown3 = "sprites/archer/move_down_3.png";
+std::string Textures::archerMoveDown4 = "sprites/archer/move_down_4.png";
+std::string Textures::archerMoveDown5 = "sprites/archer/move_down_5.png";
+std::string Textures::archerMoveDown6 = "sprites/archer/move_down_6.png";
+std::string Textures::archerMoveDown7 = "sprites/archer/move_down_7.png";
+std::string Textures::archerMoveDown8 = "sprites/archer/move_down_8.png";
+
+std::string Textures::archerMoveUp1 = "sprites/archer/move_up_1.png";
+std::string Textures::archerMoveUp2 = "sprites/archer/move_up_2.png";
+std::string Textures::archerMoveUp3 = "sprites/archer/move_up_3.png";
+std::string Textures::archerMoveUp4 = "sprites/archer/move_up_4.png";
+std::string Textures::archerMoveUp5 = "sprites/archer/move_up_5.png";
+std::string Textures::archerMoveUp6 = "sprites/archer/move_up_6.png";
+std::string Textures::archerMoveUp7 = "sprites/archer/move_up_7.png";
+std::string Textures::archerMoveUp8 = "sprites/archer/move_up_8.png";
 
 //---------------------------- GOODS ------------------------//
 

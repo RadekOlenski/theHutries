@@ -36,29 +36,7 @@ public:
 
     static std::string hutriesHall;
 
-    //---------------------------- HUTRIES ------------------------//
-
-    static std::string archerDown;
-    static std::string archerUp;
-    static std::string archerLeft;
-    static std::string archerRight;
-
-    static std::string warriorDown;
-    static std::string warriorUp;
-    static std::string warriorLeft;
-    static std::string warriorRight;
-
-    static std::string workerDown;
-    static std::string workerUp;
-    static std::string workerLeft;
-    static std::string workerRight;
-
-    static std::string carrierDown;
-    static std::string carrierUp;
-    static std::string carrierLeft;
-    static std::string carrierRight;
-    static std::string carrierEmpty;
-
+    static std::string transparent;
     //---------------------------- CARRIER EMPTY ------------------------//
 
     static std::string carrierEmptyMoveRight1;
@@ -341,6 +319,45 @@ public:
     static std::string warriorMoveDown10;
     static std::string warriorMoveDown11;
     static std::string warriorMoveDown12;
+
+    //---------------------------- ARCHER ------------------------//
+
+    static std::string archerMoveRight1;
+    static std::string archerMoveRight2;
+    static std::string archerMoveRight3;
+    static std::string archerMoveRight4;
+    static std::string archerMoveRight5;
+    static std::string archerMoveRight6;
+    static std::string archerMoveRight7;
+    static std::string archerMoveRight8;
+
+    static std::string archerMoveLeft1;
+    static std::string archerMoveLeft2;
+    static std::string archerMoveLeft3;
+    static std::string archerMoveLeft4;
+    static std::string archerMoveLeft5;
+    static std::string archerMoveLeft6;
+    static std::string archerMoveLeft7;
+    static std::string archerMoveLeft8;
+
+    static std::string archerMoveUp1;
+    static std::string archerMoveUp2;
+    static std::string archerMoveUp3;
+    static std::string archerMoveUp4;
+    static std::string archerMoveUp5;
+    static std::string archerMoveUp6;
+    static std::string archerMoveUp7;
+    static std::string archerMoveUp8;
+
+    static std::string archerMoveDown1;
+    static std::string archerMoveDown2;
+    static std::string archerMoveDown3;
+    static std::string archerMoveDown4;
+    static std::string archerMoveDown5;
+    static std::string archerMoveDown6;
+    static std::string archerMoveDown7;
+    static std::string archerMoveDown8;
+
     //---------------------------- GOODS ------------------------//
 
     static std::string gold;

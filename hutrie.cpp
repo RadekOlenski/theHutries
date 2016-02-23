@@ -18,7 +18,7 @@ Hutrie::Hutrie(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFrom
     sprite.setPosition(6 * 64, 7 * 64);
     sprite.setScale(0.64, 0.64);
 
-    transparentTexture.loadFromFile(Textures::carrierEmpty);
+    transparentTexture.loadFromFile(Textures::transparent);
 
     sound.openFromFile(Sound::hutrie);
     sound.setVolume(100);

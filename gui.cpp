@@ -62,8 +62,8 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
     //-------------------DIFFICULTY LEVEL-----------------------------//
 
         easyButton(150, 350, hutrieApplication, Textures::carrierEmptyMoveRight1),
-        normalButton(400, 350, hutrieApplication, Textures::workerRight),
-        hardButton(650, 350, hutrieApplication, Textures::warriorRight),
+        normalButton(400, 350, hutrieApplication, Textures::workerMoveRight1),
+        hardButton(650, 350, hutrieApplication, Textures::warriorMoveRight1),
         easyText (185, 320, 37, ""),
         normalText (435, 320,37, ""),
         hardText (685, 320, 37, ""),
@@ -169,13 +169,13 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
         allHutries(mapWidth + 30, 170, hutrieApplication, Textures::allHutries, 96, 96),
         tHutries(mapWidth + 150, 200, 30, "26"),
-        allCarriers(mapWidth + 30, 260, hutrieApplication, Textures::carrierRight, 96, 96),
+        allCarriers(mapWidth + 30, 260, hutrieApplication, Textures::carrierEmptyMoveRight1, 96, 96),
         tCarriers(mapWidth + 150, 290, 30, "12"),
-        allWorkers(mapWidth + 30, 350, hutrieApplication, Textures::workerRight, 96, 96),
+        allWorkers(mapWidth + 30, 350, hutrieApplication, Textures::workerMoveRight1, 96, 96),
         tWorkers(mapWidth + 150, 380, 30, "5"),
-        allWarriors(mapWidth + 30, 440, hutrieApplication, Textures::warriorRight, 96, 96),
+        allWarriors(mapWidth + 30, 440, hutrieApplication, Textures::warriorMoveRight1, 96, 96),
         tWarriors(mapWidth + 150, 470, 30, "2"),
-        allArchers(mapWidth + 30, 530, hutrieApplication, Textures::archerRight, 96, 96),
+        allArchers(mapWidth + 30, 530, hutrieApplication, Textures::archerMoveRight1, 96, 96),
         tArchers(mapWidth + 150, 560, 30, "2")
 {
 

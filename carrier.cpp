@@ -46,7 +46,7 @@ void Carrier::animateTextureDown()
             switch (animationCounter)
             {
                 case 0:
-                    this->changeTexture(Textures::carrierEmptyMoveLeft1);
+                    this->changeTexture(Textures::carrierEmptyMoveDown1);
                     animationCounter++;
                     break;
                 case 1:
@@ -86,7 +86,7 @@ void Carrier::animateTextureDown()
             switch (animationCounter)
             {
                 case 0:
-                    this->changeTexture(Textures::carrierWoodMoveRight1);
+                    this->changeTexture(Textures::carrierWoodMoveDown1);
                     animationCounter++;
                     break;
                 case 1:
