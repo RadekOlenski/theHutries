@@ -605,6 +605,7 @@ void GUIController::drawApplication()
 
     std::vector<Unit*>::iterator it;
     drawGrid(it);
+    drawHutries();
     drawMapObjects(it);
     drawToApplication(gui->timeLeft.text);
     setCursorSprite();
@@ -677,6 +678,13 @@ void GUIController::drawGrid(std::vector<Unit*>::iterator it)
             drawToApplication((*it)->field);
     }
 }
+void GUIController::drawHutries()
+{
+    for (auto ith = world->hutries.begin(); ith != world->hutries.end(); ++ith)
+    {
+        drawToApplication((*ith)->sprite);
+    }
+}
 
 void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
 {
@@ -685,13 +693,13 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
     {
         if ((*it)->getType() == UnitType::FULL)
         {
-            if ((*it)->hutriesNumber() > 0)
-            {
-                for (int i = 0; i < (*it)->hutriesNumber(); i++)             //jesli w wektorze jest jakis hutri
-                {
-                    drawToApplication((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
-                }
-            }
+//            if ((*it)->hutriesNumber() > 0)
+//            {
+//                for (int i = 0; i < (*it)->hutriesNumber(); i++)             //jesli w wektorze jest jakis hutri
+//                {
+//                    drawToApplication((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
+//                }
+//            }
             drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
 
             if ((*it)->getMapObject()->isHighlighted()
@@ -976,6 +984,7 @@ void GUIController::captureScreen()
 
     std::vector<Unit*>::iterator it;
     drawGrid(it);
+    drawHutries();
     drawMapObjects(it);
     drawToApplication(gui->timeLeft.text);
 }

@@ -86,6 +86,8 @@ public:
 
     void deactivateConstructionButtons();
 
+    void deactivateBuildButton();
+
     Goods getRequiredForConstructionGoods() { return requiredForConstructionGoods; };
 
     void constructionButtonAction();

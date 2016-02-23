@@ -140,6 +140,11 @@ void Building::showConstructionButtons()
     }
 }
 
+void Building::deactivateBuildButton()
+{
+    constructButton.setActive(false);
+}
+
 void Building::deactivateConstructionButtons()
 {
     bringStoneButton.setActive(false);

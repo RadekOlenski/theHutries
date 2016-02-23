@@ -23,6 +23,8 @@ public:
 
     void drawGrid(std::vector<Unit*>::iterator it);
 
+    void drawHutries();
+
     void drawMapObjects(std::vector<Unit*>::iterator it);
 
     void drawToApplication(sf::RectangleShape shape);

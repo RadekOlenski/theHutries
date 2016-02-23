@@ -113,7 +113,8 @@ void GameLogicController::constructBuilding()
                     (*it)->setDescriptionTexture();
                     (*it)->setConstructedBuildingSound();
                     (*it)->updateStatus();
-                    std:: cout << "Buduje!" << std::endl;
+                    (*it)->deactivateBuildButton();
+                    std:: cout << "Zbudowany!" << std::endl;
                 }
                 else
                 {

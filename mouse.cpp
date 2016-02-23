@@ -84,15 +84,14 @@ void Mouse::updateMouseLock()
 
 void Mouse::handleClickOnMap()
 {
-//    if (gameLogicController->isUnitEmpty())                                                 //jesli unit jest wolny, bez zadnego mapobjectu
-//    {
-        if( modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE)
+    if (gameLogicController->isUnitEmpty())                                                 //jesli unit jest wolny, bez zadnego mapobjectu
+    {
+        if ( modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE )
         {
-            gameLogicController->handleBuildingCreation();
-            return;
+                gameLogicController->handleBuildingCreation();
         }
-//    }
-    else
+    }
+    else if ( modelController->getChosenInteractionMode() != InteractionMode::BUILDMODE )
 ////////////////////////////EMPHASIZE UNIT WITH MAPOBJECT///////////////////////////////////////////////////////////////////////////////////
     {
         modelController->setChosenInteractionMode(InteractionMode::INFOMODE);
