@@ -66,6 +66,8 @@ public:
 
     void highlightButton();
 
+    void animateButton();
+
 private:
 
     GUIButton createWarriorButton;
@@ -83,6 +85,10 @@ private:
     bool trainingArcher;
     bool firstCheck;
     bool enoughGoodsForCreation;
+
+    int animationCounter;
+
+    int frameCounter;
 };
 
 #endif // BARRACKS_H

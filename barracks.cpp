@@ -39,6 +39,8 @@ Barracks::Barracks(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
     requiredForConstructionGoods = GameBalance::barracksCost;
     doorIndex = 3;
     capacity = 1;
+    animationCounter = 0;
+    frameCounter = 0;
 }
 
 void Barracks::updateStatus()
@@ -145,7 +147,11 @@ void Barracks::highlightButton()
 {
     if (createWarriorButton.checkBounds())
         textWarrior.highlight();
-    else textWarrior.endHighlight();
+    else
+    {
+        textWarrior.endHighlight();
+        createWarriorButton.changeTexture(Textures::warriorMoveDown1);
+    }
 
     if (createWarriorButton.checkBounds())
         tGoldWarrior.highlight();
@@ -153,9 +159,135 @@ void Barracks::highlightButton()
 
     if (createArcherButton.checkBounds())
         textArcher.highlight();
-    else textArcher.endHighlight();
+    else
+    {
+        textArcher.endHighlight();
+        createArcherButton.changeTexture(Textures::archerMoveDown1);
+    }
 
     if (createArcherButton.checkBounds())
         tGoldArcher.highlight();
     else tGoldArcher.endHighlight();
+
+    if (bringStoneButton.checkBounds())
+        bringStoneText.highlight();
+    else bringStoneText.endHighlight();
+
+    if (bringWoodButton.checkBounds())
+        bringWoodText.highlight();
+    else bringWoodText.endHighlight();
+
+    if (constructButton.checkBounds())
+        constructText.highlight();
+    else constructText.endHighlight();
+
+    animateButton();
+}
+
+
+void Barracks::animateButton()
+{
+    if (frameCounter == 0)
+    {
+        if (createWarriorButton.checkBounds())
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown8);
+                    animationCounter++;
+                    break;
+                case 8:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown9);
+                    animationCounter++;
+                    break;
+                case 9:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown10);
+                    animationCounter++;
+                    break;
+                case 10:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown11);
+                    animationCounter++;
+                    break;
+                case 11:
+                    createWarriorButton.changeTexture(Textures::warriorMoveDown12);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (createArcherButton.checkBounds())
+        {
+            switch (animationCounter)
+            {
+                case 0:
+                    createArcherButton.changeTexture(Textures::archerMoveDown1);
+                    animationCounter++;
+                    break;
+                case 1:
+                    createArcherButton.changeTexture(Textures::archerMoveDown2);
+                    animationCounter++;
+                    break;
+                case 2:
+                    createArcherButton.changeTexture(Textures::archerMoveDown3);
+                    animationCounter++;
+                    break;
+                case 3:
+                    createArcherButton.changeTexture(Textures::archerMoveDown4);
+                    animationCounter++;
+                    break;
+                case 4:
+                    createArcherButton.changeTexture(Textures::archerMoveDown5);
+                    animationCounter++;
+                    break;
+                case 5:
+                    createArcherButton.changeTexture(Textures::archerMoveDown6);
+                    animationCounter++;
+                    break;
+                case 6:
+                    createArcherButton.changeTexture(Textures::archerMoveDown7);
+                    animationCounter++;
+                    break;
+                case 7:
+                    createArcherButton.changeTexture(Textures::archerMoveDown8);
+                    animationCounter = 0;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else animationCounter = 0;
+    }
+    frameCounter++;
+    if(frameCounter > 25)
+        frameCounter = 0;
 }

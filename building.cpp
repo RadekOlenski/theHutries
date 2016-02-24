@@ -213,6 +213,3 @@ bool Building::checkWorkersWorkingFlag()
     }
     return false;
 }
-
-
-

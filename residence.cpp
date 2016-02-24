@@ -49,3 +49,18 @@ void Residence::setConstructedBuildingSound()
         sound.play();
     }
 }
+
+void Residence::highlightButton()
+{
+    if (bringStoneButton.checkBounds())
+        bringStoneText.highlight();
+    else bringStoneText.endHighlight();
+
+    if (bringWoodButton.checkBounds())
+        bringWoodText.highlight();
+    else bringWoodText.endHighlight();
+
+    if (constructButton.checkBounds())
+        constructText.highlight();
+    else constructText.endHighlight();
+}

@@ -116,4 +116,16 @@ void GoodsBuilding::highlightButton()
     if(goodsReady.checkBounds())
         goodReady.highlight();
     else goodReady.endHighlight();
+
+    if (bringStoneButton.checkBounds())
+        bringStoneText.highlight();
+    else bringStoneText.endHighlight();
+
+    if (bringWoodButton.checkBounds())
+        bringWoodText.highlight();
+    else bringWoodText.endHighlight();
+
+    if (constructButton.checkBounds())
+        constructText.highlight();
+    else constructText.endHighlight();
 }
