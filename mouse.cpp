@@ -91,7 +91,7 @@ void Mouse::handleClickOnMap()
                 gameLogicController->handleBuildingCreation();
         }
     }
-    else if ( modelController->getChosenInteractionMode() != InteractionMode::BUILDMODE )
+    else if ( modelController->getChosenInteractionMode() != InteractionMode::BUILDMODE || ( modelController->getChosenInteractionMode() == InteractionMode::BUILDMODE && modelController->getChosenBuildingType() == BuildingType::HUTRIESHALL) )
 ////////////////////////////EMPHASIZE UNIT WITH MAPOBJECT///////////////////////////////////////////////////////////////////////////////////
     {
         modelController->setChosenInteractionMode(InteractionMode::INFOMODE);

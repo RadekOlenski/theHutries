@@ -605,8 +605,7 @@ void GUIController::drawApplication()
 
     std::vector<Unit*>::iterator it;
     drawGrid(it);
-    drawHutries();
-    drawMapObjects(it);
+    drawMap();
     drawToApplication(gui->timeLeft.text);
     setCursorSprite();
     drawToApplication(buildingToCursor);
@@ -686,6 +685,84 @@ void GUIController::drawHutries()
     }
 }
 
+void GUIController::drawEnvironment()
+{
+    for (auto ite = world->environment.begin(); ite != world->environment.end(); ++ite)
+    {
+        drawToApplication((*ite)->sprite);
+    }
+}
+
+void GUIController::drawBuildings()
+{
+    for (auto itb = world->buildings.begin(); itb != world->buildings.end(); ++itb)
+    {
+        if ((*itb)->getBuildingConstructedFlag())
+        {
+           drawToApplication((*itb)->sprite);
+        }
+    }
+}
+
+void GUIController::drawConstructionSites()
+{
+    for (auto itb = world->buildings.begin(); itb != world->buildings.end(); ++itb)
+    {
+        if (!(*itb)->getBuildingConstructedFlag())
+        {
+           drawToApplication((*itb)->sprite);
+        }
+    }
+}
+
+void GUIController::drawMap()
+{
+    drawConstructionSites();
+    drawEnvironment();
+    drawHutries();
+    drawBuildings();
+    drawForest();
+    showDescription();
+}
+
+void GUIController::drawForest()
+{
+
+    for (auto itf = world->forestsIndex.begin(); itf != world->forestsIndex.end(); ++itf)
+    {
+        drawToApplication(world->environment.at(*itf)->sprite);
+    }
+}
+
+void GUIController::showDescription()
+{
+     for (auto it = world->units.begin(); it != world->units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie
+        // - druga petla zeby ruszajacy sie Hutrie byli rysowani nad zielona kratka a nie pod
+    {
+        if ((*it)->getType() == UnitType::FULL)
+        {
+           // drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
+
+            if ((*it)->getMapObject()->isHighlighted()
+                && modelController->getChosenInteractionMode() ==
+                   InteractionMode::INFOMODE)  //jesli tryb info rysuj w prawym gui
+            {
+                drawToApplication((*it)->getMapObject()->title.text);
+                drawToApplication((*it)->getMapObject()->description.text);
+                drawToApplication((*it)->getMapObject()->descriptionFrame.button);
+                (*it)->getMapObject()->showButtons();
+                (*it)->getMapObject()->showConstructionButtons();
+                if (!modelController->getPauseGame())
+                {
+                    (*it)->getMapObject()->highlightButton();
+                }
+
+            }
+            else (*it)->getMapObject()->deactivateButtons();
+        }
+    }
+}
+
 void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
 {
     for (it = world->units.begin(); it != world->units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie
@@ -693,14 +770,7 @@ void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
     {
         if ((*it)->getType() == UnitType::FULL)
         {
-//            if ((*it)->hutriesNumber() > 0)
-//            {
-//                for (int i = 0; i < (*it)->hutriesNumber(); i++)             //jesli w wektorze jest jakis hutri
-//                {
-//                    drawToApplication((*it)->getHutrieIndex(i)->sprite);     //rysuj hutrich z vectora dwellers
-//                }
-//            }
-            drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
+           // drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
 
             if ((*it)->getMapObject()->isHighlighted()
                 && modelController->getChosenInteractionMode() ==
@@ -984,8 +1054,7 @@ void GUIController::captureScreen()
 
     std::vector<Unit*>::iterator it;
     drawGrid(it);
-    drawHutries();
-    drawMapObjects(it);
+    drawMap();
     drawToApplication(gui->timeLeft.text);
 }
 

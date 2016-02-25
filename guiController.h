@@ -23,7 +23,19 @@ public:
 
     void drawGrid(std::vector<Unit*>::iterator it);
 
+    void drawMap();
+
     void drawHutries();
+
+    void drawEnvironment();
+
+    void drawBuildings();
+
+    void drawForest();
+
+    void showDescription();
+
+    void drawConstructionSites();
 
     void drawMapObjects(std::vector<Unit*>::iterator it);
 
