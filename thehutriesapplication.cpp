@@ -76,7 +76,9 @@ void TheHutriesApplication::readSettingsFromFile()
         std::getline( settingsFile, displayMode);
         std::getline( settingsFile, displayMode);
         std::getline( settingsFile, bin);
+        std::getline( settingsFile, bin);
         std::getline( settingsFile, musicVolumeString);
+        std::getline( settingsFile, bin);
         std::getline( settingsFile, bin);
         std::getline( settingsFile, sfxVolumeString);
         settingsFile.close();
