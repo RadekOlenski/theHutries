@@ -37,8 +37,6 @@ public:
 
     void drawConstructionSites();
 
-    void drawMapObjects(std::vector<Unit*>::iterator it);
-
     void drawToApplication(sf::RectangleShape shape);
 
     void drawToApplication(sf::Sprite sprite);

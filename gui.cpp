@@ -57,6 +57,11 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         helpWood (100,310, hutrieApplication, Textures::wood, 100, 100),
         helpStone (200,310, hutrieApplication, Textures::stone, 100, 100),
         helpFood (150,440, hutrieApplication, Textures::food, 100, 100),
+        verticalLine(sf::Vector2f (3, 450)),
+        verticalLine2(sf::Vector2f (3, 450)),
+        horizontalLine(sf::Vector2f (900, 3)),
+        horizontalLine2(sf::Vector2f (900, 3)),
+        horizontalLine3(sf::Vector2f (900, 3)),
 
 
     //-------------------DIFFICULTY LEVEL-----------------------------//
@@ -200,6 +205,17 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
     buildButton.setActive(true);
     hutrieButton.setActive(true);
     backToHelpButton.setActive(false);
+
+    verticalLine.setPosition(300,120);
+    verticalLine2.setPosition(630,120);
+    verticalLine.setFillColor(sf::Color::Black);
+    verticalLine2.setFillColor(sf::Color::Black);
+    horizontalLine.setFillColor(sf::Color::Black);
+    horizontalLine2.setFillColor(sf::Color::Black);
+    horizontalLine3.setFillColor(sf::Color::Black);
+    horizontalLine.setPosition(100,180);
+    horizontalLine2.setPosition(100,300);
+    horizontalLine3.setPosition(100,420);
 
     easyButton.button.setSize(sf::Vector2f(200,200));
     normalButton.button.setSize(sf::Vector2f(200,200));

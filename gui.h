@@ -74,6 +74,11 @@ public:
     GUIButton helpWood;
     GUIButton helpStone;
     GUIButton helpFood;
+    sf::RectangleShape verticalLine;
+    sf::RectangleShape verticalLine2;
+    sf::RectangleShape horizontalLine;
+    sf::RectangleShape horizontalLine2;
+    sf::RectangleShape horizontalLine3;
 
     /////////////////////////////// PAUSE MENU ///////////////////////////////////////////////////
 

@@ -736,41 +736,10 @@ void GUIController::drawForest()
 
 void GUIController::showDescription()
 {
-     for (auto it = world->units.begin(); it != world->units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie
-        // - druga petla zeby ruszajacy sie Hutrie byli rysowani nad zielona kratka a nie pod
+     for (auto it = world->units.begin(); it != world->units.end(); ++it)
     {
         if ((*it)->getType() == UnitType::FULL)
         {
-           // drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
-
-            if ((*it)->getMapObject()->isHighlighted()
-                && modelController->getChosenInteractionMode() ==
-                   InteractionMode::INFOMODE)  //jesli tryb info rysuj w prawym gui
-            {
-                drawToApplication((*it)->getMapObject()->title.text);
-                drawToApplication((*it)->getMapObject()->description.text);
-                drawToApplication((*it)->getMapObject()->descriptionFrame.button);
-                (*it)->getMapObject()->showButtons();
-                (*it)->getMapObject()->showConstructionButtons();
-                if (!modelController->getPauseGame())
-                {
-                    (*it)->getMapObject()->highlightButton();
-                }
-
-            }
-            else (*it)->getMapObject()->deactivateButtons();
-        }
-    }
-}
-
-void GUIController::drawMapObjects(std::vector<Unit*>::iterator it)
-{
-    for (it = world->units.begin(); it != world->units.end(); ++it)     //rysosowanie wszystkich mapobjectow na mapie
-        // - druga petla zeby ruszajacy sie Hutrie byli rysowani nad zielona kratka a nie pod
-    {
-        if ((*it)->getType() == UnitType::FULL)
-        {
-           // drawToApplication((*it)->getMapObject()->sprite);    //rysuje obiekty (budynki, przyroda) widoczne na mapie
 
             if ((*it)->getMapObject()->isHighlighted()
                 && modelController->getChosenInteractionMode() ==
@@ -1013,6 +982,11 @@ void GUIController::displayHowToPlay()
        drawToApplication( gui->helpWood.button);
        drawToApplication( gui->helpStone.button);
        drawToApplication( gui->helpFood.button);
+       drawToApplication( gui->verticalLine);
+       drawToApplication( gui->verticalLine2);
+       drawToApplication( gui->horizontalLine);
+       drawToApplication( gui->horizontalLine2);
+       drawToApplication( gui->horizontalLine3);
    }
 
 
