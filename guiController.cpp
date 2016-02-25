@@ -178,67 +178,67 @@ void GUIController::handleHowToPlayButtonsActions()
         updateHowToText();
         Sound::click();
     }
-    if (gui->mechanicsButton.isActive() && gui->mechanicsButton.checkBounds() )
+    else if (gui->mechanicsButton.isActive() && gui->mechanicsButton.checkBounds() )
     {
         chosenHowToText = 2;
         updateHowToText();
         Sound::click();
     }
-    if (gui->buildingsButton.isActive() && gui->buildingsButton.checkBounds() )
+    else if (gui->buildingsButton.isActive() && gui->buildingsButton.checkBounds() )
     {
         chosenHowToText = 3;
         updateHowToText();
         Sound::click();
     }
-    if (gui->helpHutriesHall.isActive() && gui->helpHutriesHall.checkBounds() )
+    else if (gui->helpHutriesHall.isActive() && gui->helpHutriesHall.checkBounds() )
     {
         chosenHowToText = 4;
         updateHowToText();
         Sound::click();
     }
-    if (gui->helpBarracks.isActive() && gui->helpBarracks.checkBounds() )
+    else if (gui->helpBarracks.isActive() && gui->helpBarracks.checkBounds() )
     {
         chosenHowToText = 5;
         updateHowToText();
         Sound::click();
     }
-    if (gui->helpResidence.isActive() && gui->helpResidence.checkBounds() )
+    else if (gui->helpResidence.isActive() && gui->helpResidence.checkBounds() )
     {
         chosenHowToText = 6;
         updateHowToText();
         Sound::click();
     }
-    if (gui->helpSawmill.isActive() && gui->helpSawmill.checkBounds() )
+    else if (gui->helpSawmill.isActive() && gui->helpSawmill.checkBounds() )
     {
         chosenHowToText = 7;
         updateHowToText();
         Sound::click();
     }
-    if (gui->helpStonecutter.isActive() && gui->helpStonecutter.checkBounds() )
+    else if (gui->helpStonecutter.isActive() && gui->helpStonecutter.checkBounds() )
     {
         chosenHowToText = 8;
         updateHowToText();
         Sound::click();
     }
-    if (gui->helpFarm.isActive() && gui->helpFarm.checkBounds() )
+    else if (gui->helpFarm.isActive() && gui->helpFarm.checkBounds() )
     {
         chosenHowToText = 9;
         updateHowToText();
         Sound::click();
     }
-    if (gui->helpGoldmine.isActive() && gui->helpGoldmine.checkBounds() )
+    else if (gui->helpGoldmine.isActive() && gui->helpGoldmine.checkBounds() )
     {
         chosenHowToText = 10;
         updateHowToText();
         Sound::click();
     }
-    if (gui->hutriesTypesButton.isActive() && gui->hutriesTypesButton.checkBounds() )
+    else if (gui->hutriesTypesButton.isActive() && gui->hutriesTypesButton.checkBounds() )
     {
         chosenHowToText = 11;
         updateHowToText();
         Sound::click();
     }
-    if (gui->resourcesButton.isActive() && gui->resourcesButton.checkBounds() )
+    else if (gui->resourcesButton.isActive() && gui->resourcesButton.checkBounds() )
     {
         chosenHowToText = 12;
         updateHowToText();
@@ -265,7 +265,7 @@ void GUIController::handleDifficultyButtonsActions()
         Sound::click();
         return;
     }
-    if (gui->normalButton.checkBounds() && gui->normalButton.isActive())
+    else if (gui->normalButton.checkBounds() && gui->normalButton.isActive())
     {
         setDifficultyButtonsFlags(false);
         introFlag = true;
@@ -273,7 +273,7 @@ void GUIController::handleDifficultyButtonsActions()
         Sound::click();
         return;
     }
-    if (gui->hardButton.checkBounds() && gui->hardButton.isActive())
+    else if (gui->hardButton.checkBounds() && gui->hardButton.isActive())
     {
         setDifficultyButtonsFlags(false);
         introFlag = true;
