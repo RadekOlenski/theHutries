@@ -26,3 +26,17 @@ D:\Dokumenty\Marcin\the Hutries\GIT\theHutries\Launcher Source\Launcher\obj\Debu
 D:\Dokumenty\Marcin\the Hutries\GIT\theHutries\Launcher Source\Launcher\obj\Debug\Launcher.g.resources
 D:\Dokumenty\Marcin\the Hutries\GIT\theHutries\Launcher Source\Launcher\obj\Debug\Launcher.Properties.Resources.resources
 D:\Dokumenty\Marcin\the Hutries\GIT\theHutries\Launcher Source\Launcher\obj\Debug\Launcher.csproj.GenerateResource.Cache
+C:\dev\The Hutries\Project\Launcher Source\Launcher\bin\Debug\Launcher.exe.config
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\Launcher.exe
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\Launcher.pdb
+C:\dev\The Hutries\Project\Launcher Source\Launcher\bin\Debug\Launcher.exe
+C:\dev\The Hutries\Project\Launcher Source\Launcher\bin\Debug\Launcher.pdb
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\Launcher.csprojResolveAssemblyReference.cache
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\MainWindow.g.cs
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\App.g.cs
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\Launcher_MarkupCompile.cache
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\Launcher_MarkupCompile.lref
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\MainWindow.baml
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\Launcher.g.resources
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\Launcher.Properties.Resources.resources
+C:\dev\The Hutries\Project\Launcher Source\Launcher\obj\Debug\Launcher.csproj.GenerateResource.Cache

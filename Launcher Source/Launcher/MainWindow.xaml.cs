@@ -23,6 +23,8 @@ namespace Launcher
     {
         private string chosenResolution = "1360 x 768";
         private string chosenMode = "windowed";
+        private string musicVolume = "100";
+        private string sfxVolume = "80";
         public MainWindow()
         {
             InitializeComponent();
@@ -43,6 +45,18 @@ namespace Launcher
             chosenMode = "windowed";
         }
 
+        private void volume_SetMusic(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int value = (int)musicSlider.Value;
+            musicVolume = value.ToString();
+        }
+
+        private void volume_SetSFX(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int value = (int)sfxSlider.Value;
+            sfxVolume = value.ToString();
+        }
+
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
             System.IO.StreamWriter file = new System.IO.StreamWriter("config/settings.txt");
@@ -50,11 +64,14 @@ namespace Launcher
             file.WriteLine(chosenResolution + "\n");
             file.WriteLine("Display Mode:\n");
             file.WriteLine(chosenMode);
+            file.WriteLine("Music Volume:\n");
+            file.WriteLine(musicVolume);
+            file.WriteLine("SFX Volume:\n");
+            file.WriteLine(sfxVolume);
             file.Close();
             Process theHutries = new Process();
             theHutries.StartInfo.FileName = "theHutries.exe";
             theHutries.Start();
-
         }
     }
 }

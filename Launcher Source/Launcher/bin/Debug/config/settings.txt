@@ -1,0 +1,13 @@
+Display resolution:
+
+1360 x 768
+
+Display Mode:
+
+windowed
+Music Volume:
+
+76
+SFX Volume:
+
+41
