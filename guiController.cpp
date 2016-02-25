@@ -1,5 +1,4 @@
 #include <sstream>
-
 #include <iostream>
 #include "guiController.h"
 #include "sound.h"

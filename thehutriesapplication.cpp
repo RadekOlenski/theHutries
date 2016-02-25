@@ -62,6 +62,8 @@ void TheHutriesApplication::readSettingsFromFile()
         std::cout << "Default settings: ON" << std::endl;
         resolution = "1360 x 768";
         displayMode = "fullscreen";
+        musicVolume = 100;
+        sfxVolume = 80;
     }
     else
     {
@@ -73,6 +75,27 @@ void TheHutriesApplication::readSettingsFromFile()
         std::getline( settingsFile, bin);
         std::getline( settingsFile, displayMode);
         std::getline( settingsFile, displayMode);
+        std::getline( settingsFile, bin);
+        std::getline( settingsFile, musicVolumeString);
+        std::getline( settingsFile, bin);
+        std::getline( settingsFile, sfxVolumeString);
         settingsFile.close();
     }
+}
+
+void TheHutriesApplication::stringsToNumbers()
+{
+    std::stringstream convertMusic(musicVolumeString);
+    if (!(convertMusic >> musicVolume))
+        musicVolume = 0;
+    std::stringstream convertSFX(sfxVolumeString);
+    if (!(convertSFX >> sfxVolume))
+        sfxVolume = 0;
+}
+
+void TheHutriesApplication::adjustVolume()
+{
+    stringsToNumbers();
+    GameBalance::musicVolume = musicVolume;
+    GameBalance::sfxVolume = sfxVolume;
 }

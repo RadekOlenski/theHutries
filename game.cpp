@@ -60,6 +60,7 @@ Game::Game(sf::RenderWindow* hutrieApplication, int applicationWidth, int applic
 
     if (!music.openFromFile(Sound::menuMusic)) std::cout << "Loading music failed" << std::endl;
     music.setLoop(true);
+    music.setVolume(GameBalance::musicVolume);
     changeMusicFlag = true;
 
     /////////////////////////// REMINDER SOUND //////////////////////////////////////////////////////
@@ -141,14 +142,14 @@ void Game::handleActions()
 
 void Game::changeBackgroundMusic(std::string musicPath)
 {
-    for (int i = 100; i > 0; i--)
+    for (int i = GameBalance::musicVolume; i > 0; i--)
     {
         music.setVolume(i);
         sf::sleep(sf::milliseconds(5));
     }
     music.openFromFile(musicPath);
     music.play();
-    music.setVolume(40);
+    music.setVolume(GameBalance::musicVolume);
 }
 
 void Game::drawApplication()
@@ -173,6 +174,7 @@ void Game::updateClock()
     if (changeMusicFlag && time == 28)
     {
         music.openFromFile(Sound::introMusic);
+        music.setVolume(GameBalance::musicVolume);
         music.play();
         changeMusicFlag = false;
     }
@@ -184,12 +186,13 @@ void Game::gameOver(bool win)
     if (win)
     {
         music.openFromFile(Sound::winSound);
+        music.setVolume(GameBalance::musicVolume);
         music.setLoop(false);
     }
     else
     {
         music.openFromFile(Sound::loseSound);
-        music.setVolume(100);
+        music.setVolume(GameBalance::musicVolume);
     }
 
     music.play();
@@ -217,6 +220,7 @@ void Game::gameOver(bool win)
 
 void Game::menu()
 {
+    music.setVolume(GameBalance::musicVolume);
     music.play();
     guiController->launchTitleThread();
     guiController->launchBigTitleThread();
@@ -243,6 +247,7 @@ void Game::menu()
             if (firstLoop)
             {
                 music.openFromFile(Sound::introMusic);
+                music.setVolume(GameBalance::musicVolume);
                 music.play();
                 guiController->setMenuButtonsFlags(false);
                 guiController->launchQuoteThread();

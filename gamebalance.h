@@ -97,6 +97,9 @@ public:
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     static bool exitFlag;
+
+    static int musicVolume;
+    static int sfxVolume;
 };
 
 #endif // GAMEBALANCE_H

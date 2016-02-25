@@ -15,7 +15,7 @@ Building::Building(sf::RenderWindow* hutrieApplication, std::vector<Unit*> units
 
 {
     sound.openFromFile(Sound::construction);
-    sound.setVolume(50);
+    sound.setVolume(GameBalance::sfxVolume);
     needCarrier = false;
     needWorker = false;
     needContructionStone = false;

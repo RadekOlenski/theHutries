@@ -2,6 +2,7 @@
 #include "mountain.h"
 #include "sound.h"
 #include "unit.h"
+#include "gamebalance.h"
 
 Mountain::Mountain(sf::RenderWindow* hutrieApplication, const std::vector<Unit*> &unitsFromGame, std::string pathName)
         : Environment(hutrieApplication, unitsFromGame, pathName)
@@ -11,7 +12,7 @@ Mountain::Mountain(sf::RenderWindow* hutrieApplication, const std::vector<Unit*>
     sprite.setOrigin(0, 20);
     sprite.setScale(0.50, 0.50);
 
-    sound.setVolume(80);
+    sound.setVolume(GameBalance::sfxVolume);
     sound.openFromFile(Sound::mountain);
 
     sprite.setPosition(objectUnits.at(0)->field.getPosition());

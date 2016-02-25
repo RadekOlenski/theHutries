@@ -1,4 +1,5 @@
 #include "sound.h"
+#include "gamebalance.h"
 
 using namespace std;
 
@@ -45,7 +46,7 @@ void Sound::click()
 {
     Sound::setSoundBuffer();
     soundBuffer.loadFromFile(clickPath);
-    sound.setVolume(30);
+    sound.setVolume(GameBalance::sfxVolume);
     sound.play();
 }
 
@@ -60,7 +61,7 @@ void Sound::purchaseSound()
 {
     Sound::setSoundBuffer();
     soundBuffer.loadFromFile(purchaseSoundPath);
-    sound.setVolume(100);
+    sound.setVolume(GameBalance::sfxVolume);
     sound.play();
 }
 

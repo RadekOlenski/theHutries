@@ -1,5 +1,8 @@
 #include "gamebalance.h"
 
+int GameBalance::musicVolume = 100;
+int GameBalance::sfxVolume = 100;
+
 bool GameBalance::exitFlag = false;
 int GameBalance::gameTime = 5 * 60;
 unsigned int GameBalance::startingWood = 10;

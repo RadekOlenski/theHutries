@@ -5,6 +5,7 @@
 #include "unit.h"
 #include "sound.h"
 #include "textures.h"
+#include "gamebalance.h"
 
 
 ///////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////////////////////////////
@@ -21,7 +22,7 @@ Hutrie::Hutrie(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFrom
     transparentTexture.loadFromFile(Textures::transparent);
 
     sound.openFromFile(Sound::hutrie);
-    sound.setVolume(100);
+    sound.setVolume(GameBalance::sfxVolume);
 
     busy = false;
     pauseThread = false;

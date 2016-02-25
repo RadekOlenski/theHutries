@@ -6,32 +6,45 @@
 
 class TheHutriesApplication
 {
-    public:
+public:
 
-        TheHutriesApplication();
+    TheHutriesApplication();
 
-        void readSettingsFromFile();
+    void readSettingsFromFile();
 
-        void adjustResolution();
+    void adjustResolution();
 
-        void start();
+    void adjustVolume();
 
-    private:
+    void start();
 
-        sf::RenderWindow hutrieApplication;
-        std::string resolution;
-        std::string displayMode;
-        float horizontalScreenZoom;
-        float verticalScreenZoom;
-        const int applicationWidth;
-        const int applicationHeight;
+private:
 
-        bool fullscreenEnable();
-        float getXResolution();
-        float getYResolution();
-        void setEasy();
-        void setNormal();
-        void setHard();
+    sf::RenderWindow hutrieApplication;
+    std::string resolution;
+    std::string displayMode;
+    std::string sfxVolumeString;
+    std::string musicVolumeString;
+    int musicVolume;
+    int sfxVolume;
+    float horizontalScreenZoom;
+    float verticalScreenZoom;
+    const int applicationWidth;
+    const int applicationHeight;
+
+    bool fullscreenEnable();
+
+    float getXResolution();
+
+    float getYResolution();
+
+    void setEasy();
+
+    void setNormal();
+
+    void setHard();
+
+    void stringsToNumbers();
 };
 
 #endif // THEHUTRIESAPPLICATION_H

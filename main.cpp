@@ -16,6 +16,8 @@ int main()
 
     hutriesApp.adjustResolution();
 
+    hutriesApp.adjustVolume();
+
     //ShowWindow(hWnd, SW_HIDE);
 
     hutriesApp.start();

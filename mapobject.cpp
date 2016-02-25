@@ -2,6 +2,7 @@
 
 #include "unit.h"
 #include "unittype.h"
+#include "gamebalance.h"
 
 MapObject::MapObject(sf::RenderWindow* hutrieApplication, std::vector<Unit*> unitsFromGame, std::string pathName)
         : title(1024 + 40, 170, 30),
@@ -13,7 +14,7 @@ MapObject::MapObject(sf::RenderWindow* hutrieApplication, std::vector<Unit*> uni
     texture.loadFromFile(pathName);
     sprite.setTexture(texture);
     sprite.setScale(0.5, 0.5);
-    sound.setVolume(10);
+    sound.setVolume(GameBalance::sfxVolume);
 
 //    active = true;                                                             //WHILE TRUE OBJECT WIL BE DRAWN ON SCREEN
     highlight = false;                                                         //WHILE FALSE NO GREEN BACKROUND UNDER OBJECT + NO INFO ON GUI

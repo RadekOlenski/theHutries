@@ -5,3 +5,7 @@ Display resolution:
 Display Mode:
 
 windowed
+Music volume:
+100
+SFX Volume:
+80
