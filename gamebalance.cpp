@@ -2,6 +2,8 @@
 
 int GameBalance::musicVolume = 100;
 int GameBalance::sfxVolume = 100;
+int GameBalance::tempMusicVolume = 0;
+int GameBalance::tempSFXVolume = 0;
 
 bool GameBalance::exitFlag = false;
 int GameBalance::gameTime = 5 * 60;

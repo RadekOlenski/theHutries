@@ -84,10 +84,10 @@ public:
 
     GUIText resumeText;
     GUIButton resumeButton;
-    GUIText settingsText;
-    GUIButton settingsButton;
-    GUIText helpText;
-    GUIButton helpButton;
+    GUIText musicText;
+    GUIButton musicButton;
+    GUIText sfxText;
+    GUIButton sfxButton;
     GUIText mainMenuText;
     GUIButton mainMenuButton;
     GUIButton backToHelpButton;

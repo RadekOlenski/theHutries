@@ -297,6 +297,40 @@ void GUIController::handlePauseButtonsActions()
         Sound::click();
         return;
     }
+
+    if (gui->musicButton.checkBounds() && gui->musicButton.isActive())
+    {
+        if(GameBalance::musicVolume > 0)
+        {
+            GameBalance::tempMusicVolume = GameBalance::musicVolume;
+            GameBalance::musicVolume = 0;
+        }
+        else
+        {
+            if(GameBalance::tempMusicVolume == 0)
+                GameBalance::tempMusicVolume = 100;
+            GameBalance::musicVolume = GameBalance::tempMusicVolume;
+        }
+        Sound::click();
+        return;
+    }
+
+    if (gui->sfxButton.checkBounds() && gui->sfxButton.isActive())
+    {
+        if(GameBalance::sfxVolume > 0)
+        {
+            GameBalance::tempSFXVolume = GameBalance::sfxVolume;
+            GameBalance::sfxVolume = 0;
+        }
+        else
+        {
+            if(GameBalance::tempSFXVolume == 0)
+                GameBalance::tempSFXVolume = 100;
+            GameBalance::sfxVolume = GameBalance::tempSFXVolume;
+        }
+        Sound::click();
+        return;
+    }
 }
 
 void GUIController::updateHowToText()
@@ -571,8 +605,8 @@ void GUIController::setDifficultyButtonsFlags(bool buttonFlag)
 void GUIController::setPauseButtonsFlags(bool buttonFlag)
 {
     gui->resumeButton.setActive(buttonFlag);
-    gui->settingsButton.setActive(buttonFlag);
-    gui->helpButton.setActive(buttonFlag);
+    gui->musicButton.setActive(buttonFlag);
+    gui->sfxButton.setActive(buttonFlag);
     gui->mainMenuButton.setActive(buttonFlag);
 }
 
@@ -846,13 +880,13 @@ void GUIController::attachBuildingToCursor(sf::Vector2f worldPos)
                 buildingToCursorTexture.loadFromFile(Textures::residenceBasic);
                 break;
             default:
-                buildingToCursorTexture.loadFromFile(Textures::carrierEmptyMoveDown1);
+                buildingToCursorTexture.loadFromFile(Textures::transparent);
                 break;
         };
     }
     else
     {
-        buildingToCursorTexture.loadFromFile(Textures::carrierEmptyMoveDown1);
+        buildingToCursorTexture.loadFromFile(Textures::transparent);
     }
     buildingToCursor.setPosition(worldPos);
 }
@@ -1435,13 +1469,13 @@ void GUIController::highlightTargetButton()
             gui->resumeText.highlight();
         else gui->resumeText.endHighlight();
 
-        if (gui->settingsButton.checkBounds())
-            gui->settingsText.highlight();
-        else gui->settingsText.endHighlight();
+        if (gui->musicButton.checkBounds())
+            gui->musicText.highlight();
+        else gui->musicText.endHighlight();
 
-        if (gui->helpButton.checkBounds())
-            gui->helpText.highlight();
-        else gui->helpText.endHighlight();
+        if (gui->sfxButton.checkBounds())
+            gui->sfxText.highlight();
+        else gui->sfxText.endHighlight();
 
         if (gui->mainMenuButton.checkBounds())
             gui->mainMenuText.highlight();

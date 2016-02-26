@@ -100,6 +100,9 @@ public:
 
     static int musicVolume;
     static int sfxVolume;
+
+    static int tempMusicVolume;
+    static int tempSFXVolume;
 };
 
 #endif // GAMEBALANCE_H

@@ -71,6 +71,8 @@ public:
 
     virtual void highlightButton() {};
 
+    void setVolume();
+
 protected:
 
     std::vector<Unit*> objectUnits;

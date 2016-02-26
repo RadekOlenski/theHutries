@@ -94,10 +94,10 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         pauseFrame(sf::Vector2f(350, 500)),
         resumeText(550, 200, 50, "Resume"),
         resumeButton(545, 205, hutrieApplication, 155, 55, false),
-        settingsText(550, 290, 50, "Settings"),
-        settingsButton(545, 295, hutrieApplication, 158, 55, false),
-        helpText(580, 380, 50, "Help"),
-        helpButton(575, 385, hutrieApplication, 100, 55, false),
+        musicText(500, 290, 50, "Music: ON"),
+        musicButton(500, 295, hutrieApplication, 230, 55, false),
+        sfxText(525, 380, 50, "SFX: ON"),
+        sfxButton(525, 385, hutrieApplication, 200, 55, false),
         mainMenuText(510, 470, 50, "Main Menu"),
         mainMenuButton(505, 478, hutrieApplication, 240, 55, false),
         screenBlackout(sf::Vector2f(1366, 768)),
@@ -353,14 +353,21 @@ void GUI::displayMenu()
 
 void GUI::displayPauseMenu()
 {
+    if(GameBalance::musicVolume == 0)
+        musicText.text.setString("Music: OFF");
+    else musicText.text.setString("Music: ON");
+
+    if(GameBalance::sfxVolume == 0)
+        sfxText.text.setString("SFX: OFF");
+    else sfxText.text.setString("SFX: ON");
     hutrieApplication->draw(screenBlackout);
     hutrieApplication->draw(pauseFrame);
     hutrieApplication->draw(resumeText.text);
     hutrieApplication->draw(resumeButton.button);
-    hutrieApplication->draw(settingsText.text);
-    hutrieApplication->draw(settingsButton.button);
-    hutrieApplication->draw(helpText.text);
-    hutrieApplication->draw(helpButton.button);
+    hutrieApplication->draw(musicText.text);
+    hutrieApplication->draw(musicButton.button);
+    hutrieApplication->draw(sfxText.text);
+    hutrieApplication->draw(sfxButton.button);
     hutrieApplication->draw(mainMenuText.text);
     hutrieApplication->draw(mainMenuButton.button);
 }

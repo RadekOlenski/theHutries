@@ -163,6 +163,7 @@ void GameLogicController::highlightUnits()
     world->units.at(selectedUnitIndex)->getMapObject()->highlightUnits();
     world->units.at(selectedUnitIndex)->getMapObject()->updateStatus();
     world->units.at(selectedUnitIndex)->getMapObject()->setHighlight(true);
+    world->units.at(selectedUnitIndex)->getMapObject()->setVolume();
     world->units.at(selectedUnitIndex)->getMapObject()->soundPlay();
     world->lastClickedUnit = world->units.at(selectedUnitIndex);
 }
@@ -936,7 +937,11 @@ void GameLogicController::resumeClocks()
     {
         (*it)->resumeConstructionClock();
         (*it)->resumeTrainingClock();
-        if((*it)->isHighlighted()) (*it)->soundPlay(true);
+        if((*it)->isHighlighted())
+        {
+            (*it)->setVolume();
+            (*it)->soundPlay(true);
+        }
     }
 
     std::vector<Worker*>::iterator itw;
@@ -956,7 +961,11 @@ void GameLogicController::resumeClocks()
     std::vector<Environment*>::iterator ite;
     for(ite = world->environment.begin(); ite != world->environment.end(); ++ite)
     {
-        if((*ite)->isHighlighted()) (*ite)->soundPlay(true);
+        if((*ite)->isHighlighted())
+        {
+            (*ite)->setVolume();
+            (*ite)->soundPlay(true);
+        }
     }
 }
 

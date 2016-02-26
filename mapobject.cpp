@@ -100,3 +100,8 @@ void MapObject::soundPause()
 {
     sound.pause();
 }
+
+void MapObject::setVolume()
+{
+    sound.setVolume(GameBalance::sfxVolume);
+}

@@ -277,6 +277,7 @@ void Game::pauseMenu()
         mouse->updateMouseLock();
         mouse->leftClickActions();
         keyboard->actionsLoop();
+        music.setVolume(GameBalance::musicVolume);
         if (modelController->getBackToMenu())
         {
             return;
