@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace Launcher
 {
@@ -25,9 +27,52 @@ namespace Launcher
         private string chosenMode = "windowed";
         private string musicVolume = "100";
         private string sfxVolume = "80";
+        private double tempMusicSliderValue = 0;
+        private double tempSFXSliderValue = 0;
         public MainWindow()
         {
             InitializeComponent();
+            readScreenResolution();
+        }
+
+        private void readScreenResolution()
+        {
+            string width = Screen.PrimaryScreen.Bounds.Width.ToString();
+            string height = Screen.PrimaryScreen.Bounds.Height.ToString();
+            string resolutionString = (width + " x " + height);
+            switch (resolutionString)
+            {
+                case "1360 x 768":
+                    resolution.SelectedIndex = 0;
+                    break;
+                case "1366 x 768":
+                    resolution.SelectedIndex = 1;
+                    break;
+                case "1440 x 900":
+                    resolution.SelectedIndex = 2;
+                    break;
+                case "1600 x 900":
+                    resolution.SelectedIndex = 3;
+                    break;
+                case "1600 x 1200":
+                    resolution.SelectedIndex = 4;
+                    break;
+                case "1680 x 1050":
+                    resolution.SelectedIndex = 5;
+                    break;
+                case "1920 x 1080":
+                    resolution.SelectedIndex = 6;
+                    break;
+                case "1920 x 1200":
+                    resolution.SelectedIndex = 7;
+                    break;
+                case "2560 x 1600":
+                    resolution.SelectedIndex = 8;
+                    break;
+                case "3840 x 2160":
+                    resolution.SelectedIndex = 9;
+                    break;
+            }
         }
 
         private void resolution_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -55,6 +100,28 @@ namespace Launcher
         {
             int value = (int)sfxSlider.Value;
             sfxVolume = value.ToString();
+        }
+
+        private void muteMusic(object sender, RoutedEventArgs e)
+        {
+            tempMusicSliderValue = musicSlider.Value;
+            musicSlider.Value = 0;
+        }
+
+        private void muteSFX(object sender, RoutedEventArgs e)
+        {
+            tempSFXSliderValue = sfxSlider.Value;
+            sfxSlider.Value = 0;
+        }
+
+        private void unmuteMusic(object sender, RoutedEventArgs e)
+        {
+            musicSlider.Value = tempMusicSliderValue;
+        }
+
+        private void unmuteSFX(object sender, RoutedEventArgs e)
+        {
+            sfxSlider.Value = tempSFXSliderValue;
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)

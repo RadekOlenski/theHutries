@@ -162,6 +162,7 @@ void Game::updateClock()
     int time = (int) (gameTime - deadline.getElapsedTime().asSeconds());
     if (time % 60 == 0 && highligthedClockFlag && time != 0)
     {
+        reminderSound.setVolume(GameBalance::sfxVolume);
         reminderSound.play();
         guiController->highlightClock(true);
         highligthedClockFlag = false;
