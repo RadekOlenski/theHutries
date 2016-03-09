@@ -53,6 +53,11 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
         helpBuildingDescription(200, 300, hutrieApplication, Textures::sawmillBasic, 200, 200),
         helpHutriesHallDescription(150, 250, hutrieApplication, Textures::hutriesHall, 300, 300),
 
+        helpCarrier (100,230, hutrieApplication, Textures::carrierEmptyMoveRight1, 90, 90),
+        helpWorker  (100,320, hutrieApplication, Textures::workerMoveRight1, 95, 95),
+        helpWarrior (100,410, hutrieApplication, Textures::warriorMoveRight1, 90, 90),
+        helpArcher  (100,500, hutrieApplication, Textures::archerMoveRight1, 90, 90),
+
         helpGold (150,150 + 35, hutrieApplication, Textures::gold, 100, 100),
         helpWood (100,310, hutrieApplication, Textures::wood, 100, 100),
         helpStone (200,310, hutrieApplication, Textures::stone, 100, 100),

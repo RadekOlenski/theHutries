@@ -70,6 +70,11 @@ public:
     GUIButton helpBuildingDescription;
     GUIButton helpHutriesHallDescription;
 
+    GUIButton helpCarrier;
+    GUIButton helpWorker;
+    GUIButton helpWarrior;
+    GUIButton helpArcher;
+
     GUIButton helpGold;
     GUIButton helpWood;
     GUIButton helpStone;

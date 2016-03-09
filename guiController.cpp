@@ -69,9 +69,9 @@ void GUIController::displayIntro()
     quote.text.setColor(sf::Color(0, 0, 0, 0));
     gui->startingText.text.setPosition(200, 300);
     gui->startingText.text.setString(GameBalance::historyString);
-    sf::sleep(sf::seconds(5));
+    sf::sleep(sf::seconds(6));
     gui->startingText.text.setString(GameBalance::historyString2);
-    sf::sleep(sf::seconds(5));
+    sf::sleep(sf::seconds(6));
     displayHutriesHall = true;
     gui->startingText.text.setPosition(200, 550);
     gui->startingText.text.setString(GameBalance::historyString3);
@@ -98,6 +98,7 @@ void GUIController::handleMenuButtonsActions()
     {
         turnOffHelp();
         hideDifficultyTexts();
+        bigTitleThread.terminate();
         setDifficultyButtonsFlags(false);
         gui->startingText.text.setPosition(160, 320);
         gui->startingText.text.setString(GameBalance::aboutString);
@@ -108,6 +109,7 @@ void GUIController::handleMenuButtonsActions()
     {
         turnOffHelp();
         hideDifficultyTexts();
+        gui->startingText.text.setString("");
         setDifficultyButtonsFlags(false);
         Sound::click();
         modelController->setExitWindow(true);
@@ -1007,6 +1009,14 @@ void GUIController::displayHowToPlay()
    if   (chosenHowToText >= 5 && chosenHowToText <= 10)
    {
        drawToApplication( gui->helpBuildingDescription.button);
+       return;
+   }
+   if   (chosenHowToText == 11)
+   {
+       drawToApplication( gui->helpCarrier.button);
+       drawToApplication( gui->helpWarrior.button);
+       drawToApplication( gui->helpWorker.button);
+       drawToApplication( gui->helpArcher.button);
        return;
    }
    if   (chosenHowToText == 12)
