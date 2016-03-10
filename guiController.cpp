@@ -164,14 +164,14 @@ void GUIController::turnOffHelp()
     gui->backArrowButton.setActive(false);
     gui->backToHelpButton.setActive(false);
     bigTitleText.text.setColor(sf::Color::Black);
-    gui->helpTitleText.text.setString ("");
+    gui->helpTitleText.text.setString("");
 }
 
 void GUIController::handleHowToPlayButtonsActions()
 {
-    if (gui->backToHelpButton.isActive() && gui->backToHelpButton.checkBounds() )
+    if (gui->backToHelpButton.isActive() && gui->backToHelpButton.checkBounds())
     {
-        if ( chosenHowToText >=4 && chosenHowToText <=10)
+        if (chosenHowToText >= 4 && chosenHowToText <= 10)
         {
             chosenHowToText = 3;
         }
@@ -179,67 +179,67 @@ void GUIController::handleHowToPlayButtonsActions()
         updateHowToText();
         Sound::click();
     }
-    else if (gui->mechanicsButton.isActive() && gui->mechanicsButton.checkBounds() )
+    else if (gui->mechanicsButton.isActive() && gui->mechanicsButton.checkBounds())
     {
         chosenHowToText = 2;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->buildingsButton.isActive() && gui->buildingsButton.checkBounds() )
+    else if (gui->buildingsButton.isActive() && gui->buildingsButton.checkBounds())
     {
         chosenHowToText = 3;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->helpHutriesHall.isActive() && gui->helpHutriesHall.checkBounds() )
+    else if (gui->helpHutriesHall.isActive() && gui->helpHutriesHall.checkBounds())
     {
         chosenHowToText = 4;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->helpBarracks.isActive() && gui->helpBarracks.checkBounds() )
+    else if (gui->helpBarracks.isActive() && gui->helpBarracks.checkBounds())
     {
         chosenHowToText = 5;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->helpResidence.isActive() && gui->helpResidence.checkBounds() )
+    else if (gui->helpResidence.isActive() && gui->helpResidence.checkBounds())
     {
         chosenHowToText = 6;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->helpSawmill.isActive() && gui->helpSawmill.checkBounds() )
+    else if (gui->helpSawmill.isActive() && gui->helpSawmill.checkBounds())
     {
         chosenHowToText = 7;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->helpStonecutter.isActive() && gui->helpStonecutter.checkBounds() )
+    else if (gui->helpStonecutter.isActive() && gui->helpStonecutter.checkBounds())
     {
         chosenHowToText = 8;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->helpFarm.isActive() && gui->helpFarm.checkBounds() )
+    else if (gui->helpFarm.isActive() && gui->helpFarm.checkBounds())
     {
         chosenHowToText = 9;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->helpGoldmine.isActive() && gui->helpGoldmine.checkBounds() )
+    else if (gui->helpGoldmine.isActive() && gui->helpGoldmine.checkBounds())
     {
         chosenHowToText = 10;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->hutriesTypesButton.isActive() && gui->hutriesTypesButton.checkBounds() )
+    else if (gui->hutriesTypesButton.isActive() && gui->hutriesTypesButton.checkBounds())
     {
         chosenHowToText = 11;
         updateHowToText();
         Sound::click();
     }
-    else if (gui->resourcesButton.isActive() && gui->resourcesButton.checkBounds() )
+    else if (gui->resourcesButton.isActive() && gui->resourcesButton.checkBounds())
     {
         chosenHowToText = 12;
         updateHowToText();
@@ -302,14 +302,14 @@ void GUIController::handlePauseButtonsActions()
 
     if (gui->musicButton.checkBounds() && gui->musicButton.isActive())
     {
-        if(GameBalance::musicVolume > 0)
+        if (GameBalance::musicVolume > 0)
         {
             GameBalance::tempMusicVolume = GameBalance::musicVolume;
             GameBalance::musicVolume = 0;
         }
         else
         {
-            if(GameBalance::tempMusicVolume == 0)
+            if (GameBalance::tempMusicVolume == 0)
                 GameBalance::tempMusicVolume = 100;
             GameBalance::musicVolume = GameBalance::tempMusicVolume;
         }
@@ -319,14 +319,14 @@ void GUIController::handlePauseButtonsActions()
 
     if (gui->sfxButton.checkBounds() && gui->sfxButton.isActive())
     {
-        if(GameBalance::sfxVolume > 0)
+        if (GameBalance::sfxVolume > 0)
         {
             GameBalance::tempSFXVolume = GameBalance::sfxVolume;
             GameBalance::sfxVolume = 0;
         }
         else
         {
-            if(GameBalance::tempSFXVolume == 0)
+            if (GameBalance::tempSFXVolume == 0)
                 GameBalance::tempSFXVolume = 100;
             GameBalance::sfxVolume = GameBalance::tempSFXVolume;
         }
@@ -340,7 +340,7 @@ void GUIController::updateHowToText()
     switch (chosenHowToText)
     {
         case 1:
-            gui->helpTitleText.text.setString ("");
+            gui->helpTitleText.text.setString("");
             gui->helpTitleText.text.setPosition(400, 50);
             gui->startingText.text.setPosition(120, 130);
             gui->startingText.text.setCharacterSize(30);
@@ -349,7 +349,7 @@ void GUIController::updateHowToText()
             setHelpBuildingsFlags(false);
             break;
         case 2:
-            gui->helpTitleText.text.setString ("Mechanics:");
+            gui->helpTitleText.text.setString("Mechanics:");
             gui->helpTitleText.text.setPosition(400, 50);
             gui->startingText.text.setPosition(120, 130);
             gui->startingText.text.setString(GameBalance::howToPlayMechanicsString);
@@ -357,7 +357,7 @@ void GUIController::updateHowToText()
             setHelpBuildingsFlags(false);
             break;
         case 3:
-            gui->helpTitleText.text.setString ("Buildings:");
+            gui->helpTitleText.text.setString("Buildings:");
             gui->helpTitleText.text.setPosition(400, 50);
             gui->startingText.text.setPosition(250, 110);
             gui->startingText.text.setString(GameBalance::howToPlayBuildingsString);
@@ -365,7 +365,7 @@ void GUIController::updateHowToText()
             setHelpBuildingsFlags(true);
             break;
         case 4:
-            gui->helpTitleText.text.setString ("Hutries Hall:");
+            gui->helpTitleText.text.setString("Hutries Hall:");
             gui->helpTitleText.text.setPosition(600, 150);
             gui->startingText.text.setPosition(500, 250);
             gui->startingText.text.setString(GameBalance::howToPlayHutriesHallString);
@@ -374,7 +374,7 @@ void GUIController::updateHowToText()
             break;
         case 5:
             gui->helpBuildingDescription.changeTexture(Textures::barracksBasic);
-            gui->helpTitleText.text.setString ("Barracks:");
+            gui->helpTitleText.text.setString("Barracks:");
             gui->helpTitleText.text.setPosition(600, 150);
             gui->startingText.text.setPosition(500, 250);
             gui->startingText.text.setString(GameBalance::howToPlayBarracksString);
@@ -383,7 +383,7 @@ void GUIController::updateHowToText()
             break;
         case 6:
             gui->helpBuildingDescription.changeTexture(Textures::residenceBasic);
-            gui->helpTitleText.text.setString ("Residence:");
+            gui->helpTitleText.text.setString("Residence:");
             gui->helpTitleText.text.setPosition(600, 150);
             gui->startingText.text.setPosition(500, 250);
             gui->startingText.text.setString(GameBalance::howToPlayResidenceString);
@@ -392,7 +392,7 @@ void GUIController::updateHowToText()
             break;
         case 7:
             gui->helpBuildingDescription.changeTexture(Textures::sawmillBasic);
-            gui->helpTitleText.text.setString ("Sawmill:");
+            gui->helpTitleText.text.setString("Sawmill:");
             gui->helpTitleText.text.setPosition(600, 150);
             gui->startingText.text.setPosition(500, 250);
             gui->startingText.text.setString(GameBalance::howToPlaySawmillString);
@@ -401,7 +401,7 @@ void GUIController::updateHowToText()
             break;
         case 8:
             gui->helpBuildingDescription.changeTexture(Textures::stonecutterHutBasic);
-            gui->helpTitleText.text.setString ("Stonecutter Hut:");
+            gui->helpTitleText.text.setString("Stonecutter Hut:");
             gui->helpTitleText.text.setPosition(600, 150);
             gui->startingText.text.setPosition(500, 250);
             gui->startingText.text.setString(GameBalance::howToPlayStonecutterHutString);
@@ -410,7 +410,7 @@ void GUIController::updateHowToText()
             break;
         case 9:
             gui->helpBuildingDescription.changeTexture(Textures::farmBasic);
-            gui->helpTitleText.text.setString ("Farm:");
+            gui->helpTitleText.text.setString("Farm:");
             gui->helpTitleText.text.setPosition(600, 150);
             gui->startingText.text.setPosition(500, 250);
             gui->startingText.text.setString(GameBalance::howToPlayFarmString);
@@ -419,7 +419,7 @@ void GUIController::updateHowToText()
             break;
         case 10:
             gui->helpBuildingDescription.changeTexture(Textures::goldmineBasic);
-            gui->helpTitleText.text.setString ("Goldmine:");
+            gui->helpTitleText.text.setString("Goldmine:");
             gui->helpTitleText.text.setPosition(600, 150);
             gui->startingText.text.setPosition(500, 250);
             gui->startingText.text.setString(GameBalance::howToPlayGoldmineString);
@@ -427,7 +427,7 @@ void GUIController::updateHowToText()
             setHelpBuildingsFlags(false);
             break;
         case 11:
-            gui->helpTitleText.text.setString ("Hutries:");
+            gui->helpTitleText.text.setString("Hutries:");
             gui->helpTitleText.text.setPosition(400, 50);
             gui->startingText.text.setPosition(120, 130);
             gui->startingText.text.setString(GameBalance::howToPlayHutriesString);
@@ -435,7 +435,7 @@ void GUIController::updateHowToText()
             setHelpBuildingsFlags(false);
             break;
         case 12:
-            gui->helpTitleText.text.setString ("Resources:");
+            gui->helpTitleText.text.setString("Resources:");
             gui->helpTitleText.text.setPosition(130, 45);
             gui->startingText.text.setPosition(350, 130);
             gui->startingText.text.setString(GameBalance::howToPlayResourcesString);
@@ -612,7 +612,7 @@ void GUIController::setPauseButtonsFlags(bool buttonFlag)
     gui->mainMenuButton.setActive(buttonFlag);
 }
 
-void GUIController::setHelpBuildingsFlags (bool buttonFlag)
+void GUIController::setHelpBuildingsFlags(bool buttonFlag)
 {
     gui->helpHutriesHall.setActive(buttonFlag);
     gui->helpBarracks.setActive(buttonFlag);
@@ -685,7 +685,7 @@ void GUIController::setGridOutlineColor(bool outlineColorFlag)
 {
     sf::Color color(0, 255, 0, 60);
     if (!outlineColorFlag) color = sf::Color::Transparent;
-   // std::vector<Unit*>::iterator it;
+    // std::vector<Unit*>::iterator it;
     for (auto it = world->units.begin(); it != world->units.end(); ++it)
     {
         (*it)->field.setOutlineColor(color);
@@ -712,6 +712,7 @@ void GUIController::drawGrid(std::vector<Unit*>::iterator it)
             drawToApplication((*it)->field);
     }
 }
+
 void GUIController::drawHutries()
 {
     for (auto ith = world->hutries.begin(); ith != world->hutries.end(); ++ith)
@@ -734,7 +735,7 @@ void GUIController::drawBuildings()
     {
         if ((*itb)->getBuildingConstructedFlag())
         {
-           drawToApplication((*itb)->sprite);
+            drawToApplication((*itb)->sprite);
         }
     }
 }
@@ -745,7 +746,7 @@ void GUIController::drawConstructionSites()
     {
         if (!(*itb)->getBuildingConstructedFlag())
         {
-           drawToApplication((*itb)->sprite);
+            drawToApplication((*itb)->sprite);
         }
     }
 }
@@ -771,7 +772,7 @@ void GUIController::drawForest()
 
 void GUIController::showDescription()
 {
-     for (auto it = world->units.begin(); it != world->units.end(); ++it)
+    for (auto it = world->units.begin(); it != world->units.end(); ++it)
     {
         if ((*it)->getType() == UnitType::FULL)
         {
@@ -964,73 +965,73 @@ void GUIController::displayGameOver(bool win, bool next)
 
 void GUIController::displayHowToPlay()
 {
-   drawToApplication( gui->helpTitleText.text );
+    drawToApplication(gui->helpTitleText.text);
 
-   if  (gui->backToHelpButton.isActive())
-   {
-       drawToApplication( gui->backToHelpButton.button );
-       drawToApplication (gui->backToHelpText.text);
-   }
-   if  (chosenHowToText == 1)
-   {
-       drawToApplication( gui->mechanicsButton.button );
-       drawToApplication (gui->mechanicsText.text);
-       drawToApplication( gui->buildingsButton.button );
-       drawToApplication (gui->buildingsText.text);
-       drawToApplication( gui->resourcesButton.button );
-       drawToApplication (gui->resourcesText.text);
-       drawToApplication( gui->hutriesTypesButton.button );
-       drawToApplication (gui->hutriesTypesText.text);
-       return;
-   }
-   if  (chosenHowToText == 3)
-   {
-       drawToApplication( gui->helpSawmill.button );
-       drawToApplication( gui->helpStonecutter.button );
-       drawToApplication( gui->helpFarm.button );
-       drawToApplication( gui->helpGoldmine.button );
-       drawToApplication( gui->helpBarracks.button );
-       drawToApplication( gui->helpResidence.button );
-       drawToApplication( gui->helpHutriesHall.button );
-       drawToApplication( gui->helpHutriesHallText.text );
-       drawToApplication( gui->helpBarracksText.text );
-       drawToApplication( gui->helpResidenceText.text );
-       drawToApplication( gui->helpSawmillText.text );
-       drawToApplication( gui->helpStonecutterText.text );
-       drawToApplication( gui->helpFarmText.text );
-       drawToApplication( gui->helpGoldmineText.text );
-       return;
-   }
-   if   (chosenHowToText == 4)
-   {
-       drawToApplication( gui->helpHutriesHallDescription.button);
-       return;
-   }
-   if   (chosenHowToText >= 5 && chosenHowToText <= 10)
-   {
-       drawToApplication( gui->helpBuildingDescription.button);
-       return;
-   }
-   if   (chosenHowToText == 11)
-   {
-       drawToApplication( gui->helpCarrier.button);
-       drawToApplication( gui->helpWarrior.button);
-       drawToApplication( gui->helpWorker.button);
-       drawToApplication( gui->helpArcher.button);
-       return;
-   }
-   if   (chosenHowToText == 12)
-   {
-       drawToApplication( gui->helpGold.button);
-       drawToApplication( gui->helpWood.button);
-       drawToApplication( gui->helpStone.button);
-       drawToApplication( gui->helpFood.button);
-       drawToApplication( gui->verticalLine);
-       drawToApplication( gui->verticalLine2);
-       drawToApplication( gui->horizontalLine);
-       drawToApplication( gui->horizontalLine2);
-       drawToApplication( gui->horizontalLine3);
-   }
+    if (gui->backToHelpButton.isActive())
+    {
+        drawToApplication(gui->backToHelpButton.button);
+        drawToApplication(gui->backToHelpText.text);
+    }
+    if (chosenHowToText == 1)
+    {
+        drawToApplication(gui->mechanicsButton.button);
+        drawToApplication(gui->mechanicsText.text);
+        drawToApplication(gui->buildingsButton.button);
+        drawToApplication(gui->buildingsText.text);
+        drawToApplication(gui->resourcesButton.button);
+        drawToApplication(gui->resourcesText.text);
+        drawToApplication(gui->hutriesTypesButton.button);
+        drawToApplication(gui->hutriesTypesText.text);
+        return;
+    }
+    if (chosenHowToText == 3)
+    {
+        drawToApplication(gui->helpSawmill.button);
+        drawToApplication(gui->helpStonecutter.button);
+        drawToApplication(gui->helpFarm.button);
+        drawToApplication(gui->helpGoldmine.button);
+        drawToApplication(gui->helpBarracks.button);
+        drawToApplication(gui->helpResidence.button);
+        drawToApplication(gui->helpHutriesHall.button);
+        drawToApplication(gui->helpHutriesHallText.text);
+        drawToApplication(gui->helpBarracksText.text);
+        drawToApplication(gui->helpResidenceText.text);
+        drawToApplication(gui->helpSawmillText.text);
+        drawToApplication(gui->helpStonecutterText.text);
+        drawToApplication(gui->helpFarmText.text);
+        drawToApplication(gui->helpGoldmineText.text);
+        return;
+    }
+    if (chosenHowToText == 4)
+    {
+        drawToApplication(gui->helpHutriesHallDescription.button);
+        return;
+    }
+    if (chosenHowToText >= 5 && chosenHowToText <= 10)
+    {
+        drawToApplication(gui->helpBuildingDescription.button);
+        return;
+    }
+    if (chosenHowToText == 11)
+    {
+        drawToApplication(gui->helpCarrier.button);
+        drawToApplication(gui->helpWarrior.button);
+        drawToApplication(gui->helpWorker.button);
+        drawToApplication(gui->helpArcher.button);
+        return;
+    }
+    if (chosenHowToText == 12)
+    {
+        drawToApplication(gui->helpGold.button);
+        drawToApplication(gui->helpWood.button);
+        drawToApplication(gui->helpStone.button);
+        drawToApplication(gui->helpFood.button);
+        drawToApplication(gui->verticalLine);
+        drawToApplication(gui->verticalLine2);
+        drawToApplication(gui->horizontalLine);
+        drawToApplication(gui->horizontalLine2);
+        drawToApplication(gui->horizontalLine3);
+    }
 
 
 }
@@ -1094,12 +1095,13 @@ std::string GUIController::getEndingBuildingsStats()
 {
     std::ostringstream stats;
     stats << "Buildings:" << std::endl
-          << "General: " << world->buildings.size() << std::endl
-          << "Hutrie Hall: 1" << std::endl
-          << "Goods Buildings: " << world->goodsBuildingIndex.size() << std::endl
-          << "Barracks: "  << world->barracksIndex.size() << std::endl
-          << "Residence: " <<  ( world->hutries.size() + world->availableSlots - GameBalance::startingHutrieSlots) / GameBalance::hutrieSlotsAddition << std::endl
-          << "\n\t\t\t\t\t\t\t\t\t\t\t\tPress ESC to exit";
+    << "General: " << world->buildings.size() << std::endl
+    << "Hutrie Hall: 1" << std::endl
+    << "Goods Buildings: " << world->goodsBuildingIndex.size() << std::endl
+    << "Barracks: " << world->barracksIndex.size() << std::endl
+    << "Residence: " << (world->hutries.size() + world->availableSlots - GameBalance::startingHutrieSlots) /
+                        GameBalance::hutrieSlotsAddition << std::endl
+    << "\n\t\t\t\t\t\t\t\t\t\t\t\tPress ESC to exit";
     return stats.str();
 }
 
@@ -1145,6 +1147,10 @@ void GUIController::updateGoodsNumber()
     std::ostringstream desc3;
     desc3 << world->availableGoods.getGold();
     gui->tgold.text.setString(desc3.str());
+
+    std::ostringstream desc4;
+    desc4 << world->hutries.size() << "/" << world->availableSlots + world->hutries.size();
+    gui->tresidenceSlots.text.setString(desc4.str());
 }
 
 void GUIController::setBuildingsCosts()
@@ -1272,7 +1278,9 @@ void GUIController::showEmptyUnits(bool mark)
 void GUIController::updateClock(int time)
 {
     std::ostringstream newTime;
-    newTime << time / 60 << ":" << time % 60;
+    if (time % 60 < 10)
+        newTime << time / 60 << ":0" << time % 60;
+    else newTime << time / 60 << ":" << time % 60;
     gui->timeLeft.text.setString(newTime.str());
 }
 
@@ -1359,11 +1367,11 @@ void GUIController::highlightTargetButton()
         if (howToPlayFlag)
         {
             if (gui->backArrowButton.checkBounds())
-                gui->backArrowButton.button.setFillColor(sf::Color(0,0,0,200));
+                gui->backArrowButton.button.setFillColor(sf::Color(0, 0, 0, 200));
             else gui->backArrowButton.button.setFillColor(sf::Color::White);
 
             if (gui->nextArrowButton.checkBounds())
-                gui->nextArrowButton.button.setFillColor(sf::Color(0,0,0,200));
+                gui->nextArrowButton.button.setFillColor(sf::Color(0, 0, 0, 200));
             else gui->nextArrowButton.button.setFillColor(sf::Color::White);
 
             if (gui->mechanicsButton.checkBounds())
@@ -1412,7 +1420,7 @@ void GUIController::highlightTargetButton()
                     gui->helpFarmText.highlight();
                 else gui->helpFarmText.endHighlight();
 
-                 if (gui->helpGoldmine.checkBounds())
+                if (gui->helpGoldmine.checkBounds())
                     gui->helpGoldmineText.highlight();
                 else gui->helpGoldmineText.endHighlight();
 
@@ -1816,6 +1824,6 @@ void GUIController::changeDifficultyButtonSprite()
         else animationCounter = 0;
     }
     frameCounter++;
-    if(frameCounter > 3)
+    if (frameCounter > 3)
         frameCounter = 0;
 }

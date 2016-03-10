@@ -116,6 +116,7 @@ public:
     GUIText twood;
     GUIText tstone;
     GUIText tfood;
+    GUIText tresidenceSlots;
 
     /////////////////////////////// BUILDINGS SECTION //////////////////////////////////////////
 
@@ -214,6 +215,8 @@ private:
     GUIButton stone;
     GUIButton gold;
     GUIButton food;
+    GUIButton residenceSlots;
+
 };
 
 #endif // GUI_H

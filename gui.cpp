@@ -122,14 +122,16 @@ GUI::GUI(int mapWidth, int mapHeight, sf::RenderWindow* hutrieApplication, int w
 
         guiBar(0, mapHeight + 98 , hutrieApplication, Textures::guiBar, mapWidth, 30),
         timeLeft(20, mapHeight + 2 + 98, 20, "15:00", sf::Color::White),
-        gold(208, mapHeight + 98, hutrieApplication, Textures::gold, 30, 30),
-        wood(208 + 192, mapHeight + 98, hutrieApplication, Textures::wood, 30, 30),
-        stone(208 + 384, mapHeight + 98, hutrieApplication, Textures::stone, 30, 30),
-        food(208 + 576, mapHeight + 98, hutrieApplication, Textures::food, 30, 30),
-        tgold(280, mapHeight + 2 + 98, 20, "0", sf::Color::White),
-        twood(280 + 192, mapHeight + 2 + 98, 20, "0", sf::Color::White),
-        tstone(280 + 384, mapHeight + 2 + 98, 20, "0", sf::Color::White),
-        tfood(280 + 576, mapHeight + 2 + 98, 20, "0", sf::Color::White),
+        gold(144, mapHeight + 98, hutrieApplication, Textures::gold, 30, 30),
+        wood(144 + 192, mapHeight + 98, hutrieApplication, Textures::wood, 30, 30),
+        stone(144 + 384, mapHeight + 98, hutrieApplication, Textures::stone, 30, 30),
+        food(144 + 576, mapHeight + 98, hutrieApplication, Textures::food, 30, 30),
+        residenceSlots(144 + 768, mapHeight + 103, hutrieApplication, Textures::hutrieButton, 25, 20),
+        tgold(200, mapHeight + 2 + 98, 20, "0", sf::Color::White),
+        twood(200 + 192, mapHeight + 2 + 98, 20, "0", sf::Color::White),
+        tstone(200 + 384, mapHeight + 2 + 98, 20, "0", sf::Color::White),
+        tfood(200 + 576, mapHeight + 2 + 98, 20, "0", sf::Color::White),
+        tresidenceSlots(200 + 768, mapHeight + 2 + 98, 20, "0", sf::Color::White),
 
     //----------------------BUILDING MODE LIST----------------------------------------//
 
@@ -239,10 +241,12 @@ void GUI::displayMainGUI()
     hutrieApplication->draw(gold.button);
     hutrieApplication->draw(stone.button);
     hutrieApplication->draw(food.button);
+    hutrieApplication->draw(residenceSlots.button);
     hutrieApplication->draw(tgold.text);
     hutrieApplication->draw(twood.text);
     hutrieApplication->draw(tfood.text);
     hutrieApplication->draw(tstone.text);
+    hutrieApplication->draw(tresidenceSlots.text);
     hutrieApplication->draw(errorInfo.text);
 
 }

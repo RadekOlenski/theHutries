@@ -113,6 +113,7 @@ void GameLogicController::constructBuilding()
                     (*it)->setDescriptionTexture();
                     (*it)->setConstructedBuildingSound();
                     (*it)->updateStatus();
+                    guiController->updateGoodsNumber();
                     (*it)->deactivateBuildButton();
                     std:: cout << "Zbudowany!" << std::endl;
                 }
@@ -475,6 +476,7 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
         world->carriers.push_back(new Carrier(hutrieApplication, usedUnits));
         world->hutries.push_back(world->carriers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        guiController->updateGoodsNumber();
         world->carriers.back()->setBuilding(hutriesHall);
     }
     else if (objectType == "worker")
@@ -483,6 +485,7 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
         world->workers.push_back(new Worker(hutrieApplication, usedUnits));
         world->hutries.push_back(world->workers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        guiController->updateGoodsNumber();
     }
     else if (objectType == "warrior")
     {
@@ -491,6 +494,7 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
         world->hutries.push_back(world->warriors.back());
         world->soldiers.push_back(world->warriors.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        guiController->updateGoodsNumber();
         world->warriors.back()->sprite.setPosition(world->units.at(unitIndex + 1)->field.getPosition().x,
                                                    world->units.at(unitIndex + 1)->field.getPosition().y);
         world->warriors.back()->hutrieThread.launch();
@@ -502,6 +506,7 @@ void GameLogicController::createHutrie(std::string objectType, unsigned int unit
         world->hutries.push_back(world->archers.back());
         world->soldiers.push_back(world->archers.back());
         world->units.at(unitIndex)->addHutrie(world->hutries.back());
+        guiController->updateGoodsNumber();
         world->archers.back()->sprite.setPosition(world->units.at(unitIndex + 1)->field.getPosition().x,
                                                   world->units.at(unitIndex + 1)->field.getPosition().y);
         world->archers.back()->hutrieThread.launch();
