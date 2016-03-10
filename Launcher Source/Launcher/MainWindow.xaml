@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Launcher"
         mc:Ignorable="d"
-        Title="The Hutries" Height="417.927" Width="404.5" Icon="iconblack.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Cursor="Arrow" FontSize="16" FontFamily="Malgun Gothic">
+        Title="The Hutries" Height="508.327" Width="404.5" Icon="iconblack.ico" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Cursor="Arrow" FontSize="16" FontFamily="Malgun Gothic">
     <Window.Effect>
         <DropShadowEffect BlurRadius="15" Direction="323" RenderingBias="Quality"/>
     </Window.Effect>
@@ -18,7 +18,7 @@
         <Grid.ContextMenu>
             <ContextMenu/>
         </Grid.ContextMenu>
-        <Canvas Grid.ColumnSpan="3" Height="389" VerticalAlignment="Top">
+        <Canvas Grid.ColumnSpan="3" Height="478" VerticalAlignment="Top" Margin="-22,0,0.4,0">
             <Canvas.Background>
                 <ImageBrush ImageSource="castle.png" Opacity="0.4" Stretch="UniformToFill">
                     <ImageBrush.RelativeTransform>
@@ -35,33 +35,33 @@
                 <TextBlock.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </TextBlock.Effect><Run Text="Music Volume"/><Run Text=":"/></TextBlock>
-            <Slider x:Name="musicSlider" Canvas.Left="85" Canvas.Top="245" Width="220" Maximum="100" Value="100" AutoToolTipPlacement="BottomRight" SmallChange="1" LargeChange="10" ValueChanged="volume_SetMusic" TickFrequency="5" TickPlacement="BottomRight">
+            <Slider x:Name="musicSlider" Canvas.Left="85" Canvas.Top="253" Width="220" Maximum="100" Value="100" AutoToolTipPlacement="BottomRight" SmallChange="1" LargeChange="10" ValueChanged="volume_SetMusic" TickFrequency="5" TickPlacement="BottomRight">
                 <Slider.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </Slider.Effect>
             </Slider>
-            <TextBlock x:Name="textBlock1" Canvas.Left="76" TextWrapping="Wrap" Canvas.Top="242">
+            <TextBlock x:Name="textBlock1" Canvas.Left="76" TextWrapping="Wrap" Canvas.Top="250">
                 <TextBlock.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </TextBlock.Effect><Run Text="0"/><LineBreak/><Run/></TextBlock>
-            <TextBlock x:Name="textBlock2" Canvas.Left="310" TextWrapping="Wrap" Canvas.Top="242">
+            <TextBlock x:Name="textBlock2" Canvas.Left="310" TextWrapping="Wrap" Canvas.Top="250">
                 <TextBlock.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </TextBlock.Effect><Run Text="100"/><LineBreak/><Run/></TextBlock>
-            <TextBlock x:Name="textBlock_Copy" Canvas.Left="105" TextWrapping="Wrap" Canvas.Top="281">
+            <TextBlock x:Name="textBlock_Copy" Canvas.Left="105" TextWrapping="Wrap" Canvas.Top="302">
                 <TextBlock.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </TextBlock.Effect><Run Text="SFX Volume"/><Run Text=":"/></TextBlock>
-            <Slider x:Name="sfxSlider" Canvas.Left="85" Canvas.Top="300" Width="220" Maximum="100" Value="80" AutoToolTipPlacement="BottomRight" SmallChange="1" LargeChange="10" ValueChanged="volume_SetSFX" TickFrequency="5" TickPlacement="BottomRight">
+            <Slider x:Name="sfxSlider" Canvas.Left="85" Canvas.Top="333" Width="220" Maximum="100" Value="80" AutoToolTipPlacement="BottomRight" SmallChange="1" LargeChange="10" ValueChanged="volume_SetSFX" TickFrequency="5" TickPlacement="BottomRight">
                 <Slider.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </Slider.Effect>
             </Slider>
-            <TextBlock x:Name="textBlock1_Copy" Canvas.Left="76" TextWrapping="Wrap" Canvas.Top="297">
+            <TextBlock x:Name="textBlock1_Copy" Canvas.Left="76" TextWrapping="Wrap" Canvas.Top="330">
                 <TextBlock.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </TextBlock.Effect><Run Text="0"/><LineBreak/><Run/></TextBlock>
-            <TextBlock x:Name="textBlock2_Copy" Canvas.Left="310" TextWrapping="Wrap" Canvas.Top="297">
+            <TextBlock x:Name="textBlock2_Copy" Canvas.Left="310" TextWrapping="Wrap" Canvas.Top="330">
                 <TextBlock.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </TextBlock.Effect><Run Text="100"/><LineBreak/><Run/></TextBlock>
@@ -75,21 +75,21 @@
                     <DropShadowEffect Opacity="0.2"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBlock x:Name="textBlock3_Copy" TextWrapping="Wrap" Canvas.Left="168" Canvas.Top="179" Height="20">
+            <TextBlock x:Name="textBlock3_Copy" TextWrapping="Wrap" Canvas.Left="191" Canvas.Top="181" Height="20">
                 <TextBlock.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </TextBlock.Effect><Run Text="Fullscreen"/><LineBreak/><Run/></TextBlock>
-            <CheckBox x:Name="muteSFXCheckbox" Content="" Canvas.Left="220" Canvas.Top="285" Checked="muteSFX" Unchecked="unmuteSFX">
+            <CheckBox x:Name="muteSFXCheckbox" Content="" Canvas.Left="220" Canvas.Top="306" Checked="muteSFX" Unchecked="unmuteSFX">
                 <CheckBox.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </CheckBox.Effect>
             </CheckBox>
-            <TextBlock x:Name="textBlock3_Copy1" TextWrapping="Wrap" Canvas.Left="238" Canvas.Top="281">
+            <TextBlock x:Name="textBlock3_Copy1" TextWrapping="Wrap" Canvas.Left="238" Canvas.Top="302">
                 <TextBlock.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </TextBlock.Effect><Run Text="Mute "/><Run Text="SFX"/></TextBlock>
         </Canvas>
-        <ComboBox x:Name="resolution" Margin="25,145,26,208" SelectionChanged="resolution_SelectionChanged" Cursor="Hand" Grid.Column="1" SelectedIndex="5">
+        <ComboBox x:Name="resolution" Margin="25.2,145,25.8,295.4" SelectionChanged="resolution_SelectionChanged" Cursor="Hand" Grid.Column="1" SelectedIndex="5">
             <ComboBox.Effect>
                 <DropShadowEffect Opacity="0.2"/>
             </ComboBox.Effect>
@@ -104,7 +104,7 @@
             <ComboBoxItem Cursor="Hand" Content="2560 x 1600"/>
             <ComboBoxItem Cursor="Hand" Content="3840 x 2160"/>
         </ComboBox>
-        <CheckBox x:Name="fullscreen" Content="" Margin="50,0,125,177" VerticalAlignment="Bottom" Checked="fullscreen_Checked" Unchecked="fullscreen_Unchecked" Cursor="Hand" Grid.Column="1" Height="20">
+        <CheckBox x:Name="fullscreen" Content="" Margin="45.2,0,129.8,266.4" VerticalAlignment="Bottom" Checked="fullscreen_Checked" Unchecked="fullscreen_Unchecked" Cursor="Hand" Grid.Column="1" Height="20">
             <CheckBox.Effect>
                 <DropShadowEffect Opacity="0.2"/>
             </CheckBox.Effect>
@@ -119,7 +119,7 @@
                 <DropShadowEffect Opacity="0.2"/>
             </Image.Effect>
         </Image>
-        <Button x:Name="playButton" Content="Play" Margin="40,0,39,10" VerticalAlignment="Bottom" FontSize = "30" Click="playButton_Click" Cursor="Hand" Grid.Column="1" Height="44">
+        <Button x:Name="playButton" Content="Play" Margin="40.2,0,38.8,35.4" VerticalAlignment="Bottom" FontSize = "30" Click="playButton_Click" Cursor="Hand" Grid.Column="1" Height="44">
             <Button.Effect>
                 <DropShadowEffect Opacity="0.2"/>
             </Button.Effect>

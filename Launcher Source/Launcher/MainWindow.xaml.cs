@@ -106,22 +106,31 @@ namespace Launcher
         {
             tempMusicSliderValue = musicSlider.Value;
             musicSlider.Value = 0;
+            musicSlider.IsEnabled = false;
         }
 
         private void muteSFX(object sender, RoutedEventArgs e)
         {
             tempSFXSliderValue = sfxSlider.Value;
             sfxSlider.Value = 0;
+            sfxSlider.IsEnabled = false;
         }
 
         private void unmuteMusic(object sender, RoutedEventArgs e)
         {
             musicSlider.Value = tempMusicSliderValue;
+            musicSlider.IsEnabled = true;
         }
 
         private void unmuteSFX(object sender, RoutedEventArgs e)
         {
             sfxSlider.Value = tempSFXSliderValue;
+            sfxSlider.IsEnabled = true;
+        }
+
+        private void changeChecks(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
