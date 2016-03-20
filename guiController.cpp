@@ -1508,7 +1508,7 @@ void GUIController::highlightTargetButton()
 
 void GUIController::setHard()
 {
-    GameBalance::gameTime = 5 * 60;
+    GameBalance::gameTime = 8 * 60;
     GameBalance::startingFood = 10;
     GameBalance::startingWood = 10;
     GameBalance::startingStone = 10;
