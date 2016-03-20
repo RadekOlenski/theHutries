@@ -100,7 +100,8 @@ void GUIController::handleMenuButtonsActions()
         hideDifficultyTexts();
         bigTitleThread.terminate();
         setDifficultyButtonsFlags(false);
-        gui->startingText.text.setPosition(160, 320);
+        gui->startingText.text.setCharacterSize(30);
+        gui->startingText.text.setPosition(180, 360);
         gui->startingText.text.setString(GameBalance::aboutString);
         Sound::click();
         return;
@@ -342,7 +343,7 @@ void GUIController::updateHowToText()
         case 1:
             gui->helpTitleText.text.setString("");
             gui->helpTitleText.text.setPosition(400, 50);
-            gui->startingText.text.setPosition(120, 130);
+            gui->startingText.text.setPosition(120, 110);
             gui->startingText.text.setCharacterSize(30);
             gui->startingText.text.setString(GameBalance::howToPlayString);
             activateHowToPlayButtons(true);
@@ -351,7 +352,7 @@ void GUIController::updateHowToText()
         case 2:
             gui->helpTitleText.text.setString("Mechanics:");
             gui->helpTitleText.text.setPosition(400, 50);
-            gui->startingText.text.setPosition(120, 130);
+            gui->startingText.text.setPosition(60, 130);
             gui->startingText.text.setString(GameBalance::howToPlayMechanicsString);
             activateHowToPlayButtons(false);
             setHelpBuildingsFlags(false);
@@ -731,13 +732,15 @@ void GUIController::drawEnvironment()
 
 void GUIController::drawBuildings()
 {
-    for (auto itb = world->buildings.begin(); itb != world->buildings.end(); ++itb)
+    for (auto itb = world->buildings.begin() + 1; itb != world->buildings.end(); ++itb)
     {
         if ((*itb)->getBuildingConstructedFlag())
         {
             drawToApplication((*itb)->sprite);
         }
     }
+    auto itb = world->buildings.begin();
+    drawToApplication((*itb)->sprite);
 }
 
 void GUIController::drawConstructionSites()
@@ -1149,7 +1152,7 @@ void GUIController::updateGoodsNumber()
     gui->tgold.text.setString(desc3.str());
 
     std::ostringstream desc4;
-    desc4 << world->hutries.size() << "/" << world->availableSlots + world->hutries.size();
+    desc4 << world->hutries.size() << "/" << world->availableSlots + world->hutries.size() + GameBalance::tempResSlots;
     gui->tresidenceSlots.text.setString(desc4.str());
 }
 

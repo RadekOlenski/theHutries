@@ -5,6 +5,8 @@ using namespace std;
 
 sf::Sound Sound::sound = sound;
 sf::SoundBuffer Sound::soundBuffer = soundBuffer;
+sf::Sound Sound::hutriesSound = hutriesSound;
+sf::SoundBuffer Sound::hutriesSoundBuffer = hutriesSoundBuffer;
 const string Sound::errorPath = "audio/error.flac";
 const string Sound::clickPath = "audio/click.flac";
 const string Sound::tingPath = "audio/ting.flac";
@@ -27,6 +29,10 @@ const string Sound::menuMusic = "audio/intro.flac";
 const string Sound::introMusic = "audio/warHorn.flac";
 const string Sound::construction = "audio/construction.flac";
 const string Sound::purchaseSoundPath = "audio/purchase.flac";
+const string Sound::soldierVoicePath = "audio/soldier_voice.flac";
+const string Sound::workerVoicePath = "audio/worker_voice.flac";
+const string Sound::archerVoicePath = "audio/archer_voice.flac";
+const string Sound::carrierVoicePath = "audio/carrier_voice.flac";
 const string Sound::reminder = "audio/churchbell.wav";
 
 
@@ -63,6 +69,38 @@ void Sound::purchaseSound()
     soundBuffer.loadFromFile(purchaseSoundPath);
     sound.setVolume(GameBalance::sfxVolume);
     sound.play();
+}
+
+void Sound::soldierSound()
+{
+    hutriesSound.setBuffer(hutriesSoundBuffer);
+    hutriesSoundBuffer.loadFromFile(soldierVoicePath);
+    hutriesSound.setVolume(GameBalance::sfxVolume);
+    hutriesSound.play();
+}
+
+void Sound::workerSound()
+{
+    hutriesSound.setBuffer(hutriesSoundBuffer);
+    hutriesSoundBuffer.loadFromFile(workerVoicePath);
+    hutriesSound.setVolume(GameBalance::sfxVolume);
+    hutriesSound.play();
+}
+
+void Sound::carrierSound()
+{
+    hutriesSound.setBuffer(hutriesSoundBuffer);
+    hutriesSoundBuffer.loadFromFile(carrierVoicePath);
+    hutriesSound.setVolume(GameBalance::sfxVolume);
+    hutriesSound.play();
+}
+
+void Sound::archerSound()
+{
+    hutriesSound.setBuffer(hutriesSoundBuffer);
+    hutriesSoundBuffer.loadFromFile(archerVoicePath);
+    hutriesSound.setVolume(GameBalance::sfxVolume);
+    hutriesSound.play();
 }
 
 void Sound::notification()

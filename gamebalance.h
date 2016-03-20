@@ -103,6 +103,7 @@ public:
 
     static int tempMusicVolume;
     static int tempSFXVolume;
+    static int tempResSlots;
 };
 
 #endif // GAMEBALANCE_H

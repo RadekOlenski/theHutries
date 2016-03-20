@@ -4,7 +4,7 @@ Display resolution:
 
 Display Mode:
 
-windowed
+fullscreen
 Music volume:
 100
 SFX Volume:

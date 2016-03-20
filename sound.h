@@ -23,6 +23,14 @@ public:
 
     static void reminderSound();
 
+    static void soldierSound();
+
+    static void workerSound();
+
+    static void archerSound();
+
+    static void carrierSound();
+
     static void notification();
 
     static const std::string musicPath;
@@ -48,11 +56,17 @@ private:
 
     static sf::Sound sound;
     static sf::SoundBuffer soundBuffer;
+    static sf::Sound hutriesSound;
+    static sf::SoundBuffer hutriesSoundBuffer;
     static const std::string errorPath;
     static const std::string clickPath;
     static const std::string tingPath;
     static const std::string notificationPath;
     static const std::string purchaseSoundPath;
+    static const std::string soldierVoicePath;
+    static const std::string archerVoicePath;
+    static const std::string workerVoicePath;
+    static const std::string carrierVoicePath;
 };
 
 

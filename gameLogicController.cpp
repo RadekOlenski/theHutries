@@ -23,11 +23,6 @@ GameLogicController::GameLogicController(World* world, sf::RenderWindow* hutrieA
     hutriesHall = dynamic_cast <HutriesHall*>(world->buildings.at(0));
 }
 
-void GameLogicController::assignHutriesHall()
-{
-//    hutriesHall = dynamic_cast <HutriesHall*>(world->buildings.at(0));
-}
-
 void GameLogicController::handleBuildingCreation()
 {
     int selectedUnitIndex = modelController->getSelectedUnitIndex();
@@ -229,6 +224,7 @@ void GameLogicController::handleWorkerCreation()
                 world->availableGoods = world->availableGoods - GameBalance::workerCost;
                 guiController->updateGoodsNumber();
                 world->availableSlots--;
+                GameBalance::tempResSlots++;
                 hutriesHall->increaseTrainingWorkerCounter();
         }
         else
@@ -242,6 +238,7 @@ void GameLogicController::handleWorkerCreation()
         {
             hutriesHall->setEnoughGoodsForCreation(false);
             hutriesHall->decreaseTrainingWorkerCounter();
+            GameBalance::tempResSlots--;
             std::string objectType = "worker";
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
             createHutrie(objectType, unitIndex);
@@ -249,6 +246,7 @@ void GameLogicController::handleWorkerCreation()
             hutriesHall->trainingClock.restart();
             hutriesHall->updateStatus();
             hutriesHall->setFirstCheckFlag(true);
+            Sound::workerSound();
         }
         else
         {
@@ -286,6 +284,7 @@ void GameLogicController::handleCarrierCreation()
             world->availableGoods = world->availableGoods - GameBalance::carrierCost;
             guiController->updateGoodsNumber();
             world->availableSlots--;
+            GameBalance::tempResSlots++;
             hutriesHall->increaseTrainingCarrierCounter();
         }
         else
@@ -298,6 +297,7 @@ void GameLogicController::handleCarrierCreation()
         if ( hutriesHall->trainingClock.getElapsedTime().asSeconds() >= hutriesHall->getCarrierTrainingTime())
         {
             hutriesHall->setEnoughGoodsForCreation(false);
+            GameBalance::tempResSlots--;
             hutriesHall->decreaseTrainingCarrierCounter();
             std::string objectType = "carrier";
             unsigned int unitIndex = (unsigned int) hutriesHall->getUnitIndex(6);
@@ -306,6 +306,7 @@ void GameLogicController::handleCarrierCreation()
             hutriesHall->trainingClock.restart();
             hutriesHall->updateStatus();
             hutriesHall->setFirstCheckFlag(true);
+            Sound::carrierSound();
         }
         else
         {
@@ -361,6 +362,7 @@ void GameLogicController::handleWarriorCreation(unsigned int unitIndex)
             barracks->resetTrainingTime();
             barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
+            Sound::soldierSound();
         }
         else
         {
@@ -428,6 +430,7 @@ void GameLogicController::handleArcherCreation(unsigned int unitIndex)
             barracks->resetTrainingTime();
             barracks->updateStatus();
             barracks->setFirstCheckFlag(true);
+            Sound::archerSound();
         }
         else
         {
